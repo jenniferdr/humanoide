@@ -1,8 +1,12 @@
-
 #ifndef DROID_POSES
 #define DROID_POSES
-
 #include <avr/pgmspace.h>
+#include <BioloidController.h>
+#include <ax12.h>
+
+
+
+
 
 PROGMEM prog_uint16_t pose_1[] = {220, 807, 271, 696, 450, 641, 359, 664, 499, 545, 508, 517, 522, 510, 523, 505, 498, 534};
 PROGMEM prog_uint16_t pose_2[] = {301, 726, 285, 696, 450, 641, 356, 660, 507, 540, 399, 619, 401, 642, 543, 463, 513, 528};
@@ -16,7 +20,7 @@ PROGMEM prog_uint16_t pose_9[] = {245, 727, 319, 696, 448, 639, 351, 637, 462, 4
 PROGMEM prog_uint16_t pose_10[] = {245, 727, 317, 696, 447, 638, 349, 634, 472, 489, 384, 607, 436, 594, 527, 468, 511, 497};
 PROGMEM prog_uint16_t pose_11[] = {246, 727, 317, 696, 447, 638, 361, 652, 485, 488, 495, 597, 508, 594, 524, 466, 522, 496};
 
-PROGMEM transition_t camina[] = {{0,12} , {pose_1|1000} , {pose_2|500 } , {pose_3|500} , {paso_5|500} , {paso_6|500} , {paso_7|500} , {paso_8|500} , {paso_9|500} , {paso_10|500} , {paso_11|500}, {pose_1|500}};
+PROGMEM transition_t camina[] = {{0,12} , {pose_1,1000} , {pose_2,500 } , {pose_3,500} , {pose_5,500} , {pose_6,500} , {pose_7,500} , {pose_8,500} , {pose_9,500} , {pose_10,500} , {pose_11,500}, {pose_1,500}};
 
 #endif
 
