@@ -163,6 +163,7 @@ extern unsigned char dynamixel_bus_config[AX12_MAX_SERVOS];
 #define GetTemperature(id) (ax12GetRegister(id, AX_PRESENT_TEMPERATURE, 3))
 #define SetTemperature(id, temp) (ax12SetRegister(id,AX_LIMIT_TEMPERATURE, temp))
 #define SetAlarm(id) (ax12SetRegister(id,AX_ALARM_SHUTDOWN, 0x04))
+#define GetTorque(id, temp) (ax12GetRegister(id,AX_TORQUE_LIMIT_H, temp))
 
 //fin prueba
 #define GetLeftIRData(id) (ax12GetRegister(id, AX_LEFT_IR_DATA))

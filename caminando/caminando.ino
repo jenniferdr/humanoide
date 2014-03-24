@@ -1,6 +1,6 @@
 #include <ax12.h>
 #include <BioloidController.h>
-#include "poses.h"
+//#include "poses.h"
 
 int Temp;
 int sensorpinX = 1;
@@ -23,12 +23,12 @@ void setup(){
     digitalWrite(13,LOW);
     SetTemperature(4, 30);
     SetAlarm(4);
-    bioloid.loadPose(pose_1);
-    bioloid.readPose();
-    bioloid.interpolateSetup(500);
+    //bioloid.loadPose(pose_1);
+    //bioloid.readPose();
+    //bioloid.interpolateSetup(500);
    // while(bioloid.interpolating > 0){
-        bioloid.interpolateStep();
-        delay(3);
+        //bioloid.interpolateStep();
+        //delay(3);
    // }
    
     // start our walking
@@ -49,7 +49,7 @@ void loop(){
   } else {*/ 
     //bioloid.play();    
     Serial.print(" tempe \n ");
-    Temp = GetTemperature(4);
+    Temp = GetTemperature(11);
     Serial.print(Temp);
     delay(500);
   //}
