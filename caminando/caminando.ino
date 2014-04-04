@@ -1,13 +1,11 @@
 #include <ax12.h>
 #include <BioloidController.h>
-//#include "poses.h"
+#include "poses.h"
 
-int Temp;
-int sensorpinX = 1;
-int sensorY = 0;
+int sensorpinX = 2;//1
+int sensorY = 0;//0
 int X;
 int Y;
-int q = 1;
 BioloidController bioloid = BioloidController(1000000);
 
 void setup(){
@@ -20,47 +18,56 @@ void setup(){
     delay(10);
     X = analogRead(sensorpinX);
     Y = analogRead(sensorY);
-    SetTorqueL(10, 800); 
     digitalWrite(13,LOW);
     
-    //while(q < 18){
-      //SetTorqueL(q, 800); 
-      //SetAlarm(q);
-      //q = q+1;
-    //}
-    //SetTemperature(4, 30);
-    //bioloid.loadPose(pose_1);
-    //bioloid.readPose();
-    //bioloid.interpolateSetup(500);
-   // while(bioloid.interpolating > 0){
-        //bioloid.interpolateStep();
-        //delay(3);
-   // }
+    
+    /*bioloid.loadPose(pose_2);
+    bioloid.readPose();
+    bioloid.interpolateSetup(500);
+    while(bioloid.interpolating > 0){
+       bioloid.interpolateStep();
+       delay(3);
+    }
    
     // start our walking
-   // bioloid.playSeq(camina);
+    bioloid.playSeq(camina);*/
 }
 
 void loop(){
- /* X = analogRead(sensorpinX);
+  int i = 0;
+  
+  X = analogRead(sensorpinX);
   Y = analogRead(sensorY);
-  if (X<248){
-    SetPosition(5,100);
-  } else if (X>253){
-    SetPosition(5,512);
-  } else if(Y>253){
-    SetPosition(6,100);
-  } else if (Y<248){
-    SetPosition(6,512);
-  } else {*/ 
-    //bioloid.play();    
-    Serial.print(" tempe \n ");
-    Temp = GetTorqueH(1);
-    Serial.print(Temp);
-    Temp = GetTorqueL(1);
-    Serial.print("TOr");
-    Serial.print(Temp);
+  while (i < 9){
+    X = analogRead(sensorpinX) + X;
+    Y = analogRead(sensorY) + Y;
     
-    delay(500);
+    delay(100);
+    i = i+1;
+  }
+  int Gyro = 1;
+  X = X/10;
+  Y = Y/10;
+  Serial.print(" Eje X \n ");
+  Serial.print(X);
+  Serial.print(" Eje Y \n ");
+  Serial.print(Y);
+  int o = random(0,1023);
+ 
+  if (X<240){
+    SetPosition(10,o);
+    Gyro = 0;  
+  } else if (X>300){
+    SetPosition(10,o);
+    Gyro = 0;
+  } //else {
+    //bioloid.play();
+
+ /* if (Gyro == 0){
+    SetPosition(10,o);
+  
+  }*/    
+    
+    //delay(500);
   //}
 }
