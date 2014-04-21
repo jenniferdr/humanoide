@@ -22,7 +22,7 @@ void setup(){
 }
 
 void loop(){
-  bioloid.playSeq(walk);
+  bioloid.playSeq(camina);
   while(bioloid.playing){
     bioloid.play();
   }  
