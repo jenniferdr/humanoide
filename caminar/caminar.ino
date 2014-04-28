@@ -24,7 +24,7 @@ void setup(){
   pinMode(puertoGyroX,INPUT);
   pinMode(puertoGyroY,INPUT);  
 
-  bioloid.loadPose(pose_2);
+  bioloid.loadPose(pose_1);
   bioloid.readPose();
   bioloid.interpolateSetup(300);
   while(bioloid.interpolating > 0){
@@ -38,11 +38,11 @@ void setup(){
 }
 
 void loop(){
-  bioloid.playSeq(camina);
-  while(bioloid.playing){
-    bioloid.play();
+  //bioloid.playSeq(camina);
+  //while(bioloid.playing){
+    //bioloid.play();
     balance();
-  } 
+  //} 
 }
 
 void balance(){
@@ -61,10 +61,10 @@ void balance(){
   velocidadX = X/10;
   velocidadY = Y/10;
   
-  Serial.println(" Eje X \n ");
+  //Serial.println(" Eje X \n ");
   Serial.println(velocidadX);
-  Serial.println(" Eje Y \n ");
-  Serial.println(velocidadY);
+  //Serial.println(" Eje Y \n ");
+  //Serial.println(velocidadY);
   
   int errorX = velocidadX - inicialGyroX;
   int errorY = velocidadY - inicialGyroY;
@@ -81,6 +81,7 @@ void balance(){
 
 void inicializarGyro()
 {
+  delay(10000);
   int i = 0;
 
   // Lectura promediada
