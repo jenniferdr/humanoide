@@ -87,7 +87,7 @@ void balance(){
 
 void inicializarGyro()
 {
-  delay(10000);
+  delay(15000);
   int i = 0;
 
   // Lectura promediada
@@ -100,8 +100,8 @@ void inicializarGyro()
   inicialGyroX = inicialGyroX/10;
   inicialGyroY = inicialGyroY/10;
   
-  Serial.println(" Eje X inicial \n ");
+  //Serial.println(" Eje X inicial \n ");
   Serial.println(inicialGyroX);
-  Serial.println(" Eje Y inicial\n ");
-  Serial.println(inicialGyroY);
+  //Serial.println(" Eje Y inicial\n ");
+  //Serial.println(inicialGyroY);
 }
