@@ -1,4 +1,4 @@
 /* Version actializada del movimiento caminar */ 
 
 
-Version actual es 
+Version actual es caminata6
