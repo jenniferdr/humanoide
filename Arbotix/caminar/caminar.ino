@@ -44,11 +44,11 @@ void setup(){
 void loop(){
 
   // Loop necesario para que camine continuamente
-  //bioloid.playSeq(camina);
-  //while(bioloid.playing){
-    //bioloid.play();
+  bioloid.playSeq(camina);
+  while(bioloid.playing){
+    bioloid.play();
     balance();
-  //} 
+  } 
 }
 
 void balance(){
