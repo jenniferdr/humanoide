@@ -17,10 +17,15 @@ while(abierto == False):
     abierto = False 
 
 f = open(raw_input('Nombre de archivo: '),'w')
+g = open(raw_input('Nombre de archivo: '),'w')
+i = 0
 
 while True:
   line = ser.readline()
   print line
-  f.write(line)
 
-
+  ##if (i % 2 == 0):
+   ##f.write(line)
+  ##else: 
+  g.write(line)
+  i = i + 1
