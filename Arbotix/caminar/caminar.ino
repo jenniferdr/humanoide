@@ -80,9 +80,21 @@ void balance(){
   Serial.println(" Error Y \n ");
   Serial.println(errorY);*/
   
-  int errorEscaladoX = (errorX*4)/54;
-  int errorEscaladoY = (errorY*4)/18;
+  int errorEscaladoX = (errorX*4)/18; // Motores 15 y 16
+  int errorEscaladoX2 = (errorX*4)/54;
+  int errorEscaladoY = (errorY*4)/20;
   
+  // Modificar posicion de los motores 15 y 16
+  SetPosition(15 , GetPosition(15) + errorEscaladoX);
+  SetPosition(16 , GetPosition(16) - errorEscaladoX);
+  
+  // Modificar pos de motores 13 y 14 rodillas
+  SetPosition(13 , GetPosition(13) + errorEscaladoX2);
+  SetPosition(14 , GetPosition(14) - errorEscaladoX2);
+  
+  // Modificar pos de los motores 17 y 18  (Info del eje Y)
+  SetPosition(17 , GetPosition(17) - errorEscaladoY);
+  SetPosition(18 , GetPosition(18) - errorEscaladoY);
 }
 
 void inicializarGyro()
@@ -101,7 +113,7 @@ void inicializarGyro()
   inicialGyroY = inicialGyroY/10;
   
   //Serial.println(" Eje X inicial \n ");
-  Serial.println(inicialGyroX);
+  //Serial.println(inicialGyroX);
   //Serial.println(" Eje Y inicial\n ");
-  //Serial.println(inicialGyroY);
+  Serial.println(inicialGyroY);
 }
