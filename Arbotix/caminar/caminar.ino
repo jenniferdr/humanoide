@@ -5,6 +5,10 @@
 #include <ax12.h>
 #include <BioloidController.h>
 #include "poses.h"
+#include "pararseBocaAbajo.h"
+#include <Event.h>
+#include <Timer.h>
+
 
 BioloidController bioloid = BioloidController(1000000);
 
@@ -19,6 +23,9 @@ int inicialGyroY = 0;
 // Valores de velocidad angular, cambiante.
 int velocidadX;
 int velocidadY;
+
+Timer t;
+boolean de_pie = true;
 
 void setup(){
   // stand up slowly
@@ -35,6 +42,7 @@ void setup(){
     bioloid.interpolateStep();
     delay(3);
   }
+  t.every(300,balance);
   
   inicializarGyro();
   // start our walking
@@ -43,12 +51,26 @@ void setup(){
 
 void loop(){
 
-  // Loop necesario para que camine continuamente
-  bioloid.playSeq(camina);
-  while(bioloid.playing){
+  if(de_pie){
+    // Loop necesario para que camine continuamente
+    bioloid.playSeq(camina);
+    while(bioloid.playing){
+      bioloid.play();
+      t.update();
+    }
+  }else{
+    //verificar de que lado se cayo
+    //int botonFrente = analogRead();
+    
+    bioloid.playSeq(levantarse_boca_abajo);
     bioloid.play();
-    balance();
-  } 
+    while(bioloid.playing){
+      bioloid.play();
+    }
+    de_pie= true;
+  }
+  
+  
 }
 
 void balance(){
@@ -89,12 +111,16 @@ void balance(){
   SetPosition(16 , GetPosition(16) - errorEscaladoX);
   
   // Modificar pos de motores 13 y 14 rodillas
-  SetPosition(13 , GetPosition(13) + errorEscaladoX2);
-  SetPosition(14 , GetPosition(14) - errorEscaladoX2);
+  //SetPosition(13 , GetPosition(13) + errorEscaladoX2);
+  //SetPosition(14 , GetPosition(14) - errorEscaladoX2);
   
   // Modificar pos de los motores 17 y 18  (Info del eje Y)
   SetPosition(17 , GetPosition(17) - errorEscaladoY);
   SetPosition(18 , GetPosition(18) - errorEscaladoY);
+  
+  if(errorX >= 100 || errorX<= -60){
+    de_pie= false;
+  }
 }
 
 void inicializarGyro()
