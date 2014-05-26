@@ -7,11 +7,8 @@ using namespace std;
 
 int main (int argc, char ** argv) {
 
-
   // capturar la camara en vivo 
-  VideoCapture camara(0);
-
-  
+  VideoCapture camara(0);  
   
   if (!camara.isOpened()) 
     {
@@ -72,8 +69,6 @@ int main (int argc, char ** argv) {
   // Crear un control para cambiar el valor (0-255)
   createTrackbar("LowV", "video1", &ALowV, 255);//Value (0 - 255)
   createTrackbar("HighV", "video1", &AHighV, 255);
-  
-
    
   //Un cuadro temporal
   Mat imgTmp;
@@ -81,7 +76,6 @@ int main (int argc, char ** argv) {
 
   int iLastX = -1; 
   int iLastY = -1;
-  
   
   while (1)
     {
@@ -102,7 +96,7 @@ int main (int argc, char ** argv) {
       //Convertir el cuadro de BGR a HSV
       cvtColor(imgOriginal, imgHSV, COLOR_BGR2HSV); 
       Mat imgFiltro;
-	  Mat imgArqueria;
+      Mat imgArqueria;
       inRange(imgHSV, Scalar(iLowH, iLowS, iLowV), Scalar(iHighH, iHighS, iHighV), imgFiltro); //Threshold the image
     
       //morphological opening (removes small objects from the foreground)
@@ -113,9 +107,8 @@ int main (int argc, char ** argv) {
       dilate( imgFiltro, imgFiltro, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) ); 
       erode(imgFiltro, imgFiltro, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
 
-
-	  /********* PARA LA ARQUERIA ********/
-	  inRange(imgHSV, Scalar(ALowH, ALowS, ALowV), Scalar(AHighH, AHighS, AHighV), imgArqueria); //Threshold the image
+      /********* PARA LA ARQUERIA ********/
+      inRange(imgHSV, Scalar(ALowH, ALowS, ALowV), Scalar(AHighH, AHighS, AHighV), imgArqueria); //Threshold the image
 	  
       //morphological opening (removes small objects from the foreground)
       erode(imgArqueria, imgArqueria, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
@@ -125,45 +118,45 @@ int main (int argc, char ** argv) {
       dilate( imgArqueria, imgArqueria, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) ); 
       erode(imgArqueria, imgArqueria, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
      
-	  /********** Para PElota ******/
+      /********** Para PElota ******/
       Moments pMomentos = moments(imgFiltro);
       double dM01 = pMomentos.m01;
       double dM10 = pMomentos.m10;
       double dArea = pMomentos.m00;
       /********* Para Arqueria *****/
-	  Moments AMomentos = moments(imgArqueria);
-	  double AM01 = AMomentos.m01;
+      Moments AMomentos = moments(imgArqueria);
+      double AM01 = AMomentos.m01;
       double AM10 = AMomentos.m10;
       double AArea = AMomentos.m00;
 
-	  if (dArea > 10000)
+      if (dArea > 10000)
 	{
-	 
+	  
 	  int posX = dM10 / dArea;
 	  int posY = dM01 / dArea;        
-
+	  
 	  int posX1 = AM10 / AArea;
 	  int posY1 = AM01 / AArea;        
-
+	  
 	  if (iLastX >= 0 && iLastY >= 0 && posX >= 0 && posY >= 0)
 	    {
-			line(imgLines, cvPoint(00,(imgLines.size().height)/2), cvPoint(imgLines.size().width,(imgLines.size().height)/2), cvScalar(0,255,0), 1);
-
-			//	line(imgLines, cvPoint(00,(imgLines.size().height)/2), cvPoint(imgLines.size().width,(imgLines.size().height)/2), cvScalar(0,255,0), 1);
-
-			cout <<  imgTmp.size().height<< endl;   	     
-			circle(imgLines,Point2f(posX,posY),50,Scalar(255,0,0),1,CV_AA,0);
-			circle(imgLines,Point2f(posX1,posY1),50,Scalar(255,0,0),1,CV_AA,0);
-		}
+	      line(imgLines, cvPoint(00,(imgLines.size().height)/2), cvPoint(imgLines.size().width,(imgLines.size().height)/2), cvScalar(0,255,0), 1);
+	      
+	      //	line(imgLines, cvPoint(00,(imgLines.size().height)/2), cvPoint(imgLines.size().width,(imgLines.size().height)/2), cvScalar(0,255,0), 1);
+	      
+	      cout <<  imgTmp.size().height<< endl;   	     
+	      circle(imgLines,Point2f(posX,posY),50,Scalar(255,0,0),1,CV_AA,0);
+	      circle(imgLines,Point2f(posX1,posY1),50,Scalar(255,0,0),1,CV_AA,0);
+	    }
 	  iLastX = posX;
 	  iLastY = posY;
 	}
       imshow("Thresholded Image", imgFiltro); //show the thresholded image
-	  imshow("Thresholded1 Image", imgArqueria); //show the thresholded image
-     
+      imshow("Thresholded1 Image", imgArqueria); //show the thresholded image
+      
       imgOriginal = imgOriginal + imgLines;
       imshow("Original", imgOriginal); //show the original image
-     
+      
       if (waitKey(30) == 27) 
 	{
 	  cout << "esc key is pressed by user" << endl;
