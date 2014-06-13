@@ -7,16 +7,12 @@
 #include "opencv2/features2d/features2d.hpp"
 
 #include "opencv2/calib3d/calib3d.hpp"
-#include "opencv2/nonfree/nonfree.hpp"
+//#include "opencv2/nonfree/nonfree.hpp"
 
 
 #include <string>   // for strings
 #include <iomanip>  // for controlling float print precision
 #include <sstream>  // string to number conversion
-
-
-
-
 
 
 using namespace cv;
@@ -123,14 +119,14 @@ int main (int argc, char ** argv) {
 
     char c;
     int frameNum = -1;          // Frame counter
-	VideoCapture captRefrnc(sourceReference), captUndTst(sourceCompareWith);
+    VideoCapture captRefrnc(sourceReference), captUndTst(sourceCompareWith);
 
 
-	 if (!cam.isOpened())
+    /*	 if (!cam.isOpened())
     {
         cout  << "Could camara " << sourceReference << endl;
         return -1;
-    }
+	}*/
 
     if (!captRefrnc.isOpened())
     {

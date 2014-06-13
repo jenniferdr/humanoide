@@ -7,19 +7,21 @@
 #include "opencv2/features2d/features2d.hpp"
 
 #include "opencv2/calib3d/calib3d.hpp"
-#include "opencv2/nonfree/nonfree.hpp"
+//#include "opencv2/nonfree/nonfree.hpp"
 
 
 #include <string>   // for strings
 #include <iomanip>  // for controlling float print precision
 #include <sstream>  // string to number conversion
 
+#include "RaspiCamCV.h"
+
 using namespace cv;
 using namespace std;
 
 // valor de la presicion al comparar las imagenes valores 15-30 difieren en gran cantidad valores 30- infinito mas se parecen
 
-<<<<<<< HEAD
+
 #define presicion 40 
 
 
@@ -45,55 +47,48 @@ double getPSNR(const Mat& I1, const Mat& I2)
 }
 
 
-
-
 int main (int argc, char ** argv) {
-	// Valor del trigger 
-	int trigger = 35;
-
-	// Valor del retardo
-	int delay = 10;
-	
-	// capturar la camara en vivo 
-	// "0" es el numero del dspositivo 
-	VideoCapture camara(0);
-
-=======
-  // capturar la camara en vivo 
-  VideoCapture camara(0);  
+  // Valor del trigger 
+  int trigger = 35;
   
->>>>>>> fb2b7ff08db35dc549ae817fb57b5c557460f602
-  if (!camara.isOpened()) 
+  // Valor del retardo
+  int delay = 10;
+  
+  // capturar la camara en vivo 
+  // "0" es el numero del dspositivo 
+  //VideoCapture camara(0);
+  RaspiCamCvCapture * camara = raspiCamCvCreateCameraCapture(0);
+  
+  
+  /*if (!camara.isOpened()) 
     {
       cout << "No se pudo abrir la camara" << endl;
       return -1;
-    }
-
-
-
-  stringstream conv;
-  
-  //const string Referencia =camara.read(imgTmp); 
-	  //"referenciaCamara.jpg";
-	  
+      }*/
   
   
+  //stringstream conv;
+  
+  //const string Referencia = "prueba.mp4";
+    
   //VideoCapture referenciaOscuro(Referencia);
-
-
-/*	 if (!referenciaOscuro.isOpened())
+  
+  
+  IplImage* imgRef  = raspiCamCvQueryFrame(camara);
+  Mat imagenReferencia = Mat(imgRef,false);
+  /*if (!referenciaOscuro.isOpened())
     {
         cout  << "NO SE PUEDE ABRIR IMAGEN DE REFERENCIA " << Referencia << endl;
         return -1;
     }
-// HAY que verificar que el tamano de la camara y de la foto sea el mismo 
-	 Size refS = Size((int) referenciaOscuro.get(CV_CAP_PROP_FRAME_WIDTH),
-					  (int) referenciaOscuro.get(CV_CAP_PROP_FRAME_HEIGHT));
-	 
-*/       
+  // HAY que verificar que el tamano de la camara y de la foto sea el mismo 
+  Size refS = Size((int) referenciaOscuro.get(CV_CAP_PROP_FRAME_WIDTH),
+		   (int) referenciaOscuro.get(CV_CAP_PROP_FRAME_HEIGHT));
+  */
+  imshow("referencia", imagenReferencia); //show the original image
   
   // Crea una nueva ventana
-	 namedWindow("video",CV_WINDOW_AUTOSIZE); 
+  namedWindow("video",CV_WINDOW_AUTOSIZE); 
   
   /* Para calcular el HUE, Saturacion y Valor
    * de la pelota
@@ -148,17 +143,17 @@ int main (int argc, char ** argv) {
    
   //Un cuadro temporal
   Mat imgTmp;
-  camara.read(imgTmp); 
+  //camara.read(imgTmp); 
+  imgTmp  = raspiCamCvQueryFrame(camara);
 
   int iLastX = -1; 
   int iLastY = -1;
-<<<<<<< HEAD
-  Mat imagenReferencia;
-  double valorPSNR;
-  camara.read(imagenReferencia); 
-=======
+
   
->>>>>>> fb2b7ff08db35dc549ae817fb57b5c557460f602
+  double valorPSNR;
+  //referenciaOscuro.read(imagenReferencia); 
+
+  
   while (1)
     {
       Mat cuadro;
@@ -166,34 +161,36 @@ int main (int argc, char ** argv) {
       //Create a black image with the size as the camera output
       Mat imgLines = Mat::zeros( imgTmp.size(), CV_8UC3 );;
       
-      bool bSuccess = camara.read(imgOriginal); // leer un cuadro del video
+      //bool bSuccess = camara.read(imgOriginal); // leer un cuadro del video
+      IplImage* imgO = raspiCamCvQueryFrame(camara);
+      imgOriginal = Mat(imgO,false);
 	 
 	  //referenciaOscuro >> imagenReferencia;
-      if (!bSuccess) 
+      /*if (!bSuccess) 
 	{
 	  cout << "Cannot read a frame from video stream" << endl;
 	  break;
-	}
+	  }*/
       Mat imgHSV;
 
 ///////////////////////////////// PSNR /////////////////////////////////////////////////
 
-	   valorPSNR = getPSNR(imagenReferencia,imgOriginal);
-	   cout << setiosflags(ios::fixed) << setprecision(3) << valorPSNR << "dB";
-	   if (valorPSNR > presicion){
-		   cout << "me cai hacia abajo ";
-
-	   }
+      valorPSNR = getPSNR(imgOriginal,imagenReferencia);
+      //cout << setiosflags(ios::fixed) << setprecision(3) << valorPSNR << "dB";
+      cout  << valorPSNR ;
+      if (valorPSNR > presicion){
+	cout << "me cai hacia abajo ";
+	
+      }
 	   
       //Convertir el cuadro de BGR a HSV
       cvtColor(imgOriginal, imgHSV, COLOR_BGR2HSV); 
       Mat imgFiltro;
-<<<<<<< HEAD
-	  Mat imgArqueria;
-	  /********* PARA LA PELOTA  ********/
-=======
+
       Mat imgArqueria;
->>>>>>> fb2b7ff08db35dc549ae817fb57b5c557460f602
+      /********* PARA LA PELOTA  ********/
+      
+      
       inRange(imgHSV, Scalar(iLowH, iLowS, iLowV), Scalar(iHighH, iHighS, iHighV), imgFiltro); //Threshold the image
     
       //morphological opening (removes small objects from the foreground)
@@ -237,15 +234,7 @@ int main (int argc, char ** argv) {
 	  
 	  if (iLastX >= 0 && iLastY >= 0 && posX >= 0 && posY >= 0)
 	    {
-<<<<<<< HEAD
-			line(imgLines, cvPoint(00,(imgLines.size().height)/2), cvPoint(imgLines.size().width,(imgLines.size().height)/2), cvScalar(0,255,0), 1);
-			//line(imgLines, cvPoint(00,(imgLines.size().height)/2), cvPoint(imgLines.size().width,(imgLines.size().height)/2), cvScalar(0,255,0), 1);
 
-			cout <<  imgTmp.size().height<< endl;   	     
-			circle(imgLines,Point2f(posX,posY),50,Scalar(255,0,0),1,CV_AA,0);
-			circle(imgLines,Point2f(posX1,posY1),50,Scalar(255,0,0),1,CV_AA,0);
-		}
-=======
 	      line(imgLines, cvPoint(00,(imgLines.size().height)/2), cvPoint(imgLines.size().width,(imgLines.size().height)/2), cvScalar(0,255,0), 1);
 	      
 	      //	line(imgLines, cvPoint(00,(imgLines.size().height)/2), cvPoint(imgLines.size().width,(imgLines.size().height)/2), cvScalar(0,255,0), 1);
@@ -254,7 +243,7 @@ int main (int argc, char ** argv) {
 	      circle(imgLines,Point2f(posX,posY),50,Scalar(255,0,0),1,CV_AA,0);
 	      circle(imgLines,Point2f(posX1,posY1),50,Scalar(255,0,0),1,CV_AA,0);
 	    }
->>>>>>> fb2b7ff08db35dc549ae817fb57b5c557460f602
+
 	  iLastX = posX;
 	  iLastY = posY;
 	}
