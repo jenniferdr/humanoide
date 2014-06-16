@@ -14,17 +14,14 @@
 #include <iomanip>  // for controlling float print precision
 #include <sstream>  // string to number conversion
 
-#include "RaspiCamCV.h"
+//#include "RaspiCamCV.h"
 
 using namespace cv;
 using namespace std;
 
 // valor de la presicion al comparar las imagenes valores 15-30 difieren en gran cantidad valores 30- infinito mas se parecen
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 586376bec53573945d2ecd19b258e7a7de7e56c9
 #define presicion 40 
 
 
@@ -51,7 +48,7 @@ double getPSNR(const Mat& I1, const Mat& I2)
 
 
 int main (int argc, char ** argv) {
-<<<<<<< HEAD
+
 	// Valor del trigger 
 	int trigger = 35;
 
@@ -62,26 +59,15 @@ int main (int argc, char ** argv) {
 	// "0" es el numero del dspositivo 
 	VideoCapture camara(0);
 
-  if (!camara.isOpened()) 
-=======
-  // Valor del trigger 
-  int trigger = 35;
-  
-  // Valor del retardo
-  int delay = 10;
-  
-  // capturar la camara en vivo 
-  // "0" es el numero del dspositivo 
-  //VideoCapture camara(0);
-  RaspiCamCvCapture * camara = raspiCamCvCreateCameraCapture(0);
   
   
-  /*if (!camara.isOpened()) 
->>>>>>> 586376bec53573945d2ecd19b258e7a7de7e56c9
+  
+	if (!camara.isOpened()) 
+		
     {
-      cout << "No se pudo abrir la camara" << endl;
-      return -1;
-      }*/
+		cout << "No se pudo abrir la camara" << endl;
+		return -1;
+	}
   
   
   //stringstream conv;
@@ -91,8 +77,8 @@ int main (int argc, char ** argv) {
   //VideoCapture referenciaOscuro(Referencia);
   
   
-  IplImage* imgRef  = raspiCamCvQueryFrame(camara);
-  Mat imagenReferencia = Mat(imgRef,false);
+  //IplImage* imgRef  = raspiCamCvQueryFrame(camara);
+  //Mat imagenReferencia = Mat(imgRef,false);
   /*if (!referenciaOscuro.isOpened())
     {
         cout  << "NO SE PUEDE ABRIR IMAGEN DE REFERENCIA " << Referencia << endl;
@@ -102,7 +88,7 @@ int main (int argc, char ** argv) {
   Size refS = Size((int) referenciaOscuro.get(CV_CAP_PROP_FRAME_WIDTH),
 		   (int) referenciaOscuro.get(CV_CAP_PROP_FRAME_HEIGHT));
   */
-  imshow("referencia", imagenReferencia); //show the original image
+  //imshow("referencia", imagenReferencia); //show the original image
   
   // Crea una nueva ventana
   namedWindow("video",CV_WINDOW_AUTOSIZE); 
@@ -162,24 +148,17 @@ int main (int argc, char ** argv) {
    
   //Un cuadro temporal
   Mat imgTmp;
-  //camara.read(imgTmp); 
-  imgTmp  = raspiCamCvQueryFrame(camara);
+  camara.read(imgTmp); 
+  //imgTmp  = raspiCamCvQueryFrame(camara);
 
   int iLastX = -1; 
   int iLastY = -1;
-<<<<<<< HEAD
+
   Mat imagenReferencia;
   double valorPSNR;
   camara.read(imagenReferencia); 
   imshow("Referencia", imagenReferencia); //show the original image
-=======
 
-  
-  double valorPSNR;
-  //referenciaOscuro.read(imagenReferencia); 
-
-  
->>>>>>> 586376bec53573945d2ecd19b258e7a7de7e56c9
   while (1)
     {
       Mat cuadro;
@@ -187,41 +166,37 @@ int main (int argc, char ** argv) {
       //Create a black image with the size as the camera output
       Mat imgLines = Mat::zeros( imgTmp.size(), CV_8UC3 );;
       
-      //bool bSuccess = camara.read(imgOriginal); // leer un cuadro del video
-      IplImage* imgO = raspiCamCvQueryFrame(camara);
-      imgOriginal = Mat(imgO,false);
+      bool bSuccess = camara.read(imgOriginal); // leer un cuadro del video
+      //IplImage* imgO = raspiCamCvQueryFrame(camara);
+      //imgOriginal = Mat(imgO,false);
 	 
 	  //referenciaOscuro >> imagenReferencia;
-      /*if (!bSuccess) 
-	{
-	  cout << "Cannot read a frame from video stream" << endl;
-	  break;
-	  }*/
+      if (!bSuccess) 
+	  {
+		  cout << "Cannot read a frame from video stream" << endl;
+		  break;
+	  }
       Mat imgHSV;
-
+	  
 ///////////////////////////////// PSNR /////////////////////////////////////////////////
-
+	  
       valorPSNR = getPSNR(imgOriginal,imagenReferencia);
       //cout << setiosflags(ios::fixed) << setprecision(3) << valorPSNR << "dB";
       cout  << valorPSNR ;
       if (valorPSNR > presicion){
-	cout << "me cai hacia abajo ";
-	
+		  cout << "me cai hacia abajo ";
+		  
       }
-	   
+	  
       //Convertir el cuadro de BGR a HSV
       cvtColor(imgOriginal, imgHSV, COLOR_BGR2HSV); 
       Mat imgFiltro;
-<<<<<<< HEAD
-	  Mat imgArqueria;
-	  /********* PARA LA PELOTA  ********/
-=======
 
       Mat imgArqueria;
       /********* PARA LA PELOTA  ********/
       
       
->>>>>>> 586376bec53573945d2ecd19b258e7a7de7e56c9
+
       inRange(imgHSV, Scalar(iLowH, iLowS, iLowV), Scalar(iHighH, iHighS, iHighV), imgFiltro); //Threshold the image
     
       //morphological opening (removes small objects from the foreground)
@@ -273,7 +248,7 @@ int main (int argc, char ** argv) {
 
 	  if (iLastX >= 0 && iLastY >= 0 && posX >= 0 && posY >= 0)
 	    {
-<<<<<<< HEAD
+
 			// horizontal
 			line(imgLines,horizonIni,horizonFin, cvScalar(0,255,0), 1);
 			// vertical
@@ -298,24 +273,8 @@ int main (int argc, char ** argv) {
 				} else 
 					cout << " Camino a la Derecha"  ; 
 			}
-				
-				
-		
-			
-
 		}
-=======
 
-	      line(imgLines, cvPoint(00,(imgLines.size().height)/2), cvPoint(imgLines.size().width,(imgLines.size().height)/2), cvScalar(0,255,0), 1);
-	      
-	      //	line(imgLines, cvPoint(00,(imgLines.size().height)/2), cvPoint(imgLines.size().width,(imgLines.size().height)/2), cvScalar(0,255,0), 1);
-	      
-	      cout <<  imgTmp.size().height<< endl;   	     
-	      circle(imgLines,Point2f(posX,posY),50,Scalar(255,0,0),1,CV_AA,0);
-	      circle(imgLines,Point2f(posX1,posY1),50,Scalar(255,0,0),1,CV_AA,0);
-	    }
-
->>>>>>> 586376bec53573945d2ecd19b258e7a7de7e56c9
 	  iLastX = posX;
 	  iLastY = posY;
 	}
