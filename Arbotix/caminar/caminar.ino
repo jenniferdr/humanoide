@@ -6,6 +6,9 @@
 #include <BioloidController.h>
 #include "poses.h"
 #include "pararseBocaAbajo.h"
+#include "voltearDer.h"
+#include "voltearIzq.h"
+
 #include <Event.h>
 #include <Timer.h>
 
@@ -24,7 +27,7 @@ int inicialGyroY = 0;
 int velocidadX;
 int velocidadY;
 
-Timer t;
+//Timer t;
 boolean de_pie = true;
 
 void setup(){
@@ -42,32 +45,55 @@ void setup(){
     bioloid.interpolateStep();
     delay(3);
   }
-  t.every(300,balance);
+  //t.every(300,balance);
   
-  inicializarGyro();
+  //inicializarGyro();
   // start our walking
-  bioloid.playSeq(camina);
-}
+ bioloid.playSeq(camina);
 
+}
+int opcion;
 void loop(){
 
-  if(de_pie){
-    // Loop necesario para que camine continuamente
-    bioloid.playSeq(camina);
-    while(bioloid.playing){
-      bioloid.play();
-      t.update();
+   if (Serial.available()>0){
+    opcion = Serial.read();
+    switch (opcion){
+      case 'w':
+          bioloid.playSeq(camina);
+          while(bioloid.playing){
+              bioloid.play();
+    //         t.update();
+         }      
+      case 'a':
+          bioloid.playSeq(voltearIzq);
+          while(bioloid.playing){
+              bioloid.play();
+          }
+      
+      case 'd':
+          bioloid.playSeq(voltearDer);
+          while(bioloid.playing){
+              bioloid.play();
+          }
+      //case 's':
     }
-  }else{
+    //if(de_pie){
+    // Loop necesario para que camine continuamente
+        /*bioloid.playSeq(camina);
+          while(bioloid.playing){
+              bioloid.play();
+              t.update();
+      */
+  //}else{
     //verificar de que lado se cayo
     //int botonFrente = analogRead();
     
-    bioloid.playSeq(levantarse_boca_abajo);
+    /*bioloid.playSeq(levantarse_boca_abajo);
     bioloid.play();
     while(bioloid.playing){
       bioloid.play();
-    }
-    de_pie= true;
+    }*/
+    //de_pie= true;
   }
   
   
