@@ -8,7 +8,7 @@
 #include "pararseBocaAbajo.h"
 #include "voltearDer.h"
 #include "voltearIzq.h"
-
+#include <Servo.h>
 #include <Event.h>
 #include <Timer.h>
 
