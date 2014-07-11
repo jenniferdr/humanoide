@@ -48,8 +48,6 @@ void setup(){
   //t.every(300,balance);
   
   //inicializarGyro();
-  // start our walking
- bioloid.playSeq(camina);
 
 }
 
