@@ -6,9 +6,9 @@
 #include <BioloidController.h>
 #include "poses.h"
 #include "pararseBocaAbajo.h"
+#include <Servo.h>
 #include "posesVoltearDerecha.h"
 #include "posesVoltearIzquierda.h"
-
 #include <Event.h>
 #include <Timer.h>
 
