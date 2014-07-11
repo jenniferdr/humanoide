@@ -6,9 +6,9 @@
 #include <BioloidController.h>
 #include "poses.h"
 #include "pararseBocaAbajo.h"
-#include "voltearDer.h"
-#include "voltearIzq.h"
 #include <Servo.h>
+#include "posesVoltearDerecha.h"
+#include "posesVoltearIzquierda.h"
 #include <Event.h>
 #include <Timer.h>
 
@@ -52,31 +52,28 @@ void setup(){
  bioloid.playSeq(camina);
 
 }
-int opcion;
-void loop(){
 
+int opcion;
+
+void loop(){
+  while(bioloid.playing){
+    bioloid.play();
+  }
    if (Serial.available()>0){
     opcion = Serial.read();
     switch (opcion){
       case 'w':
           bioloid.playSeq(camina);
-          while(bioloid.playing){
-              bioloid.play();
-    //         t.update();
-         }      
+         break;      
       case 'a':
           bioloid.playSeq(voltearIzq);
-          while(bioloid.playing){
-              bioloid.play();
-          }
-      
+          break;      
       case 'd':
           bioloid.playSeq(voltearDer);
-          while(bioloid.playing){
-              bioloid.play();
-          }
+          break;
       //case 's':
     }
+   }
     //if(de_pie){
     // Loop necesario para que camine continuamente
         /*bioloid.playSeq(camina);
@@ -94,9 +91,7 @@ void loop(){
       bioloid.play();
     }*/
     //de_pie= true;
-  }
-  
-  
+  //}
 }
 
 void balance(){
