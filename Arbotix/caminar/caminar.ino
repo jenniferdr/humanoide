@@ -6,11 +6,17 @@
 #include <BioloidController.h>
 #include "poses.h"
 #include "pararseBocaAbajo.h"
-#include <Servo.h>
 #include "posesVoltearDerecha.h"
 #include "posesVoltearIzquierda.h"
+
 #include <Event.h>
 #include <Timer.h>
+#include <Servo.h>
+
+// Libraries for ros SErvice
+#include <ros.h>
+#include <std_msgs/String.h>
+#include <rosserial_arduino/Test.h>
 
 
 BioloidController bioloid = BioloidController(1000000);
@@ -30,13 +36,43 @@ int velocidadY;
 //Timer t;
 boolean de_pie = true;
 
+// inicializando el nodo que maneja el servicio
+ros::NodeHandle  nh;
+using rosserial_arduino::Test;
+
+// opcion para puerto serial
+int opcion;
+
+
+// Funcion CallBack para definir el servicio a prestar
+void callback(const Test::Request & req, Test::Response & res){
+  String ent = String(req.input);
+  res.output = req.input;
+  
+   if (ent == "w"){  
+      bioloid.playSeq(camina);
+   } else if (ent == "a") {
+      bioloid.playSeq(voltearIzq);
+   } else if (ent == "d"){
+      bioloid.playSeq(voltearIzq);
+   }
+   while(bioloid.playing) bioloid.play();
+}
+
+ros::ServiceServer<Test::Request, Test::Response> server("moverRobot", &callback);
+
+std_msgs::String str_msg;
+
 void setup(){
   // stand up slowly
   delay(100);       // recommended pause
-  Serial.begin(9600);
+  //Serial.begin(9600);
 
   pinMode(puertoGyroX,INPUT);
   pinMode(puertoGyroY,INPUT);  
+  
+  nh.initNode();
+  nh.advertiseService(server);
 
   bioloid.loadPose(pose_1);
   bioloid.readPose();
@@ -51,28 +87,13 @@ void setup(){
 
 }
 
-int opcion;
+
 
 void loop(){
-  while(bioloid.playing){
-    bioloid.play();
-  }
-   if (Serial.available()>0){
-    opcion = Serial.read();
-    switch (opcion){
-      case 'w':
-          bioloid.playSeq(camina);
-         break;      
-      case 'a':
-          bioloid.playSeq(voltearIzq);
-          break;      
-      case 'd':
-          bioloid.playSeq(voltearDer);
-          break;
-      //case 's':
-    }
-   }
-    //if(de_pie){
+ 
+  nh.spinOnce();
+  //delay(10);
+  //if(de_pie){
     // Loop necesario para que camine continuamente
         /*bioloid.playSeq(camina);
           while(bioloid.playing){
