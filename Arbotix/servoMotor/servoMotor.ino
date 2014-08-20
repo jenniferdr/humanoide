@@ -9,7 +9,7 @@
 
   int pos = 0; 
   // Rango de vision hasta segundo nivel = 1,28 m
-  
+  // Rango tercer nivel = 2,39 m
   void setup() 
   { 
     myservoB.attach(12);  // puerto 12 (B) o 13 (A) abajo 
