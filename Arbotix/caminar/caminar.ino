@@ -13,17 +13,16 @@
 #include <Timer.h>
 #include <Servo.h>
 
-// Libraries for ros SErvice
+// Librerias para ROS
 #include <ros.h>
 #include <std_msgs/String.h>
 #include <rosserial_arduino/Test.h>
 
-
 BioloidController bioloid = BioloidController(1000000);
 
 // Puertos Giroscopio
-int puertoGyroX = 2;
-int puertoGyroY = 0;
+int puertoGyroX = 5;
+int puertoGyroY = 7;
 
 // Lectura inicial, sera el 'centro'
 int inicialGyroX = 0;
@@ -33,7 +32,7 @@ int inicialGyroY = 0;
 int velocidadX;
 int velocidadY;
 
-//Timer t;
+Timer t;
 boolean de_pie = true;
 
 // inicializando el nodo que maneja el servicio
@@ -64,8 +63,7 @@ ros::ServiceServer<Test::Request, Test::Response> server("moverRobot", &callback
 std_msgs::String str_msg;
 
 void setup(){
-  // stand up slowly
-  delay(100);       // recommended pause
+  
   //Serial.begin(9600);
 
   pinMode(puertoGyroX,INPUT);
@@ -74,6 +72,8 @@ void setup(){
   nh.initNode();
   nh.advertiseService(server);
 
+  // pararse lentamente
+  delay(100);
   bioloid.loadPose(pose_1);
   bioloid.readPose();
   bioloid.interpolateSetup(300);
@@ -81,36 +81,26 @@ void setup(){
     bioloid.interpolateStep();
     delay(3);
   }
-  //t.every(300,balance);
+  t.every(300,balance);
   
-  //inicializarGyro();
+  inicializarGyro();
 
 }
 
-
-
 void loop(){
- 
-  nh.spinOnce();
-  //delay(10);
-  //if(de_pie){
-    // Loop necesario para que camine continuamente
-        /*bioloid.playSeq(camina);
-          while(bioloid.playing){
-              bioloid.play();
-              t.update();
-      */
-  //}else{
-    //verificar de que lado se cayo
-    //int botonFrente = analogRead();
-    
-    /*bioloid.playSeq(levantarse_boca_abajo);
+  
+  t.update();
+  
+  if(de_pie){
+    nh.spinOnce();
+  }else{
+    bioloid.playSeq(levantarse_boca_abajo);
     bioloid.play();
     while(bioloid.playing){
       bioloid.play();
-    }*/
-    //de_pie= true;
-  //}
+    }
+    de_pie= true;
+  }
 }
 
 void balance(){
@@ -130,7 +120,7 @@ void balance(){
   velocidadY = Y/10;
   
   //Serial.println(" Eje X \n ");
-  Serial.println(velocidadX);
+  //Serial.println(velocidadX);
   //Serial.println(" Eje Y \n ");
   //Serial.println(velocidadY);
   
@@ -181,5 +171,5 @@ void inicializarGyro()
   //Serial.println(" Eje X inicial \n ");
   //Serial.println(inicialGyroX);
   //Serial.println(" Eje Y inicial\n ");
-  Serial.println(inicialGyroY);
+  //Serial.println(inicialGyroY);
 }
