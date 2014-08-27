@@ -7,7 +7,7 @@
 
 #include "RaspiCamCV.h" // para controlar la Pi-camara
 
-DeteccionPelota:
+Class DeteccionPelota{
 
   /* Valor HSV del color */
 
@@ -23,8 +23,27 @@ DeteccionPelota:
   int valInf = 101;
   int valSup = 255;
 
-  double posX
-  double posY
+  double posX;
+  double posY;
+
+public bool esVisible(imgOriginal){
+  
+  imgPelota = filtrarPelota(imgOriginal);
+  Moments pMomentos = moments(imgPelota);
+  double dArea = pMomentos.m00;
+
+  if(dArea > 10000){ 
+    posX = pMomentos.m01 / dArea;
+    posY = pMomentos.m10 / dArea;
+    return true;
+  }else{ 
+    return false;
+  }
+}
+
+public par obtenerPosicion(){
+  return new par ( pos X Y );
+}
 
 void crearControlesPelota(){
   // Crea una nueva ventana
@@ -67,20 +86,4 @@ Mat filtrarPelota(imgOriginal){
   return imgFiltrada;
 }
 
-bool esVisible(imgOriginal){
-
-  imgPelota = filtrarPelota(imgOriginal);
-  Moments pMomentos = moments(imgPelota);
-  double dArea = pMomentos.m00;
-
-  if(dArea > 10000)
-    
-    posX = pMomentos.m01 / dArea;
-    posY = pMomentos.m10 / dArea;
-    return true
-  else 
-    return false
 }
-
-par obtenerPosicion()
- return new par ( pos X Y )

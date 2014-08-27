@@ -1,0 +1,94 @@
+//Secciones de la camara 
+/* 1 Arriba-Medio
+ * 2 Derecha-Arriba
+ * 3 Izquierda-Arriba
+ * 4 Izquierda-Inferior
+ * 5 Izquierda-Inferior-Patada
+ * 6 Derecha-Inferior-Patada
+ * 7 Derecha-Inferior
+*/
+
+Class CamAbajoMedio{
+
+  par posicionPelota;
+  int enZonaPateo;
+  Mat imgOriginal
+    
+void CamAbajoMedio(){
+    moverCamara(abajoMedio);
+  this.imgOriginal = obtenerImagen;
+  this.enZonaPateo = false;
+}
+
+bool irZonaPateo(){
+  int maxGiros = 5; // Numero de veces a girar sin ver la pelota
+  int vuelta = 1;
+
+  while(vuelta < maxGiros){
+    bool pelotaAlaVista = ubicarPelota();
+    if(pelotaAlaVista && enZonaPateo) return true;
+    if(! pelotaAlaVista) {
+      vuelta++;
+      hacerGiro();
+    }
+  }
+  // Alcanzó el numero max de giros sin encontrar pelota
+  return false;
+}
+
+// Devuelve true si ubicó la pelota en alguna camara
+// Devuelve false si no la vio en ninguna camara 
+bool ubicarPelota(){
+
+  if (deteccionPelota.esVisible(this.imgOriginal)){
+    this.enZonaPateo = false;
+    switch (cuadrantePelota()){ 
+    case 1: // Adelante
+      break;
+    case 2: // Derecha
+      break;
+    case 3: // Izquierda
+      break;
+    case 4: // Izquierda
+      break;
+    case 5: // Patada Izquierda
+      this.enZonaPateo = true ;
+      break;
+    case 6: //Patada Derecha
+      this.enZonaPateo = true ;
+      break;
+    case 7: // Derecha
+      break;
+    }
+    return true;
+
+  } else {
+    camArriba= new CamArribaMedio();
+    return camArriba.ubicarPelota();
+  }
+
+}
+
+int cuadrantePelota(){
+  this.posicionPelota= deteccionPelota.obtenerPosicion();
+
+  if (estaEnDerechaArriba()){
+    cuadrantePelota = 1; 
+  }elseif(){
+    
+  }
+}
+
+bool estaEnDerechaArriba(){
+  
+  if (posicionPelota.x > 1/3de pantalla && posicionPelota.x < 2/3depantalla && posicionPelota.y < 1/6 de pantalla ){
+
+    return true;
+}
+
+}
+
+
+
+
+
