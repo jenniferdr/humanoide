@@ -11,9 +11,33 @@
 class CamAbajoMedio{
 
   par posicionPelota;
-  int enZonaPateo;
+  bool enZonaPateo;
   Mat imgOriginal;
 
+  // Puntos para seccionar imagen
+  // Linea vertical izquierda
+  CvPoint verticalIni;
+  CvPoint verticalFin;
+ 
+  // Linea vertical derecha
+  CvPoint verticalIni2;
+  CvPoint verticalFin2;
+
+  // linea horizontal
+  CvPoint horizontalIni;
+  CvPoint horizontalFin;
+
+  // linea vertical area de pateo
+  CvPoint verticalIni3;
+  CvPoint verticalFin3;
+
+  // linea vertical del medio del area de pateo
+  CvPoint verticalIni4;
+  CvPoint verticalFin4;
+    
+  // Linea derecha area de pateo
+  CvPoint verticalIni5;
+  CvPoint verticalFin5;
    
 public:
   
@@ -33,31 +57,31 @@ public:
     imgLines = Mat::zeros(  sizeImgOrig , CV_8UC3 );
 
     // Puntos para seccionar la imagen
-    CvPoint verticalIni = cvPoint(imgLines.size().width*3/12,0);
-    CvPoint verticalFin =
+    verticalIni = cvPoint(imgLines.size().width*3/12,0);
+    verticalFin =
       cvPoint(imgLines.size().width*3/12,(imgLines.size().height)*5/6);
  
-    CvPoint verticalIni2 = cvPoint(imgLines.size().width*2/3,0);
-    CvPoint verticalFin2 =
+    verticalIni2 = cvPoint(imgLines.size().width*2/3,0);
+    verticalFin2 =
       cvPoint(imgLines.size().width*2/3,imgLines.size().height*5/6);
 
-    CvPoint horizontalIni = cvPoint(0,imgLines.size().height*5/6);
-    CvPoint horizontalFin =
+    horizontalIni = cvPoint(0,imgLines.size().height*5/6);
+    horizontalFin =
       cvPoint(imgLines.size().width,imgLines.size().height*5/6);
 
-    CvPoint verticalIni3 = 
+    verticalIni3 = 
       cvPoint(imgLines.size().width*3/12,imgLines.size().height*5/6);
-    CvPoint verticalFin3 =
+    verticalFin3 =
       cvPoint(imgLines.size().width*3/12,imgLines.size().height);
 
-    CvPoint verticalIni4 = 
+    verticalIni4 = 
       cvPoint(imgLines.size().width*5/12,imgLines.size().height*5/6);
-    CvPoint verticalFin4 =
+    verticalFin4 =
       cvPoint(imgLines.size().width*5/12,imgLines.size().height);
     
-    CvPoint verticalIni5 = 
+    verticalIni5 = 
       cvPoint(imgLines.size().width*2/3,imgLines.size().height*5/6);
-    CvPoint verticalFin5 =
+    verticalFin5 =
       cvPoint(imgLines.size().width*2/3,imgLines.size().height);
 
     // Dibujar division de la pantalla
@@ -71,6 +95,7 @@ public:
     imgOriginal = imgOriginal + imgLines;
     imshow("Original", imgOriginal);
     waitKey(10);
+    // Cerrar la camara ??
   }
 
 bool irZonaPateo(){
@@ -79,7 +104,7 @@ bool irZonaPateo(){
 
   while(vuelta < maxGiros){
     bool pelotaAlaVista = ubicarPelota();
-    if(pelotaAlaVista && enZonaPateo) return true;
+    if(pelotaAlaVista && this.enZonaPateo) return true;
     if(! pelotaAlaVista) {
       vuelta++;
       hacerGiro();
@@ -116,7 +141,7 @@ bool ubicarPelota(){
     return true;
 
   } else {
-    camArriba= new CamArribaMedio();
+    CamArribaMedio camArriba = new CamArribaMedio();
     return camArriba.ubicarPelota();
   }
 
@@ -125,18 +150,62 @@ bool ubicarPelota(){
 int cuadrantePelota(){
   this.posicionPelota= deteccionPelota.obtenerPosicion();
 
-  if (estaEnDerechaArriba()){
+  if (estaEnIzquierda()){
     cuadrantePelota = 1; 
-  }elseif(){
-    
+  }elseif(estaEnMedioArriba()){
+    cuadrantePelota = 2;
+  }elseif(estaEnDerecha()){
+    cuadrantePelota = 3;
+  }elseif(estaEnPateoIzquierda()){
+    cuadrantePelota = 4;
+  }elseif(estaEnPateoDerecha()){
+    cuadrantePelota = 5;
   }
 }
 
-bool estaEnDerechaArriba(){
+bool estaEnMedioArriba(){
   
   if (posicionPelota.x > verticalIni.x 
       && posicionPelota.x < verticalIni2.x
       && posicionPelota.y < horizontalIni.y ){
+
+    return true;
+  }
+  return false;
+}
+
+bool estaEnDerecha(){
+  
+  if (posicionPelota.x > verticalIni2.x){
+    return true;
+  }
+  return false;
+}
+
+bool estaEnIzquierda(){
+  
+  if (posicionPelota.x < verticalIni.x){
+    return true;
+  }
+  return false;
+}
+
+bool estaEnPateoIzquierda(){
+  
+  if (posicionPelota.x > verticalIni3.x 
+      && posicionPelota.x < verticalIni4.x
+      && posicionPelota.y > horizontalIni.y ){
+
+    return true;
+  }
+  return false;
+}
+
+bool estaEnPateoDerecha(){
+  
+  if (posicionPelota.x > verticalIni4.x 
+      && posicionPelota.x < verticalIni5.x
+      && posicionPelota.y > horizontalIni.y ){
 
     return true;
   }
