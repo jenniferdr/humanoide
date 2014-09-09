@@ -2,6 +2,8 @@
   #include <ax12.h>
   #include <BioloidController.h>
   #include "poses.h"
+  #include "posesVoltearDerecha.h"
+  #include "posesVoltearIzquierda.h"
   
   BioloidController bioloid = BioloidController(1000000);
   HServo myservoB;
@@ -22,6 +24,9 @@
       bioloid.interpolateStep();
       delay(3);
     }
+    
+    bioloid.playSeq(voltearIzq);
+    while(bioloid.playing) bioloid.play();
   } 
  
   void loop() 
@@ -29,12 +34,12 @@
     //ar_m();
     //ar_d();
     //ar_i();
-    //ab_m();
+    ab_m();
     //ab_d();
     //ab_i();
     //aar_m();
     //aar_d();
-    aar_i();
+    //aar_i();
     
     delay(4000);
     

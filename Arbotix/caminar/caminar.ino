@@ -2,6 +2,8 @@
  * Se debe tener en la misma carpeta las poses necesarias
  * 
  */
+#include <HServo.h>
+
 #include <ax12.h>
 #include <BioloidController.h>
 #include "poses.h"
@@ -31,6 +33,9 @@ int inicialGyroY = 0;
 // Valores de velocidad angular, cambiante.
 int velocidadX;
 int velocidadY;
+// Motores de la Camara
+HServo myservoB;
+HServo myservoA;
 
 Timer t;
 boolean de_pie = true;
@@ -53,8 +58,15 @@ void callback(const Test::Request & req, Test::Response & res){
    } else if (ent == "a") {
       bioloid.playSeq(voltearIzq);
    } else if (ent == "d"){
-      bioloid.playSeq(voltearIzq);
+      bioloid.playSeq(voltearDer);
+   } else if (ent == "camAbajoMedio"){
+     ab_m();
+   } else if (ent == "camDerechaAbajo"){
+     ab_d();
+   } else if (ent == "camArribaMedio"){
+     ar_m();
    }
+   
    while(bioloid.playing) bioloid.play();
 }
 
@@ -65,7 +77,9 @@ std_msgs::String str_msg;
 void setup(){
   
   //Serial.begin(9600);
-
+  myservoB.attach(12);  // puerto 12 (B) o 13 (A) abajo 
+  myservoA.attach(13);  // arriba
+    
   pinMode(puertoGyroX,INPUT);
   pinMode(puertoGyroY,INPUT);  
   
@@ -81,9 +95,9 @@ void setup(){
     bioloid.interpolateStep();
     delay(3);
   }
-  t.every(300,balance);
+  //t.every(300,balance);
   
-  inicializarGyro();
+  //inicializarGyro();
 
 }
 
@@ -172,4 +186,59 @@ void inicializarGyro()
   //Serial.println(inicialGyroX);
   //Serial.println(" Eje Y inicial\n ");
   //Serial.println(inicialGyroY);
+}
+
+// ********** Para mover los motores de la camara ********
+void ar_m(){
+  myservoB.write(60);
+  delay(100);
+  myservoA.write(70);
+}
+
+void ar_d(){
+  myservoB.write(7);
+  delay(100);
+  myservoA.write(80);
+}
+
+void ar_i(){
+  myservoB.write(118);
+  delay(100);
+  myservoA.write(80);
+}
+
+void ab_m(){
+  myservoB.write(60);
+  delay(100);
+  myservoA.write(34);
+}
+
+void ab_i(){
+  myservoB.write(140);
+  delay(100);
+  myservoA.write(45);
+}
+
+void ab_d(){
+  myservoB.write(10);
+  delay(100);
+  myservoA.write(50);
+}
+
+void aar_m(){
+  myservoB.write(60);
+  delay(100);
+  myservoA.write(90);
+}
+
+void aar_d(){
+  myservoB.write(8);
+  delay(100);
+  myservoA.write(90);
+}
+
+void aar_i(){
+  myservoB.write(118);
+  delay(100);
+  myservoA.write(90);
 }
