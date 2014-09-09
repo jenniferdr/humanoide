@@ -65,6 +65,18 @@ void callback(const Test::Request & req, Test::Response & res){
      ab_d();
    } else if (ent == "camArribaMedio"){
      ar_m();
+   }else if (ent == "camArribaArribaMedio"){
+     aar_m();
+   }else if (ent == "camDerechaMedio"){
+     ar_d();
+   }else if (ent == "camDerechaArriba"){
+     aar_d();
+   }else if (ent == "camIzquierdaMedio"){
+     ar_i();
+   }else if (ent == "camIzquierdaArriba"){
+     aar_i();
+   }else if (ent == "camIzquierdaAbajo"){
+     ab_i();
    }
    
    while(bioloid.playing) bioloid.play();
