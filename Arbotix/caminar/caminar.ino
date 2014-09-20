@@ -10,6 +10,7 @@
 #include "pararseBocaAbajo.h"
 #include "posesVoltearDerecha.h"
 #include "posesVoltearIzquierda.h"
+#include "pararseBocaArriba.h"
 
 #include <Event.h>
 #include <Timer.h>
@@ -39,6 +40,7 @@ HServo myservoA;
 
 Timer t;
 boolean de_pie = true;
+boolean boca_arriba= false;
 
 // inicializando el nodo que maneja el servicio
 ros::NodeHandle  nh;
@@ -79,7 +81,10 @@ void callback(const Test::Request & req, Test::Response & res){
      ab_i();
    }
    
-   while(bioloid.playing) bioloid.play();
+   while(bioloid.playing) {
+     t.update();
+     bioloid.play();
+   }
 }
 
 ros::ServiceServer<Test::Request, Test::Response> server("moverRobot", &callback);
@@ -91,6 +96,7 @@ void setup(){
   //Serial.begin(9600);
   myservoB.attach(12);  // puerto 12 (B) o 13 (A) abajo 
   myservoA.attach(13);  // arriba
+  ar_m();
     
   pinMode(puertoGyroX,INPUT);
   pinMode(puertoGyroY,INPUT);  
@@ -107,9 +113,9 @@ void setup(){
     bioloid.interpolateStep();
     delay(3);
   }
-  //t.every(300,balance);
+  t.every(300,balance);
   
-  //inicializarGyro();
+  inicializarGyro();
 
 }
 
@@ -120,7 +126,11 @@ void loop(){
   if(de_pie){
     nh.spinOnce();
   }else{
-    bioloid.playSeq(levantarse_boca_abajo);
+    if (!boca_arriba){
+      bioloid.playSeq(levantarse_boca_abajo);
+    }else{
+      bioloid.playSeq(levantarse_boca_arriba);
+    }
     bioloid.play();
     while(bioloid.playing){
       bioloid.play();
@@ -171,11 +181,15 @@ void balance(){
   //SetPosition(14 , GetPosition(14) - errorEscaladoX2);
   
   // Modificar pos de los motores 17 y 18  (Info del eje Y)
-  SetPosition(17 , GetPosition(17) - errorEscaladoY);
-  SetPosition(18 , GetPosition(18) - errorEscaladoY);
+  //SetPosition(17 , GetPosition(17) - errorEscaladoY);
+  //SetPosition(18 , GetPosition(18) - errorEscaladoY);
   
-  if(errorX >= 100 || errorX<= -60){
-    de_pie= false;
+  if(errorX >= 100){
+    de_pie = false;
+    boca_arriba = true;
+  }else if (errorX<= -60){
+    de_pie = false;
+    boca_arriba = false;
   }
 }
 
