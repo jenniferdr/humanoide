@@ -61,29 +61,24 @@ void callback(const Test::Request & req, Test::Response & res){
       bioloid.playSeq(voltearIzq);
    } else if (ent == "d"){
       bioloid.playSeq(voltearDer);
-   } else if (ent == "camAbajoMedio"){
+   } else if (ent == "r"){
      ab_m();
-   } else if (ent == "camDerechaAbajo"){
+   } else if (ent == "u"){
      ab_d();
-   } else if (ent == "camArribaMedio"){
+   } else if (ent == "y"){
      ar_m();
-   }else if (ent == "camArribaArribaMedio"){
+   }else if (ent == "t"){
      aar_m();
-   }else if (ent == "camDerechaMedio"){
+   }else if (ent == "o"){
      ar_d();
-   }else if (ent == "camDerechaArriba"){
+   }else if (ent == "i"){
      aar_d();
-   }else if (ent == "camIzquierdaMedio"){
+   }else if (ent == "g"){
      ar_i();
-   }else if (ent == "camIzquierdaArriba"){
+   }else if (ent == "f"){
      aar_i();
-   }else if (ent == "camIzquierdaAbajo"){
+   }else if (ent == "p"){
      ab_i();
-   }
-   
-   while(bioloid.playing) {
-     t.update();
-     bioloid.play();
    }
 }
 
@@ -124,7 +119,12 @@ void loop(){
   t.update();
   
   if(de_pie){
-    nh.spinOnce();
+    while(bioloid.playing) {
+     t.update();
+     nh.spinOnce();
+     bioloid.play();
+   }
+   nh.spinOnce();
   }else{
     if (!boca_arriba){
       bioloid.playSeq(levantarse_boca_abajo);
