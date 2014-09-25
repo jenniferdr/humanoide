@@ -25,8 +25,6 @@
       delay(3);
     }
     
-    bioloid.playSeq(voltearIzq);
-    while(bioloid.playing) bioloid.play();
   } 
  
   void loop() 
@@ -34,10 +32,10 @@
     //ar_m();
     //ar_d();
     //ar_i();
-    ab_m();
+    //ab_m();
     //ab_d();
     //ab_i();
-    //aar_m();
+    aar_m();
     //aar_d();
     //aar_i();
     
@@ -48,13 +46,13 @@
 void ar_m(){
   myservoB.write(60);
   delay(100);
-  myservoA.write(70);
+  myservoA.write(65);
 }
 
 void ar_d(){
-  myservoB.write(7);
+  myservoB.write(12);
   delay(100);
-  myservoA.write(80);
+  myservoA.write(90);
 }
 
 void ar_i(){
@@ -66,19 +64,19 @@ void ar_i(){
 void ab_m(){
   myservoB.write(60);
   delay(100);
-  myservoA.write(34);
+  myservoA.write(35);
 }
 
 void ab_i(){
-  myservoB.write(140);
+  myservoB.write(135);
   delay(100);
-  myservoA.write(45);
+  myservoA.write(60);
 }
 
 void ab_d(){
-  myservoB.write(10);
+  myservoB.write(20);
   delay(100);
-  myservoA.write(50);
+  myservoA.write(60);
 }
 
 void aar_m(){
@@ -88,9 +86,9 @@ void aar_m(){
 }
 
 void aar_d(){
-  myservoB.write(8);
+  myservoB.write(20);
   delay(100);
-  myservoA.write(90);
+  myservoA.write(110);
 }
 
 void aar_i(){
