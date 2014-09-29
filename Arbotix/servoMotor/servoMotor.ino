@@ -44,13 +44,13 @@
   }
   
 void ar_m(){
-  myservoB.write(60);
+  myservoB.write(25);
   delay(100);
-  myservoA.write(65);
+  myservoA.write(70);
 }
 
 void ar_d(){
-  myservoB.write(12);
+  myservoB.write(0);
   delay(100);
   myservoA.write(90);
 }
@@ -62,9 +62,9 @@ void ar_i(){
 }
 
 void ab_m(){
-  myservoB.write(60);
+  myservoB.write(25);
   delay(100);
-  myservoA.write(35);
+  myservoA.write(40);
 }
 
 void ab_i(){
@@ -74,13 +74,13 @@ void ab_i(){
 }
 
 void ab_d(){
-  myservoB.write(20);
+  myservoB.write(0);
   delay(100);
   myservoA.write(60);
 }
 
 void aar_m(){
-  myservoB.write(60);
+  myservoB.write(25);
   delay(100);
   myservoA.write(90);
 }
