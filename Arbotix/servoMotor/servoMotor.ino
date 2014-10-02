@@ -35,8 +35,8 @@
     //ab_m();
     //ab_d();
     //ab_i();
-    aar_m();
-    //aar_d();
+    //aar_m();
+    aar_d();
     //aar_i();
     
     delay(4000);
@@ -44,7 +44,7 @@
   }
   
 void ar_m(){
-  myservoB.write(25);
+  myservoB.write(31);
   delay(100);
   myservoA.write(70);
 }
@@ -56,43 +56,43 @@ void ar_d(){
 }
 
 void ar_i(){
-  myservoB.write(118);
+  myservoB.write(83);
   delay(100);
-  myservoA.write(80);
+  myservoA.write(73);
 }
 
 void ab_m(){
-  myservoB.write(25);
+  myservoB.write(30);
+  delay(100);
+  myservoA.write(35);
+}
+
+void ab_i(){
+  myservoB.write(90);
   delay(100);
   myservoA.write(40);
 }
 
-void ab_i(){
-  myservoB.write(135);
-  delay(100);
-  myservoA.write(60);
-}
-
 void ab_d(){
-  myservoB.write(0);
+  myservoB.write(5);
   delay(100);
   myservoA.write(60);
 }
 
 void aar_m(){
-  myservoB.write(25);
+  myservoB.write(31);
   delay(100);
   myservoA.write(90);
 }
 
 void aar_d(){
-  myservoB.write(20);
+  myservoB.write(0);
   delay(100);
-  myservoA.write(110);
+  myservoA.write(90);
 }
 
 void aar_i(){
-  myservoB.write(118);
+  myservoB.write(83);
   delay(100);
   myservoA.write(90);
 }

@@ -80,6 +80,12 @@ void callback(const Test::Request & req, Test::Response & res){
    }else if (ent == "p"){
      ab_i();
    }
+   
+   while(bioloid.playing) {
+     t.update();
+     //nh.spinOnce();
+     bioloid.play();
+   }
 }
 
 ros::ServiceServer<Test::Request, Test::Response> server("moverRobot", &callback);
@@ -116,15 +122,9 @@ void setup(){
 
 void loop(){
   
-  t.update();
-  
   if(de_pie){
-    while(bioloid.playing) {
-     t.update();
-     nh.spinOnce();
-     bioloid.play();
-   }
-   nh.spinOnce();
+    nh.spinOnce();
+    t.update();
   }else{
     if (!boca_arriba){
       bioloid.playSeq(levantarse_boca_abajo);
@@ -173,8 +173,8 @@ void balance(){
   int errorEscaladoY = (errorY*4)/20;
   
   // Modificar posicion de los motores 15 y 16
-  SetPosition(15 , GetPosition(15) + errorEscaladoX);
-  SetPosition(16 , GetPosition(16) - errorEscaladoX);
+  //SetPosition(15 , GetPosition(15) + errorEscaladoX);
+  //SetPosition(16 , GetPosition(16) - errorEscaladoX);
   
   // Modificar pos de motores 13 y 14 rodillas
   //SetPosition(13 , GetPosition(13) + errorEscaladoX2);
@@ -216,55 +216,55 @@ void inicializarGyro()
 
 // ********** Para mover los motores de la camara ********
 void ar_m(){
-  myservoB.write(60);
+  myservoB.write(31);
   delay(100);
   myservoA.write(70);
 }
 
 void ar_d(){
-  myservoB.write(7);
+  myservoB.write(0);
   delay(100);
-  myservoA.write(80);
+  myservoA.write(90);
 }
 
 void ar_i(){
-  myservoB.write(118);
+  myservoB.write(83);
   delay(100);
-  myservoA.write(80);
+  myservoA.write(73);
 }
 
 void ab_m(){
-  myservoB.write(60);
+  myservoB.write(30);
   delay(100);
-  myservoA.write(34);
+  myservoA.write(35);
 }
 
 void ab_i(){
-  myservoB.write(140);
+  myservoB.write(90);
   delay(100);
-  myservoA.write(45);
+  myservoA.write(40);
 }
 
 void ab_d(){
-  myservoB.write(10);
+  myservoB.write(5);
   delay(100);
-  myservoA.write(50);
+  myservoA.write(60);
 }
 
 void aar_m(){
-  myservoB.write(60);
+  myservoB.write(31);
   delay(100);
   myservoA.write(90);
 }
 
 void aar_d(){
-  myservoB.write(8);
+  myservoB.write(0);
   delay(100);
   myservoA.write(90);
 }
 
 void aar_i(){
-  myservoB.write(118);
+  myservoB.write(83);
   delay(100);
   myservoA.write(90);
 }
