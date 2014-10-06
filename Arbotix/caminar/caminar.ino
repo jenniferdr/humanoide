@@ -11,6 +11,8 @@
 #include "posesVoltearDerecha.h"
 #include "posesVoltearIzquierda.h"
 #include "pararseBocaArriba.h"
+#include "patadaDerecha.h"
+#include "patadaIzquierda.h"
 
 #include <Event.h>
 #include <Timer.h>
@@ -61,6 +63,10 @@ void callback(const Test::Request & req, Test::Response & res){
       bioloid.playSeq(voltearIzq);
    } else if (ent == "d"){
       bioloid.playSeq(voltearDer);
+   } else if (ent == "q"){
+     bioloid.playSeq(patadaDerecha);
+   } else if (ent == "e"){
+     bioloid.playSeq(patadaIzquierda);
    } else if (ent == "r"){
      ab_m();
    } else if (ent == "u"){
@@ -215,6 +221,7 @@ void inicializarGyro()
 }
 
 // ********** Para mover los motores de la camara ********
+  
 void ar_m(){
   myservoB.write(31);
   delay(100);
@@ -222,7 +229,7 @@ void ar_m(){
 }
 
 void ar_d(){
-  myservoB.write(0);
+  myservoB.write(5);
   delay(100);
   myservoA.write(90);
 }
@@ -246,7 +253,7 @@ void ab_i(){
 }
 
 void ab_d(){
-  myservoB.write(5);
+  myservoB.write(15);
   delay(100);
   myservoA.write(60);
 }
