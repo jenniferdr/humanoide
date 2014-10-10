@@ -11,6 +11,8 @@
 #include "posesVoltearDerecha.h"
 #include "posesVoltearIzquierda.h"
 #include "pararseBocaArriba.h"
+#include "patadaDerecha.h"
+#include "patadaIzquierda.h"
 
 #include <Event.h>
 #include <Timer.h>
@@ -61,6 +63,10 @@ void callback(const Test::Request & req, Test::Response & res){
       bioloid.playSeq(voltearIzq);
    } else if (ent == "d"){
       bioloid.playSeq(voltearDer);
+   } else if (ent == "q"){
+     bioloid.playSeq(patadaDerecha);
+   } else if (ent == "e"){
+     bioloid.playSeq(patadaIzquierda);
    } else if (ent == "r"){
      ab_m();
    } else if (ent == "u"){
@@ -79,6 +85,12 @@ void callback(const Test::Request & req, Test::Response & res){
      aar_i();
    }else if (ent == "p"){
      ab_i();
+   }
+   
+   while(bioloid.playing) {
+     t.update();
+     //nh.spinOnce();
+     bioloid.play();
    }
 }
 
@@ -116,15 +128,9 @@ void setup(){
 
 void loop(){
   
-  t.update();
-  
   if(de_pie){
-    while(bioloid.playing) {
-     t.update();
-     nh.spinOnce();
-     bioloid.play();
-   }
-   nh.spinOnce();
+    nh.spinOnce();
+    t.update();
   }else{
     if (!boca_arriba){
       bioloid.playSeq(levantarse_boca_abajo);
@@ -173,8 +179,8 @@ void balance(){
   int errorEscaladoY = (errorY*4)/20;
   
   // Modificar posicion de los motores 15 y 16
-  SetPosition(15 , GetPosition(15) + errorEscaladoX);
-  SetPosition(16 , GetPosition(16) - errorEscaladoX);
+  //SetPosition(15 , GetPosition(15) + errorEscaladoX);
+  //SetPosition(16 , GetPosition(16) - errorEscaladoX);
   
   // Modificar pos de motores 13 y 14 rodillas
   //SetPosition(13 , GetPosition(13) + errorEscaladoX2);
@@ -215,56 +221,57 @@ void inicializarGyro()
 }
 
 // ********** Para mover los motores de la camara ********
+  
 void ar_m(){
-  myservoB.write(60);
+  myservoB.write(31);
   delay(100);
   myservoA.write(65);
 }
 
 void ar_d(){
-  myservoB.write(12);
+  myservoB.write(5);
   delay(100);
   myservoA.write(90);
 }
 
 void ar_i(){
-  myservoB.write(118);
+  myservoB.write(83);
   delay(100);
-  myservoA.write(80);
+  myservoA.write(73);
 }
 
 void ab_m(){
-  myservoB.write(60);
+  myservoB.write(30);
   delay(100);
   myservoA.write(35);
 }
 
 void ab_i(){
-  myservoB.write(135);
+  myservoB.write(90);
   delay(100);
-  myservoA.write(60);
+  myservoA.write(40);
 }
 
 void ab_d(){
-  myservoB.write(20);
+  myservoB.write(15);
   delay(100);
   myservoA.write(60);
 }
 
 void aar_m(){
-  myservoB.write(60);
+  myservoB.write(31);
   delay(100);
   myservoA.write(90);
 }
 
 void aar_d(){
-  myservoB.write(20);
+  myservoB.write(0);
   delay(100);
   myservoA.write(110);
 }
 
 void aar_i(){
-  myservoB.write(118);
+  myservoB.write(83);
   delay(100);
   myservoA.write(90);
 }
