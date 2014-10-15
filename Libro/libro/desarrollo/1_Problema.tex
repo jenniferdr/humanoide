@@ -1,0 +1,43 @@
+\chapter{Presentación del problema}\label{chapter:presentacion_del_problema}
+¿De qué forma obtener resultados no determinísticos podría traer una ventaja?
+Ciertamente si un resultado es completamente aleatorio su utilidad es muy pobre y 
+el cálculo sería considerado como un desperdicio. Sin embargo, se pudiera definir
+un objeto con ciertas propiedades y limitarlo para que cumpla con ciertas condiciones.
+Se tendría entonces una instancia obtenida aleatoriamente de un objeto cuya utilidad sería definida por su especificación y
+su constitución estaría bajo las limitantes que se establezcan.
+
+Partiendo de esto, se ha planteado el diseño y desarrollo de una herramienta que se base en
+estos principios no deterministas,para generar soluciones variadas
+a este tipo de problemas pero que cuyas respuestas se mantengan al margen de la 
+especificación proporcionada. Los beneficios de esta herramienta son muchos, entre ellos podría destacarse:
+
+\begin{itemize}
+\item {Generación de casos de pruebas.}
+\item {Creación y llenado de bases de datos con ejemplos consistentes.}
+\item {Resolución de problemas.}
+\item {Computación gráfica.}
+\item {Computación especializada en creación de simuladores.}
+\item {Diseño y creación de videojuegos.}
+\end{itemize}
+
+Todos los anteriores son los ejemplos de circunstancias más básicas que podrían atacarse con
+esta herramienta. Dicho esto queda más claro que el objetivo general es diseñar e implementar esta 
+herramienta. De forma que se pueda generar instancias aleatorias de objetos basadas en una 
+definición y cuyos valores satisfagan ciertas condiciones y restricciones definidas como entrada.
+
+\label{sect:objetivos}
+Mientras que como objetivos parciales o específicos se postulan los siguientes:
+\begin{itemize}
+\item {Diseñar y elaborar un lenguaje de programación que facilite especificar un 
+modelo a crear, incluyendo su estructuración, así como sus restricciones internas.}
+\item Implementar un reconocedor sintáctico escrito en \emph{C++} utilizando las herramientas \emph{Flex} y \emph{Bison}.
+\item Elaborar un compilador para el lenguaje que resuelva los problemas asociados a restricciones
+y asocie los valores posibles a las variables.
+\item {Desarrollar un interpretador que sirva como auxiliar al compilador y permita dividir
+el proceso en partes para facilitar el cálculo cuando se requiere para generar múltiples
+instancias de un mismo objeto.}
+\item {Estudiar las posibles formas de optimizar la herramienta para aumentar su velocidad y
+mejorar su uso de memoria.}
+\item {Investigar y proponer formas de ampliar las funcionalidades de la herramienta y mejorar las
+ya existentes de forma que trabajos futuros tengan sólidas referencias y guías.} 
+\end{itemize}

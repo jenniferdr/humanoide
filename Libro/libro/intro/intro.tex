@@ -1,0 +1,26 @@
+\chapter*{Introducción}
+
+\pdfbookmark[0]{Introducción}{introduccion} % Sets a PDF bookmark for the dedication
+
+\label{sect:justificacion}
+
+Ya existen aproximaciones a este enfoque, la mayoría relacionados con: el diseño gráfico como 
+la herramienta \emph{Brain Storm} del programa \emph{After Effects} de \emph{Adobe} \cite{HR10}, que muestra variaciones de los
+elementos en pantalla para sugerir posibles modificaciones; la inteligencia artificial, como 
+la herramienta Gecode \cite{Gecode}, que permite resolver problemas algebraicos y lógicos para obtener
+rangos de soluciones posibles; y el desarrollo de videojuegos, como los juegos de la saga
+\emph{Diablo, Minecraft} \cite{B12}, o \emph{Dwarven Fortress} \cite{D08}, en los que los mapas son generados de forma aleatoria
+pero mantienen coherencia.
+
+Incluso hay otro tipo de herramientas o que guardan bastante similitud a esta idea.
+Entre ellas destaca \emph{QuickCheck} \cite{TQP}, que es una herramienta en \emph{Haskell} que 
+permite generar casos de prueba de estructuras que se han descrito. Sin embargo, tiene
+como limitación que sólo está hecha para realizar pruebas y no generar soluciones de
+salida para aplicaciones en produción.
+
+En el presente trabajo de investigación se explica el proceso y diseño de la herramienta de generación
+de estas instancias aleatorias. Partiendo en el desarrollo de un lenguaje de
+programación propio (sección \ref{chapter:def_lenguaje}), para luego ahondar en el proceso de resolución de
+problemas y asignación de valores (sección \ref{chapter:dise_solver_compilador}). Por último se evaluarán los resultados de
+las pruebas hechas sobre la herramienta y se concluirá acerca de sus posibles mejoras y
+enfoques para trabajos futuros (sección \ref{chapter:imp_y_res}).

@@ -1,0 +1,372 @@
+\chapter{Especificación formal de la sintaxis}\label{gramaticas_lenguaje}
+
+Para reconocer el lenguaje propuesto en la sección \ref{chapter:def_lenguaje},
+se crearon las gramáticas que están en la sección \ref{gramaticas_lenguaje_detalle}
+y los tokens correspondientes a estas últimas se encuentran en la sección 
+\ref{tokens_lenguaje_detalle}.
+
+\section{Gramáticas} \label{gramaticas_lenguaje_detalle}
+
+\begin{lstlisting}[mathescape]
+principal:
+  definicion TKEXIT TKID TKLBRACE descripcion restriccion TKRBRACE definicion
+
+definicion:
+  definicion TKAUXILIAR TKID TKLBRACE descripcion restriccion TKRBRACE
+  |definicion TKFUNCTIONS TKLBRACE funciones TKRBRACE
+  |
+
+descripcion:
+  TKDESCRIPTION TKLBRACE declaracion_variable TKRBRACE 
+
+restriccion:
+  TKRESTRICTION lista_bloque_restricciones porcentaje 
+  |
+
+lista_bloque_restricciones:
+  bloque_restricciones
+  |lista_bloque_restricciones operador_logico_simple bloque_restricciones 
+
+bloque_restricciones:
+  operador_unario bloque_restricciones 
+  |TKLBRACE lista_sub_bloque_restricciones TKRBRACE 
+  |TKLBRACKET lista_sub_bloque_restricciones TKRBRACKET 
+
+lista_sub_bloque_restricciones:
+  lista_sub_bloque_restricciones_operados porcentaje TKSEMICOLON 
+  |lista_sub_bloque_restricciones lista_sub_bloque_restricciones_operados porcentaje TKSEMICOLON 
+
+lista_sub_bloque_restricciones_operados:
+  sub_bloque_restricciones 
+  |lista_sub_bloque_restricciones_operados operador_logico_simple sub_bloque_restricciones 
+
+sub_bloque_restricciones:
+  bloque_restricciones 
+  |expresion
+  |distribucion 
+  |cuantificador 
+  |operador_unario cuantificador 
+
+declaracion_variable:
+  anulable tipo_variable rango_random TKID asignacion TKSEMICOLON 
+  |declaracion_variable anulable tipo_variable rango_random TKID asignacion TKSEMICOLON 
+
+rango_random:
+  TKLPARENTHESES negativo TKINTVALUE TKCOMMA negativo TKINTVALUE TKRPARENTHESES
+  |TKLPARENTHESES negativo TKFLOATVALUE TKCOMMA negativo TKINTVALUE TKRPARENTHESES
+  |TKLPARENTHESES negativo TKINTVALUE TKCOMMA negativo TKFLOATVALUE TKRPARENTHESES
+  |TKLPARENTHESES negativo TKFLOATVALUE TKCOMMA negativo TKFLOATVALUE TKRPARENTHESES
+  |
+
+negativo:
+  TKHYPHEN
+  |
+
+anulable:
+  TKIGNORE  
+  |
+
+tipo_variable:
+  TKBOOL      
+  |TKINT      
+  |TKCHAR     
+  |TKFLOAT    
+  |TKSTRING   
+  |TKDOUBLE   
+  |TKVECTOR2  
+  |TKVECTOR3  
+  |TKVECTOR4
+  |TKLIST TKLESSTHAN tipo_variable TKMORETHAN
+  |TKID
+  
+asignacion:
+  TKEQUAL expresion
+  |TKEQUAL TKTILDE TKLBRACKET opciones TKRBRACKET 
+  |TKTILDE lista_bloque_restricciones porcentaje  
+  |
+  
+expresion:
+  tipos_basicos 
+  |variable_mixta 
+  |operador_unario expresion
+  |expresion operador_binario expresion
+  |TKLPARENTHESES expresion TKRPARENTHESES 
+  |llamada_funcion 
+  |TKLBRACKET elemento_lista TKRBRACKET 
+  |TKLBRACKET TKRBRACKET 
+  |TKLPARENTHESES expresion TKCOMMA expresion TKRPARENTHESES
+  |TKLPARENTHESES expresion TKCOMMA expresion TKCOMMA expresion TKRPARENTHESES
+  |TKLPARENTHESES expresion TKCOMMA expresion TKCOMMA expresion TKCOMMA expresion TKRPARENTHESES 
+  |TKNULL 
+  |expresion operador_logico expresion
+  |expresion operador_binario_matematico_logico expresion
+
+variable_mixta:
+  variable_acceso 
+  |variable_acceso TKLBRACKET expresion TKRBRACKET accesos 
+  |TKNUMBERSIGN 
+  |TKNUMBERSIGN TKDOT variable_acceso 
+  |TKNUMBERSIGN TKLBRACKET expresion TKRBRACKET accesos 
+  |TKNUMBERSIGN TKDOT variable_acceso TKLBRACKET expresion TKRBRACKET accesos 
+
+variable_acceso:
+  TKID                        
+  |variable_acceso TKDOT TKID 
+
+accesos:
+  accesos TKDOT variable_acceso TKLBRACKET expresion TKRBRACKET 
+  | 
+
+operador_unario:
+  TKHYPHEN  
+  |TKNEGATE 
+
+operador_binario:
+  TKHYPHEN    
+  |TKPLUS     
+  |TKASTERISK 
+  |TKSLASH    
+  |TKPERCENT  
+  |TKCARET    
+
+opciones:
+  tipos_basicos porcentaje 
+  |opciones TKBAR tipos_basicos porcentaje 
+
+tipos_basicos:
+  TKSTRINGVALUE 
+  |TKTRUE       
+  |TKFALSE      
+  |TKINTVALUE   
+  |TKFLOATVALUE 
+  |TKDOUBLEVALUE 
+  |TKCHARVALUE  
+
+porcentaje:
+  TKINTVALUE TKPERCENT 
+  |TKFLOATVALUE TKPERCENT 
+  | 
+
+llamada_funcion:
+  TKID TKLPARENTHESES parametro_funcion TKRPARENTHESES 
+
+parametro_funcion:
+  expresion  
+  |parametro_funcion TKCOMMA expresion 
+
+operador_logico:
+  operador_logico_simple  
+  |TKAND                  
+  |TKOR                   
+
+operador_logico_simple:
+  TKEQUIVALENT            
+  |TKIMPLICATION          
+  |TKCONSECUENCE          
+  |TKDISTINCT             
+
+operador_binario_matematico_logico:
+  TKLESSTHAN              
+  |TKMORETHAN             
+  |TKLESSEQUALTHAN        
+  |TKMOREEQUALTHAN        
+  |TKEQUAL                
+
+elemento_lista:
+  expresion 
+  |elemento_lista TKCOMMA expresion 
+
+distribucion:
+  variable_mixta TKTILDE llamada_funcion 
+
+cuantificador:
+  TKFOR operador_cuantificador TKLPARENTHESES lista_variables TKRPARENTHESES TKTILDE lista_bloque_restricciones
+
+operador_cuantificador:
+  TKANY                   
+  |TKALL                  
+  |TKATMOST TKINTVALUE    
+  |TKATLEAST TKINTVALUE   
+  |TKEXACTLY TKINTVALUE   
+
+lista_variables:
+  TKID TKFROM variable_mixta 
+  |lista_variables TKCOMMA TKID TKFROM variable_mixta 
+
+funciones:
+  funcion_firma 
+  |funciones funcion_firma
+
+funcion_firma:
+  tipo_variable TKID TKLPARENTHESES firma_parametros TKRPARENTHESES TKEQUAL variables_aleatorias expresion_funciones
+
+firma_parametros:
+  par_tipo_nombre 
+  |
+
+par_tipo_nombre:
+  tipo_variable TKID 
+  |par_tipo_nombre TKCOMMA tipo_variable TKID 
+
+variables_aleatorias:
+  TKVARIABLES TKLBRACE declaracion_variable TKRBRACE TKIN 
+  | 
+
+expresion_funciones:
+  expresion 
+  |TKIF TKLPARENTHESES expresion TKRPARENTHESES TKTHEN expresion_funciones else_if TKELSE expresion_funciones 
+
+else_if:
+  else_if TKELSEIF TKLPARENTHESES expresion TKRPARENTHESES TKTHEN expresion_funciones 
+  | 
+\end{lstlisting}
+
+\section{Tokens}\label{tokens_lenguaje_detalle}
+
+Los tokens que se definieron para el lenguaje se clasificaron en 3 grupos.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Símbolo & Token & Símbolo & Token \\
+\hline
+\{     & TKLBRACE &  !     & TKNEGATE  \\
+\hline
+\}     & TKRBRACE & ;     & TKSEMICOLON \\
+\hline
+[     & TKLBRACKET & *     & TKASTERISK \\
+\hline
+]     & TKRBRACKET & $<$     & TKLESSTHAN \\
+\hline
+(     & TKLPARENTHESES & $>$     & TKMORETHAN \\
+\hline
+)     & TKRPARENTHESES & =     & TKEQUAL \\
+\hline
+$\sim$     & TKTILDE & !=   & TKDISTINCT \\
+\hline
+\end{tabular}
+\caption{Tokens de símbolos 1}\label{tab:tok_simb_1}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Símbolo & Token & Símbolo & Token \\
+\hline
+\#     & TKNUMBERSIGN & ,     & TKCOMMA\\
+\hline
+-     & TKHYPHEN & +     & TKPLUS\\
+\hline
+/     & TKSLASH  & \%     & TKPERCENT\\
+\hline
+$\wedge$  & TKCARET & $\mid$ & TKBAR\\
+\hline
+.     & TKDOT & 	\textdollar  & TKIGNORE \\
+\hline
+$==$   & TKEQUALEQUAL & === & TKEQUIVALENT \\
+\hline
+$==>$ & TKIMPLICATION & $<==$ & TKCONSECUENCE\\
+\hline
+\&\&   & TKAND & $\mid\mid$   & TKOR \\
+\hline
+$<=$   & TKLESSEQUALTHAN & $>=$   & TKMOREEQUALTHAN \\
+\hline
+$<-$   & TKFROM & ~ & ~ \\
+\hline
+\end{tabular}
+\caption{Tokens de símbolos 2}\label{tab:tok_simb_2}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Expresión regular & Token \\
+\hline
+$0|[1-9][0-9]*$ & TKINTVALUE \\
+\hline
+$0.[0-9]+|[1-9][0-9]*.[0-9]+$ & TKFLOATVALUE\\
+\hline
+$0.[0-9]+|[1-9][0-9]*.[0-9]+$ & TKDOUBLEVALUE\\
+\hline
+[a-zñá-úä-üA-ZÑÁ-ÚÄ-Ü\_]+ & TKID \\
+\hline
+``.*'' & TKSTRINGVALUE \\
+\hline
+'.'  & TKCHARVALUE \\
+\hline
+\end{tabular}
+\caption{Tokens de valores}\label{tab:tok_valores}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Expresión regular inglés & Expresión regular español & Token \\
+\hline
+exit & salida & TKEXIT \\
+\hline
+functions & funciones & TKFUNCTIONS \\
+\hline
+aux & auxiliar & TKAUXILIAR \\
+\hline
+description & descripcion & TKDESCRIPTION \\
+\hline
+restriction & restriccion & TKRESTRICTION \\
+\hline
+entero & int    & TKINT \\
+\hline
+bool  & bool & TKBOOL \\
+\hline
+char   & caracter & TKCHAR \\
+\hline
+float  & flotante &  TKFLOAT \\
+\hline
+Double & Doble  & TKDOUBLE \\
+\hline
+Str    & Caracteres & TKSTRING \\
+\hline
+vector2 & vector2 &TKVECTOR2 \\
+\hline
+vector3 & vector3 &TKVECTOR3 \\
+\hline
+vector4 & vector4 &TKVECTOR4 \\
+\hline
+list   & lista  & TKLIST \\
+\hline
+for    & para   & TKFOR \\
+\hline
+any    & algun  & TKANY \\
+\hline
+all    & todos  & TKALL \\
+\hline
+at\ most & a\ lo\ sumo & TKATMOST \\
+\hline
+at\ least & al\ menos & TKATLEAST \\
+\hline
+exactly & exactamente & TKEXACTLY \\
+\hline
+variables & variables & TKVARIABLES \\
+\hline
+in     & en     & TKIN \\
+\hline
+if     & si     & TKIF \\
+\hline
+then   & entonces & TKTHEN \\
+\hline
+elseif & si\_en\_vez &  TKELSEIF \\
+\hline
+else   & si\_no & TKELSE \\
+\hline
+null   & nulo   & TKNULL \\
+\hline
+true   & verdadero & TKTRUE \\
+\hline
+false  & falso  & TKFALSE \\
+\hline
+\end{tabular}
+\caption{Tokens de palabras reservadas}\label{tab:tok_palabras}
+\end{table}

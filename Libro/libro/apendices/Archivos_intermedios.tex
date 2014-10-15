@@ -1,0 +1,103 @@
+\chapter{Archivos intermedios}
+
+%---------------------------------------------------------------------------------------%
+\section {Representación de Dominio}
+
+\label{archivos_intermedios:dom}
+El archivo contiene los valores posibles para la variable que se codificó, el formato es 
+valor y punto. En el caso de los \textit{flotantes} y \textit{doubles} el valor va entre comillas dobles.
+Un ejemplo del nombre del archivo para un nodo con \texttt{id 5} es: \texttt{X5.dom}.
+Un ejemplo del contenido del archivo suponiendo que es de tipo entero y tiene valores 
+posibles \texttt{10}, \texttt{15} y \texttt{20}, es como el de la figura \ref{fig:ej_dominio}.
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+10.
+15.
+20.
+\end{lstlisting}
+\caption[Dominio Enteros]
+{Dominio Enteros}
+\label{fig:ej_dominio}
+\end{figure}
+
+%---------------------------------------------------------------------------------------%
+\section {Representación de Rango}
+
+\label{archivos_intermedios:siran}
+El archivo que representa el rango para una variable independiente en el problema, tiene
+en cada linea un valor correspondiente a la variable que se codificó. El nombre del 
+archivo por ejemplo para el nodo con el \texttt{id 10} es: \texttt{s\_i\_10.ran}. El contenido
+del archivo para una para una variable tipo \emph{string} que tenga valores posibles \texttt{hola},
+\texttt{hello} y \texttt{hallo}, luce como la figura \ref{fig:ej_si}.
+
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+hola
+hello
+hallo
+\end{lstlisting}
+\caption[Rango Independiente String]
+{Rango Independiente String}
+\label{fig:ej_si}
+\end{figure}
+
+\label{archivos_intermedios:ran}
+El archivo que representa el rango para un sistema, tiene los \texttt{id} de los nodos
+que están involucrados, todos estos se encuentran al inicio del archivo separados por saltos de linea. Luego el símbolo \texttt{\#} y los
+valores que satisfacen el sistema separados por espacio, el orden en el que se encuentran
+corresponde al \texttt{id} de las variables que se encuentran al principio del archivo. 
+El nombre del archivo por ejemplo para el sistema \texttt{0} es: \texttt{s\_0.ran}. El contenido del 
+archivo para un sistema con una variable tipo float con \texttt{id 5} y otra entera con 
+\texttt{id 9} y vectores solución \texttt{15.0 10} y \texttt{12.0 10}, luce como la figura \ref{fig:ej_s}.
+
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+5
+9
+#
+15.0 10
+12.0 10
+\end{lstlisting}
+\caption[Rango de Sistema]
+{Rango de Sistema}
+\label{fig:ej_s}
+\end{figure}
+
+%---------------------------------------------------------------------------------------%
+\section {Sistemas en \emph{Prolog}}
+\label{archivos_intermedios:pl}
+
+Los archivos de \emph{Prolog} generados para resolver los sistemas lucen como el de la figura 
+\ref{fig:ej_pl}.
+
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+probar(Vector):-
+ nth0(0,Vector,X_4),
+ nth0(1,Vector,X_8),
+ !,
+ (X_4 > 11),
+ (X_4 < X_8).
+
+main:- 
+ consult(include/prolog/funciones_csp),
+ inicializarEnteros('temp/X4.dom', X4),
+ inicializarEnteros('temp/X8.dom', X8),
+ solucionar([X4,X8],Vectores),
+ escribirVectores(Vectores, [4,8], 'temp/s_0.ran').
+\end{lstlisting}
+\caption[Sistema para \emph{Prolog}]
+{Sistema para \emph{Prolog}}
+\label{fig:ej_pl}
+\end{figure}
+
+En la sección del main lo que hace es: primero cargar un conjunto de funciones auxiliares,
+luego cargar los valores que estén en los archivos de dominio \ref{archivos_intermedios:dom}.
+Al ya tener todos estos valores cargados, se generan todas las tuplas posibles, a estos se les
+llamará ``vectores solución'', si cumplen las restricciones se imprimen estos vectores en el
+formato que se describi'o en \ref{archivos_intermedios:ran}.
+
+Lo que hace es que para el predicado probar, se toma el vector que se quiere verificar que cumpla 
+la restricción y luego tomar de esa lista de valores que esta en 
+\texttt{Vector} y comprobar que \texttt{X\_4} y \texttt{X\_8} cumplan la restricción que se codificó.
+

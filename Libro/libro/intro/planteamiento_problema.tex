@@ -1,0 +1,50 @@
+\chapter{Introducción}
+
+\label{sect:planteamiento}
+Pero, ¿de qué forma obtener resultados no determinísticos podría traer una ventaja?.
+Ciertamente si un resultado es completamente aleatorio su utilidad es muy pobre y 
+el cálculo sería considerado como un desperdicio. Sin embargo, si pudieramos definir
+como queremos que sea el resultado y limitarlo para que cumpla con ciertas propiedades
+tendríamos entonces un objeto aleatorio cuya utilidad sería definida por su definición y
+su constitución estaría bajo las limitantes que se establezcan.
+
+Basado en esto, hemos planteado el diseño y desarrollo de una herramienta que basada en
+estos principios no deterministas pero igualmente rigurosos permitan dar soluciones variadas
+a este tipo de problemas pero que cuyas respuestas se mantengan al margen de nuestra
+especificación
+
+Los beneficios de esta herramienta son muchos, entre ellos podríamos destacar:
+
+Generación de casos de pruebas, creación y llenado de bases de datos con ejemplos consistentes, 
+resolución de problemas son los ejemplos de circunstancias más básicas que podrían atacarse con
+esta herramienta. De la misma forma hay problemas un poco más complejos y que resultan de más
+interés personal para nosotros:
+
+La computación gráfica, la computación especializada en creación de simuladores y videojuegos
+son uno de los negocios más prósperos de la actualidad, con una herramienta para generar
+instancias de objetos aleatorios podrían crearse videos o juegos que son diferentes cada vez
+que se ven o juegan, podrían generarse desde edificios, hasta modelos de personas, todas
+diferentes pero respetando las necesidades de el diseñador. Haciendo que la experiencia sea
+única para cada persona que haga uso del medio o incluso, para cada vez que se utilice la misma
+persona.
+
+Dicho esto queda más claro que nuestro objetivo general sea: diseñar e implementar esta 
+herramienta. De forma que podamos generar instancias aleatorias de objetos basadas en una 
+definición y cuyos valores satisfagan ciertas condiciones y restricciones definidas como entrada.
+
+\label{sect:objetivos}
+Mientras que como objetivos parciales o específicos postulamos los siguientes:
+\begin{itemize}
+\item {Diseñar y elaborar nuestro propio lenguaje de programación que facilite especificar un 
+modelo a crear incluyendo su estructuración así como sus restricciones internas.}
+\item Implementar un parser escrito en c++ utilizando las herramientas Flex y Bison
+\item Elaborar un compilador para el lenguaje que resuelva los problemas asociados a restricciones
+y asocie los valores posibles a las variables.
+\item {Desarrollar un interpretador que sirva como auxiliar al compilador y permita dividir
+el proceso en partes para facilitar el calculo cuando se requiere para generar múltiples
+instancias de un mismo objeto.}
+\item {Estudiar las posibles formas de optimizar la herramienta para aumentar su velocidad y
+mejorar su uso de memoria.}
+\item {Investigar y proponer formas de ampliar las funcionalidades de la herramienta para mejorar las
+ya existentes de forma que trabajos futuros tengan sólidas referencias y guías.} 
+\end{itemize}

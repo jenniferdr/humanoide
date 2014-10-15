@@ -1,0 +1,411 @@
+\chapter{Implementación y resultados}\label{chapter:imp_y_res}
+
+En el presente capítulo se explicará la implementación realizada según la 
+especificación presentada los capítulos \ref{chapter:def_lenguaje} y \ref{chapter:dise_solver_compilador}. Así como
+también se presentarán los resultados obtenidos para los ejemplos dispuestos en el apendice 
+\ref{ejemplos_lenguaje}.
+
+\section{Implementación}
+La implementación del \emph{Parser} fue realizada en \emph{C++} usando las herramientas \emph{Flex}
+\cite{Flex} y \emph{Bison} \cite{Bison} para el reconocimiento del programa, estos 
+corresponden al \emph{Lexer} y \emph{Parser} discutidos en la sección \ref{sect:Compiladores}.
+
+La herramienta de \textbf{CSP} (discutida en la sección \ref{sect:CSP}) usada fue \emph{Prolog}
+\cite{Prolog}. \emph{Prolog} es un lenguaje basado en el paradigma de programación
+lógica. Basa su funcionamiento en el razonamiento de expresiones lógicas y la 
+unificación de términos para satisfacer tales expresiones, usando el mecanismo 
+de inferencia conocido como resolución y una estrategia de \emph{backtracking} para 
+poder explorar los distintos espacios de búsqueda.
+Esto permitió que la escritura del mecanismo de resolución por \emph{backtracking} sea
+muy simple y no tener que ahondar en el \emph{Solver} para poder dedicar más esfuerzo
+a los objetivos principales del proyecto.
+La comunicación con \emph{Prolog} se logra a través de archivos y se realizan llamadas al sistemas
+operativo para ejecutarlo} (que será descrito más adelante en esta sección)
+desde la herramienta. Los archivos intermedios generados se 
+encuentran por defecto en un directorio temporal y son de 4 tipos diferentes:
+
+\begin{itemize}
+\item{El archivo de dominio de valores discutido en la sección \ref{solver:dom}. Una 
+  explicación con más detalles se encuentra en el apéndice \ref{archivos_intermedios:dom}.}
+\item{El archivo correspondiente a una variable independiente en el sistema es reconocida
+  en la herramienta y se deja sólo para optimizar cálculos. Una explicación con más
+  detalles se encuentra en el apéndice \ref{archivos_intermedios:siran}.}
+\item{Cuando una variable se encuentra relacionada con otras o tiene al menos una
+  restricción se devuelve la solución en un archivo de que se llama rango. Una 
+  explicación con más detalles se encuentra en el apéndice \ref{archivos_intermedios:ran}.}
+\item{Por último se encuentran los archivos de \emph{Prolog} que contienen las instrucciones
+  para la resolución del sistema y generación de archivo de salida. Una explicación con más 
+  detalles se encuentra en el apéndice \ref{archivos_intermedios:pl}.}
+\end{itemize}
+
+Finalmente las instancias generadas son del formato \emph{JSON} \cite{JSON} y se devuelven
+por defecto en un directorio que contendrá todas las salidas obtenidas por la herramienta.
+
+Para cada uno de los ejemplos se crearon programas a manera de librerías, en los que
+se reconocieron las soluciones obtenidas por la herramienta para convertirlas en objetos
+dentro de un lenguaje o contexto específico. Estos programas fueron implementados en 
+los lenguajes de programación \emph{Python} \cite{Python} y \emph{$C\#$} \cite{CS} debido a la facilidad que ofrecen a la
+hora de interpretar los archivos en formato \emph{JSON} y por las necesidades de librerías para
+mostrar o utilizar los objetos generados.
+%----------------------------------------------------------------------------------------%
+\section{Pruebas realizadas a nivel del Solver}\label{imp_y_res:sol}
+Para las pruebas se estructuraron y probaron varios problemas como entrada para
+la herramienta. Estos problemas fueron los considerados más importantes en cuanto a utilidad e interés 
+para las pruebas. 
+
+En el caso de los ejemplos contenidos en el apéndice \ref{ejemplos_lenguaje} y
+otros que tenían un nivel de complejidad parecido en cuanto cantidad de variables
+involucradas y restricciones, lograron generar resultados satisfactorios y muy rápido,
+tal y como se muestra en la tabla \ref{table:comparacion_resultados}.
+
+\begin{table}[h]
+  \centering	
+\rowcolors{2}{}{gray!50}
+\begin{tabular}{|l||l|l|l|l|}
+\hline
+    Instancias & 1 & 100 & 1000 & 10000 \\
+    \hline
+    \hline
+    ~ & real	0m0.064s & real	0m0.166s & real	0m0.262s & real	0m1.194s \\
+    Base de Datos  & user	0m0.056s & user	0m0.060s & user	0m0.152s & user	0m0.924s \\
+    apéndice \ref{ejemplo:bd} & sys	0m0.004s & sys	0m0.028s & sys	0m0.028s & sys	0m0.192s \\
+    \hline
+    \hline
+    ~ & real	0m0.099s & real	0m0.114s & real	0m0.490s & real	0m6.043s \\
+    Computación Gráfica  & user	0m0.092s & user	0m0.100s & user	0m0.368s & user	0m5.184s \\
+    apéndice \ref{ejemplo:cg} & sys	0m0.000s & sys	0m0.012s & sys	0m0.060s & sys	0m0.744s \\
+    \hline
+    \hline
+    ~ & real	0m1.059s & real	0m1.190s & real	0m1.224s & real	0m1.785s \\
+   HTML  & user	0m1.004s & user	0m1.044s & user	0m1.068s & user	0m1.460s \\
+   apéndice  \ref{ejemplo:html} & sys	0m0.044s & sys	0m0.048s & sys	0m0.072s & sys	0m0.208s \\
+    \hline
+\end{tabular}
+\caption{Comparación de resultados}
+\label{table:comparacion_resultados}
+\end{table}
+
+Sin embargo, una de las pruebas demostró que un sistema sencillo con pocas variables, pero con muchos
+valores posibles en el dominio, puede hacer que la herramienta interrumpa su ejecución.
+Por ejemplo si se tienen 3 variables con 1000 valores posibles en el dominio por cada una, se generaran
+$1000 \times 1000 \times 1000$ vectores solución al comenzar la ejecución, los cuales no caben en la 
+memoria de \emph{Prolog}. Aunque, si se contara con un sistema de 
+evaluación perezosa como el de \emph{Haskell} no pasaría esto ya que se generarían 
+vectores solución a medida que se necesitan.
+
+Otras pruebas que ocasionan problemas son aquellas que tienen muchas restricciones. 
+Debido a que \emph{Prolog} tardaba mucho en su ejecución, estas producen un cierre inesperado del programa. 
+Esto ocurre porque busca evaluar las restricciones en un orden que probablemente es poco conveniente
+para el \emph{solver}.
+
+Es responsabilidad del programador el escribir una descripción de las estructuras
+que permita un mejor desempeño de la herramienta, ya que no especificar el dominio de una variable,
+o tener restricciones en un orden poco conveniente de revisión, repercute 
+negativamente sobre el desempeño de la herramienta, al igual que en cualquier otro lenguaje,
+el colocar en determinado orden instrucciones o hacer mal uso de ciertos recursos, suelen tener
+resultados no deseados.
+
+Los resultados generados abarcan la totalidad de las respuestas posibles. Es decir,
+para cada ejecución de la herramienta, todas las instancias válidas como solución
+fueron generadas. Por ende se puede afirmar que la herramienta cumple con la condición
+de completitud en cuanto a los resultados generados.
+
+Todos los resultados cumplen con las restricciones sobre las cuales están fundamentados y
+delimitados. Por lo que no se producen resultados ``erróneos'' o no válidos.
+
+Por otro lado, la herramienta no es capaz de detectar repeticiones entre
+las respuestas proporcionadas. Así que algunas respuestas tienen más probabilidad de 
+aparecer que otras en el proceso de selección aleatoria.
+
+%----------------------------------------------------------------------------------------%
+
+\chapter{Optimización}
+\label{optimizaciones}
+Durante el proceso de compilación hay varios momentos en los que se pueden 
+llevar a cabo algunos procesos que permitan optimizar algunas partes y conseguir
+mejoras en el tiempo de ejecución y en el espacio utilizado tanto en memoria 
+como en disco.
+Aunque muchas de estas decisiones son automatizadas, hay otras que dependen de 
+las necesidades del usuario y de su conocimiento sobre el uso de las soluciones 
+que desea generar.
+
+\section{Optimización Manual o dependiente}
+En esta parte se analizarán las decisiones que puede tomar el usuario 
+(programador) que permiten conseguir mayor velocidad en los cálculos o menor uso
+de memoria.
+
+\subsection{A nivel del Parser o reconocedor sintáctico}\label {imp_y_res:parser}
+A nivel de el reconocimiento sintáctico hay muy pocas decisiones que puede tomar un programador para 
+optimizar el funcionamiento del mismo o el compilador. Esto, obviando claro la 
+fuerte dependencia que existe entre los recursos utilizados, con 
+respecto al nivel de complejidad del modelo de entrada.
+
+La cantidad de variables y la cantidad de valores que puede tener inicialmente 
+cada una, afecta proporcionalmente la cantidad de memoria utilizada por el 
+programa. Evidentemente las restricciones de dominio de la variable disminuyen 
+la cantidad de valores que puede tomar.
+
+Por otro lado la cantidad de restricciones de rango que involucren mismos 
+sistemas de variables, incrementan considerablemente la complejidad de los 
+cálculos necesarios, para determinar los rangos de solución de los sistemas.
+
+\subsection{Partes de compilación}\label {imp_y_res:comp}
+Las partes en la compilación están diseñadas para permitir segmentar el proceso y
+hacer cada parte independiente del resto. Esto permite interrumpir la 
+compilación y concluirla más adelante desde la última parte completada.
+
+Mediante un flag en el comando de compilación es posible especificar hasta que 
+parte de la compilación se desea llegar y luego con otro flag se puede continuar 
+desde este punto sin tener que repetir todas las partes anteriores. A está opción
+que continua el proceso basado en los archivos generados por el compilador es llamado instanciador y 
+tiene la particularidad de que no conserva los archivos que genera luego de 
+obtener las soluciones finales.
+
+Dependiendo del tipo de instancia a conseguir, el problema a resolver o contexto
+donde se solicita el uso de la herramienta, es más conveniente compilar hasta 
+cierta parte:
+
+\subsubsection{Luego del reconocimiento sintáctico}
+Compilar hasta esta parte es recomendable solo en un caso: 
+
+\begin{itemize}
+\item {Para probar la correctitud de la entrada: se puede saber si tiene
+errores sin la necesidad de obtener resultados.}
+\end{itemize} 
+ 
+\subsubsection{Luego de la primera parte}
+Hasta este punto solo se han generado la estructura de salida y el grafo:
+
+\begin{itemize}
+\item {Para problemas pequeños en donde no se quiera almacenar datos: si un 
+problema tiene variables con una gran cantidad de valores posibles en su dominio
+y tiene restricciones de considerable complejidad, entonces es probable que no
+se desee almacenar ningún resultado intermedio de los cálculos.} 
+\end{itemize} 
+
+
+\subsubsection{Luego de la segunda parte}
+Hasta este punto se conserva: la estructura de salida, el grafo y los archivos
+de descripción de dominio para cada variable. Esta optimización es preferible para el 
+siguiente caso:
+
+\begin{itemize}
+\item {Para problemas con dominios particularmente difíciles de resolver:
+de este modo el calculo queda almacenado para no repetirlo en las próximas 
+corridas.} 
+\end{itemize}
+
+
+\subsubsection{Luego de la tercera parte}
+Hasta este punto se conservan: la estructura de salida y los archivos
+de descripción de rango para cada sistema de variables. Esta optimización es preferible para los 
+siguientes casos:
+
+\begin{itemize}
+\item {Para problemas con rangos difíciles de resolver:
+de la misma forma que con el caso anterior el cálculo de los rangos quedan
+almacenados para no repetirlos luego.} 
+
+\item{Para problemas con rangos pequeños: aún si los dominios son muy
+permisivos, si las restricciones de rango limitan mucho las soluciones
+de los sistemas de variables, conviene almacenar estas soluciones.}
+\end{itemize}
+
+Esta parte es la considerada predilecta para problemas con muchas soluciones 
+finales, ya que almacena las soluciones de los sistemas antes de ser
+multiplicados, acción que indiscutiblemente requerirá mucho más espacio de 
+almacenamiento.
+
+\subsubsection{Luego de la cuarta parte}
+Hasta este punto se conservan: la estructura de salida y los archivos con las 
+soluciones finales sin formato. Esta optimización es preferible para el 
+siguiente caso:
+
+\begin{itemize}
+\item {Cuando se necesita obtener resultados rápidamente: luego de esta parte
+los resultados ya están calculados y solo falta darles formato para que
+sean interpretados por el destino. Dejar la compilación hasta este punto es 
+favorable si no importa ocupar mucho espacio almacenando estos resultados,
+a cambio de obtenerlos rápidamente.} 
+\end{itemize}
+
+\subsubsection{Luego de la quinta parte}
+Hasta este punto se cuenta ya con todos los archivos solución del problema.
+
+\begin{itemize}
+\item {Luego de esta parte no hace falta ejecutar el instanciador ya que las 
+soluciones ya fueron generadas, lo que resta es elegir mediante algún
+método la solución deseada e interpretarla.}
+
+\item{Este caso es preferible si se desea contar directamente con las 
+soluciones y no ejecutar la herramienta. Esto es considerablemente útil si 
+se requieren los problemas durante la ejecución de otro programa y no se
+quiere que el cálculo de estas soluciones repercuta en el uso de recursos
+para el cálculo.}
+
+\item{Esta forma de compilación calcula todos los resultados y almacena cada
+uno en un archivo con un formato genérico. Esto representa en la mayoría de los
+casos un gasto grande de memoria. Por esto, este caso no debe tomarse a la ligera
+y solo ser usado si realmente es preferible gastar espacio de almacenamiento
+en vez de hacer los cálculos para hallar las soluciones. O si se sabe que se van
+a necesitar muchas soluciones en diferentes momentos y no vale la pena 
+calcular las soluciones una y otra vez.} 
+\end{itemize}
+
+\section{Optimización automatizada}
+Se diseñaron varios mecanismos para la optimización a tiempo de corrida que
+no dependieran de el uso explícito de opciones por parte del usuario. Estos
+mecanismos no fueron implementados por motivos de complejidad y de tiempo. Sin
+embargo, se considera de fundamental importancia explicarlos para que sean
+implementados en un futuro y mejoren en desempeño de la herramienta lo más que
+se pueda. Sin más que decir se presentan a continuación los mecanismos de optimización
+automáticos que se diseñaron:
+
+\subsection{Diferenciación de tipos de problemas}
+Se han catalogado los problemas de entrada en dos tipos, esta distinción se
+basa en la forma en que están estructuradas las entradas y la facilidad que 
+ofrecen para ser resueltos por un método u otro. Antes de continuar sería 
+conveniente explicar estos métodos de resolución:
+
+\subsubsection{Método de resolución Algebraico}
+Es posible obtener los valores solución a un sistema de variables
+planteando, tratando este como un sistema de ecuaciones tradicional y resolviéndolo
+por métodos numéricos. Dado que a nivel de \emph{Solver} todas las variables
+son manejadas como flotantes y enteros es viable conseguir los vectores
+solución de estos sistemas para cualquier sistema consistente.
+
+Además este método tiene como ventaja la posibilidad de separar
+completamente el cálculo del dominio de las variables respecto al de rango
+de los sub-sistemas. Por ende es posible calcular los dominios o
+los rangos en cualquier orden, incluso simultáneamente, de forma tal que
+se puedan intercambiar las partes dos (sección \ref{solver:dom}) y tres 
+(sección \ref{solver:cal_rangos}) dependiendo de la forma del problema.
+
+\subsubsection{Método de resolución por \emph{Backtracking}}
+A tiempo de publicación de este documento el método por \emph{backtracking}
+es el único completamente implementado y por lo tanto el mecanismo
+por defecto utilizado para conseguir soluciones a los sistemas de variables.
+Este se basa en la utilización del método algorítmico de \emph{backtracking} para
+buscar todas las posibles soluciones a la asignación de valores de para
+variables.
+
+Es sabido que este método tiene numerosas desventajas en cuanto a eficiencia
+se refiere, en especial por que recorre todo el espacio de búsqueda para
+conseguir soluciones viables y no es capaz de distinguir entre caminos viables
+de los que no. Aún así y dado a la genericidad de la herramienta y de los
+posibles problemas proporcionados, se considera que es una opción por defecto
+bastante aceptable. Adicionalmente, este método puede ser mejorado
+y convertirse en un \emph{backtracking} no cronológico \cite{RN09} (si el problema
+en cuestión lo permite).
+
+\subsection{Método de búsqueda especializado o híbrido}
+Sería recomendable establecer un sistema que discrimine los tipos de
+problema y basado en esto, utilice ciertas heurísticas para mejorar
+el desempeño del cálculo, incluso es posible utilizar métodos de
+aprendizaje de máquina para reconocer patrones y asignarlos a las mejores
+formas de resolución para los mismos \cite{M97}.
+
+Existen varias herramientas de software que se especializan en la resolución
+de problemas matemáticos pero que también permiten incluir cálculos para
+problemas lógicos y/o alfabéticos. Varios incluso, permiten especificar
+los sistemas basados en satisfacción de restricciones. El problema, es que 
+estas herramientas no calculan todas las soluciones posibles y solo
+consiguen una de ellas o que solo calculan soluciones basadas en las relaciones
+entre variables y no considerando los dominios.
+
+Estos pasos faltantes pueden ser solucionados por esta herramienta, haciendo
+que se calculen todas las soluciones posibles (o el número solicitado) y 
+haciendo un filtrado de los vectores solución basándose en las restricciones
+de dominio. Este planteamiento se comenzó a trabajar durante la elaboración
+de la herramienta. Sin embargo, se decidió no continuarlo porque implicaba 
+modificar el software de resolución utilizado, llegando entonces a un nivel 
+de complejidad muy grande y al mismo tiempo enfocando demasiado tiempo en un
+tema ajeno al objetivo principal del trabajo de investigación.
+
+\subsection{Decisión sobre el uso del método de resolución}
+Podría considerarse que un método es siempre mejor que otro, pero eso es 
+totalmente relativo al tipo de problema que se resuelve. Entonces, lo más prudente sería
+poder discernir entre uno y otro tomando en cuenta las características 
+específicas del problema a resolver y posiblemente las experiencias
+previas que se tengan para estas características específicas.
+
+Considerando lo tratado en la sección \ref{sis_variables} es claro que cada sistema de
+variables es independiente y por lo tanto su resolución es indiferente del
+resto de los sistemas, por esto, cada sistema de variables puede resolverse con
+un método de resolución indiferentemente del resto. Haciendo entonces
+la decisión de elegir un método u otro un problema particular de cada
+sistema y no del problema de entrada en general.
+
+Entonces sería recomendable contar con múltiples métodos de resolución
+en vez de uno solo y poder utilizar uno u otro dependiendo de la entrada
+y más específicamente las propiedades de cada sistema de variables en
+particular.
+
+Dado que actualmente solo está implementado el sistema de resolución por
+\emph{backtracking} utilizando \emph{Prolog}, no es necesario decidir entre métodos de 
+resolución. Ahora bien lo ideal sería contar con una gran cantidad de métodos
+para que pueda optimizarse la resolución de cualquier sistema.
+
+Una vez más es notoria la importancia de establecer un sistema que se
+encargue de asignar automáticamente un método de resolución a cada sistema 
+de variables. Idealmente un sistema que implemente aprendizaje de máquinas
+para que se puedan abarcar gran cantidad de posibilidades y pueda adaptarse a
+las necesidades del usuario.
+
+\subsection{Recomendaciones para el diseño del sistema de decisión} 
+Hay una serie de consideraciones que deben tomarse en cuenta, para diseñar e implementar
+el sistema que distingue que método utilizar a la hora de resolver cada 
+sistema de variables.
+
+\subsubsection{Comparación de métodos de resolución}
+Cada uno de los métodos de resolución tiene sus ventajas y desventajas
+en general o frente a algún tipo de sistema en particular:
+
+El método por \emph{backtracking} evalúa todas las posibles asignaciones de valores
+del vector solución y mantiene solo las que satisfagan las restricciones de
+rango. Tiene como ventaja que no depende de la complejidad de la
+interrelación de las restricciones de rango. Esto, por otro lado es una desventaja si el dominio es muy grande
+y las restricciones de rango son relativamente simples.
+
+Mientras tanto, el método numérico resulta ser más efectivo para problemas en
+los que los tamaños de los dominios sean grandes y el sistema de ecuaciones
+resultante de las restricciones de rango sea relativamente complejo. Esto es
+debido a que en este caso la obtención de valores posibles de rangos es
+primeramente independiente de los dominios, es decir, se obtienen directamente
+vectores solución y luego se filtran los verdaderamente válidos según las
+posibilidades de asignación por los dominios. Entonces no hace falta revisar
+cada valor de los dominios cruzándose con los demás para calcular los rangos.
+Esto incide en disminuir de forma exponencial la cantidad de operaciones que
+se deben realizar (esto comparando con el método de \emph{backtracking} con un
+sistema que tenga gran cantidad de posibles dominios y muchas variables).
+
+La eficiencia de un sistema híbrido depende del método utilizado para hallar
+las soluciones, por ende no es posible generalizar los beneficios o desventajas
+de este tipo de método de resolución.
+
+Dado esto último por los momentos solo es posible hacer una comparación entre
+el método numérico contra el de \emph{backtracking}. Para esto, es necesario 
+considerar ciertos factores. Se describirán a continuación los que
+fueron considerados como más importantes:
+
+\textbf{Amplitud:} Evalúa la cantidad de dominio total multiplicando todos los
+espacios de dominio de las variables. Esta medida permite saber cuan poco 
+preferible es utilizar \emph{backtracking} para resolver el problema, ya que mientras
+mayor sea el dominio total de las variables mucho mayor será la cantidad de
+operaciones necesarias para llevar a cabo el \emph{backtracking}.
+
+\textbf{Disipación:} Evalúa la cantidad promedio de variables involucradas en
+las restricciones de rango. Este indicador permite aportar información
+referente a la complejidad del sistema de ecuaciones, y por lo tanto, lo
+preferible que resultaría resolver el sistema mediante métodos numéricos.
+
+\textbf{Proporción de limitación:} Indica la proporción entre la cantidad
+de variables en un sistema, en relación a la cantidad de restricciones
+de rango que este contiene. Permite al igual que el factor de disipación tener
+información sobre la complejidad del sistema de ecuaciones.
+
+En general si el factor de amplitud es muy grande en relación a la facilidad
+de resolver el sistema por método numérico, entonces no vale la pena utilizar
+el método por \emph{backtracking}. Ahora bien, si la cantidad de dominios entre las 
+variables es pequeño, indiferentemente de la complejidad del sistema de 
+restricciones, es preferible utilizar el método de \emph{backtracking}.

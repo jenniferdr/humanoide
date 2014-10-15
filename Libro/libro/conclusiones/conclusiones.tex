@@ -1,0 +1,86 @@
+\chapter{Conclusiones y recomendaciones} 
+
+\label{chap:conclusiones}
+
+Logrando los objetivos planteados, se consiguió diseñar e implantar primero un 
+lenguaje que facilitará la especificación de los problemas; y luego la 
+herramienta en si (Parser, compilador e instanciador)
+que permite generar instancias aleatorias, de objetos descritos como entradas,
+cumpliendo las especificaciones de los mismos, así como también las 
+restricciones que contienen. A partir de esta herramienta se lograron obtener
+soluciones a los problemas planteados para pruebas. Se pudieron obtener
+grupos de una, varias o incluso todas las soluciones posibles para las pruebas.
+
+El lenguaje diseñado es cómodo y bastante expresivo en comparación con la
+mayoría de las librerias de \textbf{CSP} o con la implementación de un algoritmo
+procedural en un entorno imperativo, por lo que resulta fácil
+acostumbrarse a su sintaxis. Además el diseño del lenguaje permite añadir 
+nuevas funcionalidades sin tener que hacer demasiados cambios para que
+se mantenga funcional.
+
+El tiempo de ejecución de la herramienta fue para todos los ejemplos bastante
+breve, en donde la escritura en disco fue la causa de la mayor demora en la 
+corrida.
+ 
+Además, se lograron también buenos resultados al interpretar las respuestas como
+objetos finales. Para esto se probaron casos que abarcan una gran cantidad de
+áreas de la computación, desde las más abstractas como las bases de datos hasta
+las más ilustrativas como la computación gráfica.
+
+Se analizaron las principales formas para optimizar la herramienta, se 
+implementaron las que involucran la intervención y se especificaron
+las automáticas para ser implementadas en trabajos futuros.
+
+Ahora bien, la herramienta es funcional y cumple con las expectativas
+iniciales, pero quedan muchas funcionalidades adicionales por ser
+implementadas. Para eso, a continuación se proporcionará una lista de recomendaciones 
+para posibles trabajos futuros que re-implementen o continúen
+con este ambicioso proyecto:
+
+\begin{itemize}
+\item{Utilizar un lenguaje que permita modificar fácilmente la estructura
+del lenguaje diseñado y de la herramienta: Esto permitirá que se puedan integrar
+nuevas funciones rápidamente.}
+
+\item{Implementar el funcionamiento de las listas: Con esto se reduciría
+en gran cantidad la cantidad de variables de igual comportamiento que se
+deben especificar como entrada.}
+
+\item{Implementar el funcionamiento de las funciones: Con esto se pueden
+aplicar restricciones mucho más complejas y que permitan expresar mejor
+algunos problemas.}
+
+\item{Añadir la posibilidad de recibir parámetros a la corrida de la 
+herramienta: Con esto podrían pedirse respuestas para objetos similares pero
+con diferencias sin tener que reescribir la entrada por completo.}
+
+\item{Implementar la posibilidad de describir restricciones mediante
+disyunciones: Con esto se aumentan las posibles descripciones de los
+objetos pero significa aumentar en gran medida la complejidad del proceso de
+resolución.}
+
+\item{Implementar el sistema de decisión de método de resolución para
+los subsistemas: actualmente esto no representa una mejora significativa, pero
+considerando la implementación de las demás recomendaciones, este se vuelve
+fundamental para mantener la herramienta eficiente.}
+
+\item{Mejorar el motor de resolución de sistemas en \textit{Prolog} o substituirlo
+con uno más complejo y eficiente. Adicionalmente, implementar otros métodos de
+resolución, en especial el de tipo numérico, o bien crear un motor de 
+resolución dedicado a este tipo de problemas.}
+\end{itemize}
+
+Luego de finalizado el proyecto se descubrieron una gran cantidad de posibles
+usos para la herramienta. Estos seguramente, son sólo una minúscula
+fracción de las posibilidades que se pueden generar con este proyecto. Cada una
+de estas son en realidad una gran cantidad de soluciones a un mismo problema.
+Sin tener que crear un programa específico sino un pequeño pero representativo
+modelo de lo que se quiere.
+
+Se tiene la seguridad de que este trabajo puede ser la piedra angular de nuevas 
+formas de diseño y generación de contenido. Que sean accesibles a personas
+de múltiples especialidades y que resuelvan cualquier cantidad de problemas.
+Faltan aún muchas mejoras para poder catalogar la herramienta como un producto
+finalizado y mucho menos un producto comercial. Aún así se tiene la expectativa
+de que este proyecto será continuado y mejorado. ¿Quién sabe? Quizá sirva
+como base para lo que en un futuro conozcamos como creatividad artificial...

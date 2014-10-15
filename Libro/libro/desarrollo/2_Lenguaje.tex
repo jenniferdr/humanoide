@@ -1,0 +1,540 @@
+\chapter{Definición de lenguaje}\label{chapter:def_lenguaje}
+
+\textbf{Amorfinator} es un lenguaje desarrollado con la finalidad de facilitar la 
+generación de instancias aleatorias de estructuras de datos. Por ende, está 
+diseñado para proporcionar a sus usuarios una sintaxis intuitiva que permita 
+especificar la estructura final deseada, así como las funciones para verificar 
+u obtener valores y también las estructuras auxiliares que sirven como 
+herramientas para obtener los resultados finales.
+
+La sintaxis fue diseñada para aceptar palabras reservadas escritas tanto en
+ingles como en español, incluso en ambos idiomas al mismo tiempo.
+
+%----------------------------- Estructura general -----------------------------%
+\section{Estructura general}
+La estructura general se basa en la idea de centrar toda la importancia en una 
+única estructura de salida, que contendrá la definición del objeto deseado a 
+generar. Para facilitar esto, se decidió diseñar una estructuración por bloques 
+que separen la salida final de otras instancias auxiliares y funciones.
+Estos bloques son los siguientes:
+
+%%---------------------------- Estructura de salida --------------------------%%
+\subsection{Estructura de la salida}
+Esta es la estructura principal que describe cómo se quiere recibir el objeto 
+generado por el lenguaje. Este bloque comienza con la palabra \texttt{salida} 
+(\texttt{exit}) seguido del nombre de la estructura y luego un bloque con el contenido. 
+Este bloque está entre un conjunto de llaves (\texttt{$\lbrace$} y \texttt{$\rbrace$}) y está 
+formado por dos partes:
+%%%------------------------------- Descripción ------------------------------%%%
+\subsubsection{Descripción}
+Esta parte contiene todos los atributos de los objetos (variables), sus valores o 
+``comportamientos''. De esto último se explicará en la sección de variables \ref{def_variables}. 
+
+\textbf{Sintaxis:} Su sintaxis es \texttt{descripcion} (\texttt{description}) seguido del 
+bloque con las variables.
+
+\textbf{Ejemplo:}
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+descripcion{
+  int a0 $\sim$ {
+    # > 0;
+    # < 25;
+    # % 2 == 0
+  };
+  int a1;
+  list<int> l0;
+}
+\end{lstlisting}
+\caption[Ejemplo de descripción de objeto]
+{Ejemplo de descripción de objeto}
+\label{ejemplo_de_descripcion}
+\end{figure}
+
+El objeto de la figura \ref{ejemplo_de_descripcion} tiene:
+\begin{itemize}
+ \item {Un entero \texttt{a0} que es positivo, menor que \texttt{25} y es par.}
+ \item {Un entero cualquiera \texttt{a1}.}
+ \item {Una lista de enteros \texttt{l0} con una cantidad aleatoria de elementos.}
+\end{itemize}
+
+%%%------------------------- Bloque de Restricciones ------------------------%%%
+\subsubsection{Bloque de restricciones} \label{subsec:restricciones}
+Es el bloque que contiene el conjunto de restricciones para los atributos del 
+objeto. En esta parte, es posible hacer referencia a varias variables del objeto 
+en una restricción y restringir el comportamiento de las estructuras de datos no
+básicos del objeto.	
+
+\textbf{Sintaxis:} Su sintaxis es \texttt{restriccion} (\texttt{restriction}) seguido del 
+bloque con las restricciones. Este bloque puede ser especificado como una 
+expresión booleana en\emph{ sintaxis por delimitación} (\emph{la sintaxis por delimitación}
+se explica más adelante en la sección \ref{sint_delimitacion}).
+
+\textbf{Ejemplo:}
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+restriccion {
+  a > b + length(l0);
+  c $\sim$ normal(a,b);
+}
+\end{lstlisting}
+\caption[Ejemplo de bloque de restricciones]
+{Ejemplo de bloque de restricciones}
+\label{ejemplo_de_bloque_de_restricciones}
+\end{figure}
+
+Este bloque de restricciones de la figura \ref{ejemplo_de_bloque_de_restricciones} 
+significa que se quiere que el valor de $a$ debe ser mayor que la suma del valor 
+de \texttt{b} y el largo de la lista \texttt{l0}. Además se indica que se quiere que el 
+valor de \texttt{c} tenga un valor aleatorio pero que este sea obtenido aleatoriamente
+bajo una distribución normal.
+
+
+\label{sint_delimitacion}
+Para facilitar la lectura y edición de expresiones booleanas de gran tamaño. Se ha 
+diseñado un tipo de sintaxis llamada \emph{Sintaxis por Delimitación}. Esta se 
+basa en agrupar las expresiones que operan todas bajo conjunciones incluyéndolas 
+en un bloque de \texttt{$\lbrace$ $\rbrace$} y las disyunciones entre \texttt{[ ]} y 
+separadas por \texttt{;}.
+
+%%--------------------------- Estructura auxiliares --------------------------%%
+\subsection{Estructuras auxiliares}
+Sirven para especificar estructuras que no serán retornadas por el lenguaje pero 
+son de utilidad para realizar los cálculos necesarios para obtener los valores 
+finales. Además también pueden formar parte del objeto de salida. 
+
+\textbf{Sintaxis:} Su sintaxis es similar a la de la estructura de salida y se 
+diferencian en que en vez de tener como etiqueta \texttt{salida} (\texttt{exit}) tiene la
+etiqueta \texttt{auxiliar} (\texttt{aux}).
+
+\textbf{Ejemplo:}
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+aux bar {
+  descripcion {
+    int a2;
+    string a3;
+  }
+}
+\end{lstlisting}
+\caption[Ejemplo de estructuras auxiliares]
+{Ejemplo de estructuras auxiliares}
+\label{ejemplo_de_estructuras_auxiliares}
+\end{figure}
+
+Lo que quiere decir la figura \ref{ejemplo_de_estructuras_auxiliares} es que los 
+objetos que sean del tipo \texttt{bar} tienen un entero \texttt{a2} y un string 
+\texttt{a3} aleatorios.
+
+%%--------------------------------- Funciones --------------------------------%%
+\subsection{Funciones}
+En este bloque se especifica el conjunto de funciones que son definidas por el 
+usuario para realizar cálculos y minimizar la repetición de código. Dentro de una 
+función se puede usar variables aleatorias usando la sintaxis del lenguaje.
+
+\textbf{Sintaxis:} Para especificar un bloque de funciones se debe usar la etiqueta 
+\texttt{funcion} (\texttt{function}) y luego dentro de unas llaves \texttt{$\{$ $\}$} colocar 
+las funciones separadas al final por un \texttt{;}. Una función dentro del bloque de 
+funciones tiene la siguiente estructura: 
+
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+$<tipo> <nombre\_funcion> ([<parametros> (,<parametros>)*]) $
+$[{<variables\_aleatorias>}] = $
+$<expresion>$ 
+$|$ 
+$if (<expresion\_booleana>) then <expresion> $ 
+$[elseif (<expresion\_booleana>) <expresion>]+$ 
+$else <expresion>$ 
+\end{lstlisting}
+\caption[Sintaxis de funciones]
+{Sintaxis de funciones}
+\label{sintaxis_funciones}
+\end{figure}
+
+Donde cada uno de las declaraciones en \ref{sintaxis_funciones} significa:
+\begin{itemize}
+ \item {\textbf{tipo:} Es el tipo devuelto por la función, solo soporta tipos
+  básicos.}
+ \item {\textbf{nombre\_funcion:} Es el nombre de la función.}
+ \item {\textbf{parametros:} Son el tipo y nombre de la variable que recibe la 
+  función.}
+ \item {\textbf{variables\_aleatorias:} Son el conjunto de variables aleatorias 
+  que se desean tener en la función.}
+ \item {\textbf{expresion:} Es la expresión que devuelve la función cuyo tipo 
+  debe ser el mismo que el de la función.}
+ \item {\textbf{expresion\_booleana:} Es una expresión que devuelve un valor 
+  booleano siempre.}
+\end{itemize}
+
+\textbf{Ejemplo:}
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+funciones {
+  bool par (int i) = if (i % 2 == 0) then true else false
+}
+\end{lstlisting}
+\caption[Ejemplo de funciones]
+{Ejemplo de funciones}
+\label{ejemplo_funciones}
+\end{figure}
+
+Aquí en la figura \ref{ejemplo_funciones} se tiene la especificación de una 
+función que recibe un número y verifica si es par, en caso de serlo devuelve 
+\texttt{true} y en caso contrario devuelve \texttt{false}.
+
+%------------------------------- Tipos de datos -------------------------------%
+\section{Tipos de datos}
+Los siguientes son los tipos de datos definidos en \textbf{Amorfinator}:
+
+%%------------------------------ Datos Basicos -------------------------------%%
+\subsection{Datos Básicos}
+
+\begin{itemize}
+ \item {\textbf{booleano (bool):} Admite solo los valores \texttt{true} y \texttt{false}.}
+ \item {\textbf{entero (int):} Admite valores numéricos enteros (Z) entre 
+  $-2^{31}$ y $2^{31}$.}
+ \item {\textbf{floatante (float):} Admite valores numéricos reales entre -1.18e-38  y 3.4e38.}
+ \item {\textbf{caracter (char):} Representa caracteres del alfabeto UTF-8.}
+\end{itemize}
+
+%%----------------------------- Datos Complejos ------------------------------%%
+\subsection{Datos Complejos}
+
+\begin{itemize}
+ \item {\textbf{Double (Double):} Admite valores numéricos reales con mayor 
+  precisión y mayor rango de representación. Con números entre -2.23e-308 y 1.79e308.}
+ \item {\textbf{Palabra (String):} Representa una cadena de caracteres.}
+\end{itemize}
+
+%%--------------------------- Estructuras basicos ----------------------------%%
+\subsection{Estructuras Básicas de datos}
+
+\begin{itemize}
+ \item {\textbf{Vector2:} Representa una tupla de un mismo tipo de dos elementos.}
+ \item {\textbf{Vector3:} Representa una tupla de un mismo tipo de tres elementos.}
+ \item {\textbf{Vector4:} Representa una tupla de un mismo tipo de cuatro elementos.}
+ \item {\textbf{Lista$<$\emph{Tipo}$>$:} Representa una lista de un mismo tipo de 
+  datos. Esta también permite operaciones para los tipos \gls{PILA}, \gls{COLA}
+  y \gls{ARREGLO}.}
+\end{itemize}
+
+%-------------------------------- Expresiones ---------------------------------%
+\section{Expresiones}	
+Una expresión es una pequeña estructura que comprende valores y operadores y que 
+tiene un valor, este valor puede o no estar determinado al especificar la 
+expresión dependiendo de si las variables que la componen están o no instanciadas. 
+Permiten definir comportamientos de las variables, relaciones entre varias de 
+ellas o simplemente calcular un valor.
+
+\textbf{Sintaxis:} Una expresión puede ser un \emph{string} complejo, una variable, 
+acceso a una variable, una operación binaria de dos expresiones, una expresión 
+puede estar dentro de uno más paréntesis, puede tener un operador unario, una 
+función que devuelva un valor, puede ser un numero, booleano, lista, caracter, 
+variable \texttt{\#}, vectores de 2, 3 y 4 dimensiones.
+
+\textbf{Ejemplos:}
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+2 + (3 * sqrt(42))
+[1,2,3,4]
+"Hola Mundo"
+length([1,2,3,4])
+\end{lstlisting}
+\caption[Ejemplos de expresiones]
+{Ejemplo de expresiones}
+\label{ejemplo_expresiones}
+\end{figure}
+
+%%-------------------------- Expresiones Matemáticas -------------------------%%
+\subsection{Expresiones Matemáticas}
+Son expresiones compuestas por varios operadores matemáticos de tipo operación y
+uno de tipo comparación. Es el equivalente a representar una ecuación algebraica.
+En este tipo de ecuaciones es posible utilizar variables o funciones que 
+representen valores numéricos y el resultado de esta expresión es una expresión 
+lógica que es la evaluación de el operador de comparación.
+
+\textbf{Sintaxis:} La forma en que se escriben las expresiones matemáticas no es 
+diferente a la forma en que se escriben en otros lenguajes de programación, 
+simplemente se basa en un conjunto de valores que operan entre ellos mediante un 
+conjunto de operadores matemáticos, algunos valores son desconocidos y son 
+representados como variables.
+
+\textbf{Ejemplos:}
+\begin{itemize}
+ \item{\textbf{5 $+$ 3 $>$ 2} En este caso el operador de comparación es el \texttt{$>$} y 
+  el resultado de evaluar esta expresión es \texttt{true} ya que el lado \texttt{5$+$3} da como
+  resultado \texttt{8} y es mayor que \texttt{2}.}
+
+ \item{\textbf{x == 34 / 2} Para esta ecuación el operador de comparación sería 
+  el signo \texttt{==}, dado que existe una ecuación y solo una variable, es posible 
+  obtener un valor único para la misma. En este caso el valor de \texttt{x} sería \texttt{17}. 
+  Luego de obtener el valor, la ecuación se evaluaría como cierta (\texttt{true}). Si 
+  en el caso contrario no pudiese asignarse un valor a una variable porque todas 
+  las asignaciones contradicen otra expresión o restricción, entonces la 
+  expresión no podría resolverse y la solución general que se estaría verificando
+  en el momento sería descartada. Existe también la posibilidad de que esta 
+  expresión esté bajo un contexto de negación, en cuyo caso la ecuación completa
+  deberá retornar \texttt{false} y por ende el valor de \texttt{x} estaría siendo obligado a 
+  ser diferente de \texttt{14}. Esto sería equivalente a haber planteado la ecuación de 
+  la siguiente forma: \texttt{x $!=$ 34 $/$ 2}.}	
+
+ \item{\textbf{2x - y == 2} En este ejemplo el operador de comparación que también 
+  se podría considerar principal es el signo \texttt{==}. En este caso la primera parte 
+  de la ecuación está formada por una operación con las variables \texttt{$x \& y$}. 
+  Esta ecuación no puede tener un valor booleano final hasta que se hayan 
+  conseguido los valores de ambas variables involucradas. Si se consiguiese el 
+  valor de una de ambas variables sería posible conseguir el valor de la otra 
+  utilizando un despeje por métodos matemáticos. De lo contrario los posibles 
+  valores soluciones de ambas variables formarían un conjunto infinito.}
+\end{itemize}
+
+%%--------------------------- Expresiones Booleanas --------------------------%%
+\subsection{Expresiones Booleanas}
+Las expresiones booleanas representan un argumento lógico cuyos valores finales 
+posibles son \texttt{cierto} o \texttt{falso} (\texttt{true} o \texttt{false}) y están compuestas por sub expresiones que
+devuelven un valor boleeano unidas por operadores unarios y binarios booleanos o 
+funciones. Una expresión booleana podría estar fácilmente compuesta por expresiones 
+matemáticas enlazadas por operadores lógicos. Un ejemplo de esto sería como el 
+mostrado en la figura \ref{ejemplo_expresiones_booleanas}.
+
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+(x + z == 10 && x > 5 && x - z == 4) || (x == 4 && z == 2)
+\end{lstlisting}
+\caption[Ejemplos de expresiones booleanas]
+{Ejemplo de expresiones booleanas}
+\label{ejemplo_expresiones_booleanas}
+\end{figure}
+
+Para este caso una sola expresión booleana permite declarar dos sistemas de 
+ecuaciones en los que solo hay una asignación posible para cada par de variables. 
+En la primera parte el único valor para que la expresión puede resultar cierta es
+\texttt{x $=$ 7} y \texttt{z $=$ 3}, mientras que para la segunda los valores son evidentes. Ambos 
+casos tienen la misma prioridad para ser considerados y dado que los valores 
+posibles dan conjuntos disjuntos se podría obtener cualquiera de las soluciones 
+pero no ambas al mismo tiempo.
+
+Existe otra sintaxis creada para facilitar la escritura de las estructuras 
+booleanas y es la que se trata en la sección \ref{subsec:restricciones}.
+
+%---------------------------------- Variables ---------------------------------%
+\section{Variables}
+\label{def_variables}
+Las variables se asemejan a las existentes en C++, con la diferencia de que 
+existe la posibilidad de especificar las restricciones sobre ellas. Para esto
+se crearon 4 formas posibles de declarar una variable:
+
+\begin{enumerate}
+\item {Variable de valor constante, es decir una variable a la cual se le asigna 
+  el valor desde su declaración, usando el símbolo \texttt{$=$}.}
+\item {Variable aleatoria por defecto, los detalles se encuentran en la sección 
+  \ref{var:aleatoria_por_defecto}.}
+\item {Variables con restricciones propias, en este caso se usa el símbolo 
+  \texttt{$\sim$}, los detalles de las restricciones se tratan en la sección 
+  \ref{var:restricciones_propias}.}
+\item {Variables por elección, este último usa los signos unidos \texttt{$=\sim$}
+  para poder expresar que la variable toma uno de los valores contenidos dentro
+  de la lista. Los detalles se encuentran en la sección \ref{var:eleccion}.}
+\end{enumerate}
+
+%%---------------------- Variables aleatoria por defecto ---------------------%%
+\subsection{Variable aleatoria por defecto}
+\label{var:aleatoria_por_defecto}
+Esta forma de definición consiste en declarar una variable que tomará un valor 
+de su tipo correspondiente de forma pseudoaleatoria por el lenguaje.
+	
+\textbf{Sintaxis:} La forma de definir una variable aleatoria por defecto es 
+simplemente declarar una variable sin asignarle ningún valor. 
+	
+\textbf{Ejemplos:}
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+int numero;
+char letra;
+Vector2 coordenadas;
+\end{lstlisting}
+\caption[Ejemplo de variable aleatoria por defecto]
+{Ejemplo de variable aleatoria por defecto}
+\label{ejemplo_variable_aleatoria_por_defecto}
+\end{figure}
+
+En cualquiera de estos casos de la figura \ref{ejemplo_variable_aleatoria_por_defecto} 
+la variable recibirá un valor aleatorio siempre que no exista una restricción que 
+la condicione o que la relacione con otro valor.
+En el caso de no estar asignada y no estar restringida una variable obtendrá un 
+valor aleatorio obtenido automáticamente por el lenguaje según sus propias librerías.
+		
+%%-------------------- Variables con restricciones propias -------------------%%
+\subsection{Variables con restricciones propias}
+\label{var:restricciones_propias}
+Esta forma de definición consiste en declarar una variable sin asignarle un valor
+al igual que en la forma anterior, pero restringiendo las posibles asignaciones 
+de valores tanto como se quiera.
+
+\textbf{Sintaxis:} La sintaxis de este tipo de definición variable necesita primero 
+  la especificación del tipo de variable, luego se define el nombre de la variable 
+  y finalmente se define un conjunto de restricciones que se quieren para esta 
+  variable. Este bloque se especifica así:
+	\begin{enumerate}
+    \item {\textbf{$\sim$:} Esto representa que la variable no esta 
+      instanciada sino que es aleatoria y tiene restricciones propias.}
+    \item {Restricción: Es una expresión booleana o una función con retorno 
+      booleano. Solo puede involucrar a la misma variable que es la que se está 
+      definiendo. Para facilitar la escritura en este contexto se puede referir 
+      a esta variable con el símbolo \texttt{\#}. En el caso de querer utilizar varias
+      restricciones se abre un bloque definido por los símbolos \texttt{$\lbrace$} 
+      y  \texttt{$\rbrace$} y las restricciones terminan con \texttt{;} que sirve 
+      también a modo de separación.}
+	\end{enumerate}
+
+\textbf{Ejemplo:}
+
+\begin{figure}\begin{lstlisting}[mathescape]
+int par $\sim${ 
+  # >= 0;
+  # <= 30;
+  # % 2 == 0;
+};
+\end{lstlisting}
+\caption[Ejemplo de variable con restricciones propias]
+{Ejemplo de variable aleatoria con restricciones propias}
+\label{ejemplo_variable_aleatoria_con_restricciones_propias}
+\end{figure}
+
+En la figura \ref{ejemplo_variable_aleatoria_con_restricciones_propias} la variable 
+ solo puede ser mayor o igual a \texttt{0}, menor que \texttt{30} y par.
+
+%%-------------------------- Variables por elección --------------------------%%
+\subsection{Variables por elección}\label{var:eleccion}
+Estas variables no tienen un valor fijo asignado, y solo puede obtener alguno de 
+los valores especificados.
+	
+\textbf{Sintaxis:} La forma de definir una elección es declarar un bloque de 
+opciones. Esto se hace incluyendo dentro de un par de \texttt{[ ]} el conjunto de 
+valores que puede tomar a variable separados por el símbolo \texttt{$\mid$}.
+Es posible especificar el porcentaje de probabilidad con el que se quiere que
+sea elegido el valor de entre los posibles valores del conjunto, esto se realiza 
+especificando un número que equivale al porcentaje asignado al un valor, este 
+porcentaje se escribe luego del valor y separado por espacios o tabulaciones.
+	
+\textbf{Ejemplos:}
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+int foo =$\sim$ [ 4| 8| 15| 16| 23| 42 ];
+Caracteres nombre =$\sim$ [ "Miguele"| "Jose"| "Kratrin"| "Juan" ];
+Str clasifica =$\sim$[ "Excelente" 20%| "Bueno" 50%| "Malo" 29.5%| "Pesimo" ];
+\end{lstlisting}
+\caption[Ejemplo de variable por elección]
+{Ejemplo de variable por elección}
+\label{ejemplo_variable_por_eleccion}
+\end{figure}
+
+Como se puede observar en la figura \ref{ejemplo_variable_por_eleccion} en el 
+último ejemplo es posible asignar un valor que represente el porcentaje de 
+probabilidad que tiene una opción de ser elegida. 
+En el caso de que la suma de todas las opciones de un mismo bloque
+sea menor a \texttt{100} también lanzará un error.
+
+%-------------------------------- Restricciones -------------------------------%
+\section{Restricciones}
+Son los elementos que permiten filtrar o especificar el comportamiento o los 
+conjuntos posibles de valores que pueden ser asignados a las variables. Existen 
+varias formas de especificar  las restricciones:
+
+\begin{itemize}
+\item {En primer lugar, hay restricciones que solamente involucran a una sola variable,
+mientras que hay otras que relacionan a varias. Para facilitar el orden y 
+formato, las que involucran a solo una variable pueden escribirse en el bloque 
+de definición de la misma y refiriéndose a esta variable con el signo \texttt{\#}. Estas restricciones 
+pueden también escribirse en el área de restricciones generales para la 
+estructura si se desea.}
+\item {Por otro lado las expresiones que involucran a varias variables o a estructuras 
+no básicas deben escribirse necesariamente en el área de restricciones generales.}
+\end{itemize}
+
+Las restricciones también pueden clasificarse por el uso, tal y como se muestra
+en las siguientes subsecciones.
+
+%%-------------------------- Restricciones booleanas -------------------------%%	
+\subsection{Restricciones booleanas}
+Estas restricciones vienen siendo expresiones boolenas como las que ya se 
+explicaron, que contienen entre sus términos más de una variable. Sirven para 
+establecer comportamientos de dependencia entre variables.
+	
+%%------------------------ Distrubuciones estadísticas -----------------------%%	
+\subsection{Distribuciones estadísticas}
+Este tipo de restricción permite especificar que el valor de la variable se 
+distribuye basado en una distribución estadística ``estándar''. Esto limita a 
+que no pueda ser utilizada para verificar un valor, sino para asignar una
+instancia del conjunto de valores del dominio de la variable obtenida según la distribución.
+	
+\textbf{Sintaxis:} La forma de especificar que una variable se debe obtener de una función probabilística 
+ es con el símbolo \texttt{\#} (dependiendo del contexto) seguido del símbolo \texttt{$\sim$} y 
+luego la función de distribución con sus parámetros correspondientes. Éstas 
+funciones de distribución están especificadas en el lenguaje y corresponden a 
+las distribuciones usuales como: Distribución normal, exponencial, gamma, etc.
+	
+\textbf{Ejemplos:}
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+nota $\sim$ normal(13,4);
+\end{lstlisting}
+\caption[Ejemplo de variable restringida por distribución estadística]
+{Ejemplo de variable restringida por distribución estadística}
+\label{ejemplo_variable_dist_estadistica}
+\end{figure}
+
+Este caso de la figura \ref{ejemplo_variable_dist_estadistica} representa una 
+variable que se quiere que tenga un valor aleatorio pero que este dentro de los 
+valores que comprende una distribución normal.
+%%------------------------------ Cuantificadores -----------------------------%%
+\subsection{Cuantificadores}
+Permite expresar restricciones para los elementos de una lista. 
+
+\textbf{Sintaxis:} Primero se especifica el cuantificador que permite seleccionar 
+los elementos de la lista. Entre estos están las opciones:
+	
+\begin{itemize}
+ \item \textbf{para todos (for all)}: Incluye a todos los elementos de la lista.
+ \item {\textbf{para al menos (for al least) N}: Incluye al menos N elementos de 
+  la lista.}
+ \item {\textbf{para a lo sumo (for at most)}: Incluye a lo sumo N elementos de 
+  la lista.}
+ \item {\textbf{para cualquier (for any)}: Se cumple si para algún elemento de 
+  la lista se cumple la proposición.}
+ \item {\textbf{para exactamente (for exactly) N}: Se cumple si la proposición 
+  se cumple para exactamente N elementos de a lista.}	
+\end{itemize}
+	
+Luego se especifica la variable con la que se referirá a cada elemento de la lista 
+y de que lista proviene. Para esto se especifica una variable, luego los signos
+\texttt{$<-$} seguidos del nombre de  la variable lista, todo esto dentro de  
+paréntesis. Por último se escribe el signo \texttt{$\sim$} y un bloque de 
+restricciones.	
+	
+\textbf{Ejemplos:}
+\begin{figure}[h]
+\begin{lstlisting}[mathescape]
+for all (i <- l0) $\sim$ {
+  0 <= i <= 100;
+};
+for at least 5 (i <- l1) $\sim$ {
+  0 <= i <= 100;
+};
+for exactly 10 (i <- l2) $\sim$ {
+  0 <= i <= 100;
+};
+\end{lstlisting}
+\caption[Ejemplos de variable restringida por cuantificador]
+{Ejemplos de variable restringida por cuantificador}
+\label{ejemplo_variable_por_cuantificador}
+\end{figure}
+
+Para cada caso de la figura \ref{ejemplo_variable_por_cuantificador} lo que dice 
+cada restricción es:
+\begin{itemize}
+ \item {Una lista de números llamada \texttt{l0} con todos los valores aleatorios entre \texttt{0} y \texttt{100}.} 
+ \item {Una lista de números llamada \texttt{l1} con al menos \texttt{5} de los valores aleatorios  entre \texttt{0} y \texttt{100}.}
+ \item {Una lista de números llamada \texttt{l2} con exactamente \texttt{10} de los valores aleatorios entre \texttt{0} y \texttt{100}.}
+\end{itemize}
