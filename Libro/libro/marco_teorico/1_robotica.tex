@@ -2,12 +2,17 @@
  
 Para definir un lenguaje formal se requiere describir:
 \begin{itemize}
-\item{\textbf{Robot:} Un agente artificial, activo, cuyo entorno no es el mundo físico. El término activo descarta de esta definición a las piedras, el término artificial descarta a los animales, y el término físico descarta a los agentes de software puros o softbots, cuyo entorno lo constituyen los sistemas de archivos, bases de datos y redes de computo. LIBRO Russell and NORVIG pag 815}
-\item{\textbf{Robótica:} Es la rama de la tecnología que se encarga del diseño, construcción, operación y aplicación de los robots.}
-\item{\textbf{Sensores:}  Son los encargados de percibir el ambiente que rodea al robot. Según Murphy R.R son dispositivos que miden algún atributo del mundo. Un sensor recibe energía del entorno (sonido, luz, presión, temperatura, etc) y transmite una señal a una pantalla o computador ya sea de forma análoga o digital. (introduction to AI robotics pag 196 )}
-\item{\textbf{Actuador:}  Es aquella parte del robot que convierte comandos de software en movimientos físicos. AI Russell and Norving pag 777}
+\item{\textbf{Robot:} Un agente artificial, activo, cuyo entorno no es el mundo físico. El término activo descarta de esta definición a las piedras, el término artificial descarta a los animales, y el término físico descarta a los agentes de software puros o softbots, cuyo entorno lo constituyen los sistemas de archivos, bases de datos y redes de computo. \cite{peterNorvig}}
+
+\item{\textbf{Robótica:} Es la rama de la tecnología que se encarga del diseño, construcción, operación y aplicación de los robots. \cite{oxfordRobotics}}
+
+\item{\textbf{Sensores:}  Son los encargados de percibir el ambiente que rodea al robot. Según Murphy R.R son dispositivos que miden algún atributo del mundo. Un sensor recibe energía del entorno (sonido, luz, presión, temperatura, etc) y transmite una señal a una pantalla o computador ya sea de forma análoga o digital. \cite{AiRobotics}}
+
+\item{\textbf{Actuador:}  Es aquella parte del robot que convierte comandos de software en movimientos físicos.  \cite{peterNorvig}}
+
 \item{\textbf{Servomotor:}  Es un motor eléctrico, considerado como actuador, que permite ser controlado tanto en velocidad como en posición. }
-\item{\textbf{Giroscopio:} Es un sensor utilizado para medir y mantener la orientación, se mide a través del momento angular.}
+
+\item{\textbf{Giroscopio:} Es un sensor utilizado para medir y mantener la orientación, se mide a través del momento angular. \cite{gyro1}}
 \end{itemize}
 
 %****************************************************************************************/
@@ -19,12 +24,12 @@ Percibir se refiere al procesamiento útil de la información de los sensores de
 
 \subsubsection{ Paradigma Jerárquico}
 
-Este paradigma es secuencial y ordenado. Primero el robot percibe el mundo y construye un mapa global. En base al mapa ya percibido y con “los ojos cerrados”, el robot planifica todas tareas necesarias para lograr la meta. Luego ejecuta la secuencia de actividades según la planificación realizada. Una vez culminada la secuencia se repite el ciclo percibiendo el mundo, planificando y actuando. (pag 6)
+Este paradigma es secuencial y ordenado. Primero el robot percibe el mundo y construye un mapa global. En base al mapa ya percibido y con “los ojos cerrados”, el robot planifica todas tareas necesarias para lograr la meta. Luego ejecuta la secuencia de actividades según la planificación realizada. Una vez culminada la secuencia se repite el ciclo percibiendo el mundo, planificando y actuando. \cite{AiRobotics}
 
 PONER IMAGEN
 
 \subsubsection{Paradigma Reactivo}
-El paradigma reactivo omite por completo el componente de la planificación y solo se basa en percibir y actuar. El robot puede mantener un conjunto de pares percibir-actuar, estos son llamados comportamientos y se ejecutan como procesos concurrentes. Un comportamiento toma datos de la percepción del mundo y los procesa para tomar la mejor acción independientemente de los otros procesos. (pag 8)
+El paradigma reactivo omite por completo el componente de la planificación y solo se basa en percibir y actuar. El robot puede mantener un conjunto de pares percibir-actuar, estos son llamados comportamientos y se ejecutan como procesos concurrentes. Un comportamiento toma datos de la percepción del mundo y los procesa para tomar la mejor acción independientemente de los otros procesos. \cite{AiRobotics}
 
 Estas tareas se encuentran muy relacionadas en el comportamiento, y todas las actividades emergen del resultado de dicho comportamiento en secuencia o concurrentemente. 
 
