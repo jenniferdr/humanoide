@@ -6,14 +6,16 @@
  
 \section{ Herramientas de software}
 En esta sección se describen las herramientas de software utilizadas para la programación del proyecto.
+\begin{itemize}
+\item Pypose: Software especializado en el control de los servomotores Dynamixel Ax-12. Una de las más importantes características es que, luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar. \cite{pypose}
 
-Pypose: Software especializado en el control de los servomotores Dynamixel Ax-12. Una de las más importantes características es que, luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar. \cite{pypose}
+\item ROS: ROS (Robot Operating System) es un framework que proporciona bibliotecas y herramientas para ayudar a los desarrolladores de software a crear aplicaciones robóticas. Proporciona abstracción de hardware, controladores de dispositivos, bibliotecas, visualizadores, paso de mensajes, gestión de paquetes y más. ROS se encuentra bajo licencia de código abierto, la licencia BSD.
 
-ROS: ROS (Robot Operating System) es un framework que proporciona bibliotecas y herramientas para ayudar a los desarrolladores de software a crear aplicaciones robóticas. Proporciona abstracción de hardware, controladores de dispositivos, bibliotecas, visualizadores, paso de mensajes, gestión de paquetes y más. ROS se encuentra bajo licencia de código abierto, la licencia BSD.
+\item OpenCv (Open Source Computer Vision Library): Es una librería de visión de computadoras y aprendizaje de maquinas de código abierto. Ha sido diseñada para acelerar el uso de la percepción de maquinas y para proveer una estructura común en las aplicaciones de visión de computadoras. Registrada bajo la licencia BSD, de código abierto. \cite{opencv}
 
-OpenCv (Open Source Computer Vision Library): Es una librería de visión de computadoras y aprendizaje de maquinas de código abierto. Ha sido diseñada para acelerar el uso de la percepción de maquinas y para proveer una estructura común en las aplicaciones de visión de computadoras. Registrada bajo la licencia BSD, de código abierto. \cite{opencv}
+\item IDE Arduino: Es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores AVR también son compatibles, como la Arbotix. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual esta basado en Processing.  \cite{arduino}
 
-IDE Arduino: Es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores AVR también son compatibles, como la Arbotix. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual esta basado en Processing.  \cite{arduino}
+\end{itemize}
 
 
 \section{Componentes de hardware}
@@ -45,19 +47,29 @@ En esta sección se describen los principales componentes utilizados para armar 
 
 \end{itemize}
 
-Sensor Gyro 
-%http://support.robotis.com/en/product/auxdevice/sensor/dxl_gyro.htm
+\begin{figure}[hbtp]
+\caption{Sensor Gyro }
+\centering
+\includegraphics[scale=0.5]{imagenes/gyro.png}
+\end{figure}
+
 \begin{itemize}
-\item Arbotix: El controlador ArbotiX es una solución de control avanzado para manejar servos Dynamixel AX/MX/RX/EX y robots basados en Bioloid. Incorpora un potente microcontrolador AVR, radio inalámbrica XBEE, conductores de motor dual, y cabeceras de estilo servo de 3 pines para E/S digital y analógica.
-%http://www.trossenrobotics.com/p/arbotix-robot-controller.aspx 
+\item Arbotix: El controlador ArbotiX es una solución de control avanzado para manejar servos Dynamixel AX/MX/RX/EX y robots basados en Bioloid. Incorpora un potente microcontrolador AVR, radio inalámbrica XBEE, conductores de motor dual, y cabeceras de estilo servo de 3 pines para E/S digital y analógica.\cite{arbotix}
 
 \end{itemize}
+
+
 \begin{itemize}
 \item FTDI (Future Technology Devices International) : Es una tarjeta controladora que ofrece el servicio de conversión de datos de USB a UART. Permite la comunicación entre diferentes dispositivos. 
 
-Chip FTDI conectado a la tarjeta Arbotix
 
 \end{itemize}
+\begin{figure}[hbtp]
+\caption{Chip FTDI conectado a la tarjeta Arbotix }
+\centering
+\includegraphics[scale=0.09]{imagenes/DSCF1162.jpg}
+\end{figure}
+
 
 
 \begin{itemize}
@@ -68,33 +80,64 @@ Chip FTDI conectado a la tarjeta Arbotix
 \end{itemize}
 
 
+\begin{figure}[hbtp]
+\caption{Extensor de puertos bioloid  }
+\centering
+\includegraphics[scale=0.3]{imagenes/Dynamixel-AX-MX-6-Port-Extension-Hub-600x600.jpg}
+\end{figure}
+
+
 \begin{itemize}
 \item Servo motor analogico micro TG9 e: Es un pequeño servomotor cuyo torque alcanza 1.50 kg-cm y una velocidad de 60º por segundo. Permite ser controlado en posición en un rango de 180º. 
-Servo motor analogico 
+
 %http://www.hobbyking.com/hobbyking/store/__9549__Turnigy_TG9e_9g_1_5kg_0_10sec_Eco_Micro_Servo.html
 
 \end{itemize}
+
+
+\begin{figure}[hbtp]
+\caption{Servo motor analogico}
+\centering
+\includegraphics[scale=0.3]{imagenes/turnigy.jpg}
+\end{figure}
 
 \begin{itemize}
 \item Raspberry Pi: La Raspberry Pi es un ordenador del tamaño de una tarjeta de crédito a la que se puede conectar un televisor y un teclado. Se trata de un pequeño ordenador capaz de ser utilizado en proyectos de electrónica, y para muchas de las tareas que una PC de escritorio hace, como hojas de cálculo, procesadores de texto y juegos. http://www.raspberrypi.org/ 
 
 
-Tarjeta Raspberry Pi con descripción de los puertos
-imagen tomada de: %http://rayhightower.com/blog/2012/12/03/ruby-on-raspberry-pi/
+
+%imagen tomada de: %http://rayhightower.com/blog/2012/12/03/ruby-on-raspberry-pi/
 
 \end{itemize}
+\begin{figure}[hbtp]
+\caption{Tarjeta Raspberry Pi con descripción de los puertos}
+\centering
+\includegraphics[scale=0.1]{imagenes/raspberry_pi_iphone.jpg}
+\end{figure}
 
 \begin{itemize}
 \item Camara Raspberry Pi: Es un sensor encargado de captar imagenes y grabar videos de alta definicion. Se conecta a la Raspberry Pi con un cable de cinta plana de 15 cm en el puerto CSI. Tiene 5 megapíxeles de foco fijo que soporta los modos de vídeo de 1080x30, 720x60 y VGA90. Puede ser manejada con las librerías MMAL, V4L u otras librerías de terceros como la de Python. %(http://www.raspberrypi.org/products/camera-module/)
 
 \end{itemize}
 
+\begin{figure}[hbtp]
+\caption{Camara Raspberry Pi}
+\centering
+\includegraphics[scale=0.7]{imagenes/1367-01.jpg}
+\end{figure}
 
 
-Camara Raspberry Pi 
 \begin{itemize}
 \item Batería de polímero de litio (Lipo): Es la fuente de poder usada para que los motores y componentes electronicos funcionen. La batería usada es de 11.1 voltios y 1 amperio. 
 \end{itemize}
+
+
+\begin{figure}[hbtp]
+\caption{Lipo}
+\centering
+\includegraphics[scale=0.7]{imagenes/R-LIPOBAT.jpg}
+\end{figure}
+
 \begin{itemize}
 \item Circuito con regulador de 5v: Es un circuito diseñado y construido para este proyecto cuya finalidad es regular la entrada de la corriente. Por una de las salidas se expulsa 5v y por la otra se mantiene el mismo voltaje de entrada. 
 
