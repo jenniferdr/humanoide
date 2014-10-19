@@ -1,8 +1,31 @@
 \chapter{Tecnologías utilizadas}\label{chapter:presentacion_del_problema}
 
- PODRIA IR ACA LA PRESENTACION DEL PROBLEMA
+El objetivo general de este proyecto se basa en construir un prototipo de robot humanoide que sea capaz de detectar la cercanía
+de una pelota, acercarse a ella y patearla, reincorporandose a la posicion de pie en caso de perder el equilibrio y caer
+mientras camina. Para cumplir con este objetivo se han desglosado un conjunto de objetivos específicos que se describen 
+acontinuación: 
+
+Diseño y construcción de un humanoide con piezas del kit de robótica Bioloid Premium, sustituyendo su tarjeta controladora
+CM-530 por la tarjeta de software libre ArbotiX para controlar los motores Dynamixel y otros sensores. 
+1.1 Instalación y configuración de la tarjeta ArbotiX.
+1.2 Instalación y configuración de la tarjeta Raspberry Pi.
+1.3 Instalación y configuración de la cámara Raspberry Pi.
+1.4 Instalación de servomotores adicionales para el movimiento de la cámara
+1.5 Instalación del giroscopio Gyro.
  
- OBJETIVOS
+Detección de la pelota
+2.1 Captura de imagen con la cámara Raspberry Pi a través de la librería raspicam_cv.
+2.2 Procesamiento de la imagen para extraer información de la posición de la pelota con las librerías de OpenCV.
+
+Búsqueda de la pelota y pateo de la misma. 
+3.1 Creación de las poses necesarias para caminar, girar, levantarse y patear usando el software pypose.
+3.4 Detección de movimientos angulares bruscos que sugieran una caída, a través de la lectura del giroscopio. 
+3.2 Programación de transiciones de movimientos.
+3.2 Control de servomotores para el movimiento de la cámara.
+3.3 Establecer mecanismo de comunicación entre la tarjetas ArbotiX y Raspberry Pi.  
+3.4 Programación de algoritmo de planificación de acciones que lleve al humanoide a acercarse a la pelota.
+3.5 Identificación del momento en que la pelota se encuentre en una zona adecuada para patear.
+
  
 \section{ Herramientas de software}
 En esta sección se describen las herramientas de software utilizadas para la programación del proyecto.
