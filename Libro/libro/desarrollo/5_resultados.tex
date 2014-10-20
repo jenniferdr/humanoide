@@ -1,0 +1,37 @@
+\chapter{Experiemntos y Resultados}\label{chapter:resultados}
+
+
+Experimentos de movimientos (Igual que en el paper)
+
+Se realizaron varios experimentos para comprobar la movilidad del robot. Primero se debe definir los movimientos que representan una unidad. Cada una de las siguientes acciones constituyen una unidad: caminar hacia adelante (Ade) , girar hacia la derecha (Der), girar hacia la izquierda (Izq), patada con la pierna derecha (PatearD), patada con la pierna izquierda (PatearD), levantarse en la posición supino, levantarse en posición prono.
+
+El primer experimento consistió en verificar la ejecución de las unidades de acciones y determinar su funcionamiento, para ello se procedió a realizar la ejecución de cada unidad 50 veces, se tomó nota de las veces que lo realizaba de forma esperada (Positivo), y de aquellas que no lo hacía, si podría recuperarse de su mala acción (Corrigió) o no. Los resultados pueden observarse en la figura 4. En cuanto al balance del robot,  solo una vez se cayó, sin embargo, logró levantarse satisfactoriamente.
+
+En el segundo experimento se evalu\'o la ejecuci\'on de  combinaciones de varias unidades de movimiento. Las combinaciones elegidas fueron:
+
+\begin{itemize}
+\setlength{\itemsep}{1pt}
+\item Caminar hacia adelante y patear con la pierna derecha (APD)
+\item Caminar hacia adelante y patear con la pierna izquierda (API)
+\item Caminar hacia adelante, girar hacia la derecha y patear con la pierna derecha (ADPD)
+\item Caminar hacia adelante, girar hacia la derecha, patear con la pierna izquierda (ADPI)
+\item Caminar hacia adelante, girar hacia la izquierda y patear con la derecha (AIPD)
+\item Caminar hacia adelante, girar hacia la  izquierda y  patear con la pierna izquierda (AIPI)
+\item Girar hacia la izquierda y patear con la pierna derecha (IPD)
+\item Girar hacia la derecha y patear con la izquierda (DPI)
+\item Girar hacia la derecha y patear con la pierna derecha (DPD)
+\item Girar hacia la izquierda y patear con la pierna izquierda (IPI)
+\end{itemize}
+
+
+Se realizaron 30 pruebas de cada una de estas combinaciones. Los resultados se han dividido en dos gr\'aficos (figuras 5 y 6) para mejorar su visualizaci\'on.  En el peor caso (ADPD),  Debupa logra patear la pelota 26 de las 30 veces al final del movimiento combinado. El robot s\'olo se ha ca\'ido dos veces, pero ha logrado levantantarse con \'exito (figura 5).
+
+Experimentos con comportamientos integrados 
+
+Para medir el desempeño con respecto a la coordinación de los movimientos del robot y la detección de la pelota, se ha realizado un conjunto de pruebas. La primera prueba (prueba 1) consiste en la colocación de la pelota en la zona de pateo (zona justo al frente de los pies) y observar si el robot cumple con el objetivo de patearla. Para esta primera prueba se realizaron 10 corridas cuya duración aproximada fue de 30 segundos cada una. La segunda prueba (prueba 2) consistió en ubicar la pelota a 50 centímetros del robot en línea recta, la duración promedio de cada una de las 10 corridas ha sido de 2:10 minutos. Las siguientes dos pruebas, prueba 3 y prueba 4, consistieron en colocar la pelota 10 centímetros a la derecha y a la izquierda respectivamente de la posición de la prueba 2. Para ambas pruebas se realizaron 10 corridas con un promedio de duración de 5 minutos. En estas últimas tres pruebas se evaluó si el robot lograba llegar hasta la pelota y patearla. 
+
+Los resultados de las pruebas, en general, han sido satisfactorios dado que el robot logró llegar y patear la pelota en el porcentaje de los casos. Sin embargo el tiempo en el que cumple la tarea podria ser mejorado considerablemente si se evita reiniciar la posición de la cámara al estado inicial cada vez que el robot ejecuta una acción de movimiento.  
+
+En la prueba 2 el robot solo se ha caído dos veces, de las cuales en una ocasión se levantó y en la otra se quedó sin energía. En el resto de las pruebas no se ha caído.  
+
+
