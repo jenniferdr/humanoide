@@ -18,7 +18,7 @@ Generalmente en la tarea de extracción de información de una imagen se utiliza
 En la investigación, los algoritmos de filtrado aplicados a las imágenes fueron: Clausura Morfológica y Apertura Morfológica, filtros que aplican las técnicas de erosión y dilatación a las imágenes.
 
 \subsection{Transformaciones Morfológicas}
-Las transformaciones morfológicas básicas son llamadas dilatación y erosión, y si Image Morphology que se presentan en una
+Las transformaciones morfológicas básicas son llamadas dilatación y erosión, se utilizan en 
 amplia variedad de contextos como la eliminación del ruido, aislamiento de elementos individuales y elementos de unión dispares
 en en una imagen.\cite{BookOpenCv}
 
@@ -28,7 +28,7 @@ el núcleo que puede ser de cualquier forma o tamaño, tiene un solo punto de an
 pequeño cuadrado o disco sólido con el punto de anclaje en el centro. El núcleo puede ser pensado como una plantilla  o
 mascarilla, y su efecto es que para la dilatación de un operador de máximo local sobre la imagen, se calcula el valor de píxel
 máximo común a B y reemplazamos el píxel de la imagen en el punto de anclaje con ese valor máximo. Esto causa regiones brillantes
-dentro de una imagen y la hacen crecer. Este crecimiento es el origen del término " operador de dilatación". \cite{BookOpenCv}
+dentro de una imagen y la hacen crecer. Este crecimiento es el origen del término \" operador de dilatación". \cite{BookOpenCv}
 
 \begin{figure}[hbtp]
 
@@ -36,17 +36,16 @@ dentro de una imagen y la hacen crecer. Este crecimiento es el origen del térmi
 \includegraphics[scale=0.3]{imagenes/erosion-model.png}
 \caption{Dilatación}
 \end{figure}
-
-
-\subsubsection{Erosión}
-La erosión es la operación inversa a la dilatación. Esta acción del operador es equivalente a la erosión el cálculo de un mínimo
-local sobre el área del núcleo. La erosión genera una nueva imagen desde la original, utilizando el siguiente algoritmo: como el
-núcleo B es analizado sobre la imagen, se calcula el mínimo valor del píxel superpuesto por B y se reemplaza el píxel de la
-imagen con un punto de anclaje de valor mínimo. \cite{BookOpenCv}
-
 \begin{figure}[hbtp]
-
+\label{fig:erosion}
 \centering
 \includegraphics[scale=1]{imagenes/erosion.png}
 \caption{Erosión}
 \end{figure}
+
+
+\subsubsection{Erosión}
+La erosión es la operación inversa a la dilatación. Esta acción del operador es equivalente a la erosión el cálculo de un mínimo local sobre el área del núcleo. La erosión genera una nueva imagen desde la original, utilizando el siguiente algoritmo: como el
+núcleo B es analizado sobre la imagen, se calcula el mínimo valor del píxel superpuesto por B y se reemplaza el píxel de la imagen con un punto de anclaje de valor mínimo. \cite{BookOpenCv}
+Vease en la figura \ref{fig:erosion}
+
