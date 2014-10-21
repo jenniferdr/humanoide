@@ -100,7 +100,7 @@ cchang@usb.ve}
 \begin{abstractEN}
 %\boldmath 
 
-This article presents Debupa (Detección Búsqueda Pateo) a small humanoid (38 cm high) built with the Bioloid Premium Kit \cite{robotics}  from the manufacturer ROBOTIS \cite{robotics1}.  \cite{robotics1} The CM-510 card has been excluded to be replaced by the Arbotix controller card, which is used to control the 16 motors Dynamixel AX-12 + (for moving the robot) and 2 analog servo (to move the camera). It has been also added a Raspberry Pi mini computer, with its  camera \cite{raspberry}, so that the robot can detect and track the ball autonomously. 
+This article presents Debupa (Detección Búsqueda Pateo) a small humanoid (38 cm high) built with the Bioloid Premium Kit \cite{robotics}  from the manufacturer ROBOTIS \cite{robotics1}. The CM-510 card has been excluded to be replaced by the Arbotix controller card, which is used to control the 16 motors Dynamixel AX-12 + (for moving the robot) and 2 analog servo (to move the camera). It has been also added a Raspberry Pi mini computer, with its  camera \cite{raspberry}, so that the robot can detect and track the ball autonomously. 
 
 All these components must be coordinated to accomplish the tasks of detection, tracking and kicking of the ball. Thus, communication between the Arbotix and Raspberry Pi is necessary. The tool used for this is the ROS (Ros Operating System) framework  \cite{ros}.
 
@@ -116,12 +116,13 @@ Arbotix ,Raspberry Pi, Dynamixel, Humanoid, Soccer, OpenCV.
 
 \begin{abstractSP}
 %\boldmath
-En este artículo se presenta a Debupa (detección - búsqueda - pateo) un humanoide de tamaño pequeño (38 cm de alto) construido con las piezas del kit Bioloid \cite{robotics} en  del fabricante ROBOTIS \cite{robotics1}. Del kit se ha excluido la tarjeta CM-510 para sustituirla por la tarjeta controladora Arbotix, que será la que controle los 16 motores Dynamixel Ax-12+ (para mover al robot) y 2 servomotores analógicos (para mover la cámara). Además se ha agregado un mini computador Raspberry Pi, con su cámara \cite{raspberrycam} , para que el robot pueda detectar y seguir la pelota de forma autónoma. 
+En este artículo se presenta a Debupa (Detección Búsqueda Pateo) un humanoide de tamaño pequeño (38 cm de alto) construido con las piezas del kit Bioloid \cite{robotics} del fabricante ROBOTIS \cite{robotics1}. Del kit se ha excluido la tarjeta CM-510 para sustituirla por la tarjeta controladora Arbotix, que será la que controle los 16 motores Dynamixel Ax-12+ (para mover al robot) y 2 servomotores analógicos (para mover la cámara). Además se ha agregado un mini computador Raspberry Pi, con su cámara \cite{raspberrycam}, para que el robot pueda detectar y seguir la pelota de forma autónoma. 
 
-Todos estos componentes deben ser coordinados para que se logre cumplir la tarea de detectar, seguir y patear la pelota. Por ello se hace necesaria la comunicación entre la Arbotix y la Raspberry Pi. La herramienta empleada para ello es el framework ROS (Ros Operating System) \cite{ros}
-En la Raspberry Pi se usa el lenguaje c++ y se ejecuta un solo programa encargado de captar la imagen de la cámara, filtrar y procesar para encontrar la pelota, tomar la decisión de la acción a ejecutar y hacer la petición a la Arbotix para que de la orden a los motores de ejecutar el movimiento. Para captar la imagen de la cámara se ha utilizado la librería raspicam\_cv \cite{camara}. Para filtrar y procesar la imagen se ha usado las librerías OpenCv \cite{opencv}. 
+Todos estos componentes deben ser coordinados para que se logre cumplir la tarea de detectar, seguir y patear la pelota. Por ello se hace necesaria la comunicación entre la Arbotix y la Raspberry Pi. La herramienta empleada para ello es el framework ROS (Ros Operating System) \cite{ros}.
 
-La Arbotix, además de controlar los motores, se encarga de monitorizar que el robot se encuentre balanceado, para ello usa el sensor Gyro de Robotis \cite{gyro}. Si detecta un desbalance de un cierto tamaño puede saber si se ha caído y levantarse. 
+En la Raspberry Pi se usa el lenguaje c++ y se ejecuta un solo programa encargado de captar la imagen de la cámara, filtrar y procesar para encontrar la pelota, tomar la decisión de la acción a ejecutar y hacer la petición a la Arbotix para que de la orden a los motores de ejecutar el movimiento. Para captar la imagen de la cámara se ha utilizado la librería raspicam\_cv \cite{camara}. Para filtrar y procesar la imagen se ha usado las librerías de OpenCv \cite{opencv}. 
+
+La Arbotix, además de controlar los motores, se encarga de monitorizar que el robot se encuentre balanceado, para ello usa el sensor Gyro de ROBOTIS \cite{gyro}. Si detecta un desbalance de un cierto tamaño puede saber si se ha caído y levantarse. 
 
 \end{abstractSP}
 
@@ -136,14 +137,14 @@ Arbotix, Raspberry Pi, Dynamixel, Robot Humanoide, Fútbol, OpenCV.
 % no \IEEEPARstart
 RobotCup \cite{robotcup} es una competencia de fútbol iniciada desde 1997 donde contribuyen las áreas de robótica, investigación e inteligencia artificial. Entre sus categorías se encuentra RobotCup Soccer \cite{robotcupsoccer}, la cual consiste en la participación de pequeños robots humanoides que se enfrentan a otro equipo para jugar fútbol. El objetivo de esta competencia es lograr que en el año 2050 el equipo campeón logre vencer al ganador del año en la copa mundial de la FIFA (International Federation of Association Football). Las destrezas de robots con forma de humanos (como son caminar, percibir el mundo y tomar alguna acción sobre él) suelen ser más complejas de lo que se puede pensar. Una de las más avanzadas muestras en el área es el robot ASIMO \cite{asimo}, creado por la compañía Honda, cuyos últimos avances incluyen la predicción de trayectoria de objetos para poder esquivarlos.
 
-En este artículo se presenta un robot humanoide (Debupa) de tamaño pequeño (38 cm de altura) que es capaz de detectar una pelota de un color único en el ambiente, buscarla y, al llegar hasta ella, patearla. En artículos relacionados de este mismo enfoque se puede encontrar el trabajo de Sven Behnke cuyo título es “See, walk, and kick: Humanoid robots start to play soccer” donde se describe la construcción del equipo de robots que participaron en la RobotCupSoccer en el a\~no 2006. El artículo cubre el diseño mecánico y electrónico, además el software utilizado para la percepción, control de comportamiento, comunicación y simulación de los robots. \cite{paper}. 
+En este artículo se presenta un robot humanoide (Debupa) de tamaño pequeño (38 cm de altura) que es capaz de detectar una pelota de un color único en el ambiente, buscarla y, al llegar hasta ella, patearla. En artículos relacionados de este mismo enfoque se puede encontrar el trabajo de Sven Behnke cuyo título es “See, walk, and kick: Humanoid robots start to play soccer” donde se describe la construcción del equipo de robots que participaron en la RobotCupSoccer en el a\~no 2006. El artículo cubre el diseño mecánico y electrónico, además el software utilizado para la percepción, control de comportamiento, comunicación y simulación de los robots \cite{paper}. 
 
-Existen equipos que han participado durante varios años consecutivos en la competencia Robocup, logrando mejoras en sus diseños y técnicas; tal es el caso del equipo MRL que ha participado en los años 2011, 2012, 2013 y 2014 en la categoría “Humanoid League”, han iniciado con el hardware del robot DARwIn-OP y con el tiempo han modificado los componentes electrónicos para agregar eficiencia y estabilidad. Para el balance han utilizado un gyro y sensores de aceleración, y para la visión una cámara conectada por usb al CPU principal \cite{paper1}. 
+Existen equipos que han participado durante varios años consecutivos en la competencia Robocup, logrando mejoras en sus diseños y técnicas; tal es el caso del equipo MRL que ha participado en los años 2011, 2012, 2013 y 2014 en la categoría “Humanoid League”, han iniciado con el hardware del robot DARwIn-OP y con el tiempo han modificado los componentes electrónicos para agregar eficiencia y estabilidad. Para el balance han utilizado un sensor Gyro y otros sensores de aceleración. Para la visión han empleado una cámara conectada por USB al CPU principal \cite{paper1}. 
 
-En el desarrollo de una habilidades más específicas con respecto a la competencia RobotCup Soccer, en el artículo de investigación de Seung-Joon Yi, Stephen McGill y Daniel D. Lee  \cite{paper2}, se refieren a dos posibles estrategias para el pateo de la pelota donde los factores fundamentales para un buen desempeño es la fuerza y la rapidez con que se patea, los investigadores ponen en pr\'actica dos estrategias de pateo en distintas circunstancias del juego basado en la cinemática y dinámica de equilibrar el cuerpo al momento de realizar el pateo.
+En el desarrollo de habilidades más específicas con respecto a la competencia RobotCup Soccer, en el artículo de investigación de Seung-Joon Yi, Stephen McGill y Daniel D. Lee  \cite{paper2}, se refieren a dos posibles estrategias para el pateo de la pelota donde los factores fundamentales para un buen desempeño es la fuerza y la rapidez con que se patea. Los investigadores ponen en pr\'actica dos estrategias de pateo en distintas circunstancias del juego basado en la cinemática y dinámica de equilibrar el cuerpo al momento de realizar el pateo.
 
-En la secci\'on \ref{sec:Componentesdehardware} se describen los componentes de hardware usados para construir el humanoide; luego en la sección \ref{sec:Estru}
- se explica cómo se unieron esas piezas. Con respecto a la parte de programación, en la secci\'on \ref{sec:movimiento} se explica c\'omo se logró constituir los movimientos necesarios para que el humanoide cumpla sus objetivos, mientras que en la secci\'on \ref{sec:experimento} se muestran los resultados experimentales. Las herramientas y técnicas  que  permitieron lograr  la detección de la pelota se detallan en la secci\'on \ref{sec:deteccion}. También se explica la discretización del ambiente para reducir el n\'umero de estados. La comunicación de las tarjetas Arbotix y Raspberry Pi para que puedan trabajar en conjunto se explica en la secci\'on \ref{sec:integracion}  y consideraciones especiales en la secci\'on \ref{sec:consideraciones}. 
+En la secci\'on \ref{sec:Componentesdehardware} se describen los componentes de hardware usados para construir el humanoide Debupa; luego en la sección \ref{sec:Estru}
+ se explica cómo se unieron esas piezas. Con respecto a la parte de programación, en la secci\'on \ref{sec:movimiento}, se explica c\'omo se logró constituir los movimientos necesarios para que el humanoide cumpla sus objetivos, mientras que en la secci\'on \ref{sec:experimento} se muestran los resultados experimentales. Las herramientas y técnicas  que  permitieron lograr  la detección de la pelota se detallan en la secci\'on \ref{sec:deteccion}. También se explica la discretización del ambiente para reducir el n\'umero de estados. La comunicación de las tarjetas Arbotix y Raspberry Pi, para que puedan trabajar en conjunto, se explica en la secci\'on \ref{sec:integracion}  y consideraciones especiales en la secci\'on \ref{sec:consideraciones}. 
 
 
 \section{Componentes de \emph{Hardware}}
@@ -165,7 +166,7 @@ Micro Servo Analogico (actuador rotatorio): Es un motor eléctrico que permite s
 \section{Construcción de la estructura}
 \label{sec:Estru}
 
-Para la construcción del robot se ha utilizado el kit de piezas Bioloid Premium de marca Robotis el cual incluye motores Dynamixel Ax-12+, una tarjeta controladora CM-510, un sensor Gyro, un manual, entre otros elementos. El manual incluye las instrucciones de como armar varios modelos de humanoide, el utilizado en este proyecto es el tipo B, haciendo uso de 16 motores. 
+Para la construcción del robot se ha utilizado el kit de piezas Bioloid Premium, de marca ROBOTIS, el cual incluye motores Dynamixel Ax-12+, una tarjeta controladora CM-510, un sensor Gyro, un manual, entre otros elementos. El manual incluye las instrucciones de como armar varios modelos de humanoide, el utilizado en este proyecto es el tipo B, haciendo uso de 16 motores. 
 \begin{figure}[ht!]
 	\centering
 		\includegraphics[height=05cm]{arbotixsola.jpg}
@@ -217,7 +218,7 @@ Para que Debupa pueda cumplir sus objetivos debe ser capaz de ejecutar los sigui
  
 \end{itemize}
 
-Se ha logrado realizar estos movimientos a través de la fijación de poses con la utilización del software Pypose, una aplicaci'on para modelado de poses, que permite la lectura simultánea de las posiciones de todos los motores. De esta manera se ha fijado y guardado, para Debupa, un conjunto de poses necesarias para caminar, girar y patear y levantarse. Luego se ha podido generar en Pypose una secuencia de poses para cada movimiento. Finalmente se ha exportado el archivo de las poses y secuencias para ser utilizadas en el programa a ser ejecutado en Arbotix. 
+Se ha logrado realizar estos movimientos a través de la fijación de poses con la utilización del software Pypose, una aplicación para modelado de poses, que permite la lectura simultánea de las posiciones de todos los motores. De esta manera se ha fijado y guardado, para Debupa, un conjunto de poses necesarias para caminar, girar, patear y levantarse. Luego se ha podido generar en Pypose una secuencia de poses para cada movimiento. Finalmente se ha exportado el archivo de las poses y secuencias para ser utilizadas en el programa a ser ejecutado en Arbotix. 
 
 Para detectar una posible caída del robot se ha incorporado el sensor giroscopio Gyro. Los valores de este sensor son leídos constantemente desde la Arbotix para corregir al robot en caso de una caída.  
 
@@ -256,7 +257,7 @@ Para detectar una posible caída del robot se ha incorporado el sensor giroscopi
 \end{figure}
 Se realizaron varios experimentos para comprobar la movilidad del robot. Primero se debe definir los movimientos que representan una unidad. Cada una de las siguientes acciones constituyen una unidad: caminar hacia adelante (Ade) , girar hacia la derecha (Der), girar hacia la izquierda (Izq), patada con la pierna derecha (PatearD), patada con la pierna izquierda(PatearD), levantarse en la posición supino, levantarse en posición prono.
 
-El primer experimento consistió en verificar la ejecución de las unidades de acciones y determinar su funcionamiento, para ello se procedió a realizar la ejecución de cada unidad 50 veces, se tomó nota de las veces que lo realizaba de forma esperada (Positivo), y de aquellas que no lo hacía, si podría recuperarse de su mala acción (Corrigió) o no. Los resultados pueden observarse en la figura 4. En cuanto al balance del robot,  solo una vez se cayó, sin embargo, logró levantarse satisfactoriamente.
+El primer experimento consistió en verificar la ejecución de las unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, se tomó nota de las veces que lo realizaba de forma esperada (Positivo), y de aquellas que no lo hacía, si podría recuperarse de su mala acción (Corrigió) o no. Los resultados pueden observarse en la figura 4. En cuanto al balance del robot,  solo una vez se cayó, sin embargo, logró levantarse satisfactoriamente.
 
 En el segundo experimento se evalu\'o la ejecuci\'on de  combinaciones de varias unidades de movimiento. Las combinaciones elegidas fueron: 
 
@@ -284,7 +285,7 @@ Se realizaron 30 pruebas de cada una de estas combinaciones. Los resultados se h
 %\hline 
 %Der & Girar hacia la derecha \\ 
 %\hline 
-I%zq & Girar hacia la izquierda \\ 
+%zq & Girar hacia la izquierda \\ 
 %\hline 
 %PatearD & Patear conla derecha \\ 
 %\hline 
@@ -317,7 +318,7 @@ I%zq & Girar hacia la izquierda \\
              coordinates { (APD,30) (API,27)(ADPD,26)(ADPI,30)(AIPD,29)};
     
     
-        \legend {Positivo,Corrigió, Pateo}
+        \legend {Positivo,Corrigió,Pateó}
     \end{axis}
 \end{tikzpicture}
 \caption{Experimento 2.a: Veces que realiza acciones combinadas}
@@ -364,7 +365,7 @@ I%zq & Girar hacia la izquierda \\
 En esta sección se presentan las herramientas y estrategias con las cuales se ha abordado el problema de la detección de la pelota.
 
 \subsection{Integrando la Raspberry Pi y la cámara}
-Se ha incorporporado un mini computador Raspberry Pi 2011.12 y una cámara Raspberry Pi 1.3 que actúe como “los ojos” del robot y así lograr un modelo parcial del ambiente. La cámara ha sido instalada sobre dos servo-motores RC, otorgándole dos grados de libertad y un rango visibilidad de 160 grados en una posición fija del robot.
+Se ha incorporporado un mini computador Raspberry Pi 2011.12 y una cámara Raspberry Pi 1.3 que actúe como “los ojos” del robot y así lograr obtener un modelo parcial del ambiente. La cámara ha sido instalada sobre dos servo-motores RC, otorgándole dos grados de libertad y un rango visibilidad de 160 grados en una posición fija del robot.
 
 Estos motores se controlan desde la Arbotix usando la librería HServo \cite{vanadium}, que aunque sólo puede ser usada para los motores conectados en los puertos Hobby (12 y 13), brinda la ventaja de un control más preciso, evitando que los motores tiemblen. 
  
@@ -372,7 +373,7 @@ Estos motores se controlan desde la Arbotix usando la librería HServo \cite{van
 \subsection{Detección de la pelota con openCV}
 Para lograr conocer la ubicación de la pelota en un momento dado y de forma autónoma se ha decidido aplicar detección por ‘blobs’, o reconocimiento de regiones, esta técnica consiste en filtrar la imagen por color. Por ello es importante que el color de la pelota no se repita en el ambiente y así poder obtener la posición de la pelota dentro de la imagen. Se han utilizado las librerías de OpenCV para apoyar esta tarea.
 
-Los filtros o transformaciones aplicadas han sido la morfología en apertura y en clausura. La morfología en apertura es una transformación a una imagen que consiste en aplicar la operación de erosión seguida de la operación de dilatación \cite{filtros}. La morfología de clausura es una transformación que aplica la dilatación seguida de la erosión.
+Los filtros o transformaciones aplicadas han sido la morfología en apertura y en clausura. La morfología en apertura es una transformación de una imagen que consiste en aplicar la operación de erosión seguida de la operación de dilatación \cite{filtros}. La morfología de clausura es una transformación que aplica la dilatación seguida de la erosión.
 
 
 El resultado de estos filtros es una imagen en blanco y negro, derivada de la imagen original, en la que se identifica con blanco el rango de valores establecido del color que se requiere buscar y el resto de la imagen en negro. 
@@ -383,9 +384,11 @@ El hecho de  que la cámara tenga dos grados de libertad para moverse es una gra
 
 Debupa debe tomar una acción diferente dependiendo de la posición de la cámara y de la pelota en la imagen. Sin embargo esto genera una gran cantidad de estados, por lo cual se ha decidido discretizarlos de la siguiente manera:  
 \begin{itemize}
-\item La cámara tiene 9  (3x3) posibles posiciones.  La visión horizontal abarca 3 cuadros, aproximadamente 160 grados, por razones de la estructura del robot no se le ha podido agregar un rango más grande. La visión vertical también abarca 3 cuadros, llega a captar la imagen desde sus pies hasta más de 2 metros hacia adelante.
-\item Desde cada posición de la cámara se obtiene una imagen. Las im\'agenes de la c\'amara en posici\'on central, y en posicio\'n central inferior  son las m\'as importantes  y prioritarias, pues si la pelota se  detecta en ellas significa que el robot est\'a cerca de poder patearla. Estas dos  im\'agenes se dividen en subregiones, para tener mayor precisi\'on en las  acciones  que Debupa deba tomar. 
-Una representación sencilla de la discretización del ambiente se puede apreciar en la figura 7. El \'area de pateo son las regiones 15 y 16.  Por ejemplo, en el cuadro del central inferior,  cuando la pelota se encuentra del lado derecho de la pantalla (región 13 o 17) el robot debe girar a la derecha para situarse de frente a la pelota. \end{itemize}
+\item La cámara tiene 9  (3x3) posibles posiciones. La visión horizontal abarca 3 cuadros, aproximadamente 160 grados. La visión vertical también abarca 3 cuadros, llega a captar la imagen desde sus pies hasta más de 2 metros hacia adelante.
+\item Desde cada posición de la cámara se obtiene una imagen y, dependiendo de la posición, la imagen se divide en diferentes regiones. 
+\end{itemize}
+ 
+Las im\'agenes de la c\'amara obtenidas en la posici\'on central, y en la posicio\'n central inferior son las m\'as importantes y prioritarias, pues si la pelota se detecta en ellas significa que el robot est\'a cerca de poder patearla. Estas dos im\'agenes se dividen en las regiones que pueden ser apreciadas en la figura 7. Cada región ayuda a identificar la acción que Debupa debe tomar. Por ejemplo, en el cuadro central inferior, cuando la pelota se encuentra del lado derecho de la pantalla (región 13 o 17) el robot debe girar a la derecha para situarse de frente a la pelota. El \'area de pateo se encuentra en las regiones 15 y 16.
 
 \begin{figure}
  \includegraphics[height=6cm]{discretizacion.png}
@@ -420,7 +423,7 @@ Para la implementación de la comunicación se ha usado ROS (Robot Operating Sys
 \section{Experimentos con comportamientos integrados}
 \label{sec:experimentosintegrados}
 
-El experimentos 3 consiste en pruebas de desempeño donde se observa el comportamiento global del robot con todos sus componentes integrados. El  primer caso (Caso1) consiste en la colocación de la pelota  en la zona de pateo  (las regiones 15 y 16 de la figura 7). El número de pruebas en este primer caso fue de 10, cuya duración aproximada de cada prueba fue de 30 segundos.
+El experimento 3 consiste en pruebas de desempeño donde se observa el comportamiento global del robot con todos sus componentes integrados. El  primer caso (Caso1) consiste en la colocación de la pelota  en la zona de pateo  (las regiones 15 y 16 de la figura 7). El número de pruebas en este primer caso fue de 10, cuya duración aproximada de cada prueba fue de 30 segundos.
 El segundo caso  (Caso2) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 10 pruebas, siendo la duración aproximada de 2 minutos en cada una. 
 
 La figura 8 muestra los resultados experimentales.  Se registra si el robot ubica la posición de la pelota (Detecta), se sitúa al frente de ella  (Llega) y patea la pelota con éxito (Patea). Para el caso 1 el desempeño del robot fue favorable ya que en un 90\% de los casos completó la prueba satisfactoriamente logrando patear la pelota. Para el caso 2 Debupa logró cumplir la tarea asignada en un 50\% del número de pruebas ejecutadas, determinando que la estrategia se podría mejorar sustancialmente.
@@ -461,7 +464,7 @@ La figura 8 muestra los resultados experimentales.  Se registra si el robot ubic
 \section{Consideraciones especiales}
 \label{sec:consideraciones}
 
-El uso de los motores Dynamixel Ax-12+ debe ser cuidadoso dado que por el exceso de esfuerzo suelen quemarse con facilidad si no se controla la temperatura máxima o el torque máximo permitido. La solución aplicada ha sido establecer en el chip de cada motor una cota máxima de 30\celsius~  de temperatura y un torque máximo de 800 kgf-cm. En caso de superar alguna de estas cotas los motores se apagan automáticamente evitando así un daño mayor. El sensor de temperatura es capaz de medir valores entre -5\celsius~y 80\celsius, y el torque puede ir desde 512 hasta 1023 kgf-cm. Para lograr esto se ha tenido que modificar la librería Ax12 agregando algunos procedimientos que permitieran establecer la temperatura y el torque máximo.
+El uso de los motores Dynamixel Ax-12+ debe ser cuidadoso dado que por el exceso de esfuerzo, si no se controla la temperatura máxima o el torque máximo permitido, suelen quemarse con facilidad. El sensor de temperatura es capaz de medir valores entre -5\celsius~y 80\celsius, y el torque puede ir desde 512 hasta 1023 kgf-cm. La solución aplicada ha sido establecer en el chip de cada motor una cota máxima de 30\celsius~ de temperatura y un torque máximo de 800 kgf-cm. En caso de superar alguna de estas cotas los motores se apagan automáticamente evitando así un daño mayor. Para lograr esto se ha tenido que modificar la librería Ax12 agregando algunos procedimientos que permitieran establecer la temperatura y el torque máximo.
 
 Para ampliar información sobre este proyecto se encuentra disponible el blog de Debupa en donde se presenta la descripción de algunas de las tareas que han presentado problemas con sus soluciones (\url{ https://sites.google.com/site/arbotixml3j/home}).
 
