@@ -7,16 +7,16 @@
 % 2014 Universidad de Cuenca
 % Asistencia: kenneth.palacio@ucuenca.edu.ec
 
-\documentclass[conference, letterpaper]{IEEEtranMC1}
+\documentclass[tikz,conference, letterpaper]{IEEEtranMC1}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-
+\usepackage{verbatim}
 \usepackage{gensymb}
 \usepackage{xcolor}
 \usepackage{pgfplots}
 \usepackage{tikz}
-
+\usepackage{pgf-pie}
 % Define bar chart colors
 %
 \definecolor{bblue}{HTML}{4F81BD}
@@ -153,13 +153,13 @@ En la secci\'on \ref{sec:Componentesdehardware} se describen los componentes de 
 
 En este capítulo se describen los principales componentes utilizados para armar la estructura del robot. 
 
-Arbotix: El controlador ArbotiX es una solución de control avanzado para manejar servos Dynamixel AX/MX/RX/EX. Incorpora un potente microcontrolador AVR, radio inalámbrica XBEE, conductores de motor dual, y cabeceras de estilo servo de 3 pines para E/S digital y analógica \cite{arbotix}.
+Arbotix: El controlador Arbotix es una solución de control avanzado para manejar servos Dynamixel AX/MX/RX/EX. Incorpora un potente microcontrolador AVR, radio inalámbrica XBEE, conductores de motor dual, y cabeceras de estilo servo de 3 pines para E/S digital y analógica \cite{arbotix}.
  
 Raspberry Pi: La Raspberry Pi es una computadora del tamaño de una tarjeta de crédito a la que se puede conectar un televisor y un teclado. Puede ser utilizada en proyectos de electrónica, y para muchas de las tareas que una PC de escritorio hace, como hojas de cálculo, procesadores de texto y juegos \cite{raspberry}.
 
 Motores Dynamixel Ax-12+: Son actuadores inteligentes y modulares que incorporan un reductor de engranajes, un motor DC de presión y un circuito de control con funcionalidad de red, todo en un solo paquete \cite{manual}.
 
-Micro Servo Analogico (actuador rotatorio): Es un motor eléctrico que permite ser controlado tanto en velocidad como en posición  \cite{robots}.
+Micro Servo Analógico (actuador rotatorio): Es un motor eléctrico que permite ser controlado tanto en velocidad como en posición  \cite{robots}.
 
 
 
@@ -225,136 +225,99 @@ Para detectar una posible caída del robot se ha incorporado el sensor giroscopi
 \section{Experimentos de movimientos }
 \label{sec:experimento}
 
-\begin{figure}
-\label{fig:experimento1}
-\begin{tikzpicture}
-    \begin{axis}[
-        width  = 0.4*\textwidth,
-        height = 8cm,
-        major x tick style = transparent,
-        ybar,
-        bar width=10pt,
-        ymajorgrids = true,
-        ylabel = {Pruebas de Movimiento N=50},
-        symbolic x coords={Ade,Der,Izq,PatearD,PatearI},
-        xtick = data,
-        scaled y ticks = false,
-         legend style={at={(0,0)},anchor=north east,at={(axis description cs:0,-0.1)}}
-    ]
-        \addplot[style={bblue,fill=bblue,mark=none}]
-            coordinates {(Ade, 49) (Der,50) (Izq,50) (PatearD,50) (PatearI,50)};
 
-        \addplot[style={rred,fill=rred,mark=none}]
-             coordinates {(Ade,1) (Der,0) (Izq,0)};
-             
-        \legend{Positivo ,Corrigió, Pateo}
-    \end{axis}
-  
-  
-\end{tikzpicture}
+%\begin{tabular}{|l|p{2cm}|p{2cm}| p{2cm}|}
+%\hline 
+% & Realizo el Moovimiento Correctamente & Supero un fallo en el movimiento & fallo en el movimiento \\ 
+%\hline 
+%ADE & 49/50 & 1/50 & 0/50 \\ 
+%\hline 
+%IZQ & 50/50 & 0/50 & 0/50 \\ 
+%\hline 
+%DER & 50/50 & 0/50 & 0/50 \\ 
+%\hline 
+%PatearD & 50/50 & 0/50 & 0/50 \\ 
+%\hline 
+%PatearI & 50/50 & 0/50 & 0/50 \\ 
+%\hline 
+%\end{tabular} 
 
-\caption{Experimento 1: Cantidad de veces que realiza acciones unitarias}
-\end{figure}
-Se realizaron varios experimentos para comprobar la movilidad del robot. Primero se debe definir los movimientos que representan una unidad. Cada una de las siguientes acciones constituyen una unidad: caminar hacia adelante (Ade) , girar hacia la derecha (Der), girar hacia la izquierda (Izq), patada con la pierna derecha (PatearD), patada con la pierna izquierda(PatearD), levantarse en la posición supino, levantarse en posición prono.
+Se realizaron varios experimentos para comprobar la movilidad del robot. Primero se debe definir los movimientos que representan una unidad. Cada una de las siguientes acciones constituyen una unidad: caminar hacia adelante, girar hacia la derecha, girar hacia la izquierda, patada con la pierna derecha, patada con la pierna derecha, levantarse en la posición supino, levantarse en posición prono.
 
-El primer experimento consistió en verificar la ejecución de las unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, se tomó nota de las veces que lo realizaba de forma esperada (Positivo), y de aquellas que no lo hacía, si podría recuperarse de su mala acción (Corrigió) o no. Los resultados pueden observarse en la figura 4. En cuanto al balance del robot,  solo una vez se cayó, sin embargo, logró levantarse satisfactoriamente.
+El primer experimento consistió en verificar el desempeño de las unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, 250 ejecuciones en total. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.6\% de casos exitosos y un 0.4\% de casos en los que pudo recuperarse de fallas. El 0.4\% representa un solo caso en el que el robot se ha caído y levantado.  
 
 En el segundo experimento se evalu\'o la ejecuci\'on de  combinaciones de varias unidades de movimiento. Las combinaciones elegidas fueron: 
 
 \begin{itemize}
 \setlength{\itemsep}{1pt}
-\item Caminar hacia adelante y patear con la pierna derecha (APD)
-\item Caminar hacia adelante y patear con la pierna izquierda (API)
-\item Caminar hacia adelante, girar hacia la derecha y patear con la pierna derecha (ADPD)
-\item Caminar hacia adelante, girar hacia la derecha, patear con la pierna izquierda (ADPI)
-\item Caminar hacia adelante, girar hacia la izquierda y patear con la derecha (AIPD)
-\item Caminar hacia adelante, girar hacia la  izquierda y  patear con la pierna izquierda (AIPI)
-\item Girar hacia la izquierda y patear con la pierna derecha (IPD)
-\item Girar hacia la derecha y patear con la izquierda (DPI)
-\item Girar hacia la derecha y patear con la pierna derecha (DPD)
-\item Girar hacia la izquierda y patear con la pierna izquierda (IPI)
+\item Caminar hacia adelante y patear con la pierna derecha 
+\item Caminar hacia adelante y patear con la pierna izquierda
+\item Caminar hacia adelante, girar hacia la derecha y patear con la pierna derecha
+\item Caminar hacia adelante, girar hacia la derecha, patear con la pierna izquierda 
+\item Caminar hacia adelante, girar hacia la izquierda y patear con la derecha
+\item Caminar hacia adelante, girar hacia la  izquierda y  patear con la pierna izquierda
+\item Girar hacia la izquierda y patear con la pierna derecha
+\item Girar hacia la derecha y patear con la izquierda
+\item Girar hacia la derecha y patear con la pierna derecha
+\item Girar hacia la izquierda y patear con la pierna izquierda
  \end{itemize}
 
+Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. Los resultados se muestran en el gráfico de la figura 4. El resultado ha sido satisfactorio, obteniendo un 96\% de casos exitosos y un 4\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse.  
 
-Se realizaron 30 pruebas de cada una de estas combinaciones. Los resultados se han dividido en dos gr\'aficos (figuras 5 y 6) para mejorar su visualizaci\'on.  En el peor caso (ADPD),  Debupa logra patear la pelota 26 de las 30 veces al final del movimiento combinado. El robot s\'olo se ha ca\'ido dos veces, pero ha logrado levantantarse con \'exito (figura 5).
+\begin{figure}[th!]
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{96/Exitosas, 4/Con fallas corregidas}
+\end{tikzpicture}
+
+\caption{Experimento 2: 300 ejecuciones de acciones combinadas}
+\end{figure}
 
 
-%\begin{tabular}{|c|c|}
+%\begin{tabular}{|c|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
 %\hline 
-%Ade & Caminar hacia adelante \\ 
+% & Movimiento correcto & Supero un fallo & Fallo en el movimiento & Logro patear satisfactotiamente \\ 
 %\hline 
-%Der & Girar hacia la derecha \\ 
+%APD & 29/30 & 1/30 & 0/30 & 30/30 \\ 
 %\hline 
-%zq & Girar hacia la izquierda \\ 
+%API & 30/30 & 0/30 & 0/30 & 27/30 \\ 
 %\hline 
-%PatearD & Patear conla derecha \\ 
+%ADPD & 30/30 & 0/30 & 0/30 & 26/30 \\ 
 %\hline 
-%PatearI & Patear con la izquierda \\ 
+%ADPI & 30/30 & 0/30 & 0/30 & 30/30 \\ 
+%\hline 
+%AIPD & 29/30 & 1/30 & 0/30 & 29/30 \\ 
 %\hline 
 %\end{tabular} 
-
-\begin{figure}[th!]
-\begin{tikzpicture}
-    \begin{axis}[
-        width  = 0.4*\textwidth,
-        height = 8cm,
-        major x tick style = transparent,
-        ybar,
-        bar width=8pt,
-        ymajorgrids = true,
-        ylabel = {Pruebas de Movimiento N=30},
-        symbolic x coords={APD, API, ADPD,ADPI, AIPD},
-        xtick = data,
-        scaled y ticks = false,
-         legend style={at={(0,0)},anchor=north east,at={(axis description cs:0,-0.1)}}
-    ]
-        \addplot[style={bblue,fill=bblue,mark=none}]
-            coordinates { (APD,29) (API,30)(ADPD,30)(ADPI,30)(AIPD,29)};
-
-        \addplot[style={rred,fill=rred,mark=none}]
-             coordinates { (APD,1) (AIPD,1)};
-
-        \addplot[style={ggreen,fill=ggreen,mark=none}]
-             coordinates { (APD,30) (API,27)(ADPD,26)(ADPI,30)(AIPD,29)};
-    
-    
-        \legend {Positivo,Corrigió,Pateó}
-    \end{axis}
-\end{tikzpicture}
-\caption{Experimento 2.a: Veces que realiza acciones combinadas}
-\end{figure}
-
-
-\begin{figure}[th!]
-\begin{tikzpicture}
-    \begin{axis}[
-        width  = 0.4*\textwidth,
-        height = 8cm,
-        major x tick style = transparent,
-        ybar,
-        bar width=8pt,
-        ymajorgrids = true,
-        ylabel = {Pruebas de Movimiento N=30},
-        symbolic x coords={  AIPI, IPD, DPI, DPD,IPI},
-        xtick = data,
-        scaled y ticks = false,
-         legend style={at={(0,0)},anchor=north east,at={(axis description cs:0,-0.1)}}
-    ]
-        \addplot[style={bblue,fill=bblue,mark=none}]
-            coordinates { (AIPI,30)(IPD,30)(DPI,30)(DPD,30)(IPI,30)};
-
-        \addplot[style={rred,fill=rred,mark=none}]
-             coordinates {(AIPI,0) };
-
-        \addplot[style={ggreen,fill=ggreen,mark=none}]
-             coordinates { (AIPI,28) (IPD,30)(DPI,30)(DPD,30)(IPI,30)};
-        
-        \legend {Positivo,Corrigió ,Pateo}
-    \end{axis}
-\end{tikzpicture}
-\caption{Experimento 2.b: Veces que realiza acciones combinadas}
-\end{figure}
-
+%
+%\begin{figure}[th!]
+%\begin{tikzpicture}
+%    \begin{axis}[
+%        width  = 0.4*\textwidth,
+%        height = 8cm,
+%        major x tick style = transparent,
+%        ybar,
+%        bar width=8pt,
+%        ymajorgrids = true,
+%        ylabel = {Pruebas de Movimiento N=30},
+%        symbolic x coords={  AIPI, IPD, DPI, DPD,IPI},
+%        xtick = data,
+%        scaled y ticks = false,
+%         legend style={at={(0,0)},anchor=north east,at={(axis description cs:0,-0.1)}}
+%    ]
+%        \addplot[style={bblue,fill=bblue,mark=none}]
+%            coordinates { (AIPI,30)(IPD,30)(DPI,30)(DPD,30)(IPI,30)};
+%
+%        \addplot[style={rred,fill=rred,mark=none}]
+%             coordinates {(AIPI,0) };
+%
+%        \addplot[style={ggreen,fill=ggreen,mark=none}]
+%             coordinates { (AIPI,28) (IPD,30)(DPI,30)(DPD,30)(IPI,30)};
+%        
+%        \legend {Positivo,Corrigió ,Pateo}
+%    \end{axis}
+%\end{tikzpicture}
+%\caption{Experimento 2.b: Veces que realiza acciones combinadas}
+%\end{figure}
 
 
 %---------------------------------------------------------------------------------------------------------
@@ -364,23 +327,24 @@ Se realizaron 30 pruebas de cada una de estas combinaciones. Los resultados se h
 
 En esta sección se presentan las herramientas y estrategias con las cuales se ha abordado el problema de la detección de la pelota.
 
-\subsection{Integrando la Raspberry Pi y la cámara}
+\subsection{Integración la Raspberry Pi y la cámara}
 Se ha incorporporado un mini computador Raspberry Pi 2011.12 y una cámara Raspberry Pi 1.3 que actúe como “los ojos” del robot y así lograr obtener un modelo parcial del ambiente. La cámara ha sido instalada sobre dos servo-motores RC, otorgándole dos grados de libertad y un rango visibilidad de 160 grados en una posición fija del robot.
 
 Estos motores se controlan desde la Arbotix usando la librería HServo \cite{vanadium}, que aunque sólo puede ser usada para los motores conectados en los puertos Hobby (12 y 13), brinda la ventaja de un control más preciso, evitando que los motores tiemblen. 
  
 
-\subsection{Detección de la pelota con openCV}
+\subsection{Detección de la pelota con OpenCV}
 Para lograr conocer la ubicación de la pelota en un momento dado y de forma autónoma se ha decidido aplicar detección por ‘blobs’, o reconocimiento de regiones, esta técnica consiste en filtrar la imagen por color. Por ello es importante que el color de la pelota no se repita en el ambiente y así poder obtener la posición de la pelota dentro de la imagen. Se han utilizado las librerías de OpenCV para apoyar esta tarea.
 
-Los filtros o transformaciones aplicadas han sido la morfología en apertura y en clausura. La morfología en apertura es una transformación de una imagen que consiste en aplicar la operación de erosión seguida de la operación de dilatación \cite{filtros}. La morfología de clausura es una transformación que aplica la dilatación seguida de la erosión.
+La imagen es captada en el modelo de color RGB y se transforma al HSV. Luego se aplica
+la función inRange de OpenCv para obtener una imagen en blanco y negro, derivada de la imagen original, en la que se identifica con blanco la región ocupada por la pelota y el resto de la imagen en negro. 
 
+Para disminuir el ruido y los posibles elementos aislados que pueda tener la imagen se han aplicado los siguientes filtros o transformaciones: morfología en apertura y en clausura. La morfología en apertura es una transformación de una imagen que consiste en aplicar la operación de erosión seguida de la operación de dilatación \cite{filtros}. La morfología de clausura es una transformación que aplica la dilatación seguida de la erosión.
 
-El resultado de estos filtros es una imagen en blanco y negro, derivada de la imagen original, en la que se identifica con blanco el rango de valores establecido del color que se requiere buscar y el resto de la imagen en negro. 
 
 \subsection{Discretización de la imagen y acciones del robot}
 
-El hecho de  que la cámara tenga dos grados de libertad para moverse es una gran ventaja, ya que se puede obtener un mayor rango de visión. Debupa puede mirar hacia la derecha o izquierda sin tener que mover sus pies, también puede mirar hacia abajo para verificar que la pelota esté en sus pies, para patear, o hacia arriba para ubicar la pelota a mayor distancia. La desventaja es que agrega mayor complejidad.
+El hecho de  que la cámara tenga dos grados de libertad para moverse es una gran ventaja, ya que se puede obtener un mayor rango de visión. Debupa puede mirar hacia la derecha o izquierda sin tener que mover sus pies, también puede mirar hacia abajo para verificar si la pelota está tan cerca como para patearla, o hacia arriba para ubicar la pelota a mayor distancia. La desventaja es que agrega mayor complejidad.
 
 Debupa debe tomar una acción diferente dependiendo de la posición de la cámara y de la pelota en la imagen. Sin embargo esto genera una gran cantidad de estados, por lo cual se ha decidido discretizarlos de la siguiente manera:  
 \begin{itemize}
@@ -388,7 +352,7 @@ Debupa debe tomar una acción diferente dependiendo de la posición de la cámar
 \item Desde cada posición de la cámara se obtiene una imagen y, dependiendo de la posición, la imagen se divide en diferentes regiones. 
 \end{itemize}
  
-Las im\'agenes de la c\'amara obtenidas en la posici\'on central, y en la posicio\'n central inferior son las m\'as importantes y prioritarias, pues si la pelota se detecta en ellas significa que el robot est\'a cerca de poder patearla. Estas dos im\'agenes se dividen en las regiones que pueden ser apreciadas en la figura 7. Cada región ayuda a identificar la acción que Debupa debe tomar. Por ejemplo, en el cuadro central inferior, cuando la pelota se encuentra del lado derecho de la pantalla (región 13 o 17) el robot debe girar a la derecha para situarse de frente a la pelota. El \'area de pateo se encuentra en las regiones 15 y 16.
+Las im\'agenes de la c\'amara obtenidas en la posici\'on central, y en la posicio\'n central inferior (ver figura 5) son las m\'as importantes y prioritarias, pues si la pelota se detecta en ellas significa que el robot est\'a cerca de poder patearla. Estas dos im\'agenes se dividen en las regiones que pueden ser apreciadas en la figura 5. Cada región ayuda a identificar la acción que Debupa debe tomar. Por ejemplo, en el cuadro central inferior, cuando la pelota se encuentra del lado derecho de la pantalla (región 13 o 17) el robot debe girar a la derecha para situarse de frente a la pelota. El \'area de pateo se encuentra en las regiones 15 y 16.
 
 \begin{figure}
  \includegraphics[height=6cm]{discretizacion.png}
@@ -420,46 +384,51 @@ La Raspberry Pi procesa la información de la cámara y la Arbotix controla los 
 Se seleccionado la Arbotix como servidor de peticiones y a la Raspberry Pi como cliente. Dentro de la Raspberry Pi se ejecuta el proceso de decidir qué acción debe tomar el robot. Una vez determinada la acción se envía la petición a la Arbotix para que esta la ejecute. Este proceso es  bidireccional y síncrono, es decir, la Raspberry envía la petición y se bloquea hasta que la Arbotix retorne la respuesta de su culminación.  
 
 Para la implementación de la comunicación se ha usado ROS (Robot Operating System) con la utilización de los servicios que no es más que un método de comunicación basado en el paradigma de request/reply con el concepto de maestro esclavo.
+
 \section{Experimentos con comportamientos integrados}
 \label{sec:experimentosintegrados}
 
-El experimento 3 consiste en pruebas de desempeño donde se observa el comportamiento global del robot con todos sus componentes integrados. El  primer caso (Caso1) consiste en la colocación de la pelota  en la zona de pateo  (las regiones 15 y 16 de la figura 7). El número de pruebas en este primer caso fue de 10, cuya duración aproximada de cada prueba fue de 30 segundos.
-El segundo caso  (Caso2) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 10 pruebas, siendo la duración aproximada de 2 minutos en cada una. 
+El tercer experimento consistió en la realización de pruebas de desempeño en donde se observó el comportamiento global del robot con todos sus comportamientos integrados (detección, búsqueda y pateo).
 
-La figura 8 muestra los resultados experimentales.  Se registra si el robot ubica la posición de la pelota (Detecta), se sitúa al frente de ella  (Llega) y patea la pelota con éxito (Patea). Para el caso 1 el desempeño del robot fue favorable ya que en un 90\% de los casos completó la prueba satisfactoriamente logrando patear la pelota. Para el caso 2 Debupa logró cumplir la tarea asignada en un 50\% del número de pruebas ejecutadas, determinando que la estrategia se podría mejorar sustancialmente.
-
-
+El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de pateo (las regiones 15 y 16 de la figura 5). El número de pruebas en este primer caso fue de 10, cuya duración aproximada de cada prueba fue de 30 segundos. En la figura 6 se puede observar los resultados obtenidos de esta prueba.
 
 \begin{figure}
 \begin{tikzpicture}
-    \begin{axis}[
-        width  = 0.4*\textwidth,
-        height = 8cm,
-        major x tick style = transparent,
-        ybar,
-        bar width=10pt,
-        ymajorgrids = true,
-        ylabel = {Pruebas de Desempeño N=10},
-        symbolic x coords={Caso1,Caso2},
-        xtick = data,
-        scaled y ticks = false,
-         legend style={at={(0,0)},anchor=north east,at={(axis description cs:0,-0.1)}}
-    ]
-        \addplot[style={bblue,fill=bblue,mark=none}]
-            coordinates {(Caso1, 9) (Caso2,7) };
-
-        \addplot[style={rred,fill=rred,mark=none}]
-             coordinates {(Caso1,9) (Caso2,5) };
-        \addplot[style={ggreen,fill=ggreen,mark=none}]
-             coordinates {(Caso1,9) (Caso2,5) };
-             
-        \legend{Detecta ,Llega, Pateo}
-    \end{axis}
-  
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{90/Pateó, 10/Falló}
 \end{tikzpicture}
+\caption{Experimento 3: Pruebas de movimientos integrados CASO I}
+\end{figure}
 
-\caption{Experimento 3: Desempe\~no de movimientos integrados}
+El segundo caso  (CasoII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 10 pruebas, siendo la duración promedio de 2 minutos con 12 segundos. Los resultados de dicho caso se puedo observar en la figura 7. 
+
+\begin{figure}
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{70/Exitosas, 10/Con fallas corregidas, 20/Fallidas}
+\end{tikzpicture}
+\caption{Experimento 3: Pruebas de movimientos integrados CASO II}
+\end{figure}
+
+El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 10 cm a la izquierda formando asi una diagonal. Se realizaron 10 pruebas, siendo la duración promedio de 3 minutos con 29 segundos. Los resultados de dicho caso se puedo observar en la figura 8. 
+
+\begin{figure}
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{80/Exitosas, 20/Fallidas}
+\end{tikzpicture}
+\caption{Experimento 3: Pruebas de movimientos integrados CASO III}
+\end{figure}
+
+El cuarto caso  (Caso IV) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 10 cm a la derecha. Se realizaron 10 pruebas, siendo la duración promedio de 4 minutos con 48 segundos.  Los resultados de dicho caso se puedo observar en la figura 9. 
+
+\begin{figure}
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{90/Exitosas, 10/Fallidas}
+\end{tikzpicture}
+\caption{Experimento 3: Pruebas de movimientos integrados CASOIV}
 \end{figure} 
+
+Con un total de 40 pruebas de comportamiento integrado los resultaron obtenidos fueron satifactorios con un porcentaje de logro del 82\% mas un 5.5\% en el cual se logro recuperar y finalizar la tarea, con 12.5\% de fallo en la tarea se pudo observar de manera general que la razon de dicha falla es debido a problemas de bateria. 
+
+
 
 \section{Consideraciones especiales}
 \label{sec:consideraciones}
@@ -477,7 +446,6 @@ La presente investigación ha nacido de la motivación por hacer que en Venezuel
 Los componentes utilizados en este proyecto son relativamente económicos comparados con otros en el mercado. La integración del kit Bioloid Premium con la Arbotix y la Raspberry Pi, ha hecho posible construir un humanoide inteligente sin tener que invertir exorbitantes cantidades de dinero. Una de las contribuciones más importantes es la coordinación y paralelismo exitoso entre todos los componentes utilizados.
 
 Las mejoras que se pueden incorporar al proyecto podrían ser: la inclusión de aprendizaje por reforzamiento para patear de forma exitosa, incluir que la patada sea en dirección al arco e incluso añadir aprendizaje por reforzamiento para hacer que el robot pueda predecir la posición de una pelota en movimiento para que pueda patearla en el momento indicado.  
-
 
 % Utilice el archivo MCIng2014.bib para incluir sus referencias bibliográficas:
 \bibliography{referencias}
