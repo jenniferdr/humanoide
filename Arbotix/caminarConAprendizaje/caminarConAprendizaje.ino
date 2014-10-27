@@ -9,10 +9,11 @@
 #include "poses.h"
 #include "pararseBocaAbajo.h"
 #include "posesVoltearDerecha.h"
-#include "posesVoltearIzquierda.h"
+#include "girarIzquierda.h"
 #include "pararseBocaArriba.h"
 #include "patadaDerecha.h"
 #include "patadaIzquierda.h"
+#include "caminarPoco.h"
 
 #include <Event.h>
 #include <Timer.h>
@@ -58,7 +59,7 @@ void callback(const Test::Request & req, Test::Response & res){
   res.output = req.input;
   
    if (ent == "0"){  
-     bioloid.playSeq(camina); // caminar pequeño
+     bioloid.playSeq(caminaPoco); // caminar pequeño
    } else if (ent == "1") {
      bioloid.playSeq(caminar);
    } else if (ent == "2") {
@@ -71,6 +72,18 @@ void callback(const Test::Request & req, Test::Response & res){
       bioloid.playSeq(voltearDer);
    } else if (ent == "4") {
       bioloid.playSeq(voltearIzq);
+   } else if (ent == "5"){
+      bioloid.playSeq(voltearDer);
+      while(bioloid.playing) {
+       t.update();
+       bioloid.play();
+     }
+   } else if (ent == "6") {
+      bioloid.playSeq(voltearIzq);
+      while(bioloid.playing) {
+       t.update();
+       bioloid.play();
+     }
    } else if (ent == "q"){
      bioloid.playSeq(patadaDerecha);
    } else if (ent == "e"){
