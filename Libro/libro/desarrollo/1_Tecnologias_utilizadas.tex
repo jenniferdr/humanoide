@@ -1,45 +1,5 @@
 \chapter{Tecnologías utilizadas}\label{chapter:Tecnologias_utilizadas}
 
-El objetivo general de este proyecto se basa en construir un prototipo de robot humanoide que sea capaz de detectar la cercanía
-de una pelota, acercarse a ella y patearla, reincorporandose a la posicion de pie en caso de perder el equilibrio y caer
-mientras camina. Para cumplir con este objetivo se han desglosado un conjunto de objetivos específicos que se describen 
-acontinuación: 
-
-\begin{enumerate}
-\item  Diseño y construcción de un humanoide con piezas del kit de robótica Bioloid Premium, sustituyendo su tarjeta controladora
-CM-530 por la tarjeta de software libre ArbotiX para controlar los motores Dynamixel y otros sensores.
-\begin{enumerate}
-\item Instalación y configuración de la tarjeta ArbotiX.
-\item Instalación y configuración de la tarjeta Raspberry Pi.
-\item Instalación y configuración de la cámara Raspberry Pi.
-\item Instalación de servomotores  para el movimiento de la cámara
-\item Instalación del giroscopio Gyro.
- 
-\end{enumerate}
-\end{enumerate}
-
-\begin{enumerate}
-\item Detección de la pelota
-\begin{enumerate}
-\item  Captura de imagen con la cámara Raspberry Pi a través de la librería raspicam cv.
-\item Procesamiento de la imagen para extraer información de la posición de la pelota con las librerías de OpenCV.
-\end{enumerate}
-
-\end{enumerate}
-
-\begin{enumerate}
-\item Búsqueda de la pelota y pateo de la misma. 
-\begin{enumerate}
-\item Creación de las poses necesarias para caminar, girar, levantarse y patear usando el software pypose.
-\item Programación de transiciones de movimientos.
-\item Control de servomotores para el movimiento de la cámara.
-\item Establecer mecanismo de comunicación entre la tarjetas ArbotiX y Raspberry Pi.  
-\item Programación de algoritmo de planificación de acciones que lleve al humanoide a acercarse a la pelota.
-\item Detección de movimientos angulares bruscos que sugieran una caída, a través de la lectura del giroscopio
-\item Identificación del momento en que la pelota se encuentre en una zona adecuada para patear.
-\end{enumerate}
-\end{enumerate}
-
 \section{ Herramientas de software}
 En esta sección se describen las herramientas de software utilizadas para la programación del proyecto.
 \begin{itemize}
@@ -48,7 +8,7 @@ características es que, luego de haber fijado a mano las posiciones de los moto
 posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un
 movimiento, por ejemplo, caminar. \cite{pypose}
 
-\item ROS: ROS (Robot Operating System) es un framework que proporciona bibliotecas y herramientas para ayudar a los desarrolladores de software a crear aplicaciones robóticas. Proporciona abstracción de hardware, controladores de dispositivos, bibliotecas, visualizadores, paso de mensajes, gestión de paquetes y más. ROS se encuentra bajo licencia de código abierto, la licencia BSD.
+\item ROS: ROS (Robot Operating System) es un framework que proporciona bibliotecas y herramientas para ayudar a los desarrolladores de software a crear aplicaciones robóticas. Proporciona abstracción de hardware,  de dispositivos, bibliotecas, visualizadores, paso de mensajes, gestión de paquetes y más. ROS se encuentra bajo licencia de código abierto, la licencia BSD.
 
 \item OpenCv (Open Source Computer Vision Library): Es una librería de visión de computadoras y aprendizaje de máquinas de código abierto. Ha sido diseñada para acelerar el uso de la percepción de maquinas y para proveer una estructura común en las aplicaciones de visión de computadoras. Registrada bajo la licencia BSD, de código abierto. \cite{opencv}
 
@@ -57,7 +17,6 @@ con microcontroladores AVR también son compatibles, como la ArbotiX. El lenguaj
 implementación de Wiring el cual esta basado en Processing.  \cite{arduino}
 
 \end{itemize}
-
 
 \section{Componentes de hardware}
 En esta sección se describen los principales componentes utilizados para armar la estructura del robot.
