@@ -5,13 +5,51 @@
 \label{sect:justificacion}
 RobotCup \cite{robotcup} es una competencia de fútbol iniciada desde 1997 donde contribuyen las áreas de robótica, investigación e inteligencia artificial. Entre sus categorías se encuentra RobotCup Soccer \cite{robotcupsoccer}, la cual consiste en la participación de pequeños robots humanoides que se enfrentan a otro equipo para jugar fútbol. El objetivo de esta competencia es lograr que en el año 2050 el equipo campeón logre vencer al ganador del año en la copa mundial de la FIFA (International Federation of Association Football). Las destrezas de robots con forma de humanos (como son caminar, percibir el mundo y tomar alguna acción sobre él) suelen ser más complejas de lo que se puede pensar. Una de las más avanzadas muestras en el área es el robot ASIMO \cite{asimo}, creado por la compañía Honda, cuyos últimos avances incluyen la predicción de trayectoria de objetos para poder esquivarlos.
 
-En este proyecto se presenta un robot humanoide (Debupa) de tamaño pequeño (38 cm de altura) cuyos objetivos, basados en las reglas de la competencia RobotCup, son: detectar una pelota de un color único en el ambiente, buscarla y, al llegar hasta ella, patearla. Además en el proceso debe detectar si ha perdido su equilibrio de tal manera que ha caído al suelo y debe ser capaz de levantarse.
-
-En artículos relacionados de este mismo enfoque se puede encontrar el trabajo de Sven Behnke cuyo título es “See, walk, and kick: Humanoid robots start to play soccer” donde se describe la construcción del equipo de robots que participaron en la RobotCupSoccer en el a\~no 2006. El artículo cubre el diseño mecánico y electrónico, además el software utilizado para la percepción, control de comportamiento, comunicación y simulación de los robots. \cite{paper}.
+En este proyecto se presenta un robot humanoide (Debupa) de tamaño pequeño (38 cm de altura) cuyos objetivos estan basados en las reglas de la competencia RobotCup. En artículos de este mismo enfoque se puede encontrar el trabajo de Sven Behnke cuyo título es “See, walk, and kick: Humanoid robots start to play soccer” donde se describe la construcción del equipo de robots que participaron en la RobotCupSoccer en el a\~no 2006. El artículo cubre el diseño mecánico y electrónico, además el software utilizado para la percepción, control de comportamiento, comunicación y simulación de los robots. \cite{paper}.
 
 Existen equipos que han participado durante varios años consecutivos en la competencia Robocup, logrando mejoras en sus diseños y técnicas; tal es el caso del equipo MRL que ha participado en los años 2011, 2012, 2013 y 2014 en la categoría “Humanoid League”, han iniciado con el hardware del robot DARwIn-OP y con el tiempo han modificado los componentes electrónicos para agregar eficiencia y estabilidad. Para el balance han utilizado un giróscopio y sensores de aceleración, y para la visión una cámara conectada por usb al CPU principal \cite{paper1}.
 
 En el desarrollo de habilidades más específicas con respecto a la competencia RobotCup Soccer, en el artículo de investigación de Seung-Joon Yi, Stephen McGill y Daniel D. Lee  \cite{paper2}, se refieren a dos posibles estrategias para el pateo de la pelota donde los factores fundamentales para un buen desempeño es la fuerza y la rapidez con que se patea, los investigadores ponen en pr\'actica dos estrategias de pateo en distintas circunstancias del juego basado en la cinemática y dinámica de equilibrar el cuerpo al momento de realizar el pateo.
+
+El objetivo general de este proyecto se basa en construir un prototipo de robot humanoide que sea capaz de detectar la cercanía
+de una pelota, acercarse a ella y patearla, reincorporandose a la posicion de pie en caso de perder el equilibrio y caer
+mientras camina. Para cumplir con este objetivo se ha desglosado un conjunto de objetivos específicos que se describen 
+a continuación: 
+
+\begin{enumerate}
+\item  Diseño y construcción de un humanoide con piezas del kit de robótica Bioloid Premium, sustituyendo su tarjeta controladora
+CM-530 por la tarjeta de software libre ArbotiX para controlar los motores Dynamixel y otros sensores.
+\begin{enumerate}
+\item Instalación y configuración de la tarjeta ArbotiX.
+\item Instalación y configuración de la tarjeta Raspberry Pi.
+\item Instalación y configuración de la cámara Raspberry Pi.
+\item Instalación de servomotores  para el movimiento de la cámara
+\item Instalación del giroscopio Gyro.
+ 
+\end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}
+\item Detección de la pelota
+\begin{enumerate}
+\item  Captura de imagen con la cámara Raspberry Pi a través de la librería raspicam cv.
+\item Procesamiento de la imagen para extraer información de la posición de la pelota con las librerías de OpenCV.
+\end{enumerate}
+
+\end{enumerate}
+
+\begin{enumerate}
+\item Búsqueda de la pelota y pateo de la misma. 
+\begin{enumerate}
+\item Creación de las poses necesarias para caminar, girar, levantarse y patear usando el software pypose.
+\item Programación de transiciones de movimientos.
+\item Control de servomotores para el movimiento de la cámara.
+\item Establecer mecanismo de comunicación entre la tarjetas ArbotiX y Raspberry Pi.  
+\item Programación de algoritmo de planificación de acciones que lleve al humanoide a acercarse a la pelota.
+\item Detección de movimientos angulares bruscos que sugieran una caída, a través de la lectura del giroscopio
+\item Identificación del momento en que la pelota se encuentre en una zona adecuada para patear.
+\end{enumerate}
+\end{enumerate}
 
 En el capítulo (\ref{chapter:Tecnologias_utilizadas}) se describen los componentes de hardware usados para construir el humanoide; luego en la sección \ref{sec:Estru}
 se explica cómo se unieron esas piezas. Con respecto a la parte de programación, en la secci\'on \ref{sec:Movimientos} se describe c\'omo se logró constituir los movimientos necesarios para que el humanoide cumpla sus objetivos, mientras que en la secci\'on \ref{sec:resultados} se muestran los resultados experimentales. Las herramientas y técnicas  que  permitieron lograr  la detección de la pelota se detallan en la secci\'on \ref{sec:vision_del_robot}. También se describe la discretización del ambiente para reducir el n\'umero de estados. La comunicación de las tarjetas Arbotix y Raspberry Pi para que puedan trabajar en conjunto se explica en la secci\'on \ref{sec:integracion_de_componentes}  y consideraciones especiales en la secci\'on \ref{sec:consideraciones}.
