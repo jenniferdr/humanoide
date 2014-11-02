@@ -94,16 +94,10 @@ void callback(const Test::Request & req, Test::Response & res){
      ab_d();
    } else if (ent == "y"){
      ar_m();
-   }else if (ent == "t"){
-     aar_m();
    }else if (ent == "o"){
      ar_d();
-   }else if (ent == "i"){
-     aar_d();
    }else if (ent == "g"){
      ar_i();
-   }else if (ent == "f"){
-     aar_i();
    }else if (ent == "p"){
      ab_i();
    }
@@ -121,10 +115,9 @@ std_msgs::String str_msg;
 
 void setup(){
   
-  //Serial.begin(9600);
   myservoB.attach(12);  // puerto 12 (B) o 13 (A) abajo 
   myservoA.attach(13);  // arriba
-  ar_m();
+  ab_m();
     
   pinMode(puertoGyroX,INPUT);
   pinMode(puertoGyroY,INPUT);  
@@ -133,7 +126,7 @@ void setup(){
   nh.advertiseService(server);
 
   // pararse lentamente
-  delay(100);
+  delay(70);
   bioloid.loadPose(pose_1);
   bioloid.readPose();
   bioloid.interpolateSetup(300);
@@ -182,34 +175,12 @@ void balance(){
   velocidadX = X/10;
   velocidadY = Y/10;
   
-  //Serial.println(" Eje X \n ");
-  //Serial.println(velocidadX);
-  //Serial.println(" Eje Y \n ");
-  //Serial.println(velocidadY);
-  
   int errorX = velocidadX - inicialGyroX;
   int errorY = velocidadY - inicialGyroY;
-  
-  /*Serial.println(" Error X \n ");
-  Serial.println(errorX);
-  Serial.println(" Error Y \n ");
-  Serial.println(errorY);*/
   
   int errorEscaladoX = (errorX*4)/18; // Motores 15 y 16
   int errorEscaladoX2 = (errorX*4)/54;
   int errorEscaladoY = (errorY*4)/20;
-  
-  // Modificar posicion de los motores 15 y 16
-  //SetPosition(15 , GetPosition(15) + errorEscaladoX);
-  //SetPosition(16 , GetPosition(16) - errorEscaladoX);
-  
-  // Modificar pos de motores 13 y 14 rodillas
-  //SetPosition(13 , GetPosition(13) + errorEscaladoX2);
-  //SetPosition(14 , GetPosition(14) - errorEscaladoX2);
-  
-  // Modificar pos de los motores 17 y 18  (Info del eje Y)
-  //SetPosition(17 , GetPosition(17) - errorEscaladoY);
-  //SetPosition(18 , GetPosition(18) - errorEscaladoY);
   
   if(errorX >= 100){
     de_pie = false;
@@ -234,11 +205,6 @@ void inicializarGyro()
   }
   inicialGyroX = inicialGyroX/10;
   inicialGyroY = inicialGyroY/10;
-  
-  //Serial.println(" Eje X inicial \n ");
-  //Serial.println(inicialGyroX);
-  //Serial.println(" Eje Y inicial\n ");
-  //Serial.println(inicialGyroY);
 }
 
 // ********** Para mover los motores de la camara ********
@@ -277,22 +243,4 @@ void ab_d(){
   myservoB.write(15);
   delay(100);
   myservoA.write(60);
-}
-
-void aar_m(){
-  myservoB.write(31);
-  delay(100);
-  myservoA.write(90);
-}
-
-void aar_d(){
-  myservoB.write(0);
-  delay(100);
-  myservoA.write(110);
-}
-
-void aar_i(){
-  myservoB.write(83);
-  delay(100);
-  myservoA.write(90);
 }
