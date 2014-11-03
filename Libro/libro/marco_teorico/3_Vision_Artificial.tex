@@ -33,19 +33,19 @@ dentro de una imagen y la hacen crecer. Este crecimiento es el origen del térmi
 \begin{figure}[hbtp]
 
 \centering
-\includegraphics[scale=0.3]{imagenes/erosion-model.png}
+\includegraphics[scale=0.2]{imagenes/erosion-model.png}
 \caption{Dilatación}
 \end{figure}
-\begin{figure}[hbtp]
-\label{fig:erosion}
-\centering
-\includegraphics[scale=1]{imagenes/erosion.png}
-\caption{Erosión}
-\end{figure}
-
 
 \subsubsection{Erosión}
 La erosión es la operación inversa a la dilatación. Esta acción del operador es equivalente a la erosión el cálculo de un mínimo local sobre el área del núcleo. La erosión genera una nueva imagen desde la original, utilizando el siguiente algoritmo: como el
 núcleo B es analizado sobre la imagen, se calcula el mínimo valor del píxel superpuesto por B y se reemplaza el píxel de la imagen con un punto de anclaje de valor mínimo. \cite{BookOpenCv}
 Vease en la figura \ref{fig:erosion}
+
+\begin{figure}[hbtp]
+\label{fig:erosion}
+\centering
+\includegraphics[scale=0.5]{imagenes/erosion.png}
+\caption{Erosión}
+\end{figure}
 
