@@ -23,12 +23,12 @@ amplia variedad de contextos como la eliminación del ruido, aislamiento de elem
 en en una imagen.\cite{BookOpenCv}
 
 \subsubsection{Dilatación}
-La dilatación es una convulsión de alguna imagen (o región de una imagen) , que llamaremos A, con un núcleo que llamaremos B,
-el núcleo que puede ser de cualquier forma o tamaño, tiene un solo punto de anclaje definido. Muy  a menudo, el núcleo es un
+La dilatación es una convulsión de alguna imagen (o región de una imagen), que llamaremos A, con un núcleo que llamaremos B,
+el núcleo, que puede ser de cualquier forma o tamaño, tiene un solo punto de anclaje definido. Muy  a menudo, el núcleo es un
 pequeño cuadrado o disco sólido con el punto de anclaje en el centro. El núcleo puede ser pensado como una plantilla  o
 mascarilla, y su efecto es que para la dilatación de un operador de máximo local sobre la imagen, se calcula el valor de píxel
 máximo común a B y reemplazamos el píxel de la imagen en el punto de anclaje con ese valor máximo. Esto causa regiones brillantes
-dentro de una imagen y la hacen crecer. Este crecimiento es el origen del término \" operador de dilatación". \cite{BookOpenCv}
+dentro de una imagen y la hacen crecer. Este crecimiento es el origen del término `` operador de dilatación" \cite{BookOpenCv}. 
 
 \begin{figure}[hbtp]
 
@@ -37,15 +37,17 @@ dentro de una imagen y la hacen crecer. Este crecimiento es el origen del térmi
 \caption{Dilatación}
 \end{figure}
 \begin{figure}[hbtp]
-\label{fig:erosion}
+
+
 \centering
 \includegraphics[scale=1]{imagenes/erosion.png}
 \caption{Erosión}
+\label{fig:erosion}
 \end{figure}
 
 
 \subsubsection{Erosión}
-La erosión es la operación inversa a la dilatación. Esta acción del operador es equivalente a la erosión el cálculo de un mínimo local sobre el área del núcleo. La erosión genera una nueva imagen desde la original, utilizando el siguiente algoritmo: como el
-núcleo B es analizado sobre la imagen, se calcula el mínimo valor del píxel superpuesto por B y se reemplaza el píxel de la imagen con un punto de anclaje de valor mínimo. \cite{BookOpenCv}
+La erosión es la operación inversa a la dilatación. Esta acción del operador es equivalente a la erosión el cálculo de un mínimo local sobre el área del núcleo. La erosión genera una nueva imagen a partir de la original, utilizando el siguiente algoritmo: como el
+núcleo B es analizado sobre la imagen, se calcula el mínimo valor del píxel superpuesto por B y se reemplaza el píxel de la imagen con un punto de anclaje de valor mínimo \cite{BookOpenCv}. 
 Vease en la figura \ref{fig:erosion}
 
