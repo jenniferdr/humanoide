@@ -20,14 +20,20 @@ El presente trabajo se basa en la construcción de un robot humanoide, por lo ta
 
 %****************************************************************************************/
 \section{Robótica Inteligente (Agentes Inteligentes)} \label{sect:AgentesInteligentes}
+
+Es importante diferenciar cuando un robot es inteligente o no. Cuando un robot es operado a distancia, y no es capaz de cumplir sus tareas sin la intervención de un humano, entonces no se considera como inteligente. Tampoco se considera inteligente si las tareas que ejecuta se hacen sin sentido o de manera repetitiva. En cambio cuando un robot puede interactuar con el mundo de manera autónoma se considera que es un robot o agente inteligente \cite{AiRobotics}. Existen diferentes estrategias o enfoques de cómo aplicar la inteligencia en un robot. Esta sección se dedica a describir los enfoques que en  \cite{AiRobotics} se definen como paradigmas.   
+   
 \subsection{Paradigmas de robótica}
-En la robótica inteligente, según Robin Murphy en \cite{AiRobotics}, existen tres paradigmas en los cuales se clasifica el diseño de un robot inteligente, estos paradigmas pueden ser descritos de dos maneras: la relación entre las primitivas básicas de la robótica  percibir, planificar, actuar ,o de la forma en que los datos son percibidos y distribuidos en el sistema.
+Según Robin Murphy en \cite{AiRobotics}, existen tres paradigmas en los cuales se clasifica el diseño de un robot inteligente, estos paradigmas pueden ser descritos de dos maneras: la relación entre las primitivas básicas de la robótica:  percibir, planificar, actuar; o de la forma en que los datos son percibidos y distribuidos en el sistema.
 
 Percibir se refiere al procesamiento útil de la información de los sensores del robot. Planificar, cuando con información útil, se crea un conocimiento del mundo y se generan ciertas tareas que el robot podría realizar. Por último actuar consiste en realizar la acción correspondiente con los actuadores del robot para modificar el entorno. 
 
 \subsubsection{ Paradigma Jerárquico}
 
-Este paradigma es secuencial y ordenado. Primero el robot percibe el mundo y construye un mapa global. En base al mapa ya percibido y con “los ojos cerrados”, el robot planifica todas tareas necesarias para lograr la meta. Luego ejecuta la secuencia de actividades según la planificación realizada. Una vez culminada la secuencia se repite el ciclo percibiendo el mundo, planificando y actuando. \cite{AiRobotics}
+Este paradigma es secuencial y ordenado. Primero el robot percibe el mundo y construye un mapa global. En base al mapa ya percibido y con “los ojos cerrados”, el robot planifica todas tareas necesarias para lograr la meta. Luego ejecuta la secuencia de actividades según la planificación realizada. Una vez culminada la secuencia se repite el ciclo percibiendo el mundo, planificando y actuando \cite{AiRobotics}.
 
 \subsubsection{Paradigma Reactivo}
-El paradigma reactivo omite por completo el componente de la planificación y solo se basa en percibir y actuar. El robot puede mantener un conjunto de pares percibir-actuar, estos son llamados comportamientos y se ejecutan como procesos concurrentes. Un comportamiento toma datos de la percepción del mundo y los procesa para tomar la mejor acción independientemente de los otros procesos. \cite{AiRobotics}
+El paradigma reactivo omite por completo el componente de la planificación y solo se basa en percibir y actuar. El robot puede mantener un conjunto de pares percibir-actuar, estos son llamados comportamientos y se ejecutan como procesos concurrentes. Un comportamiento toma datos de la percepción del mundo y los procesa para tomar la mejor acción independientemente de los otros procesos \cite{AiRobotics}.
+
+\subsubsection{Paradigma Híbrido}
+El paradigma híbrido es una mezcla de los dos paradigmas anteriores. Primero se planifica cúal es la mejor manera de cumplir el objetivo principal, descomponiendo la tarea general en sub-tareas y decidiendo que comportamientos sirven para cumplir cada una. De allí en adelante se ejecutan los comportamientos (percibiendo y actuando), hasta que el plan sea ejecutado, y si es necesario se puede volver a planificar. Vale la pena acotar que la información de los sensores se encuentra disponible para para el planificador, de manera que pueda crear un modelo del mundo y tomar decisiones en base a él  \cite{AiRobotics}. 
