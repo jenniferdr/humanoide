@@ -1,30 +1,36 @@
-%\chapter{Movimientos}
-\label{chapter:busqueda}
+\section{Busqueda y Pateo}\label{chapter:busqueda}
 
-\subsection{Herramientas software }
+Para poder buscar y patear la pelota, además de tener la capacidad para detectarla (como se explicó en el capítulo anterior), debe ser capaz de moverse en su entorno, tener una representación del mundo que lo ayude a orientarse y planificar una estrategia para elegir el conjunto de movimientos que lo lleven a acercarse a la pelota. 
 
-Para la programación del robot se necesitaron distintas herramientas de software que permitieron ir desarrollando el comportamiento del robot. A continuación se presenta la descripción de las herramientas utilizadas. 
+En esta sección se explica el desarrollo de las actividades que han sido necesarias para ejecutar la búsqueda y pateo de la pelota, con excepción de la estrategia de toma de acciones, que se explicará en la siguiente sección.
+
+Primero, en la sección (herramientas) se da una breve descripción de las herramientas de software que apoyaron las tareas de búsqueda y pateo. En la sección (movimientos) se explica cual fue el conjunto de movimientos creados para el esqueleto del robot.
+
+El sensor principal de Junny, es el observador de su ambiente, la c\'amara. En la secci\'on (movCamara) se explica las posiciones que puede adoptar. Luego en la seccion (mundo) se explica la manera en la que Junny organiza la representaci\'on visual que capta del mundo, que se ha decidido dividir por estados.
+
+Debido a que el movimiento del robot se controla desde la tarjeta Arbotix y la detecci\'on de la pelota se hace desde la Raspberry Pi, se debi\'o establecer la comunicaci\'on entre ambas tarjetas. Este proceso se explica en la secci\'on (comunicacion).
+
+Una vez con la representaci\'on del mundo en estados, los movimientos programados y la comunicaci\'on de las tarjetas, solo faltaria decidir que acci\'on tomar en cada estado. Esta estrategia se explica en la siguiente secci\'on (numero de la seccion).        
+
+%Como se mencion\'o anteriormente el robot debe buscar y patear una pelota de tamaño de una pelota de tennis y ya se ha descrito las caracter\'isticas f\'isicas y de software que utiliza el robot, esta secci\'n se enfoca en el comportamiento que describe a este robot.
+%Para ello primero se especifica la serie de movimientos implementados y el comportamiento que lo representa.
+ 
+\subsection{Herramientas software para la busqueda de la pelota } \label{chapter:busqueda}
+
+Decir mas o menos para que usamos cada herramienta, breve. 
 
 \begin{itemize}
-\item Pypose: Software especializado en el control de los servomotores Dynamixel Ax-12. Una de las más importantes características es que, luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar. \cite{pypose}
+\item Pypose: Software especializado en el control de los servomotores Dynamixel Ax-12. Una de las más importantes características es que, luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar \cite{pypose}. 
+
+\item IDE Arduino: Es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores AVR también son compatibles, como la ArbotiX. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual esta basado en Processing \cite{arduino}.  
 
 \item ROS: ROS (Robot Operating System) es un framework que proporciona bibliotecas y herramientas para ayudar a los desarrolladores de software a crear aplicaciones robóticas. Proporciona abstracción de hardware,  de dispositivos, bibliotecas, visualizadores, paso de mensajes, gestión de paquetes y más. ROS se encuentra bajo licencia de código abierto, la licencia BSD.
 
-\item OpenCv (Open Source Computer Vision Library): Es una librería de visión de computadoras y aprendizaje de máquinas de código abierto. Ha sido diseñada para acelerar el uso de la percepción de m\'aquinas y para proveer una estructura común en las aplicaciones de visión de computadoras. Registrada bajo la licencia BSD, de código abierto. \cite{opencv}
-
-\item IDE Arduino: Es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores AVR también son compatibles, como la ArbotiX. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual esta basado en Processing.  \cite{arduino}
-
 \end{itemize}
-
-\section{Busqueda y Pateo}
-Como se mencion\'o anteriormente el robot debe buscar y patear una pelota de tamaño de una pelota de tennis y ya se ha descrito las caracter\'isticas f\'isicas y de software que utiliza el robot, esta secci\'n se enfoca en el comportamiento que describe a este robot.
- Para ello primero se especifica la serie de movimientos implementados y el comportamiento que lo representa.
 
 \subsection{Comportamiento}
 
-Debupa es un robot humanoide implemetado de forma autonoma e inteligente que sigue un comportamiento bajo el paradigma h\'ibrido (secci\'on 2 ). El sensor principal (c\'amara ) es el observador del mundo, que posee una serie de movimentos determinados (secci\'on REF) con los cuales escanea el mundo y combinados con la serie de movimiemtos del esqueleto es capaz de encontrar la pelota. Al determinar la posici\'on de la pelota Debupa logr\'o aprender (secci\'on APRENDIZAJE) la mejor acci\'on ha relizar para estar mas cerca de ella y al llegar poder patearla.
-
-Los movimientos tanto de la c\'amara como del esqueleto se explican en las siguientes secciones.  
+Debupa es un robot humanoide implemetado de forma autonoma e inteligente que sigue un comportamiento bajo el paradigma h\'ibrido (secci\'on 2 ). El sensor principal (c\'amara ) es el observador del mundo, que posee una serie de movimentos determinados (secci\'on REF) con los cuales escanea el mundo y combinados con la serie de movimiemtos del esqueleto es capaz de encontrar la pelota. Al determinar la posici\'on de la pelota Debupa logr\'o aprender (secci\'on APRENDIZAJE) la mejor acci\'on a relizar para estar mas cerca de ella y al llegar poder patearla.
 
 \subsection{Movimiento del esqueleto}
 \label{esqueleto}
@@ -70,4 +76,48 @@ La cámara ha sido instalada sobre dos micro servomotores analógicos, otorgánd
 
 Estos motores se controlan desde la Arbotix usando la librería HServo. Esta librería solo puede ser usada para los motores conectados en los puertos Hobby A y B (pines 12 y 13) (ver la figura ~\ref{fig:puertosHobby}). Brinda la ventaja de un control más preciso, evitando que los motores tengan una vibración ya que los pulsos son generados por temporizadores de hardware. 
 
+\subsection{Representacion del mundo en estados}
 
+El hecho de  que la cámara tenga dos grados de libertad para moverse es una gran ventaja, ya que se puede obtener un mayor rango de visión. Debupa puede mirar hacia la derecha o izquierda sin tener que mover sus piernas, también puede mirar hacia abajo para verificar que la pelota esté en sus pies, para patear, o hacia arriba para ubicar la pelota a mayor distancia.
+
+La estrategia para poder llegar a la pelota consiste en mover la posición de la cámara hasta encontrar la pelota, en caso de encontrarla, dependiendo de su ubicación dentro de la imagen y la posición de la cámara se toma una acción diferente, en caso de no encontrarla el robot gira con los pies para cambiar su orientación física e iniciar nuevamente el movimiento de la cámara para hallar la pelota. Cuando se tiene la pelota en una posición cercana a los pies se realiza la acción de patear. 
+
+En la siguiente sección se explicará la manera en la que se dividen las regiones en una imagen para determinar la acción a tomar y el orden en el que se mueve la cámara.
+
+Debupa debe tomar una acción diferente dependiendo de la posición de la cámara y de la pelota en la imagen. Sin embargo esto genera una gran cantidad de estados, por lo cual se ha decidido discretizarlos de la siguiente manera:  
+
+La cámara tiene 6 (2x3) posibles posiciones. La visión horizontal abarca 3 cuadros, aproximadamente 160 grados, por razones de la estructura del robot no se le ha podido agregar un rango más grande. La visión vertical abarca 2 cuadros, llega a captar la imagen desde sus pies hasta más de 2 metros hacia adelante.
+
+Desde cada posición de la cámara se obtiene una imagen. Las imagenes de la cámara en posición central, y en posicion central inferior son las más importantes y prioritarias, pues si la pelota se detecta en ellas significa que el robot está cerca de poder patearla. Estas dos imagenes se dividen en subregiones, para tener mayor precisión en las acciones que Debupa deba tomar. Una representación sencilla de la discretizacion del ambiente se puede apreciar en la figura ~\ref{fig:divisionCam}. El área de pateo son las regiones 15 y 16. Por ejemplo, en el cuadro del central inferior, cuando la pelota se encuentra del lado derecho de la pantalla (region 13 o 17) el robot debe girar a la derecha para situarse de frente a la pelota.
+
+Las imágenes capturadas desde cada posición de la cámara se solapan para evitar perder de vista a la pelota. 
+
+Las acciones específicas a tomar según el estado en que se encuentre la pelota se realizan por medio de lo aprendido en el entrenamiento realizado con apredizaje por reforzamiento. Los detalles de este aprendizaje se describen en la seccion 3.4.
+%A continuación se especifica la acción a tomar en cada region: 
+ 
+%Girar a la Izquierda: Debupa debe girar a la izquierda cuando la pelota se encuentre en alguna de las siguientes regiones: 1, 4, 10, 5, 11, 14.
+
+%Girar a la Derecha: debe girar a la derecha cuando la pelota se ubique en alguna de las siguientes regiones: 7, 13, 17, 3, 9, 18. 
+
+%Caminar hacia adelante: cuando la pelota se ubique en alguna de las siguientes regiones: 12, 6, 2.
+
+%Patear con la pierna izquierda: cuando la pelota se encuentre en la región 15.
+
+%Patear con la pierna derecha: cuando la pelota se encuentre en la región 16.
+
+\begin{figure}[hbtp]
+
+\centering
+\includegraphics[scale=0.5]{imagenes/Regiones.jpg}
+\caption{Campo de visión del robot con el número de cada región. Cada cuadro blanco demarcado con líneas negras representa la posición de la cámara. La región de pateo de la pelota se encuentra en los cuadros 15 y 16 }
+\label{divisionCam}
+\end{figure}
+
+
+\subsection{Comunicación Arbotix - Raspberry (ROS)}
+
+La Raspberry Pi procesa la información de la cámara y la Arbotix controla los actuadores. Para coordinar los movimientos del robot según la posición de la pelota se estableció una forma de comunicación entre ambas tarjetas. 
+
+Se ha establecido la Arbotix como servidor de peticiones y a la Raspberry Pi como cliente. Dentro de la Raspberry Pi se ejecuta el proceso de decidir qué acción debe tomar el robot. Una vez determinada la acción se envía la petición a la Arbotix para que esta la ejecute. Este proceso es bidireccional y síncrono, es decir, la Raspberry envía la petición y se bloquea hasta que la Arbotix retorne la respuesta de su culminación.  
+
+Para la implementación de la comunicación se ha usado ROS con su versión Hydro y se ha utilizado la interfaz de comunicación basada en servicios que no es más que un método de comunicación basado en el paradigma de resquest / reply con el concepto de maestro esclavo. REF
