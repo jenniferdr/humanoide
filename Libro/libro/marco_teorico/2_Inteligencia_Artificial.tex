@@ -5,7 +5,7 @@ La inteligencia artificial es un término relacionado con la computación que pu
 El aprendizaje de máquinas es un área de la inteligencia artificial que está relacionada con la pregunta de cómo construir programas de computadora que automáticamente mejoren con la experiencia. Se dice que un programa aprende de la experiencia E con respecto a una tarea T y desempeño P si el desempeño en la tarea T, medido por P, mejora con con la experiencia E \cite{Mitchell}.
 
 \subsection{Aprendizaje por reforzamiento}
-El aprendizaje por reforzamiento es un tipo de aprendizaje de máquinas que se basa en un sistema de recompensas y penalizaciones. Las recompensas se pueden dar en cada estado o una sola vez al llegar al estado final.
+El aprendizaje por reforzamiento es un tipo de aprendizaje de máquinas que se basa en un sistema de recompensas positivas y negativas. Las recompensas se pueden dar en cada estado o una sola vez al llegar al estado final.
 
 El objetivo del agente es aprender de las recompensas para escoger la secuencia de acciones que produzca la mayor recompensa acumulada. \cite{Mitchell}
 
@@ -16,7 +16,7 @@ Es un método de aprendizaje por reforzamiento que, dado un estado, compara las 
 
 La forma de aprender la política $\pi$ : S $\to$ A es de forma indirecta, a través de la función $Q(s,a)$. La función representa el valor de la máxima recompensa acumulada, con descuento de las recompensas futuras, que puede ser alcanzada desde el estado $s$ y aplicando $a$ como la primera acción \cite{Mitchell}. Se encuentra definida como:
 \[Q(s,a) = r(s,a) + \gamma V^*(\delta(s,a))\] 
-En donde $r(s,a)$ es la recompensa o castigo dado según el resultado de haber tomado la acción $a$ en el estado $s$. $\delta(s,a)$ es el estado obtenido luego de tomar la acción $a$ en el estado $s$. $\gamma$ es el descuento que se le aplica a las recompensas futuras. Y la funcion $V^*(s')$ genera el máximo valor $Q$ que puede ser alcanzado desde el estado $s'$. Esto es,
+En donde $r(s,a)$ es la recompensa o castigo dado según el resultado de haber tomado la acción $a$ en el estado $s$. $\delta(s,a)$ es el estado obtenido luego de tomar la acción $a$ en el estado $s$. $\gamma$ es el descuento que se le aplica a las recompensas futuras. La funcion $V^*(s')$ genera el máximo valor $Q$ que puede ser alcanzado desde el estado $s'$. Esto es,
 \[V^*(s')= max_{a'} (Q(s',a'))\] 
 
 De esta forma obtenemos una definición recursiva,
