@@ -4,13 +4,14 @@
 \label{chapter:diseno}
 \section{Diseño y Construcción}
 
-Con el objetivo de construir un robot humanoide que lograra buscar y patear una pelota, el primer paso debi\'o ser la construcci\'on del robot en si para tal fin se procedió a la elección del diseño y al armado de piezas. En la siguiente sección se presenta las distintas partes utilizadas tanto en componentes de software y hardware como la integración física de los componentes.
+El primer paso ha sido la construcci\'on de la parte física del robot. Para tal fin se procedió a la elección del diseño y ensamblaje de las piezas. En la sección \ref{subsection:componentes} se describe cada uno de los componentes utilizados para armar el robot, y luego, en la secci\'on \ref{subsection:construccion} se explica cómo se integraron esas piezas para obtener un humanoide adaptado a los objetivos de este proyecto.
 
+\label{subsection:componentes}
 \subsection{Componentes de hardware}
-Para armar el robot es necesario tener claro los distintos componentes de hardware que se tienen disponibles y que se necesitan por ello se presenta a continuacion una descripción de todos los elementos utilizados. 
+A continuación se presenta una descripción de todos los elementos utilizados para la construcción del robot humanoide. 
 
 \begin{itemize}
-\item Bioloid Premium kit: Es un kit (figura ~\ref{fig:kit}) de robótica con piezas modulares que permite armar diferentes tipos de robot pero principalmente humanoides. El fabricante, ROBOTIS, incluye un manual con varios modelos de robots con instrucciones de ensamblaje. Provee una tarjeta controladora, CM-510, a la que se conectan los motores Dynamixel y algunos sensores que se programan a través de la interfaz de ‘RoboPlus’. \cite{robotics}
+\item Bioloid Premium kit: Es un kit de robótica con piezas modulares que permite armar diferentes tipos de robot pero principalmente humanoides. Su empaque se puede observar en la figura ~\ref{fig:kit}. El fabricante, ROBOTIS, incluye un manual con varios modelos de robots con instrucciones de ensamblaje. Provee una tarjeta controladora, CM-510, a la que se conectan los motores Dynamixel y algunos sensores que se programan a través de la interfaz de ‘RoboPlus’\cite{robotics}. 
 
 \end{itemize}
 
@@ -24,7 +25,7 @@ Para armar el robot es necesario tener claro los distintos componentes de hardwa
 
 \begin{itemize}
 
-\item Motores Dynamixel Ax-12+: Son actuadores inteligentes y modulares que incorporan un reductor de engranajes, un motor DC  (figura ~\ref{fig:motoresDc}) de presión y un circuito de control con funcionalidad de red lo cual permite formar series de motores, todo en un solo paquete \cite{manual}. 
+\item Motores Dynamixel Ax-12+: Son actuadores inteligentes y modulares que incorporan un reductor de engranajes, un motor DC de presión y un circuito de control con funcionalidad de red lo cual permite formar series de motores (figura ~\ref{fig:motoresDc}), todo en un solo paquete \cite{manual}. 
 \end{itemize}
 
 \begin{figure}[hbtp]
@@ -36,23 +37,21 @@ Para armar el robot es necesario tener claro los distintos componentes de hardwa
 \end{figure}
 
 \begin{itemize}
-\item Gyro: Es un giroscopio (figura ~\ref{fig:gyro}) de la marca Robotis que mide la velocidad angular, diseñado para mantener el balance del robot y ser usado para otras aplicaciones de movimiento. \cite{gyro} 
+\item Gyro: Es un giroscopio de la marca Robotis que mide la velocidad angular. Se encuentra diseñado para mantener el balance del robot y ser usado para otras aplicaciones de movimiento\cite{gyro}. En figura ~\ref{fig:gyro} se puede observar su estructura.  
 
 \end{itemize}
 
 \begin{figure}[hbtp]
 \centering
-
-\includegraphics[scale=0.3]{imagenes/gyro.jpg}
-
+\includegraphics[scale=0.35]{imagenes/gyro.jpg}
 \caption{Sensor Gyro}
 \label{fig:gyro}
 \end{figure}
 
 \begin{itemize}
-\item Arbotix: El controlador ArbotiX es una solución de control avanzado para manejar servos Dynamixel AX/MX/RX/EX y robots
+\item Arbotix: El controlador ArbotiX es una solución de control avanzado para manejar algunos tipos de servos Dynamixel y robots
 basados en Bioloid. Incorpora un potente microcontrolador AVR, radio inalámbrica XBEE, conductores de motor dual, y cabeceras
-de estilo servo de 3 pines para E/S digital y analógica.\cite{arbotix}
+de estilo servo de 3 pines para entrada/salida digital y analógica \cite{arbotix}.
 
 \end{itemize}
 
@@ -69,9 +68,7 @@ de estilo servo de 3 pines para E/S digital y analógica.\cite{arbotix}
 
 \begin{figure}[hbtp]
 \centering
-
 \includegraphics[scale=0.06]{imagenes/DSCF1162.jpg}
-
 \caption{Chip FTDI conectado a la tarjeta Arbotix}
 \label{fig:ftdi}
 \end{figure}
@@ -82,9 +79,7 @@ de estilo servo de 3 pines para E/S digital y analógica.\cite{arbotix}
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.1]{imagenes/Dynamixel-AX-MX-6-Port-Extension-Hub-600x600.jpg}
-
-
+\includegraphics[scale=0.15]{imagenes/Dynamixel-AX-MX-6-Port-Extension-Hub-600x600.jpg}
 \caption{Extensor de puertos bioloid}
 \label{fig:ext}
 \end{figure}
@@ -96,7 +91,7 @@ de estilo servo de 3 pines para E/S digital y analógica.\cite{arbotix}
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.1]{imagenes/turnigy.jpg}
+\includegraphics[scale=0.2]{imagenes/turnigy.jpg}
 
 \caption{Servo motor analógico}
 
@@ -148,30 +143,13 @@ de estilo servo de 3 pines para E/S digital y analógica.\cite{arbotix}
 \item Circuito con regulador de 5v: Es un circuito diseñado y construido para este proyecto cuya finalidad es regular la entrada de la corriente. Por una de las salidas se expulsa 5v y por la otra se mantiene el mismo voltaje de entrada. 
 \end{itemize}
 
-
-
 %\begin{figure}[hbtp]
 %\centering
 %\includegraphics[scale=0.7]{imagenes/circuito.jpg}
 %\caption{Lipo}
 %\end{figure}
 
-
-\subsection{Herramientas software }
-
-Para la programación del robot se necesitaron distintas herramientas de software que permitieron ir desarrollando el comportamiento del robot. A continuación se presenta la descripción de las herramientas utilizadas. 
-
-\begin{itemize}
-\item Pypose: Software especializado en el control de los servomotores Dynamixel Ax-12. Una de las más importantes características es que, luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar. \cite{pypose}
-
-\item ROS: ROS (Robot Operating System) es un framework que proporciona bibliotecas y herramientas para ayudar a los desarrolladores de software a crear aplicaciones robóticas. Proporciona abstracción de hardware,  de dispositivos, bibliotecas, visualizadores, paso de mensajes, gestión de paquetes y más. ROS se encuentra bajo licencia de código abierto, la licencia BSD.
-
-\item OpenCv (Open Source Computer Vision Library): Es una librería de visión de computadoras y aprendizaje de máquinas de código abierto. Ha sido diseñada para acelerar el uso de la percepción de m\'aquinas y para proveer una estructura común en las aplicaciones de visión de computadoras. Registrada bajo la licencia BSD, de código abierto. \cite{opencv}
-
-\item IDE Arduino: Es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores AVR también son compatibles, como la ArbotiX. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual esta basado en Processing.  \cite{arduino}
-
-\end{itemize}
-
+\label{subsection:construccion}
 \subsection{Construcción}
 Para la construcción del robot se utilizó el kit de piezas Bioloid Premium de marca Robotis el cual incluye motores Dynamixel Ax-12+, una tarjeta controladora CM-510, un sensor Gyro, un manual, entre otros elementos. El manual incluye las instrucciones de como armar varios modelos de humanoide, el utilizado en este proyecto es el tipo B, haciendo uso de 16 motores. En la figura ~\ref{fig:frontal} y ~\ref{fig:trasera1} se puede observar la estructura del robot que aparece en el manual del kit. 
 
