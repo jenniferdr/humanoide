@@ -61,9 +61,9 @@ void callback(const Test::Request & req, Test::Response & res){
    if (ent == "0"){  
      bioloid.playSeq(caminaPoco); // caminar pequeño
    } else if (ent == "1") {
-     bioloid.playSeq(caminar);
+     bioloid.playSeq(camina);
    } else if (ent == "2") {
-     bioloid.playSeq(caminar); 
+     bioloid.playSeq(camina); 
      while(bioloid.playing) {
        t.update();
        bioloid.play();

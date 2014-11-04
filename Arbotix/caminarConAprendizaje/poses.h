@@ -1,5 +1,5 @@
-#ifndef J_POSES
-#define J_POSES
+#ifndef CAM_POSES
+#define CAM_POSES
 
 #include <avr/pgmspace.h>
 
