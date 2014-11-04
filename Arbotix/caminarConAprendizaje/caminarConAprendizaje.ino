@@ -68,6 +68,7 @@ void callback(const Test::Request & req, Test::Response & res){
        t.update();
        bioloid.play();
      }
+     bioloid.playSeq(camina);
    } else if (ent == "3"){
       bioloid.playSeq(voltearDer);
    } else if (ent == "4") {
@@ -78,12 +79,14 @@ void callback(const Test::Request & req, Test::Response & res){
        t.update();
        bioloid.play();
      }
+     bioloid.playSeq(voltearDer);
    } else if (ent == "6") {
       bioloid.playSeq(voltearIzq);
       while(bioloid.playing) {
        t.update();
        bioloid.play();
      }
+     bioloid.playSeq(voltearIzq);
    } else if (ent == "q"){
      bioloid.playSeq(patadaDerecha);
    } else if (ent == "e"){
@@ -114,7 +117,7 @@ ros::ServiceServer<Test::Request, Test::Response> server("moverRobot", &callback
 std_msgs::String str_msg;
 
 void setup(){
-  
+  Serial.begin(9600);
   myservoB.attach(12);  // puerto 12 (B) o 13 (A) abajo 
   myservoA.attach(13);  // arriba
   ab_m();
