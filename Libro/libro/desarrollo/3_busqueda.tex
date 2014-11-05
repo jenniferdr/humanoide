@@ -1,71 +1,65 @@
-\section{Busqueda y Pateo}\label{chapter:busqueda}
+\section{B\'usqueda y Pateo}\label{chapter:busqueda}
 
-Para poder buscar y patear la pelota, además de tener la capacidad para detectarla (como se explicó en el capítulo anterior), debe ser capaz de moverse en su entorno, tener una representación del mundo que lo ayude a orientarse y planificar una estrategia para elegir el conjunto de movimientos que lo lleven a acercarse a la pelota. 
+Para poder buscar y patear la pelota, además de tener la capacidad para detectarla (como se explicó en el capítulo anterior), debe ser capaz de moverse en su entorno, poder patear, levantarse, tener una representación del mundo que lo ayude a orientarse y tener una estrategia para elegir el conjunto de movimientos que lo lleven a acercarse a la pelota. 
 
-En esta sección se explica el desarrollo de las actividades que han sido necesarias para ejecutar la búsqueda y pateo de la pelota, con excepción de la estrategia de toma de acciones, que se explicará en la siguiente sección.
+En esta sección se explica el desarrollo de las actividades que han sido necesarias para ejecutar la búsqueda y pateo de la pelota, con excepción de la estrategia para la toma de acciones, que se explicará en la sección \ref{aprendizaje}.
 
-Primero, en la sección (herramientas) se da una breve descripción de las herramientas de software que apoyaron las tareas de búsqueda y pateo. En la sección (movimientos) se explica cual fue el conjunto de movimientos creados para el esqueleto del robot.
+Primero, en la sección \ref{subsection:Herrbusqueda} se da una breve descripción de las herramientas de software que apoyaron las tareas de búsqueda y pateo. En la sección \ref{esqueleto} se explica cuál fue el conjunto de movimientos creados para el esqueleto del robot.
 
-El sensor principal de Junny, es el observador de su ambiente, la c\'amara. En la secci\'on (movCamara) se explica las posiciones que puede adoptar. Luego en la seccion (mundo) se explica la manera en la que Junny organiza la representaci\'on visual que capta del mundo, que se ha decidido dividir por estados.
+El sensor principal de Junny, es el observador de su ambiente, la c\'amara. \'Esta tiene dos grados de libertad para su movimiento, lo que causa que tenga un gran número de posibles posiciones. Para simplificar, se ha límitado la cantidad de posiciones. En la secci\'on \ref{movCamara} se explica las posiciones que puede adoptar la cámara. Luego en la seccion \ref{mundo} se explica la manera en la que Junny organiza la representaci\'on visual que capta del mundo.
 
-Debido a que el movimiento del robot se controla desde la tarjeta Arbotix y la detecci\'on de la pelota se hace desde la Raspberry Pi, se debi\'o establecer la comunicaci\'on entre ambas tarjetas. Este proceso se explica en la secci\'on (comunicacion).
+Debido a que el movimiento del robot se controla desde la tarjeta Arbotix y la detecci\'on de la pelota se hace desde la Raspberry Pi, se debi\'o establecer la comunicaci\'on entre ambas tarjetas. Este proceso se explica en la secci\'on \ref{comunicacion}.
 
-Una vez con la representaci\'on del mundo en estados, los movimientos programados y la comunicaci\'on de las tarjetas, solo faltaria decidir que acci\'on tomar en cada estado. Esta estrategia se explica en la siguiente secci\'on (numero de la seccion).        
+Una vez con la representaci\'on del mundo, los movimientos programados y la comunicaci\'on de las tarjetas, solo faltaría decidir que acci\'on tomar en cada situación. La estrategia, basada en el paradigma h\'ibrido, se explica en la siguiente secci\'on (\ref{aprendizaje}).        
 
 %Como se mencion\'o anteriormente el robot debe buscar y patear una pelota de tamaño de una pelota de tennis y ya se ha descrito las caracter\'isticas f\'isicas y de software que utiliza el robot, esta secci\'n se enfoca en el comportamiento que describe a este robot.
 %Para ello primero se especifica la serie de movimientos implementados y el comportamiento que lo representa.
  
-\subsection{Herramientas software para la busqueda de la pelota } \label{chapter:busqueda}
+\subsection{Herramientas software para la busqueda de la pelota } \label{subsection:Herrbusqueda}
 
-Decir mas o menos para que usamos cada herramienta, breve. 
+Para cumplir con el desarrollo de la programación de la búsqueda y pateo de la pelota, se han utilizado algunas herramientas que han facilitado el proceso. A continuación se describen las más destacadas dentro del proyecto. 
 
 \begin{itemize}
 \item Pypose: Software especializado en el control de los servomotores Dynamixel Ax-12. Una de las más importantes características es que, luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar \cite{pypose}. 
 
-\item IDE Arduino: Es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores AVR también son compatibles, como la ArbotiX. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual esta basado en Processing \cite{arduino}.  
+\item IDE Arduino: Es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores AVR también son compatibles, como la Arbotix. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual está basado en Processing \cite{arduino}.  
 
-\item ROS: ROS (Robot Operating System) es un framework que proporciona bibliotecas y herramientas para ayudar a los desarrolladores de software a crear aplicaciones robóticas. Proporciona abstracción de hardware,  de dispositivos, bibliotecas, visualizadores, paso de mensajes, gestión de paquetes y más. ROS se encuentra bajo licencia de código abierto, la licencia BSD.
+\item ROS: ROS (Robot Operating System) es un framework que proporciona bibliotecas y herramientas para ayudar a los desarrolladores de software a crear aplicaciones robóticas. Proporciona abstracción de hardware, de dispositivos, bibliotecas, visualizadores, paso de mensajes, gestión de paquetes y más. ROS se encuentra bajo licencia de código abierto, la licencia BSD.
 
 \end{itemize}
 
-\subsection{Comportamiento}
+%\subsection{Comportamiento}
 
-Debupa es un robot humanoide implemetado de forma autonoma e inteligente que sigue un comportamiento bajo el paradigma h\'ibrido (secci\'on 2 ). El sensor principal (c\'amara ) es el observador del mundo, que posee una serie de movimentos determinados (secci\'on REF) con los cuales escanea el mundo y combinados con la serie de movimiemtos del esqueleto es capaz de encontrar la pelota. Al determinar la posici\'on de la pelota Debupa logr\'o aprender (secci\'on APRENDIZAJE) la mejor acci\'on a relizar para estar mas cerca de ella y al llegar poder patearla.
+%Debupa es un robot humanoide implemetado de forma autonoma e inteligente que sigue un comportamiento bajo el paradigma h\'ibrido (secci\'on 2 ). El sensor principal (c\'amara ) es el observador del mundo, que posee una serie de movimentos determinados (secci\'on REF) con los cuales escanea el mundo y combinados con la serie de movimiemtos del esqueleto es capaz de encontrar la pelota. Al determinar la posici\'on de la pelota Debupa logr\'o aprender (secci\'on APRENDIZAJE) la mejor acci\'on a relizar para estar mas cerca de ella y al llegar poder patearla.
 
-\subsection{Movimiento del esqueleto}
-\label{esqueleto}
-El robot debe desplazarse para poder patear la pelota por ello se describen y definen los movimientos del esqueleto que se fueron utilizados.
+\subsection{Movimiento del esqueleto}\label{esqueleto}
 
-Con fines explicativos, en este proyecto, la palabra ''pose" se referire a la posición específica de los 16 motores que constituyen el esqueleto del robot. Un conjunto de poses ejecutadas en secuencia se denominará ''acción de movimiento".
+El robot debe tener la capacidad de ejecutar una variedad de movimientos para poder cumplir la meta de patear la pelota. Por ello se ha programado un conjunto de poses y transiciones o acciones de movimiento que se explican a continuación.
 
+Con fines explicativos, en este proyecto, la palabra ``pose" se referire a la posición específica de los 16 motores que constituyen el esqueleto del robot. Un conjunto de poses ejecutadas en secuencia se denominará ``acción de movimiento".
 
 Las acciones de movimiento establecidas son:
 
-
 \begin{itemize}
- \item {Caminar hacia adelante}
- \item {Caminar hacia adelante}
- \item {Caminar hacia adelante}
- \item {Girar a la izquierda}
- \item {Girar a la izquierda} 
- \item {Girar a la derecha}
- \item {Girar a la derecha}	 
- \item {Levantarse cuando ha caído boca abajo}
- \item {Levantarse cuando ha caído boca arriba}
+ \item {Caminar 2.5 cm hacia adelante }
+ \item {Caminar 4.8 cm hacia adelante }
+ \item {Caminar 9.9 cm hacia adelante }
+ \item {Girar 3 cm a la izquierda}
+ \item {Girar 6 cm a la izquierda} 
+ \item {Girar 3 cm a la derecha}
+ \item {Girar 6 cm a la derecha}	 
+ \item {Levantarse desde la posición boca abajo}
+ \item {Levantarse desde la posición boca arriba}
  \item {Patear con la pierna derecha }
  \item {Patear con la pierna izquierda}
  
 \end{itemize}
 
-Existen también dos acciones de movimiento que no se encuentran relacionadas con la posición de los motores del esqueleto del robot sino a la posición de los motores que controlan la posición de la cámara. Estas se explicarán en la sección de movimiento de la cámara.
-
-Las poses han sido fijadas a través de la tarjeta controladora Arbotix y el software Pypose. De esta manera se ha fijado y guardado un conjunto de poses para cada acción de movimiento. Estas acciones de movimientos son utilizadas en el programa, en lenguaje Wiring, a ser ejecutado en Arbotix. La programación en Arbotix se ha realizado bajo el ambiente del IDE de Arduino. 
+Estas poses han sido fijadas a través de la tarjeta controladora Arbotix y el software Pypose. De esta manera se ha fijado y guardado un conjunto de poses para cada acción de movimiento. Estas acciones de movimientos han sido exportadas para ser utilizadas en el programa, en lenguaje Wiring, a ser ejecutado en Arbotix. La programación en Arbotix se ha realizado bajo el ambiente del IDE de Arduino. 
 
 
-\subsection{Movimiento de la cámara}
+\subsection{Movimiento de la cámara}\label{movCamara}
 La cámara ha sido instalada sobre dos micro servomotores analógicos, otorgándole dos grados de libertad. El servomotor ubicado en la parte inferior se encarga del movimiento horizontal y el superior del movimiento vertical. Las acciones de movimiento relacionadas con el movimiento de la cámara se reduce a 6 posiciones fijas en la figura se puede ver ~\ref{fig:posicionesCam} cuya distribución obedece al objetivo de que la cámara obtenga una amplia visión, sin dejar espacios no visibles. 
-
-
 
 \begin{figure}[hbtp]
 \label{posicionesCam}
@@ -76,7 +70,7 @@ La cámara ha sido instalada sobre dos micro servomotores analógicos, otorgánd
 
 Estos motores se controlan desde la Arbotix usando la librería HServo. Esta librería solo puede ser usada para los motores conectados en los puertos Hobby A y B (pines 12 y 13) (ver la figura ~\ref{fig:puertosHobby}). Brinda la ventaja de un control más preciso, evitando que los motores tengan una vibración ya que los pulsos son generados por temporizadores de hardware. 
 
-\subsection{Representacion del mundo en estados}
+\subsection{Representacion del mundo en estados}\label{mundo}
 
 El hecho de  que la cámara tenga dos grados de libertad para moverse es una gran ventaja, ya que se puede obtener un mayor rango de visión. Debupa puede mirar hacia la derecha o izquierda sin tener que mover sus piernas, también puede mirar hacia abajo para verificar que la pelota esté en sus pies, para patear, o hacia arriba para ubicar la pelota a mayor distancia.
 
@@ -114,7 +108,7 @@ Las acciones específicas a tomar según el estado en que se encuentre la pelota
 \end{figure}
 
 
-\subsection{Comunicación Arbotix - Raspberry (ROS)}
+\subsection{Comunicación Arbotix - Raspberry (ROS)}\label{comunicacion}
 
 La Raspberry Pi procesa la información de la cámara y la Arbotix controla los actuadores. Para coordinar los movimientos del robot según la posición de la pelota se estableció una forma de comunicación entre ambas tarjetas. 
 
