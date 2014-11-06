@@ -1,57 +1,59 @@
 
 \section{Aprendizaje}\label{aprendizaje}
  
-En el área de inteligencia artificial asociada a robótica existen variadas técnicas que permiten que un robot pueda ''aprender" a realizar alguna tarea. En este caso particular se utiliz\'o la técnica de aprendizaje por reforzamiento basado en MDP (Procesos de desici\'on Markovianas) que consiste en dar recompensas positivas o negativas dependiendo del desempeño del robot.
+En el área de inteligencia artificial, asociada a robótica, existen variadas técnicas que permiten que un robot pueda aprender a realizar alguna tarea. En este caso particular se utiliz\'o la técnica de aprendizaje por reforzamiento basado en MDP (Procesos de desici\'on Markovianas) que consiste en dar recompensas positivas o negativas dependiendo del desempeño del robot.
 
+Según \cite{Mitchell} todo aprendizaje se define por la realización de una tarea $T$, cuyo desempeño medido por $D$, mejora con la experiencia $E$. En la investigación presente la tarea $T$ es aprender cuál es el mejor conjunto de ``acciones de movimiento" que se debe tomar con la finalidad de acercarse a la pelota. La experiencia $E$ se da a través un conjunto de pruebas, en las que Junny debe buscar la pelota y posicionarse frente a ella. El desempeño $D$ se mide con respecto a si el robot logra posicionar la pelota en el área de pateo y cuántas acciones de movimiento son necesarias para lograrlo.
 
-Segun el \cite{Mitchell} todo aprendizaje se define por la realizacion de una tarea $T$ por medio de una experiencia $E$ medido por un desempeño $D$. La tarea es aprender cual es la mejor accion a tomar dependiendo de un estado $s$ para llegar a la pelota, la experiencia es generada por TANTOS experimentos realizados y el desempeño se mide con la realizacion de la accion que genera una distancia menor a la pelota.
-
-Se utilizó el modelo de aprendizaje Q-learning para realizar la tarea definida se presenta y describe la implementación del aprendizaje utilizado a continuación.
+Como existe incertidumbre con respecto a la dinámica del ambiente (esto es, no se conoce la función $\delta(s,a)$, definida en la sección \ref{Qlearning}) se utilizó el modelo de aprendizaje Q-learning, el cu\'al permite mejorar el desempeño de la tarea definida en base a la experiencia de cada prueba. A continuación se presenta y describe la implementación del aprendizaje utilizado.
 
 \subsection{Modelo Apredizaje}
 
 Definici\'on de el modelo implementado
 
-\subsubsection{Estado}
+\subsubsection{Estados}
 
-Un estado es definido por la posicion de la pelota, por lo tanto dada la division de las regiones de la c\'amara  se  obtienen 14 estados definidos en la siguiente imagen ~\ref{fig:estados}.
+De forma general se puede decir que los estados se encuentran definidos en función de la posición de la pelota con respecto al robot. En la sección \ref{mundo} se ha explicado la manera en la que se representa el mundo en base a 13 regiones en las que se puede encontrar la pelota (como se muestra en la figura ~\ref{fig:estados}). Puede suceder, también, que la pelota no se encuentre en ninguna de ellas. Por lo tanto se generan 14 estados, 13 de ellos se corresponden con la detección de la pelota en cada una de las regiones definidas en la sección \ref{mundo} y el estado número 14 representa la ocasión en la que no se logra ubicar la pelota en ninguna de las regiones. 
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.5]{imagenes/Regiones.jpg}
-\caption{Estados definidos seg\'un la posici\'on de la c\'amara}
+\caption{Estados definidos seg\'un la región en la que se detecta la pelota}
 \label{fig:estados}
 \end{figure}
 
-El estado n\'umero 14 se define cuando en un barrido completo de la camara no se encuentra la pelota
 
 \subsubsection{Acciones}
 
-Las posibles acciones a realizar dependiendo el estado en que se encuentre son 
+Las posibles acciones a realizar son un subconjunto de las acciones de movimiento definidas en la sección \ref{esqueleto}. Estas son:
 
 \begin{itemize}
-\item Caminar un poco 
-\item Caminar medio
-\item Caminar largo
-\item Girar poco derecha
-\item Girar derecha
-\item Girar poco izquierda
-\item Girar izquierda
+\item {Caminar 2.5 cm hacia adelante }
+\item {Caminar 4.8 cm hacia adelante }
+\item {Caminar 9.9 cm hacia adelante }
+\item {Girar 3 cm a la izquierda}
+\item {Girar 6 cm a la izquierda} 
+\item {Girar 3 cm a la derecha}
+\item {Girar 6 cm a la derecha}
 \end{itemize}
 
-\subsubsection{Medida de desempeño}
+\subsubsection{Recompensas}
 
-La recompensa positiva o negativa se otorga dependiendo de la medida de desempeño de un estado al siguiente estado. Se entiende como un buen desempeño que dada una distancia inicial a la pelota, con una acción se llega al siguiente estado en el cual la distancia a la pelota debe ser menor que la distancia inicial, de lo contrario sera un mal desempeño y por lo tanto una recompensa negativa.
+La recompensa, que puede ser positiva o negativa, se otorga a un par $(s,a)$, en donde $s$ es un estado y $a$ es una acci\'on. Se calcula en base a que tanto el robot se acerca a la pelota cuando en el estado $s$ se toma la acci\'on $a$. Es decir, las recompensas se definen en base a la distancia recorrida, con respecto a la pelota, cuando se toma una acci\'on.  
 
-El criterio de proximidad (medida de distancias relativas) se definió en función de las regiones generadas por los movimientos de la camara con valores en el intervalo de [1 - 10] donde 1 es lo mas cercano al robot (Zona de pateo) y 10 es lo mas lejano que puede ver en un barrido de la c\'amara. Se estableci\'o el castigo como \[C(s,s') = -ds'/ 10 \] dado un estado  $ s$ a un estado $s'$ hay penalización si la distancia de $s'$ es mayor a la de $s$ entonces la distancia obtenida en $s'$ se divide entre 10 el cual es el máximo valor de distancia relativa a la pelota con ello los valores de la penalización se encuentran en el rango de [ 0 - 1 ] . Analogamente se define el premio como \[P(s,s') = 1 /ds' \] obteniendo de la misma manera un rango de valores para las recompensas positivas de [ 0 - 1 ] 
-
-Una mejor visualizaci\'on se puede apreciar en la figura ~\ref{fig:distancias}
+La distancia de una región con respecto al área de pateo, se define con la función $d: r \rightarrow y$ con $r \in \{1,2,3 ...14\}$ y $y \in \{1,2,3 ...10\}$. En donde $r$ es el número de la región y $y$ es la distancia de la región con respecto al \'area de pateo. Se asign\'o una distancia a cada regi\'on como se muestra en la figura ~\ref{fig:distancias}. El valor 1 se le asigna a las regi\'ones m\'as cercanas al robot (zonas de pateo), $d(1)= 1$ y $d(2)=1$; el valor 10, a las regiones m\'as lejanas (regiones 10 y 11). Adicionalmente se define la distancia de la región 14 como $d(14)=10$. 
+     
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.5]{imagenes/Distancias.jpg}
 \caption{Distancias relativas de la pelota establecidas para otorgar la recompensa.}
 \label{fig:distancias}
 \end{figure}
+
+Junny gana una recompensa positiva cuando, con una acción, la pelota pasa de una región de mayor valor (lejana) a una de menor valor (más cercana). Si la pelota se mantiene en la misma región obtiene recompensa 0. De lo contrario obtiene una recompensa negativa. La ecuación se define como:
+\[R(s,a,s') = \dfrac{d(s)-d(s')}{10} \]
+
+El rango de valores para la recompensa se encuentra entre -1 y 1. 
 
 
 \subsubsection{Eleci\'on de la acci\'on}
