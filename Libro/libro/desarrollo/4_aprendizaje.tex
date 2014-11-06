@@ -9,7 +9,7 @@ Como existe incertidumbre con respecto a la dinámica del ambiente (esto es, no 
 
 \subsection{Modelo Apredizaje}
 
-Definici\'on de el modelo implementado
+Poner aca la formula de la actualizacion de Q y decir q hace falta definir recompensa estados y acciones
 
 \subsubsection{Estados}
 
@@ -56,12 +56,13 @@ Junny gana una recompensa positiva cuando, con una acción, la pelota pasa de un
 El rango de valores para la recompensa se encuentra entre -1 y 1. 
 
 
-\subsubsection{Eleci\'on de la acci\'on}
+\subsection{Eleci\'on de la acci\'on}
 
+Se entiende que dado un estado $s$ se tienen 7 posibles acciones $\{a_1, a_2, ... a_7\}$ que, en el entrenamiento del robot, él aprende cuál es la mejor a realizar según el estado en el que se encuentra. A mayor valor de $Q(s,a)$ mejor es la acción $a$. Si siempre se toma el máximo valor se favorece la explotación. Si se toman acciones aleatorias se favorece la exploración. Para que el aprendizaje obtenga buenos resultados se debe tener un equilibrio entre la exploración y la explotación. 
 
-Se entiende que dado un estado se tienen 7 posibles acciones que en el entrenamiento del robot el aprende cual es mejor realizar según el estado en el cual se encuentra. Para que el aprendizaje obtenga mejores resultados se debe tener un equilibrio entre la exploración y la explotación. 
+Para variar entre la explotación y la exploración se utiliz\'o la función de probabilidad definida como  \[P(a_{i} | s) = \dfrac{k^{Q(s,a_{i})}}{\sum_{j}k^{Q(s,a_{j})}}  \] 
 
-Para variar entre la explotacion y la exploracion se utiliz\'o la funcion de probabilidad definida como  \[P(a_{i} | s) = k^{Q(s,a_{i})}/ \sum_{j}k^{Q(s,a_{j})}  \] 
+Con valores diferentes de $k$ para cada conjunto de pruebas, como se explica en el capítulo \ref{chapter:resultados}.  
  
  
  

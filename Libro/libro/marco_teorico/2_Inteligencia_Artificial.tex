@@ -1,7 +1,7 @@
 \section{Inteligencia Artificial} \label{sect:Inteligencia_Artificial}
 La inteligencia artificial es un término relacionado con la computación que puede ser aplicado a la robótica para crear robots inteligentes. El término ``inteligencia artificial"  ha tenido varias definiciones. Ocho de ellas, las cuales nacieron a finales del siglo XX, se encuentran organizadas en \cite{peterNorvig} bajo cuatro categorías: pensar y actuar de forma humana, pensar y actuar de forma racional. De ellas se puede entender que la inteligencia artificial tiene que ver con lograr que una máquina o un robot resuelva problemas de manera inteligente, es decir, de manera que parezca que el razonamiento y comportamiento humano las ha resuelto.  
 
-\subsection{ Aprendizaje de Máquinas}
+\subsection{Aprendizaje de Máquinas}
 El aprendizaje de máquinas es un área de la inteligencia artificial que está relacionada con la pregunta de cómo construir programas de computadora que automáticamente mejoren con la experiencia. Se dice que un programa aprende de la experiencia E con respecto a una tarea T y desempeño P si el desempeño en la tarea T, medido por P, mejora con con la experiencia E \cite{Mitchell}.
 
 \subsection{Aprendizaje por reforzamiento}
@@ -11,7 +11,7 @@ El objetivo del agente es aprender de las recompensas para escoger la secuencia 
 
 El agente existe en un entorno descrito por algunos estados S. Puede ejecutar un conjunto de acciones A. Cada vez que ejecuta una acción $a_t$ en algún estado $s_t$ el agente recibe una recompensa $r_t$. El objetivo es aprender una política $\pi$ : S $\to$ A que maximice la suma esperada de esas recompensas con descuento exponencial de las recompensas futuras. \cite{Mitchell} El resultado de tomar las acciones puede ser determinista o no, en el caso de este proyecto no es determinista, es decir, existen porcentajes de probabilidad de pasar a un estado u otro al tomar una acción en un estado en particular.
   
-\subsection{ Q- learning}
+\subsection{Q- learning}\label{Qlearning}
 
 Es un método de aprendizaje por reforzamiento que, dado un estado, compara las utilidades esperadas de las posibles acciones a tomar sin necesidad de saber el estado resultante, por tanto no se necesita tener un modelo del entorno\cite{peterNorvig} (esto es, cómo funciona el ambiente o que estado se alcanza como consecuencia de tomar cada acción).
 
