@@ -1,32 +1,36 @@
 \section{Detección de la pelota}\label{chapter:deteccion}
 
-La recopilación de información del medio ambiente, para detectar la posición de la pelota, se realiz\'o por medio de la cámara Raspberry Pi dado que una cámara otorga mayor información y más precisa que muchos de los sensores de proximidad o contacto de bajo costo. 
+La recopilación de información del medio ambiente, para detectar la posición de la pelota, se realiz\'o por medio de la cámara Raspberry Pi con el sistema operativo Raspian. Esta mini computadora es una potente herramienta ya que permite capturar v\'ideos y fotos de alta definici\'on. Como la Raspberry Pi cuenta con un procesador gr\'afico, este se encarga de manejar los datos de la cámara, aliviando la carga del procesador central \cite{raspCamArti}.
 
-\subsection{Herramientas software para la detecci\'on }
+Además se ha decidodo utilizar OpenCV, otra potente herramienta para procesar imagenes que se describe en la sección \ref{herramientasDetc}. Sin embargo los métodos de captura de OpenCV no funcionan con la c\'amara Raspberry Pi. En la secci\'on \ref{extraerImagen} se explica como se ha extra\'ido la imagen y en la secci\'on \ref{procesarImagen} se explica la forma en la que se ha procesado la imagen para hallar la posición de la pelota. 
 
-Para la programación del robot se necesitaron distintas herramientas de software que permitieron ir desarrollando el comportamiento del robot. A continuación se presenta la descripción de las herramientas utilizadas. 
+\subsection{Herramientas software para la detecci\'on }\label{herramientasDetc}
+
+Para extraer y procesar la imagen se utilizaron algunas librerias como apoyo. A continuación se presenta la descripción de la librería raspicam\_cv, usada para la extracción de la imagen, y la descripción de de la librería OpenCV, usada para la detección de la ubicación de la pelota.   
 
 \begin{itemize}
+
+\item raspicam\_cv: Es una librería que permite obtener imagenes de la cámara Raspberry Pi en una estructura de datos compatible con OpenCV \cite{emilV}. Ha sido creada por Emil Valkov en base al trabajo de Pierre Raufast descrito en su blog \cite{pierreR}.  
 
 \item OpenCv (Open Source Computer Vision Library): Es una librería de visión de computadoras y aprendizaje de máquinas de código abierto. Ha sido diseñada para acelerar el uso de la percepción de m\'aquinas y para proveer una estructura común en las aplicaciones de visión de computadoras. Registrada bajo la licencia BSD, de código abierto. \cite{opencv}
 
 \end{itemize}
 
-\subsection{Obtenci\'on de la imagen}
+\subsection{Obtenci\'on de la imagen}\label{extraerImagen}
 
-Si decidimos dejar esta seccion debemos decir que no se puede extraer la imagen de la camara con la libreria opencv por lo cual se debio extraer la imagen con ayuda de la libreria raspicam\_cv que devuelve una estructura de datos compatible con OpenCV. No se si ponerlo aqui o en la de obstaculos. 
+Dentro de las librerías oficiales para la cámara Raspberry Pi solo se encuentran las de python y algunas aplicaciones para la línea de comandos de linux. Para utilizar la cámara con OpenCV en c++ se requirió realizar una búsqueda de librerias alternas a las oficiales. Una primera solución se encontró en el blog de Pierre Raufast, en donde explica que los métodos de captura de video de OpenCV no funcionan de manera nativa con el modulo de la cámara de la Raspberry Pi (por ejemplo el método cvCapture). Para lograr extraer la imagen se basó en el código abierto de las aplicaciones raspivid y raspistill. Ha modificado el código para usar el buffer de la cámara y así obtener un objeto compatible con OpenCV. 
 
-\subsection{Procesamiento de la imagen}
+El código modificado por Raufast fué un gran avance, sin embargo no funcionaba como librería por lo que Emil Valkov facilitó la tarea de convertirlo en una, raspicam\_cv. Esta es la librería usada en la presente investigación para poder capturar las imagenes de la cámara. 
 
-El procesamiento de las imagenes es realizado por la mini computadora Raspberry Pi sobre la cual ha sido instalado el sistema operativo Raspian.
+\subsection{Procesamiento de la imagen}\label{procesarImagen}
 
-Con ayuda de la librería OpenCv, en C++, se filtra y procesa la imagen para obtener la posición de la pelota. Esta librería también ofrece funciones para capturar la imagen de algunos tipos de cámara, sin embargo con el módulo de cámara de la Raspberry Pi no funciona. Por ello se ha utilizado la librería raspicam cv robidouille que permite obtener la imagen en una estructura de datos que puede ser utilizado por las funciones de OpenCv. 
+Con ayuda de la librería OpenCv, en C++, se filtra y procesa la imagen para obtener la posición de la pelota en un momento dado y de forma autónoma. 
 
-Para encontrar la ubicación de la pelota en un momento dado y de forma autónoma se ha decidido aplicar detección por ‘blobs’, o reconocimiento de regiones, esta técnica consiste en filtrar la imagen por color, por ello es importante que el de la pelota no se repita en el ambiente y así poder obtener la posición de la pelota dentro de la imagen.
+Para encontrar la ubicación de la pelota  se ha decidido aplicar detección por ‘blobs’, o reconocimiento de regiones, esta técnica consiste en filtrar la imagen por color, por ello es importante que el de la pelota no se repita en el ambiente y así poder obtener su posición dentro de la imagen.
 
 La imagen es captada en el modelo de color RGB y se transforma al HSV. Luego se aplica la función inRange de OpenCv para obtener una imagen en blanco y negro, en donde se identifica con blanco la zona con el color de la pelota y el resto de la imagen en negro. 
 
-Para disminuir el ruido y los posibles elementos aislados que pueda tener la imagen con la que se está trabajando se han aplicado los filtros o transformaciones de morfología en apertura y morfología en clausura de la librería Opencv, basadas en las operaciones básicas de dilatación y erosión. La morfología en apertura es una transformación que consiste en aplicar la operación de erosión seguido de la operación de dilatación REF. La morfología de clausura es una transformación que aplica la dilatación seguido de la erosión.
+Para disminuir el ruido y los posibles elementos aislados que pueda tener la imagen con la que se está trabajando se han aplicado los filtros o transformaciones de morfología en apertura y morfología en clausura de la librería Opencv, basadas en las operaciones básicas de dilatación y erosión. La morfología en apertura es una transformación que consiste en aplicar la operación de erosión seguido de la operación de dilatación. La morfología de clausura es una transformación que aplica la dilatación seguido de la erosión.
 
 De esta forma se logró ubicar la pelota con la cámara Raspberry Pi con buenos resultados en la mayoría de los casos. 
  
