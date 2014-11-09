@@ -10,24 +10,32 @@ Una de las primeras tareas ha sido configurar la tarjeta Arbotix para poder carg
 
 Uno de los problemas se debía a que, como el chip FTDI solo encajaba bien en un sentido, se estaba conectando de manera incorrecta. A través de ese chip se intentaba transmitir el código de la computadora a la Arbotix. La solución ha sido agregarle una extensión con cables, de tal forma de que se pudiera conectar en sentido contrario. 
 
-Una vez solucionado este problema, los programas seguian sin poder cargarse. El siguiente problema era que no estaba guardado en la tarjeta Arbotix el gestor de arranque. Por lo cual se obtuvo el gestor 'Sanguino' y se cargó a la Arbotix a través del dispositivo programador para AVR llamado 'ISP programmer' que se muestra en la figura 
+Una vez solucionado este problema, los programas seguian sin poder cargarse. El siguiente problema era que no estaba guardado en la tarjeta Arbotix el gestor de arranque. Por lo cual se obtuvo el gestor 'Sanguino' y se cargó a la Arbotix a través del dispositivo programador para AVR llamado ' ISP programmer' que se muestra en la figura \ref{fig:ISPprog}. 
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.3]{imagenes/ISP.jpg}
 \caption{Programador para AVR.}
-\label{fig:trasera1}
+\label{fig:ISPprog}
 \end{figure}
 
------------
+Tener en cuenta que en el sistema operativo Linux la versión del IDE de Arduino 1.0.1 no ha funcionado para compilar archivos de Arbotix. Se ha debido descargar la versión 1.0.5 que ha compilado los programas sin problema. 
+
+Otro de los obstáculos que se ha presentado es la quema de los motores Dynamixel Ax-12. Debido a su uso prolongado pero necesario, estos se dañaban. Se llegaron a dañar 5 motores. Si no se lograba solucionar este problema, probablemente no se habría podido culminar este proyecto. La solución ha sido controlar el torque y la temperatura máxima a la que pueden llegar los motores. En caso de llegar a estas cotas máximas los motores se apagan automáticamente. Las cotas máximas han sido de 30° centígrados para la temperatura y 800 kgf-cm para el torque. Para lograr esto se ha tenido que modificar la librería Ax12 agregando procedimientos que permitieran establecer la temperatura y el torque máximo.
+
+En el archivo ax12.h agregamos las siguientes definiciones de funciones:
+
+#define SetTemperature(id,temp) (ax12SetRegister(id,AX_LIMIT_TEMPERATURE, temp))
+#define SetAlarm(id) (ax12SetRegister(id,AX_ALARM_SHUTDOWN, 0x04)) 
+#define SetTorqueL(id, tor) (ax12SetRegister2(id,AX_MAX_TORQUE_L, tor)) 
+
+El archivo ax12.h viene con el paquete de la pagina oficial para el código de Arbotix. Como se indica en las instrucciones, este archivo se debe ubicar en la carpeta sketchbook de Arduino. Luego desde el IDE de Arduino llamamos a las funciones definidas con los valores deseados. De esta manera se ha solucionado el problema de la quema de motores.
+
+Para la instalación del sistema operativo Raspbian en la tarjeta Raspberry Pi se recomienda tener en cuenta que algunas tarjetas SD no funcionan adecuadamente. Si al prender la mini computadora solo se prende el led rojo, como ha ocurrido en este proyecto, se debe verificar que la tarjeta SD esta haciendo buen contacto con el puerto en que se conecta. Si se verifica esto último y aún asi no prende, es probable que se deba intentar con otra tarjeta SD. Al inicio de este proyecto se ha usado una tarjeta mini-SD de 32GB, como no ha funcionado se ha reemplazado con una tarjeta SD de 4GB. Esta última ha funcionado, sin embargo se ha quedado sin capacidad de almacenamiento al instalar OpenCV, por lo que se ha reemplazado nuevamente por una tarjeta SD de 16GB. Esta ha sido suficiente para instalar todo lo necesario con holgura.    
+
+Como no se contaba con un monitor con entrada HDMI o VGA se debió buscar una solución alterna para observar la interfaz gráfica de Raspbian de la Raspberry Pi. Se utilizó el programa TightVNC para la visualización y control de la interfaz de Raspbian desde un computador remoto. Ha sido necesario poder observar lo que el robot percibe para llevar un control y una supervisión de su comportamiento. 
+
+Por último, sería conveniente advertir que para la instalación de ROS en la Raspberry Pi, la versión que se debe obtener es la más reciente (), de lo contrario podrían ocurrir problemas de sincronización en la comunicación de las tarjetas.   
 
 
-Quema de motores 
 
-No teniamos monitor, TightVNC se utilizó para la visualización y control de la interfaz gráfica de Raspbian en la Raspberry Pi desde un computador remoto, pues es conveniente poder observar lo que el robot percibe para llevar un control y una supervisión de su comportamiento.
-
-servidor de ROS version mala
-
-Conectar bien el FTDI
-
-Al principio no cargaban los programas a la arbotix, comprar isp y cargar bootloader
