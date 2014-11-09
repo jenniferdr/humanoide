@@ -21,13 +21,15 @@ Una vez solucionado este problema, los programas seguian sin poder cargarse. El 
 
 Tener en cuenta que en el sistema operativo Linux la versión del IDE de Arduino 1.0.1 no ha funcionado para compilar archivos de Arbotix. Se ha debido descargar la versión 1.0.5 que ha compilado los programas sin problema. 
 
-Otro de los obstáculos que se ha presentado es la quema de los motores Dynamixel Ax-12. Debido a su uso prolongado pero necesario, estos se dañaban. Se llegaron a dañar 5 motores. Si no se lograba solucionar este problema, probablemente no se habría podido culminar este proyecto. La solución ha sido controlar el torque y la temperatura máxima a la que pueden llegar los motores. En caso de llegar a estas cotas máximas los motores se apagan automáticamente. Las cotas máximas han sido de 30° centígrados para la temperatura y 800 kgf-cm para el torque. Para lograr esto se ha tenido que modificar la librería Ax12 agregando procedimientos que permitieran establecer la temperatura y el torque máximo.
+Otro de los obstáculos que se ha presentado es la quema de los motores Dynamixel Ax-12. Debido a su uso prolongado pero necesario, estos se dañaban. Se llegaron a dañar 5 motores. Si no se lograba solucionar este problema, probablemente no se habría podido culminar este proyecto. La solución ha sido controlar el torque y la temperatura máxima a la que pueden llegar los motores. En caso de llegar a estas cotas máximas los motores se apagan automáticamente. Las cotas máximas han sido de $30\deg$ centígrados para la temperatura y 800 kgf-cm para el torque. Para lograr esto se ha tenido que modificar la librería Ax12 agregando procedimientos que permitieran establecer la temperatura y el torque máximo.
 
-En el archivo ax12.h agregamos las siguientes definiciones de funciones:
+En el archivo ax12.h se agregaron las siguientes definiciones de funciones:
 
-#define SetTemperature(id,temp) (ax12SetRegister(id,AX_LIMIT_TEMPERATURE, temp))
-#define SetAlarm(id) (ax12SetRegister(id,AX_ALARM_SHUTDOWN, 0x04)) 
-#define SetTorqueL(id, tor) (ax12SetRegister2(id,AX_MAX_TORQUE_L, tor)) 
+\#define SetTemperature(id,temp) (ax12SetRegister(id,AX\_LIMIT\_TEMPERATURE, temp))
+
+\#define SetAlarm(id) (ax12SetRegister(id,AX\_ALARM\_SHUTDOWN, 0x04)) 
+
+\#define SetTorqueL(id, tor) (ax12SetRegister2(id,AX\_MAX\_TORQUE\_L, tor)) 
 
 El archivo ax12.h viene con el paquete de la pagina oficial para el código de Arbotix. Como se indica en las instrucciones, este archivo se debe ubicar en la carpeta sketchbook de Arduino. Luego desde el IDE de Arduino llamamos a las funciones definidas con los valores deseados. De esta manera se ha solucionado el problema de la quema de motores.
 
