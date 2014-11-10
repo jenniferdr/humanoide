@@ -1,6 +1,33 @@
 \chapter{Consideraciones Especiales: Obstaculos y Soluciones} \label{chapter:consideraciones}
 
 Durante el desarrollo del proyecto se presentaron algunos obstaculos que lograron ser resueltos. A continuación se describe la solución de algunos de esos obstáculos. 
+\begin{itemize}
+\item Configurar tarjeta Arbotix para cargar programas:
+	\begin{itemize}
+	\item Errores al cargar
+	\begin{itemize}
+		\item "avrdude: stk500\_getsync(): not in sync: resp=0x3000"
+
+		\item "avrdude: stk500\_getsync(): not in sync: resp=0x00"
+
+		\item El chip FTDI solo conecta correctamente en un sentido, por su forma fisica esto representaba un problema
+		\item El IDE de Arduino 1.0.1 no funciona para cargar el Arbotix
+	\end{itemize}
+	\item Soluciones:
+	\begin{itemize}
+		\item El gestor de arranque de la tarjeta Arbotix no estaba guardado.Por lo cual se obtuvo el gestor 'Sanguino' y se cargó a la Arbotix a través del dispositivo programador para AVR llamado ' ISP programmer' que se muestra en la figura \ref{fig:ISPprog}. 
+
+	\begin{figure}[hbtp]
+	\centering
+	\includegraphics[scale=0.3]{imagenes/ISP.jpg}
+	\caption{Programador para AVR.}
+	\label{fig:ISPprog}
+	\end{figure}
+		\item La versión 1.0.5 del IDE de Arduino compila los programas sin problema. 
+	\end{itemize}
+	\end{itemize}
+ \item Quema de motores Dynamixel
+\end{itemize}
 
 Una de las primeras tareas ha sido configurar la tarjeta Arbotix para poder cargar programas en ella. Desde el IDE de Arduino, al intentar cargar un programa, se mostraban los siguientes errores:
 
@@ -12,12 +39,7 @@ Uno de los problemas se debía a que, como el chip FTDI solo encajaba bien en un
 
 Una vez solucionado este problema, los programas seguian sin poder cargarse. El siguiente problema era que no estaba guardado en la tarjeta Arbotix el gestor de arranque. Por lo cual se obtuvo el gestor 'Sanguino' y se cargó a la Arbotix a través del dispositivo programador para AVR llamado ' ISP programmer' que se muestra en la figura \ref{fig:ISPprog}. 
 
-\begin{figure}[hbtp]
-\centering
-\includegraphics[scale=0.3]{imagenes/ISP.jpg}
-\caption{Programador para AVR.}
-\label{fig:ISPprog}
-\end{figure}
+
 
 Tener en cuenta que en el sistema operativo Linux la versión del IDE de Arduino 1.0.1 no ha funcionado para compilar archivos de Arbotix. Se ha debido descargar la versión 1.0.5 que ha compilado los programas sin problema. 
 
