@@ -2,20 +2,14 @@
 
 Durante el desarrollo del proyecto se presentaron algunos obstaculos que lograron ser resueltos. A continuación se describe la solución de algunos de esos obstáculos. 
 \begin{itemize}
-\item Configurar tarjeta Arbotix para cargar programas:
-	\begin{itemize}
-	\item Errores al cargar
-	\begin{itemize}
-		\item "avrdude: stk500\_getsync(): not in sync: resp=0x3000"
+\item Errores de la tarjeta Arbotix para cargar programas:\\
+	
+	\textbf{Problema:} El IDE de Arduino 1.0.1 no funciona para quemar programar en la tarjeta Arbotix \\
+  	\textbf{Soluci\'on:} Utilizar la versión 1.0.5 del IDE de Arduino  que compila los programas sin problema. \\
+	
 
-		\item "avrdude: stk500\_getsync(): not in sync: resp=0x00"
-
-		\item El chip FTDI solo conecta correctamente en un sentido, por su forma fisica esto representaba un problema
-		\item El IDE de Arduino 1.0.1 no funciona para cargar el Arbotix
-	\end{itemize}
-	\item Soluciones:
-	\begin{itemize}
-		\item El gestor de arranque de la tarjeta Arbotix no estaba guardado.Por lo cual se obtuvo el gestor 'Sanguino' y se cargó a la Arbotix a través del dispositivo programador para AVR llamado ' ISP programmer' que se muestra en la figura \ref{fig:ISPprog}. 
+	 \textbf{Problema:} El gestor de arranque de la tarjeta Arbotix no estaba guardado.\\
+	 \textbf{Soluci\'on:} Con el gestor de arranque de 'Sanguino' , se cargó a la Arbotix a través del    			    dispositivo programador para AVR llamado ' ISP programmer' que se muestra en la figura         \ref{fig:ISPprog}. 
 
 	\begin{figure}[hbtp]
 	\centering
@@ -23,27 +17,15 @@ Durante el desarrollo del proyecto se presentaron algunos obstaculos que lograro
 	\caption{Programador para AVR.}
 	\label{fig:ISPprog}
 	\end{figure}
-		\item La versión 1.0.5 del IDE de Arduino compila los programas sin problema. 
-	\end{itemize}
-	\end{itemize}
- \item Quema de motores Dynamixel
-\end{itemize}
+	
+	
 
-Una de las primeras tareas ha sido configurar la tarjeta Arbotix para poder cargar programas en ella. Desde el IDE de Arduino, al intentar cargar un programa, se mostraban los siguientes errores:
+ \item Quema de motores Dynamixel:\\
 
-"avrdude: stk500\_getsync(): not in sync: resp=0x3000"
-
-"avrdude: stk500\_getsync(): not in sync: resp=0x00"
-
-Uno de los problemas se debía a que, como el chip FTDI solo encajaba bien en un sentido, se estaba conectando de manera incorrecta. A través de ese chip se intentaba transmitir el código de la computadora a la Arbotix. La solución ha sido agregarle una extensión con cables, de tal forma de que se pudiera conectar en sentido contrario. 
-
-Una vez solucionado este problema, los programas seguian sin poder cargarse. El siguiente problema era que no estaba guardado en la tarjeta Arbotix el gestor de arranque. Por lo cual se obtuvo el gestor 'Sanguino' y se cargó a la Arbotix a través del dispositivo programador para AVR llamado ' ISP programmer' que se muestra en la figura \ref{fig:ISPprog}. 
+	\textbf{Problema:} Debido al uso prolongado pero necesario los motores Dynamixel AX-12 se dañaban, ya sea por motor DC o en chip interno.\\
+	\textbf{Soluci\'on:} Fue controlar el torque y la temperatura máxima a la que pueden llegar los motores. En caso de llegar a estas cotas máximas los motores se apagan automáticamente. Las cotas máximas han sido de $30\deg$ centígrados para la temperatura y 800 kgf-cm para el torque. Para lograr esto se ha tenido que modificar la librería Ax12 agregando procedimientos que permitieran establecer la temperatura y el torque máximo.\\
 
 
-
-Tener en cuenta que en el sistema operativo Linux la versión del IDE de Arduino 1.0.1 no ha funcionado para compilar archivos de Arbotix. Se ha debido descargar la versión 1.0.5 que ha compilado los programas sin problema. 
-
-Otro de los obstáculos que se ha presentado es la quema de los motores Dynamixel Ax-12. Debido a su uso prolongado pero necesario, estos se dañaban. Se llegaron a dañar 5 motores. Si no se lograba solucionar este problema, probablemente no se habría podido culminar este proyecto. La solución ha sido controlar el torque y la temperatura máxima a la que pueden llegar los motores. En caso de llegar a estas cotas máximas los motores se apagan automáticamente. Las cotas máximas han sido de $30\deg$ centígrados para la temperatura y 800 kgf-cm para el torque. Para lograr esto se ha tenido que modificar la librería Ax12 agregando procedimientos que permitieran establecer la temperatura y el torque máximo.
 
 En el archivo ax12.h se agregaron las siguientes definiciones de funciones:
 
@@ -54,6 +36,10 @@ En el archivo ax12.h se agregaron las siguientes definiciones de funciones:
 \#define SetTorqueL(id, tor) (ax12SetRegister2(id,AX\_MAX\_TORQUE\_L, tor)) 
 
 El archivo ax12.h viene con el paquete de la pagina oficial para el código de Arbotix. Como se indica en las instrucciones, este archivo se debe ubicar en la carpeta sketchbook de Arduino. Luego desde el IDE de Arduino llamamos a las funciones definidas con los valores deseados. De esta manera se ha solucionado el problema de la quema de motores.
+
+\end{itemize}
+
+\textbf{Recomendaciones}  
 
 Para la instalación del sistema operativo Raspbian en la tarjeta Raspberry Pi se recomienda tener en cuenta que algunas tarjetas SD no funcionan adecuadamente. Si al prender la mini computadora solo se prende el led rojo, como ha ocurrido en este proyecto, se debe verificar que la tarjeta SD esta haciendo buen contacto con el puerto en que se conecta. Si se verifica esto último y aún asi no prende, es probable que se deba intentar con otra tarjeta SD. Al inicio de este proyecto se ha usado una tarjeta mini-SD de 32GB, como no ha funcionado se ha reemplazado con una tarjeta SD de 4GB. Esta última ha funcionado, sin embargo se ha quedado sin capacidad de almacenamiento al instalar OpenCV, por lo que se ha reemplazado nuevamente por una tarjeta SD de 16GB. Esta ha sido suficiente para instalar todo lo necesario con holgura.    
 

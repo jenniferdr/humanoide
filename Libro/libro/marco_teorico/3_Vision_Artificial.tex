@@ -9,6 +9,9 @@ Por lo general luego de obtener una imagen se requiere extraer información de e
 algoritmos que ayudan en esta tarea. Existen varios algoritmos que se dedican a la transformación de las imágenes para reducir
 ruidos, compensar problemas de iluminación, extraer formas, identificar objetos, entre otros. En esta sección se describen dos
 de las técnicas de transformación para reducir el ruido basadas en la dilatación y erosión de la imagen. 
+\subsection{Segmentacion por regiones}
+
+La pr\'actica m\'as general en visi\'on de computadoras aplicado a rob\'otica es la identificaci\'on de regiones por un color particular, este proceso se llama segmentaci\'on por regiones. El algoritmo b\'asico consiste en  identificar todos los pixeles en una imagen que forman parte de una regi\'on y luego navegar al centro de la regi\'on. El primer paso es identificar todos los pixeles en la imagen que compratan en rango de valores con el color particular y agruparlos, aquellos pixeles que no compartan el color seran descartados.
 
 \subsection{Filtros }
 El filtrado de imágenes es una técnica para la transformación de imágenes, que consiste en destacar  sus características más relevantes en base a un propósito en particular. 

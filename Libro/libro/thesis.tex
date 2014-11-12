@@ -72,6 +72,7 @@
 \usepackage{fancyvrb}
 \usepackage{makeidx} % En caso de necesitar indices.
 \makeindex  % Necesitado para los indices
+\usepackage{nomencl}
 
 % Definiciones para definicions, teoremas y lemas
 \theoremstyle{definition} \newtheorem{definicion}{Definici\'{o}n}
@@ -116,7 +117,7 @@
 
 % Crea el glosario
 \makeglossaries
-
+\makenomenclature
 % Incluye el glosario
 \input{apendices/glosario.tex}
 
@@ -224,7 +225,7 @@
 \input{desarrollo/3_busqueda.tex}
 
 \input{desarrollo/4_aprendizaje.tex}
-\input{desarrollo/5_consideraciones.tex}
+
 \input{desarrollo/5_resultados.tex}
 
 
@@ -237,12 +238,14 @@
 % Establece las citas y bibliografia
 \bibliographystyle{alpha.bst}
 \bibliography{myrefs}
-
+\nomenclature{$a$}{The number of angels per unit area}%
+\nomenclature{$N$}{The number of angels per needle point}%
+\nomenclature{$A$}{The area of the needle point}%
 % Crea el apendice
 \appendix
 %\input{apendices/Archivos_intermedios.tex}
-
-
+\input{desarrollo/5_consideraciones.tex}
+\printnomenclature
 \printglossary
 
 \end{document}
