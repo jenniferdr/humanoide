@@ -24,13 +24,13 @@ Para detectar una posible caída ha sido necesario verificar constantemente la v
 
 Se han observado los valores del giroscopio con el robot estático para verificar si los valores leídos se corresponden con los de la documentación, es decir 250 cuando no hay movimiento. Para obtener información más confiable se realiza un promedio entre diez lecturas para cada valor que se toma en cuenta. El resultado ha sido que los primeros valores no inician en 250 sino, en aproximadamente 284 y luego va disminuyendo. Por este motivo se decidió agregar un tiempo de 15 segundos del robot en reposo antes de comenzar la búsqueda de la pelota, de esta manera los valores del giroscopio se estabilizan. 
 
-%\begin{figure}[hbtp]
-%\centering
-%\includegraphics[scale=0.4]{imagenes/grafica1.jpg}
-%\caption{Gráfica de lecturas de velocidad angular en el eje X.}
-%\label{fig:grafica1}
-%\end{figure}
+Después de la pausa de 15 segundos, el primer valor promediado se toma como el valor que representa la velocidad angular cero, a este se le llamará valor central. Los siguientes valores se comparan con el valor central. Si la diferencia se encuentra dentro del rango $(-80,100)$ significa que los movimientos no han sido tan bruscos como para considerarse una caída. De lo contrario, si se obtienen valores fuera del rango, se considera una caída y se ejecuta la acción de levantarse.   
 
-Después de la pausa de 15 segundos, el primer valor promediado se toma como el valor que representa la velocidad angular cero, a este se le llamará valor central.   
+%Una de las primeras gráficas se muestra en la figura X. Cada valor gráficado representa una lectura promediada de diez veces, mientras el robot ejecuta el movimiento de caminar repetidas veces. Se puede observar que los primeros valores se encuentran entre 300 y 350, luego los valores disminuyen en conjunto.  
 
-%Una de las primeras gráficas se muestra en la figura X. Cada valor gráficado representa una lectura promediada de diez veces, mientras el robot ejecuta el movimiento de caminar repetidas veces. Se puede observar que los primeros valores se encuentran entre 300 y 350, luego los valores disminuyen en conjunto.   
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.4]{imagenes/grafica1.jpg}
+\caption{Gráfica de lecturas de velocidad angular en el eje X.}
+\label{fig:grafica1}
+\end{figure} 
