@@ -20,7 +20,7 @@ La forma de aprender la política $\pi$ : S $\to$ A es de forma indirecta, a tra
 En donde $r(s,a)$ es la recompensa o castigo dado según el resultado de haber tomado la acción $a$ en el estado $s$. $\delta(s,a)$ es el estado obtenido luego de tomar la acción $a$ en el estado $s$. $\gamma$ es el descuento que se le aplica a las recompensas futuras. La funcion $V^*(s')$ genera el máximo valor $Q$ que puede ser alcanzado desde el estado $s'$. Esto es,
 \[V^*(s')= \max_{a'} (Q(s',a'))\] 
 
-De esta forma obtenemos una definición recursiva,
+De esta forma se obtiene una definición recursiva,
 \[Q(s,a) = r + \gamma \max_{a'} Q(\delta(s,a),a')\]
 
 que puede ser calculada de manera iterativa, inicializando los valores de Q con números aleatorios \cite{Mitchell}. Como la función $\delta(s,a)$ no es conocida, es necesario poner en ejecución al agente para que, una vez tomada la acción, se observe el estado resultante que desencadenó y así poder calcular el resultado de la ecuación. La recompensa $r$ se puede definir en base que tan bueno es el estado resultante. 
