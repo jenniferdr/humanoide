@@ -2,7 +2,8 @@
 
 Para poder buscar y patear la pelota, además de tener la capacidad para detectarla (como se explicó en el capítulo anterior), debe ser capaz de moverse en su entorno, poder patear, levantarse, tener una representación del mundo que lo ayude a orientarse y tener una estrategia para elegir el conjunto de movimientos que lo lleven a acercarse a la pelota. 
 
-En esta sección se explica el desarrollo de las actividades que han sido necesarias para ejecutar la búsqueda y pateo de la pelota, con excepción de la estrategia para la toma de acciones, que se explicará en la sección \ref{aprendizaje}.
+En esta sección se explica el desarrollo de las actividades que han sido necesarias para ejecutar la búsqueda y pateo de la pelota.
+%, con excepción de la estrategia para la toma de acciones, que se explicará en la sección \ref{aprendizaje}.
 
 Primero, en la sección \ref{subsection:Herrbusqueda} se da una breve descripción de las herramientas de software que apoyaron las tareas de búsqueda y pateo. En la sección \ref{esqueleto} se explica cuál fue el conjunto de movimientos creados para el esqueleto del robot.
 
@@ -10,7 +11,7 @@ El sensor principal de Junny, es el observador de su ambiente, la c\'amara. \'Es
 
 Debido a que el movimiento del robot se controla desde la tarjeta Arbotix y la detecci\'on de la pelota se hace desde la Raspberry Pi, se debi\'o establecer la comunicaci\'on entre ambas tarjetas. Este proceso se explica en la secci\'on \ref{comunicacion}.
 
-Una vez con la representaci\'on del mundo, los movimientos programados y la comunicaci\'on de las tarjetas, solo faltaría decidir que acci\'on tomar en cada situación. La estrategia, basada en el paradigma h\'ibrido, se explica en la siguiente secci\'on (\ref{aprendizaje}).        
+Una vez con la representaci\'on del mundo, los movimientos programados y la comunicaci\'on de las tarjetas, solo faltaría decidir que acci\'on tomar en cada situación. La estrategia, basada en el paradigma h\'ibrido, se explica en la secci\'on \ref{eleccionAccionesFijas}.        
 
 %Como se mencion\'o anteriormente el robot debe buscar y patear una pelota de tamaño de una pelota de tennis y ya se ha descrito las caracter\'isticas f\'isicas y de software que utiliza el robot, esta secci\'n se enfoca en el comportamiento que describe a este robot.
 %Para ello primero se especifica la serie de movimientos implementados y el comportamiento que lo representa.
@@ -25,7 +26,9 @@ Para cumplir con el desarrollo de la programación de la búsqueda y pateo de la
 \item IDE Arduino: Es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores AVR también son compatibles, como la Arbotix. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual está basado en Processing \cite{arduino}.  
 
 
-\item ROS: ROS (Robot Operating System) es un Framework flexible para la escritura de software enfocado en robots . Es una colección de herramientas, bibliotecas y convenciones que tienen por objeto simplificar la tarea de crear un comportamiento complejo y robusto a través de una amplia variedad de plataformas robóticas. ROS se encuentra bajo licencia de código abierto, la licencia BSD \cite{ros}.
+\item ROS: ROS (Robot Operating System) es un Framework flexible para la escritura de software enfocado en robots. Es una colección de herramientas, bibliotecas y convenciones que tienen por objeto simplificar la tarea de crear un comportamiento complejo y robusto a través de una amplia variedad de plataformas robóticas. ROS se encuentra bajo licencia de código abierto, la licencia BSD \cite{ros}.
+
+\item HServo: Es una librería de código libre distribuida bajo la Licencia Pública General Reducida de GNU. Esta librería se encuentra desarrollada especificamente para la tarjeta Arbotix, ya que con la nueva librería de Arduino Servo se pueden experimentar fallas en el control de los servos. La interfaz es la misma, la diferencia es que solo puede ser usada para servos conectados en los pines 12 y 13 de la tarjeta Arbotix \cite{HServo}.    
 
 \end{itemize}
 
@@ -42,13 +45,13 @@ Con fines explicativos, en este proyecto, la palabra ``pose" se referire a la po
 Las acciones de movimiento establecidas son:
 
 \begin{itemize}
- \item {Caminar 2.5 cm hacia adelante }
- \item {Caminar 4.8 cm hacia adelante }
- \item {Caminar 9.9 cm hacia adelante }
- \item {Girar 3 cm a la izquierda}
- \item {Girar 6 cm a la izquierda} 
- \item {Girar 3 cm a la derecha}
- \item {Girar 6 cm a la derecha}	 
+% \item {Caminar 2.5 cm hacia adelante }
+ \item {Caminar dos pasos hacia adelante (4.8 cm ) }
+% \item {Caminar 9.9 cm hacia adelante }
+ \item {Girar a la izquierda (3 cm)}
+% \item {Girar 6 cm a la izquierda} 
+ \item {Girar a la derecha (3 cm)}
+% \item {Girar 6 cm a la derecha}	 
  \item {Levantarse desde la posición boca abajo}
  \item {Levantarse desde la posición boca arriba}
  \item {Patear con la pierna derecha }
@@ -85,11 +88,13 @@ Se ha decidido discretizar las posibles posiciones de la pelota por regiones. Es
 
 Las imagenes de la cámara en la posición central superior e inferior son las más importantes y prioritarias, pues si la pelota se detecta en ellas significa que el robot está cerca de poder patearla. Estas dos imagenes se dividen en subregiones para tener mayor precisión en las acciones que Junny deba tomar.
 
-Cuando, por ejemplo, la pelota se encuentra del lado derecho en el cuadro de central inferior (región 5) el robot debería girar a la derecha para situarse de frente a la pelota. El área de pateo se encuentra en las regiones 1 y 2.
+Cuando, por ejemplo, la pelota se encuentra del lado derecho en el cuadro central inferior (región 5) el robot debería girar a la derecha para situarse de frente a la pelota. El área de pateo se encuentra en las regiones 1 y 2.
 
-Las imágenes capturadas desde cada posición de la cámara se solapan un poco para evitar perder de vista a la pelota. 
+Las imágenes capturadas desde cada posición de la cámara se solapan un poco para evitar perder de vista a la pelota. Este solapamiento no se muestra en la imagen ~\ref{divisionCam} para simplificar su representación.
 
-Las acciones específicas a tomar según la región en que se encuentre la pelota se seleccionan por medio de lo aprendido en el entrenamiento realizado con apredizaje por reforzamiento. Los detalles de este aprendizaje se describen en la seccion \ref{aprendizaje}.
+%Las acciones específicas a tomar según la región en que se encuentre la pelota se seleccionan por medio de dos estrategias diferentes.
+
+%lo aprendido en el entrenamiento realizado con apredizaje por reforzamiento. Los detalles de este aprendizaje se describen en la seccion \ref{aprendizaje}.
 
 %Para poder ubicar la pelota, sin cambiar la ubicación del robot, se mueve la posición de la cámara hasta encontrarla. En caso de encontrarla, dependiendo de su ubicación dentro de la imagen y la posición de la cámara se toma una acción diferente, en caso de no encontrarla el robot gira con los pies para cambiar su orientación física e iniciar nuevamente el movimiento de la cámara para hallar la pelota. Cuando se tiene la pelota en una posición cercana a los pies se realiza la acción de patear.
 
@@ -115,7 +120,6 @@ Las acciones específicas a tomar según la región en que se encuentre la pelot
 \label{divisionCam}
 \end{figure}
 
-
 \subsection{Comunicación Arbotix - Raspberry (ROS)}\label{comunicacion}
 
 La Raspberry Pi procesa la información de la cámara y la Arbotix controla los actuadores. Para coordinar los movimientos del robot según la posición de la pelota se estableció una forma de comunicación entre ambas tarjetas. 
@@ -123,3 +127,21 @@ La Raspberry Pi procesa la información de la cámara y la Arbotix controla los 
 Se ha establecido la Arbotix como servidor de peticiones y a la Raspberry Pi como cliente. Dentro de la Raspberry Pi se ejecuta el proceso de decidir qué acción debe tomar el robot. Una vez determinada la acción se envía la petición a la Arbotix para que esta la ejecute. Este proceso es bidireccional y síncrono, es decir, la Raspberry envía la petición y se bloquea hasta que la Arbotix retorne la respuesta de su culminación.  
 
 Para la implementación de la comunicación se ha usado ROS con su versión Hydro y se ha utilizado la interfaz de comunicación basada en servicios que no es más que un método de comunicación basado en el paradigma de resquest / reply con el concepto de maestro esclavo.
+
+\subsection{Elecci\'on de la acci\'on}\label{eleccionAccionesFijas}
+
+Una vez con la representaci\'on del mundo, los movimientos programados y la comunicaci\'on de las tarjetas, solo faltaría decidir que acci\'on tomar en cada situación. En primera instancia se ha decidido fijar una acción por cada región en la que se detecte la pelota. 
+
+A continuación se especifica la acción a tomar en cada region: 
+ 
+Girar a la Izquierda: Junny debe girar a la izquierda cuando la pelota se encuentre en alguna de las siguientes regiones: 4,8,10 y 12.
+
+Girar a la Derecha: debe girar a la derecha cuando la pelota se ubique en alguna de las siguientes regiones: 5, 9, 11 y 13. 
+
+Caminar hacia adelante: cuando la pelota se ubique en alguna de las siguientes regiones: 3, 6 y 7.
+
+Patear con la pierna izquierda: cuando la pelota se encuentre en la región 1.
+
+Patear con la pierna derecha: cuando la pelota se encuentre en la región 2.
+
+En caso de no encontrar la pelota en ninguna de las regiones, el robot gira con los pies para cambiar su orientación física e iniciar nuevamente el movimiento de la cámara para hallar la pelota. Cuando se tiene la pelota en una posición cercana a los pies se realiza la acción de patear.
