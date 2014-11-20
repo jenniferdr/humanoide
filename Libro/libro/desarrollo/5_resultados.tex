@@ -1,6 +1,8 @@
 \chapter{Experiementos y Resultados}\label{chapter:resultados}
-HACER INTRO A RESULTADOS
-\section{Experimentos de Movimientos}
+En este capítulo se describen los experimentos realizados para alanizar el desempeño del robot. Los experimentos se han dividido en tres partes. El primer conjunto de experimentos (sección \ref{sec:experimentosMov}) se ha realizado para verificar el desempeño y balance del robot al ejecutar uno o varios movimientos en secuencia. El segundo y tercer conjunto de experimentos se bas\'o en verificar el desempeño del robot al buscar la pelota. En el segundo conjunto (sección \ref{sec:experimentosintegrados}) la forma de escoger la acciónes de moviento han sido fijadas para cada región en la que se detecta la pelota. Mientras que para el tercer conjunto de experimentos (secci\'on \ref{sec:experimentosAprend}) la forma de escoger las acci\'ones de movimiento ha sido resultado del aprendizaje por reforzamiento. 
+ 
+\section{Experimentos de Movimientos}\label{sec:experimentosMov}
+
 Se realizaron varios experimentos para comprobar la movilidad del robot. Para esto se define lo que representa una unidad de movimiento. Cada una de las siguientes acciones constituyen una unidad: Caminar hacia adelante, girar hacia la derecha, girar hacia la izquierda, patada con la pierna derecha, patada con la pierna derecha, levantarse en la posición supino, levantarse en posición prono.
 
 El primer experimento consistió en verificar el desempeño de las unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, 250 ejecuciones en total. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.6\% de casos exitosos y un 0.4\% de casos en los que pudo recuperarse de fallas. El 0.4\% representa un solo caso en el que el robot se ha caído y levantado.  
@@ -74,7 +76,7 @@ El cuarto caso  (Caso IV) consistió en en la colocación inicial de la pelota a
 
 Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos han sido satifactorios con un porcentaje de logro del 82\% mas un 5.5\% en el cual se logró recuperar y finalizar la tarea, con 12.5\% de fallas en la tarea se pudo observar de manera general que la razón de dichas fallas ha sido ocasionada por problemas de batería. 
 
-\section{Experimentos con Aprendizaje}
+\section{Experimentos con Aprendizaje}\label{sec:experimentosAprend}
 
 Finalmente los resultados de la aplicaci\'on del apredizaje Q, para la busqueda de la pelota se presentan a continuaci\'on.
 Se utilizaron las siguientes combinaciones de tasa de descuento , exploraci\'on y explotaci\'on por medio del parametro ajustable llamado K.
