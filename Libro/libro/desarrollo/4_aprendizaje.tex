@@ -5,7 +5,7 @@ En el área de inteligencia artificial, asociada a robótica, existen variadas t
 
 Según \cite{Mitchell} todo aprendizaje se define por la realización de una tarea $T$, cuyo desempeño medido por $D$, mejora con la experiencia $E$. En la investigación presente la tarea $T$ es aprender cuál es el mejor conjunto de ``acciones de movimiento" que se debe tomar con la finalidad de acercarse a la pelota. La experiencia $E$ se da a través un conjunto de pruebas, en las que Junny debe buscar la pelota y posicionarse frente a ella. El desempeño $D$ se mide con respecto a si el robot logra posicionar la pelota en el área de pateo y cuántas acciones de movimiento son necesarias para lograrlo.
 
-Como existe incertidumbre con respecto a la dinámica del ambiente (esto es, no se conoce la función $\delta(s,a)$, definida en la sección \ref{Qlearning}) se utilizó el modelo de aprendizaje Q-learning, el cu\'al permite mejorar el desempeño de la tarea definida en base a la experiencia de cada prueba. A continuación se presenta y describe la configuración de las caracteristicas particulares del aprendizaje utilizado para este proyecto.
+Como existe incertidumbre con respecto a la dinámica del ambiente (esto es, no se conoce la función $\delta(s,a)$, definida en la subsección \ref{subsec:Qlearning} se utilizó el modelo de aprendizaje Q-learning, el cu\'al permite mejorar el desempeño de la tarea definida en base a la experiencia de cada prueba. A continuación se presenta y describe la configuración de las caracteristicas particulares del aprendizaje utilizado para este proyecto.
 
 \subsection{Modelo del problema}
 
@@ -69,6 +69,11 @@ Para variar entre la explotación y la exploración se utiliz\'o la función de 
 Con valores diferentes de $k$ para cada conjunto de pruebas, como se explica en el capítulo \ref{chapter:resultados}.  
  
  
+\subsection{Actualizaci\'on de Q(s,a)}
+
+La actualizaci\'on de Q(s,a) se define por la siguiente formula 
  
- 
- 
+
+\[Q(s,a) = r + \gamma \max_{a'} Q(\delta(s,a),a')\]
+
+Donde $r$ y $\max_{a'} Q(\delta(s,a),a')$ se explican en la subsecci\'on \ref{subsec:Qlearning} el factor $\gamma$ es el factor de descuento que varia de \[   0 \leq  \gamma < 1 \] este par\'ametro es arbitrario y se debe ajustar durante el aprendizaje, en el cap\'itulo \ref{chapter:resultados}  se presentan los $\gamma$ utilizados para los entrenamientos.
