@@ -3,11 +3,11 @@ En este capítulo se describen los experimentos realizados para alanizar el dese
  
 \section{Experimentos de Movimientos}\label{sec:experimentosMov}
 
-Se realizaron varios experimentos para comprobar la movilidad del robot. Para esto se define lo que representa una unidad de movimiento. Cada una de las siguientes acciones constituyen una unidad: Caminar hacia adelante, girar hacia la derecha, girar hacia la izquierda, patada con la pierna derecha, patada con la pierna derecha, levantarse en la posición supino, levantarse en posición prono.
+Se realizaron varios experimentos para comprobar la movilidad del robot en cuanto a un conjunto de acciones de movimiento (mencionadas en la sección \ref{esqueleto}). Estas acciones son: caminar hacia adelante (4.8 cm), girar hacia la derecha (3 cm), girar hacia la izquierda (3 cm), patada con la pierna derecha, patada con la pierna izquierda, levantarse en la posición supino, levantarse en posición prono.
 
-El primer experimento consistió en verificar el desempeño de las unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, 250 ejecuciones en total. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.6\% de casos exitosos y un 0.4\% de casos en los que pudo recuperarse de fallas. El 0.4\% representa un solo caso en el que el robot se ha caído y levantado.  
+La primera etapa consistió en verificar el desempeño de las unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, 250 ejecuciones en total. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.6\% de casos exitosos y un 0.4\% de casos en los que pudo recuperarse de fallas. El 0.4\% representa un solo caso en el que el robot se ha caído y levantado.  
 
-En el segundo experimento se evalu\'o la ejecuci\'on de  combinaciones de varias unidades de movimiento. Las combinaciones elegidas fueron: 
+En la segunda etapa se evalu\'o la ejecuci\'on de combinaciones de varias unidades de movimiento. Las combinaciones elegidas fueron: 
 
 \begin{itemize}
 \setlength{\itemsep}{1pt}
@@ -23,58 +23,63 @@ En el segundo experimento se evalu\'o la ejecuci\'on de  combinaciones de varias
 \item Girar hacia la izquierda y patear con la pierna izquierda
  \end{itemize}
 
-Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. Los resultados se muestran en el gráfico de la figura 4. El resultado ha sido satisfactorio, obteniendo un 96\% de casos exitosos y un 4\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse.  
+Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. Los resultados se muestran en el gráfico de la figura ~\ref{fig:etp2}. El resultado ha sido satisfactorio, obteniendo un 96\% de casos exitosos y un 4\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse.  
 
 \begin{figure}[th!]
 \begin{tikzpicture}
 \pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{96/Exitosas, 4/Con fallas corregidas}
 \end{tikzpicture}
-
-\caption{Experimento 2: 300 ejecuciones de acciones combinadas}
+\caption{Segunda etapa: 300 ejecuciones de acciones combinadas}
+\label{fig:etp2}
 \end{figure}
 
 \section{Experimentos con Comportamientos Integrados}
 \label{sec:experimentosintegrados}
 
-El tercer experimento consistió en la realización de pruebas de desempeño en donde se observó el comportamiento global del robot con todos sus comportamientos integrados (detección, búsqueda y pateo).
+El segundo conjunto de experimentos consistió en la realización de pruebas de desempeño en donde se observó el comportamiento global del robot con todos sus comportamientos integrados (detección, búsqueda y pateo). La forma de elegir la acciones de movimiento es la que se describe en la sección de búsqueda y pateo (sin aprendizaje). 
 
-El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de pateo (las regiones 15 y 16 de la figura 5). El número de pruebas en este primer caso fue de 10, cuya duración aproximada de cada prueba fue de 30 segundos. En la figura 6 se puede observar los resultados obtenidos de esta prueba.
+El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de pateo (las regiones 1 y 2 de la figura ~\ref{divisionCam}). El número de pruebas en este primer caso fue de 10, cuya duración aproximada de cada prueba fue de 30 segundos. En la figura ~\ref{fig:caso1} se puede observar los resultados obtenidos de esta prueba.
 
 \begin{figure}
 \begin{tikzpicture}
 \pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{90/Pateó, 10/Falló}
 \end{tikzpicture}
-\caption{Experimento 3: Pruebas de movimientos integrados CASO I}
+\caption{Pruebas de movimientos integrados CASO I}
+\label{fig:caso1}
 \end{figure}
 
-El segundo caso  (CasoII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 10 pruebas, siendo la duración promedio de 2 minutos con 12 segundos. Los resultados de dicho caso se puedo observar en la figura 7. 
+El segundo caso (CasoII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 10 pruebas, siendo la duración promedio de 2 minutos con 12 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{fig:caso2}. 
 
 \begin{figure}
 \begin{tikzpicture}
 \pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{70/Exitosas, 10/Con fallas corregidas, 20/Fallidas}
 \end{tikzpicture}
-\caption{Experimento 3: Pruebas de movimientos integrados CASO II}
+\caption{Pruebas de movimientos integrados CASO II}
+\label{fig:caso2}
 \end{figure}
 
-El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 10 cm a la izquierda formando asi una diagonal. Se realizaron 10 pruebas, siendo la duración promedio de 3 minutos con 29 segundos. Los resultados de dicho caso se puedo observar en la figura 8. 
+El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 10 cm a la izquierda formando asi una diagonal. Se realizaron 10 pruebas, siendo la duración promedio de 3 minutos con 29 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{fig:caso3}. 
 
 \begin{figure}
 \begin{tikzpicture}
 \pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{80/Exitosas, 20/Fallidas}
 \end{tikzpicture}
-\caption{Experimento 3: Pruebas de movimientos integrados CASO III}
+\caption{Pruebas de movimientos integrados CASO III}
+\label{fig:caso3}
 \end{figure}
 
-El cuarto caso  (Caso IV) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 10 cm a la derecha. Se realizaron 10 pruebas, siendo la duración promedio de 4 minutos con 48 segundos.  Los resultados de dicho caso se puedo observar en la figura 9. 
+El cuarto caso (Caso IV) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 10 cm a la derecha. Se realizaron 10 pruebas, siendo la duración promedio de 4 minutos con 48 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{fig:caso4}. 
 
 \begin{figure}
 \begin{tikzpicture}
 \pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{90/Exitosas, 10/Fallidas}
 \end{tikzpicture}
-\caption{Experimento 3: Pruebas de movimientos integrados CASOIV}
+\caption{Pruebas de movimientos integrados CASO IV}
+\label{fig:caso4}
 \end{figure} 
 
-Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos han sido satifactorios con un porcentaje de logro del 82\% mas un 5.5\% en el cual se logró recuperar y finalizar la tarea, con 12.5\% de fallas en la tarea se pudo observar de manera general que la razón de dichas fallas ha sido ocasionada por problemas de batería. 
+Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos han sido satifactorios con un porcentaje de logro del 82\% mas un 5.5\% en el cual se logró recuperar y finalizar la tarea, con 12.5\% de fallas en la tarea se pudo observar de manera general que la razón de dichas fallas ha sido ocasionada por problemas de batería.
+ 
 
 \section{Experimentos con Aprendizaje}\label{sec:experimentosAprend}
 
