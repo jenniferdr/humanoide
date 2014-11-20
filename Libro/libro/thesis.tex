@@ -116,10 +116,10 @@
 }
 
 % Crea el glosario
-\makeglossaries
-\makenomenclature
+%\makeglossaries
+%\makenomenclature
 % Incluye el glosario
-\input{apendices/glosario.tex}
+%\input{apendices/glosario.tex}
 
 % Para crear la hoja escaneada de las firmas
 \usepackage[absolute]{textpos}
@@ -210,6 +210,7 @@
 \doublespacing
 
 % Incluye los archivos deseados - El contenido de su proyecto de grado/pasantia larga.
+
 \input{intro/intro.tex}
 
 \input{marco_teorico/0_marco_teorico.tex}
@@ -233,9 +234,11 @@
 
 \input{conclusiones/conclusiones.tex}
 
-% Crea el glosario 
+% Crea el glosario
 \makeglossaries
-%\printglossaries
+\makenomenclature
+% Incluye el glosario
+\input{apendices/glosario.tex}
 
 % Establece las citas y bibliografia
 \bibliographystyle{alpha.bst}
@@ -243,9 +246,11 @@
 \nomenclature{$a$}{The number of angels per unit area}%
 \nomenclature{$N$}{The number of angels per needle point}%
 \nomenclature{$A$}{The area of the needle point}%
+
 % Crea el apendice
 \appendix
 %\input{apendices/Archivos_intermedios.tex}
+%\input{apendices/glosario.tex}
 \input{desarrollo/5_consideraciones.tex}
 \printnomenclature
 \printglossary
