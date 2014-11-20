@@ -25,15 +25,15 @@ Durante el desarrollo del proyecto se presentaron algunos obstaculos que lograro
 	\textbf{Problema:} Debido al uso prolongado pero necesario los motores Dynamixel AX-12 se dañaban, ya sea por motor DC o en chip interno.\\
 	\textbf{Soluci\'on:} Fue controlar el torque y la temperatura máxima a la que pueden llegar los motores. En caso de llegar a estas cotas máximas los motores se apagan automáticamente. Las cotas máximas han sido de $30\deg$ centígrados para la temperatura y 800 kgf-cm para el torque. Para lograr esto se ha tenido que modificar la librería Ax12 agregando procedimientos que permitieran establecer la temperatura y el torque máximo.\\
 
-
-
 En el archivo ax12.h se agregaron las siguientes definiciones de funciones:
 
-\#define SetTemperature(id,temp) (ax12SetRegister(id,AX\_LIMIT\_TEMPERATURE, temp))
+\begin{lstlisting}
 
-\#define SetAlarm(id) (ax12SetRegister(id,AX\_ALARM\_SHUTDOWN, 0x04)) 
-
-\#define SetTorqueL(id, tor) (ax12SetRegister2(id,AX\_MAX\_TORQUE\_L, tor)) 
+#define SetTemperature(id,temp) (ax12SetRegister(id,AX\_LIMIT\_TEMPERATURE, temp))
+#define SetAlarm(id) (ax12SetRegister(id,AX\_ALARM\_SHUTDOWN, 0x04)) 
+#define SetTorqueL(id, tor) (ax12SetRegister2(id,AX\_MAX\_TORQUE\_L, tor)) 
+\end{lstlisting}
+ 
 
 El archivo ax12.h viene con el paquete de la pagina oficial para el código de Arbotix. Como se indica en las instrucciones, este archivo se debe ubicar en la carpeta sketchbook de Arduino. Luego desde el IDE de Arduino llamamos a las funciones definidas con los valores deseados. De esta manera se ha solucionado el problema de la quema de motores.
 
@@ -45,7 +45,7 @@ Para la instalación del sistema operativo Raspbian en la tarjeta Raspberry Pi s
 
 Como no se contaba con un monitor con entrada HDMI o VGA se debió buscar una solución alterna para observar la interfaz gráfica de Raspbian de la Raspberry Pi. Se utilizó el programa TightVNC para la visualización y control de la interfaz de Raspbian desde un computador remoto. Ha sido necesario poder observar lo que el robot percibe para llevar un control y una supervisión de su comportamiento. 
 
-Por último, sería conveniente advertir que para la instalación de ROS en la Raspberry Pi, la versión que se debe obtener es la más reciente (), de lo contrario podrían ocurrir problemas de sincronización en la comunicación de las tarjetas.   
+Por último, sería conveniente advertir que para la instalación de ROS en la Raspberry Pi, la versión que se debe obtener es la más reciente, de lo contrario podrían ocurrir problemas de sincronización en la comunicación de las tarjetas.   
 
 
 

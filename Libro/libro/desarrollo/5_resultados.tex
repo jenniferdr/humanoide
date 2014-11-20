@@ -1,34 +1,111 @@
 \chapter{Experiementos y Resultados}\label{chapter:resultados}
+HACER INTRO A RESULTADOS
+\section{Experimentos de Movimientos}
+Se realizaron varios experimentos para comprobar la movilidad del robot. Para esto se define lo que representa una unidad de movimiento. Cada una de las siguientes acciones constituyen una unidad: Caminar hacia adelante, girar hacia la derecha, girar hacia la izquierda, patada con la pierna derecha, patada con la pierna derecha, levantarse en la posición supino, levantarse en posición prono.
 
-Se realizaron varios experimentos para comprobar la movilidad del robot. Primero se debe definir los movimientos que representan una unidad. Cada una de las siguientes acciones constituyen una unidad: caminar hacia adelante (Ade) , girar hacia la derecha (Der), girar hacia la izquierda (Izq), patada con la pierna derecha (PatearD), patada con la pierna izquierda (PatearD), levantarse en la posición supino, levantarse en posición prono.
+El primer experimento consistió en verificar el desempeño de las unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, 250 ejecuciones en total. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.6\% de casos exitosos y un 0.4\% de casos en los que pudo recuperarse de fallas. El 0.4\% representa un solo caso en el que el robot se ha caído y levantado.  
 
-El primer experimento consistió en verificar la ejecución de las unidades de acciones y determinar su funcionamiento, para ello se procedió a realizar la ejecución de cada unidad 50 veces, se tomó nota de las veces que lo realizaba de forma esperada (Positivo), y de aquellas que no lo hacía, si podría recuperarse de su mala acción (Corrigió) o no. Los resultados pueden observarse en la figura 4. En cuanto al balance del robot,  solo una vez se cayó, sin embargo, logró levantarse satisfactoriamente.
-
-En el segundo experimento se evalu\'o la ejecuci\'on de  combinaciones de varias unidades de movimiento. Las combinaciones elegidas fueron:
+En el segundo experimento se evalu\'o la ejecuci\'on de  combinaciones de varias unidades de movimiento. Las combinaciones elegidas fueron: 
 
 \begin{itemize}
 \setlength{\itemsep}{1pt}
-\item Caminar hacia adelante y patear con la pierna derecha (APD)
-\item Caminar hacia adelante y patear con la pierna izquierda (API)
-\item Caminar hacia adelante, girar hacia la derecha y patear con la pierna derecha (ADPD)
-\item Caminar hacia adelante, girar hacia la derecha, patear con la pierna izquierda (ADPI)
-\item Caminar hacia adelante, girar hacia la izquierda y patear con la derecha (AIPD)
-\item Caminar hacia adelante, girar hacia la  izquierda y  patear con la pierna izquierda (AIPI)
-\item Girar hacia la izquierda y patear con la pierna derecha (IPD)
-\item Girar hacia la derecha y patear con la izquierda (DPI)
-\item Girar hacia la derecha y patear con la pierna derecha (DPD)
-\item Girar hacia la izquierda y patear con la pierna izquierda (IPI)
+\item Caminar hacia adelante y patear con la pierna derecha 
+\item Caminar hacia adelante y patear con la pierna izquierda
+\item Caminar hacia adelante, girar hacia la derecha y patear con la pierna derecha
+\item Caminar hacia adelante, girar hacia la derecha, patear con la pierna izquierda 
+\item Caminar hacia adelante, girar hacia la izquierda y patear con la derecha
+\item Caminar hacia adelante, girar hacia la  izquierda y  patear con la pierna izquierda
+\item Girar hacia la izquierda y patear con la pierna derecha
+\item Girar hacia la derecha y patear con la izquierda
+\item Girar hacia la derecha y patear con la pierna derecha
+\item Girar hacia la izquierda y patear con la pierna izquierda
+ \end{itemize}
+
+Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. Los resultados se muestran en el gráfico de la figura 4. El resultado ha sido satisfactorio, obteniendo un 96\% de casos exitosos y un 4\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse.  
+
+\begin{figure}[th!]
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{96/Exitosas, 4/Con fallas corregidas}
+\end{tikzpicture}
+
+\caption{Experimento 2: 300 ejecuciones de acciones combinadas}
+\end{figure}
+
+\section{Experimentos con Comportamientos Integrados}
+\label{sec:experimentosintegrados}
+
+El tercer experimento consistió en la realización de pruebas de desempeño en donde se observó el comportamiento global del robot con todos sus comportamientos integrados (detección, búsqueda y pateo).
+
+El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de pateo (las regiones 15 y 16 de la figura 5). El número de pruebas en este primer caso fue de 10, cuya duración aproximada de cada prueba fue de 30 segundos. En la figura 6 se puede observar los resultados obtenidos de esta prueba.
+
+\begin{figure}
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{90/Pateó, 10/Falló}
+\end{tikzpicture}
+\caption{Experimento 3: Pruebas de movimientos integrados CASO I}
+\end{figure}
+
+El segundo caso  (CasoII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 10 pruebas, siendo la duración promedio de 2 minutos con 12 segundos. Los resultados de dicho caso se puedo observar en la figura 7. 
+
+\begin{figure}
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{70/Exitosas, 10/Con fallas corregidas, 20/Fallidas}
+\end{tikzpicture}
+\caption{Experimento 3: Pruebas de movimientos integrados CASO II}
+\end{figure}
+
+El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 10 cm a la izquierda formando asi una diagonal. Se realizaron 10 pruebas, siendo la duración promedio de 3 minutos con 29 segundos. Los resultados de dicho caso se puedo observar en la figura 8. 
+
+\begin{figure}
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{80/Exitosas, 20/Fallidas}
+\end{tikzpicture}
+\caption{Experimento 3: Pruebas de movimientos integrados CASO III}
+\end{figure}
+
+El cuarto caso  (Caso IV) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 10 cm a la derecha. Se realizaron 10 pruebas, siendo la duración promedio de 4 minutos con 48 segundos.  Los resultados de dicho caso se puedo observar en la figura 9. 
+
+\begin{figure}
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{90/Exitosas, 10/Fallidas}
+\end{tikzpicture}
+\caption{Experimento 3: Pruebas de movimientos integrados CASOIV}
+\end{figure} 
+
+Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos han sido satifactorios con un porcentaje de logro del 82\% mas un 5.5\% en el cual se logró recuperar y finalizar la tarea, con 12.5\% de fallas en la tarea se pudo observar de manera general que la razón de dichas fallas ha sido ocasionada por problemas de batería. 
+
+\section{Experimentos con Aprendizaje}
+
+Finalmente los resultados de la aplicaci\'on del apredizaje Q, para la busqueda de la pelota se presentan a continuaci\'on.
+Se utilizaron las siguientes combinaciones de tasa de descuento , exploraci\'on y explotaci\'on por medio del parametro ajustable llamado K.
+
+\begin{itemize}
+\item K = 1 , Descuento = 0.1 (Aleatorio)
+\item K = 2 , Descuento = 0.1 
+\item K = 2 , Descuento = 0.7
+\item K = 3 , Descuento = 0.1
+\item K = 3 , Descuento = 0.7
+\item K = 5 , Descuento = 0.1
+\item K = 5 , Descuento = 0.7
+   
 \end{itemize}
 
+Cada una de estas combinaciones se entreno con 20 pruebas completas (comportamiento integrado), una vez entrenadas se realizaron las siguientes pruebas para medir su desempeño y establecer la mejor tasa de aprendizaje por medio del porcentaje de pateos positivos y fallas. Se realizaron 10 pruebas con el resultados del aprendizaje para cada una de las combinaciones establecidas, eso nos da un total de 210 pruebas realizadas. 
 
-Se realizaron 30 pruebas de cada una de estas combinaciones. Los resultados se han dividido en dos gr\'aficos (figuras 5 y 6) para mejorar su visualizaci\'on.  En el peor caso (ADPD),  Debupa logra patear la pelota 26 de las 30 veces al final del movimiento combinado. El robot s\'olo se ha ca\'ido dos veces, pero ha logrado levantantarse con \'exito (figura 5).
+Los resultados de los entrenamientos arrojaron que la mejor combinaci\'on de fue K = 3 y Descuento = 0.1 que obtuvo un desempeno favorable del 90\% de las pruebas realizadas.
 
-Experimentos con comportamientos integrados 
+Para esta mejor combinaci\'on se inicializo la matrix de estados x acciones donde solo se daban recompensas negativas a las acciones que por ning\'un motivo debia tomar en dicho estado. Con ello y el aumento de la cantidad de pruebas de entrenamiento a 30 se pretendio mejoras el desempeño general del robot. 
 
-Para medir el desempeño con respecto a la coordinación de los movimientos del robot y la detección de la pelota, se ha realizado un conjunto de pruebas. La primera prueba (prueba 1) consiste en la colocación de la pelota en la zona de pateo (zona justo al frente de los pies) y observar si el robot cumple con el objetivo de patearla. Para esta primera prueba se realizaron 10 corridas cuya duración aproximada fue de 30 segundos cada una. La segunda prueba (prueba 2) consistió en ubicar la pelota a 50 centímetros del robot en línea recta, la duración promedio de cada una de las 10 corridas ha sido de 2:10 minutos. Las siguientes dos pruebas, prueba 3 y prueba 4, consistieron en colocar la pelota 10 centímetros a la derecha y a la izquierda respectivamente de la posición de la prueba 2. Para ambas pruebas se realizaron 10 corridas con un promedio de duración de 5 minutos. En estas últimas tres pruebas se evaluó si el robot lograba llegar hasta la pelota y patearla. 
+Se realizaron pruebas de desempeño con la cantidad de 15 pruebas donde se obtuvo un 100\% de pruebas positivas
 
-Los resultados de las pruebas, en general, han sido satisfactorios dado que el robot logró llegar y patear la pelota en el porcentaje de los casos. Sin embargo el tiempo en el que cumple la tarea podria ser mejorado considerablemente si se evita reiniciar la posición de la cámara al estado inicial cada vez que el robot ejecuta una acción de movimiento.  
 
-En la prueba 2 el robot solo se ha caído dos veces, de las cuales en una ocasión se levantó y en la otra se quedó sin energía. En el resto de las pruebas no se ha caído.  
+FALTTTAAAAN
+- Explicar mejor que significa K y descuento ?
+- FALTA describir mejor como es una prueba
+- No se si hacer graficos
+- Explicar mejor como fue la inicializacion
+- analisis en profundidad de tiempos y acciones
+
+   
 
 
