@@ -47,7 +47,7 @@ Las posibles acciones a realizar son un subconjunto de las acciones de movimient
 
 La recompensa, que puede ser positiva o negativa, se otorga a un par $(s,a)$, en donde $s$ es un estado y $a$ es una acci\'on. Se calcula en base a que tanto el robot se acerca a la pelota cuando en el estado $s$ se toma la acci\'on $a$. Es decir, las recompensas se definen en base a la distancia recorrida, con respecto a la pelota, cuando se toma una acci\'on.  
 
-La distancia de una región con respecto al área de pateo, se define con la función $d: r \rightarrow y$ con $r \in \{1,2,3 ...14\}$ y $y \in \{1,2,3 ...10\}$. En donde $r$ es el número de la región y $y$ es la distancia de la región con respecto al \'area de pateo. Se asign\'o una distancia a cada regi\'on como se muestra en la figura ~\ref{fig:distancias}. El valor 1 se le asigna a las regi\'ones m\'as cercanas al robot (zonas de pateo), $d(1)= 1$ y $d(2)=1$; el valor 10, a las regiones m\'as lejanas (regiones 12 y 14). Adicionalmente se define la distancia de la región 18 como $d(14)=10$. 
+La distancia de una región con respecto al área de pateo, se define con la función $d: r \rightarrow y$ con $r \in \{1,2,3 ...18\}$ y $y \in \{1,2,3 ...10\}$. En donde $r$ es el número de la región y $y$ es la distancia de la región con respecto al \'area de pateo. Se asign\'o una distancia a cada regi\'on como se muestra en la figura ~\ref{fig:distancias}. El valor 1 se le asigna a las regi\'ones m\'as cercanas al robot (zonas de pateo), $d(1)= 1$ y $d(2)=1$; el valor 10, a las regiones m\'as lejanas (regiones 12 y 14). Adicionalmente se define la distancia de la región 18 como $d(18)=10$. 
      
 \begin{figure}[hbtp]
 \centering
@@ -62,7 +62,7 @@ Junny gana una recompensa positiva cuando, con una acción, la pelota pasa de un
 El rango de valores para la recompensa se encuentra entre -1 y 1. 
 
 
-\subsection{Eleci\'on de la acci\'on}\label{subsec:eleccionAccion}
+\subsection{Eleci\'on de la acci\'on}
 
 Se entiende que dado un estado $s$ se tienen 7 posibles acciones $\{a_1, a_2, ... a_7\}$ que, en el entrenamiento del robot, él aprende cuál es la mejor a realizar según el estado en el que se encuentra. A mayor valor de $Q(s,a)$ mejor es la acción $a$. Si siempre se toma el máximo valor se favorece la explotación. Si se toman acciones aleatorias se favorece la exploración. Para que el aprendizaje obtenga buenos resultados se debe tener un equilibrio entre la exploración y la explotación. 
 
