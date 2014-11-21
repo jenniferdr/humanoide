@@ -5,22 +5,23 @@ capta el espectro electromagnético y produce una imagen. La representación de 
 cada píxel es un elemento que guarda información de una región en el espacio captado. Si se usa una cámara de luz, la información
 de cada píxel será el color. \cite{AiRobotics}  
 
-Por lo general luego de obtener una imagen se requiere extraer información de ella, por lo cual se han desarrollado diferentes
-algoritmos que ayudan en esta tarea. Existen varios algoritmos que se dedican a la transformación de las imágenes para reducir
-ruidos, compensar problemas de iluminación, extraer formas, identificar objetos, entre otros. En esta sección se describen dos
-de las técnicas de transformación para reducir el ruido basadas en la dilatación y erosión de la imagen. 
-\subsection{Segmentaci\'on por regiones}
+Por lo general luego de obtener una imagen se requiere extraer información de ella, por lo cual se han desarrollado diferentes algoritmos y t\'ecnicas que ayudan en esta tarea. En la sección \ref{sec:Segmentacion} se describe la t\'ecnica de segmentaci\'on por regiones, que es la utilizada en esta proyecto. 
+
+Por otro lado, existen varios algoritmos que se dedican a la transformación de las imágenes para reducir
+ruidos, compensar problemas de iluminación, extraer formas, identificar objetos, entre otros. En esta sección se describen dos de las técnicas de transformación para reducir el ruido basadas en la dilatación y erosión de la imagen (secci\'on \ref{sec:Transfor}). 
+ 
+\subsection{Segmentaci\'on por regiones}\label{sec:Segmentacion}
 
 La pr\'actica m\'as general en visi\'on de computadoras aplicado a rob\'otica es la identificaci\'on de regiones por un color particular, este proceso se llama segmentaci\'on por regiones. El algoritmo b\'asico consiste en identificar todos los p\'ixeles en una imagen que forman parte de una regi\'on y luego navegar al centro de la regi\'on. El primer paso es identificar todos los p\'ixeles en la imagen que compartan un rango de valores con el color particular y agruparlos, aquellos p\'ixeles que no compartan el color son descartados \cite{BookOpenCv}. 
 
-\subsection{Filtros }
+\subsection{Filtros}
 El filtrado de imágenes es una técnica para la transformación de imágenes, que consiste en destacar  sus características más relevantes en base a un propósito en particular. 
 
 Generalmente en la tarea de extracción de información de una imagen se utilizan filtros para descartar zonas o características que no son importantes para el patrón deseado y para determinar el área deseada ya sea por patrones de forma o color.
 
 En la investigación, los algoritmos de filtrado aplicados a las imágenes fueron: Clausura Morfológica y Apertura Morfológica, filtros que aplican las técnicas de erosión y dilatación a las imágenes.
 
-\subsection{Transformaciones Morfológicas}
+\subsection{Transformaciones Morfológicas}\label{sec:Transfor}
 Las transformaciones morfológicas básicas son llamadas dilatación y erosión, se utilizan en 
 amplia variedad de contextos como la eliminación del ruido, aislamiento de elementos individuales y elementos de unión dispares
 en una imagen.\cite{BookOpenCv}
