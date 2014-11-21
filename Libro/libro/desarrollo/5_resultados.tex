@@ -84,7 +84,7 @@ Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos
 \section{Experimentos con Aprendizaje}\label{sec:experimentosAprend}
 
 Finalmente los resultados de la aplicaci\'on del apredizaje Q, para la busqueda de la pelota se presentan a continuaci\'on.
-Se utilizar\'on las siguientes combinaciones de tasa de descuento $\gamma$ , exploraci\'on y explotaci\'on por medio del par\'ametro ajustable $k$ detallado en \ref{subsec:eleccionAccion}.
+Se utilizar\'on las siguientes combinaciones de tasa de descuento $\gamma$ , exploraci\'on y explotaci\'on por medio del par\'ametro ajustable $K$ detallado en la secci\'o \ref{subsec:eleccionAccion}.
 
 \begin{itemize}
 \item $K$ = 1 , $\gamma$ = 0.1 (Aleatorio)
@@ -97,21 +97,90 @@ Se utilizar\'on las siguientes combinaciones de tasa de descuento $\gamma$ , exp
    
 \end{itemize}
 
-Cada una de estas combinaciones se entreno con 20 pruebas completas (comportamiento integrado), una vez entrenadas se realizaron las siguientes pruebas para medir su desempeño y establecer la mejor tasa de aprendizaje por medio del porcentaje de pateos positivos y fallas. Se realizaron 10 pruebas con el resultados del aprendizaje para cada una de las combinaciones establecidas, eso nos da un total de 210 pruebas realizadas. 
+Una prueba completa o prueba de comportamiento integrado se define como la colocaci\'on del robot en una posi\'on inicial arbitraria y una posici\'on de la pelota igualmente arbitraria entonces el robot debe se capaz de encontrar , trasladarse y patear la pelota. Se realizaron en un espacio de $1.8 m \times 1.6 m$
+en donde se aseguraba que el color particular de la pelota no se repitiese, de ser asi esa prueba se consideraba invalida.
 
-Los resultados de los entrenamientos arrojaron que la mejor combinaci\'on de fue K = 3 y Descuento = 0.1 que obtuvo un desempeno favorable del 90\% de las pruebas realizadas.
+Cada una de estas combinaciones se entreno con 20 pruebas completas, una vez entrenadas se realizaron las siguientes pruebas para medir su desempeño y establecer la mejor tasa de aprendizaje por medio del porcentaje de pateos positivos y fallas. Se realizaron 10 pruebas con el resultados del aprendizaje para cada una de las combinaciones establecidas, eso nos da un total de 210 pruebas realizadas. 
 
-Para esta mejor combinaci\'on se inicializo la matrix de estados x acciones donde solo se daban recompensas negativas a las acciones que por ning\'un motivo debia tomar en dicho estado. Con ello y el aumento de la cantidad de pruebas de entrenamiento a 30 se pretendio mejoras el desempeño general del robot. 
+Para la combinaci\'on de $K = 1$ y $ \gamma = 0.1 $ o aleatorio dado que cuando $K = 1$ la probabilidad de elegir la acci\'on es igual para todas las acciones dado un estado. Los resultados obtenidos se presentan en la figura  \ref{fig:k1y1}
 
-Se realizaron pruebas de desempeño con la cantidad de 15 pruebas donde se obtuvo un 100\% de pruebas positivas
+\begin{figure}
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{80/Exitosas, 20/Fallidas}
+\end{tikzpicture}
+\caption{Pruebas con  $K = 1$ y $ \gamma = 0.1 $}
+\label{fig:k1y1}
+\end{figure} 
 
+Los resultados del resto de las combinaciones de par\'ametros ajustables se presentan en las siguientes figuras para $K = 2$ y $ \gamma = 0.1 $ en la figura \ref{fig:k1y1}, $K = 2$ y $ \gamma = 0.7 $ en la figura \ref{fig:k2y7}, $K = 3$ y $ \gamma = 0.1 $ en la figura \ref{fig:k3y1}, $K = 3$ y $ \gamma = 0.7 $, $K = 5$ \ref{fig:k3y7} y $ \gamma = 0.1 $ en la figura\ref{fig:k5y1} y por ultimo $K = 5$ y $ \gamma = 0.7 $ en la figura \ref{fig:k5y7}
 
-FALTTTAAAAN
-- Explicar mejor que significa K y descuento ?
-- FALTA describir mejor como es una prueba
-- No se si hacer graficos
-- Explicar mejor como fue la inicializacion
-- analisis en profundidad de tiempos y acciones
+\begin{figure}[h]
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{80/Exitosas, 20/Fallidas}
+\end{tikzpicture}
+\caption{Pruebas con $K = 2$ y $ \gamma = 0.1 $}
+\label{fig:k2y1}
+\end{figure} 
+
+\begin{figure}[h]
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{60/Exitosas, 40/Fallidas}
+\end{tikzpicture}
+\caption{Pruebas  con $K = 2$ y $ \gamma = 0.7 $}
+\label{fig:k2y7}
+\end{figure} 
+
+\begin{figure}[h]
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{90/Exitosas, 10/Fallidas}
+\end{tikzpicture}
+\caption{Pruebas con $K = 3$ y $ \gamma = 0.1 $}
+\label{fig:k3y1}
+\end{figure} 
+
+\begin{figure}[h]
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{80/Exitosas, 20/Fallidas}
+\end{tikzpicture}
+\caption{Pruebas con $K = 3$ y $ \gamma = 0.7 $}
+\label{fig:k3y7}
+\end{figure} 
+
+\begin{figure}[h]
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{80/Exitosas, 20/Fallidas}
+\end{tikzpicture}
+\caption{Pruebas con $K = 5$ y $ \gamma = 0.1 $}
+\label{fig:k5y1}
+\end{figure} 
+
+\begin{figure}[h]
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{70/Exitosas, 30/Fallidas}
+\end{tikzpicture}
+\caption{Pruebas con $K = 5$ y $ \gamma = 0.7 $}
+\label{fig:k5y7}
+\end{figure} 
+
+Los resultados de los entrenamientos arrojaron que la mejor combinaci\'on de fue  $K = 3$ y $ \gamma = 0.1 $ que obtuvo un desempeño favorable del 90\% de las pruebas realizadas.
+
+Con el objetivo de lograr un mejor desempeño de Junny se inicializ\'o $Q(s,a)$ con valores de recompesas negativas para aquellas acciones cuyos estados su realizaci\'on seria obviamente erroneo, con esto ayudar al aprendizaje del robot, adem\'as se aumento el n\'umero de pruebas de entrenamiento a 30 con el mismo objetivo.   
+
+Para medir el desempeño general de Junny se realizaron 15 pruebas integradas a distintas distancias colocando la posici\'on inicial de la pelota en los distintos estados. Los resultados de estas \'ultimas purebas se presentan en el siguiente gr\'afico \ref{fig:mejor}. 
+
+\begin{figure}[h]
+\begin{tikzpicture}
+\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{100/Exitosas, 0/Fallidas}
+\end{tikzpicture}
+\caption{Pruebas con $K = 3$ y $ \gamma = 0.1 $ e inicializaci\'on de Q(s,a)}
+\label{fig:mejor}
+\end{figure} 
+
+Para un analisis mas profundo de los datos obtenidos en el desempeño del robot, se estableci\'o en la pr\'actica el n\'umero de acciones optimas en cada estado, dado que la pelota esta en el borde superior de la visi\'on del robot (lo mas lejano), el promedio de estas distancias optimas se compararon con el promedio de acciones que en realidad realizo Junny, con ello se obtuvo una eficiencia de $ 0.72$. Sin embargo bajo los mismos parametros de  $K = 3$ y $ \gamma = 0.1 $ en la pruebas cuando se entreno con 20 pruebas se obtuvo una eficiencia de $0.64$, por lo tanto con el aumento de 10 pruebas de entrenamiento se mejoro aproximadamente un 12\% es un fuerte indicativo que con mayor cantidad de pruebas este porcentaje mejorar\'a y la eficiencia aumentara
+
+Asi mismo al comparar los tiempos promedios se obtiene los siguientes resultados ,el tiempo promedio de las pruebas cuyas acciones optimas eran menor a 8 (estados mas cercanos) fue de 4m y 19s en contraste con el promedio del tiempo de las pruebas cuyas acciones optimas eran mayores a 8 que fue  3m y 21s.
+
+ 
 
    
 
