@@ -9,7 +9,6 @@
 #include "opencv2/calib3d/calib3d.hpp"
 //#include "opencv2/nonfree/nonfree.hpp"
 
-
 #include <string>   // for strings
 #include <iomanip>  // for controlling float print precision
 #include <sstream>  // string to number conversion
@@ -189,7 +188,7 @@ int main (int argc, char ** argv) {
       }
 	  
       //Convertir el cuadro de BGR a HSV
-      cvtColor(imgOriginal, imgHSV, COLOR_BGR2HSV); 
+      cvtColor(imgOriginal, imgHSV, CV_HSV2RGB); 
       Mat imgFiltro;
 
       Mat imgArqueria;
