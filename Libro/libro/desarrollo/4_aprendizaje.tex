@@ -17,39 +17,41 @@ En la sección \ref{estados} se define el conjunto de estados que conforman el m
 
 \subsubsection{Estados}\label{estados}
 
-De forma general se puede decir que los estados se encuentran definidos en función de la posición de la pelota con respecto al robot. En la sección \ref{mundo} se ha explicado la manera en la que se representa el mundo en base a 13 regiones en las que se puede encontrar la pelota (como se muestra en la figura ~\ref{fig:estados}). Puede suceder, también, que la pelota no se encuentre en ninguna de ellas. Por lo tanto se generan 14 estados, 13 de ellos se corresponden con la detección de la pelota en cada una de las regiones definidas en la sección \ref{mundo} y el estado número 14 representa la ocasión en la que no se logra ubicar la pelota en ninguna de las regiones. 
+De forma general se puede decir que los estados se encuentran definidos en función de la posición de la pelota con respecto al robot. En la sección \ref{mundo} se ha explicado la manera en la que se representa el mundo en base a 13 regiones en las que se puede encontrar la pelota. Para el aprendizaje se ha decidido ampliar el número de regiones para afinar y mejorar el tiempo en el que se llega a la pelota. Estas regiones se muestran el la figura ~\ref{fig:estados2}.
+
+Cada región en la que se pueda detectar la pelota es un estado diferente. Por lo tanto se generan 18 estados, 17 de ellos se corresponden con la detección de la pelota en cada una de las regiones que se muestran en la imagen ~\ref{fig:estados2} y el estado número 18 representa la ocasión en la que no se logra ubicar la pelota en ninguna de las regiones.  
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.5]{imagenes/Regiones.jpg}
+\includegraphics[scale=0.5]{imagenes/Regiones2.jpg}
 \caption{Estados definidos seg\'un la región en la que se detecta la pelota}
-\label{fig:estados}
+\label{fig:estados2}
 \end{figure}
 
 
 \subsubsection{Acciones}\label{acciones}
 
-Las posibles acciones a realizar son un subconjunto de las acciones de movimiento definidas en la sección \ref{esqueleto}. Estas son:
+Las posibles acciones a realizar son un subconjunto de las acciones de movimiento definidas en la sección \ref{esqueleto}. Además se agregaron otras acciones para mejorar el desempeño en la búsqueda de la pelota. Las acciones disponibles son:
 
 \begin{itemize}
-\item {Caminar 2.5 cm hacia adelante }
-\item {Caminar 4.8 cm hacia adelante }
-\item {Caminar 9.9 cm hacia adelante }
-\item {Girar 3 cm a la izquierda}
-\item {Girar 6 cm a la izquierda} 
-\item {Girar 3 cm a la derecha}
-\item {Girar 6 cm a la derecha}
+\item {Caminar un paso hacia adelante (2.5 cm)}
+\item {Caminar dos pasos hacia adelante (4.8 cm)}
+\item {Caminar cuatro pasos hacia adelante (9.9 cm)}
+\item {Girar a la izquierda (3 cm)}
+\item {Girar doble a la izquierda (6 cm)} 
+\item {Girar a la derecha (3 cm) }
+\item {Girar doble a la derecha (6 cm)}
 \end{itemize}
 
 \subsubsection{Recompensas}\label{recompensas}
 
 La recompensa, que puede ser positiva o negativa, se otorga a un par $(s,a)$, en donde $s$ es un estado y $a$ es una acci\'on. Se calcula en base a que tanto el robot se acerca a la pelota cuando en el estado $s$ se toma la acci\'on $a$. Es decir, las recompensas se definen en base a la distancia recorrida, con respecto a la pelota, cuando se toma una acci\'on.  
 
-La distancia de una región con respecto al área de pateo, se define con la función $d: r \rightarrow y$ con $r \in \{1,2,3 ...14\}$ y $y \in \{1,2,3 ...10\}$. En donde $r$ es el número de la región y $y$ es la distancia de la región con respecto al \'area de pateo. Se asign\'o una distancia a cada regi\'on como se muestra en la figura ~\ref{fig:distancias}. El valor 1 se le asigna a las regi\'ones m\'as cercanas al robot (zonas de pateo), $d(1)= 1$ y $d(2)=1$; el valor 10, a las regiones m\'as lejanas (regiones 10 y 11). Adicionalmente se define la distancia de la región 14 como $d(14)=10$. 
+La distancia de una región con respecto al área de pateo, se define con la función $d: r \rightarrow y$ con $r \in \{1,2,3 ...14\}$ y $y \in \{1,2,3 ...10\}$. En donde $r$ es el número de la región y $y$ es la distancia de la región con respecto al \'area de pateo. Se asign\'o una distancia a cada regi\'on como se muestra en la figura ~\ref{fig:distancias}. El valor 1 se le asigna a las regi\'ones m\'as cercanas al robot (zonas de pateo), $d(1)= 1$ y $d(2)=1$; el valor 10, a las regiones m\'as lejanas (regiones 12 y 14). Adicionalmente se define la distancia de la región 18 como $d(14)=10$. 
      
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.5]{imagenes/Distancias.jpg}
+\includegraphics[scale=0.5]{imagenes/Distancias2.jpg}
 \caption{Distancias relativas de la pelota establecidas para otorgar la recompensa.}
 \label{fig:distancias}
 \end{figure}
@@ -73,7 +75,6 @@ Con valores diferentes de $k$ para cada conjunto de pruebas, como se explica en 
 
 La actualizaci\'on de Q(s,a) se define por la siguiente formula 
  
-
 \[Q(s,a) = r + \gamma \max_{a'} Q(\delta(s,a),a')\]
 
 Donde $r$ y $\max_{a'} Q(\delta(s,a),a')$ se explican en la subsecci\'on \ref{subsec:Qlearning} el factor $\gamma$ es el factor de descuento que varia de \[   0 \leq  \gamma < 1 \] este par\'ametro es arbitrario y se debe ajustar durante el aprendizaje, en el cap\'itulo \ref{chapter:resultados}  se presentan los $\gamma$ utilizados para los entrenamientos.
