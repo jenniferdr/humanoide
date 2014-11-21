@@ -133,15 +133,16 @@ Para la implementación de la comunicación se ha usado ROS con su versión Hydr
 Una vez con la representaci\'on del mundo, los movimientos programados y la comunicaci\'on de las tarjetas, solo faltaría decidir que acci\'on tomar en cada situación. En primera instancia se ha decidido fijar una acción por cada región en la que se detecte la pelota. 
 
 A continuación se especifica la acción a tomar en cada region: 
- 
-Girar a la Izquierda: Junny debe girar a la izquierda cuando la pelota se encuentre en alguna de las siguientes regiones: 4,8,10 y 12.
+ \begin{itemize}
+\item Girar a la Izquierda: Junny debe girar a la izquierda cuando la pelota se encuentre en alguna de las siguientes regiones: 4, 8, 10 y 12.
 
-Girar a la Derecha: debe girar a la derecha cuando la pelota se ubique en alguna de las siguientes regiones: 5, 9, 11 y 13. 
+\item Girar a la Derecha: debe girar a la derecha cuando la pelota se ubique en alguna de las siguientes regiones: 5, 9, 11 y 13. 
 
-Caminar hacia adelante: cuando la pelota se ubique en alguna de las siguientes regiones: 3, 6 y 7.
+\item Caminar hacia adelante: cuando la pelota se ubique en alguna de las siguientes regiones: 3, 6 y 7.
 
-Patear con la pierna izquierda: cuando la pelota se encuentre en la región 1.
+\item Patear con la pierna izquierda: cuando la pelota se encuentre en la región 1.
 
-Patear con la pierna derecha: cuando la pelota se encuentre en la región 2.
+\item Patear con la pierna derecha: cuando la pelota se encuentre en la región 2.
 
 En caso de no encontrar la pelota en ninguna de las regiones, el robot gira con los pies para cambiar su orientación física e iniciar nuevamente el movimiento de la cámara para hallar la pelota. Cuando se tiene la pelota en una posición cercana a los pies se realiza la acción de patear.
+\end{itemize}
