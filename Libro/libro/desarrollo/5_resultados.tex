@@ -84,10 +84,11 @@ Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos
 \section{Experimentos con Aprendizaje}\label{sec:experimentosAprend}
 
 Finalmente, el tercer conjunto de experimentos consistió en verificar los resultados de la aplicaci\'on del apredizaje por reforzamiento, para la búsqueda de la pelota. Estos resultados se presentan a continuaci\'on.
-Dentro de las fórmulas para el aprendizaje-Q se encuentran dos constantes que han sido configuradas de diferentes maneras para analizar cuál de las combinaciones brinda mejores resultados. Las constantes son la tasa de descuento $\gamma$ de la fórmula del aprendizaje-Q y la constante $K$, de la fórmula de probabilidad explicada en la secci\'o \ref{subsec:eleccionAccion}, que ajusta el peso que se le da a una acción dependiendo de su valor Q. Se utilizaron las siguientes combinaciones para las constantes:
+
+Dentro de las fórmulas para el aprendizaje-Q se encuentran dos constantes que han sido configuradas de diferentes maneras para analizar cuál de las combinaciones brinda mejores resultados. Las constantes son la tasa de descuento $\gamma$ de la fórmula del aprendizaje-Q y la constante $K$, de la fórmula de probabilidad explicada en la secci\'on \ref{subsec:eleccionAccion}, que ajusta la distribución de probabilidad que se le da a una acción dependiendo de su valor Q. Se utilizaron las siguientes combinaciones para las constantes:
 
 \begin{itemize}
-\item $K$ = 1 , $\gamma$ = 0.1 (Aleatorio)
+\item $K$ = 1 , $\gamma$ = 0.1
 \item $K$ = 2 , $\gamma$ = 0.1 
 \item $K$ = 2 , $\gamma$ = 0.7
 \item $K$ = 3 , $\gamma$ = 0.1
@@ -97,12 +98,14 @@ Dentro de las fórmulas para el aprendizaje-Q se encuentran dos constantes que h
    
 \end{itemize}
 
-Una prueba completa o prueba de comportamiento integrado se define como la colocaci\'on del robot en una posi\'on inicial arbitraria y una posici\'on de la pelota igualmente arbitraria entonces el robot debe se capaz de encontrar , trasladarse y patear la pelota. Se realizaron en un espacio de $1.8 m \times 1.6 m$
-en donde se aseguraba que el color particular de la pelota no se repitiese, de ser asi esa prueba se consideraba invalida.
+Una prueba completa o prueba de comportamiento integrado se define como la colocaci\'on del robot y la pelota en posiones iniciales arbitrarias, entonces el robot debe se capaz de detectar la pelota, trasladarse hacia ella y patearla. Las pruebas se realizaron en un espacio de $1.8 m \times 1.6 m$
+en donde se aseguraba que el color particular de la pelota no se repitiese, de ser así esa prueba se consideraba inválida.
 
-Cada una de estas combinaciones se entreno con 20 pruebas completas, una vez entrenadas se realizaron las siguientes pruebas para medir su desempeño y establecer la mejor tasa de aprendizaje por medio del porcentaje de pateos positivos y fallas. Se realizaron 10 pruebas con el resultados del aprendizaje para cada una de las combinaciones establecidas, eso nos da un total de 210 pruebas realizadas. 
+Cada una de estas combinaciones se entrenó con 20 ejecuciones completas. Una vez completados los entrenamientos se realizó un conjunto de pruebas para medir el desempeño de cada combinación y reconocer la mejor usando el porcentaje de pateos efectivos. Se realizó una prueba, de 10 ejecuciones cada una, para cada combinación. En total se realizaron 210 ejecuciones. 
 
-Para la combinaci\'on de $K = 1$ y $ \gamma = 0.1 $ o aleatorio dado que cuando $K = 1$ la probabilidad de elegir la acci\'on es igual para todas las acciones dado un estado. Los resultados obtenidos se presentan en la figura  \ref{fig:k1y1}
+Para la combinaci\'on de $K = 1$ y $ \gamma = 0.1 $ los resultados obtenidos se presentan en la figura  \ref{fig:k1y1}. Cuando $K = 1$ la probabilidad de elegir la acci\'on, dado un estado, es igual para todas las acciones, por lo tanto la elección de la acción para este caso ha sido uniformemente aleatoria. 
+
+Los resultados del resto de las combinaciones de par\'ametros ajustables se presentan en las siguientes figuras para $K = 2$ y $ \gamma = 0.1 $ en la figura \ref{fig:k1y1}, $K = 2$ y $ \gamma = 0.7 $ en la figura \ref{fig:k2y7}, $K = 3$ y $ \gamma = 0.1 $ en la figura \ref{fig:k3y1}, $K = 3$ y $ \gamma = 0.7 $, $K = 5$ \ref{fig:k3y7} y $ \gamma = 0.1 $ en la figura\ref{fig:k5y1} y por ultimo $K = 5$ y $ \gamma = 0.7 $ en la figura \ref{fig:k5y7}
 
 \begin{figure}
 \begin{tikzpicture}
@@ -111,8 +114,6 @@ Para la combinaci\'on de $K = 1$ y $ \gamma = 0.1 $ o aleatorio dado que cuando 
 \caption{Pruebas con  $K = 1$ y $ \gamma = 0.1 $}
 \label{fig:k1y1}
 \end{figure} 
-
-Los resultados del resto de las combinaciones de par\'ametros ajustables se presentan en las siguientes figuras para $K = 2$ y $ \gamma = 0.1 $ en la figura \ref{fig:k1y1}, $K = 2$ y $ \gamma = 0.7 $ en la figura \ref{fig:k2y7}, $K = 3$ y $ \gamma = 0.1 $ en la figura \ref{fig:k3y1}, $K = 3$ y $ \gamma = 0.7 $, $K = 5$ \ref{fig:k3y7} y $ \gamma = 0.1 $ en la figura\ref{fig:k5y1} y por ultimo $K = 5$ y $ \gamma = 0.7 $ en la figura \ref{fig:k5y7}
 
 \begin{figure}[h]
 \begin{tikzpicture}
