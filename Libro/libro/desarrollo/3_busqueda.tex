@@ -1,4 +1,4 @@
-\section{B\'usqueda y Pateo}\label{chapter:busqueda}
+\section{B\'usqueda y Pateo}\label{sec:busqueda}
 
 Para poder buscar y patear la pelota, además de tener la capacidad para detectarla (como se explicó en la secci\'on anterior anterior), debe ser capaz de moverse en su entorno, poder patear, levantarse, tener una representación del mundo que lo ayude a orientarse y tener una estrategia para elegir el conjunto de movimientos que lo lleven a acercarse a la pelota. 
 
@@ -132,7 +132,7 @@ Para la implementación de la comunicación se ha usado ROS con su versión Hydr
 
 Una vez con la representaci\'on del mundo, los movimientos programados y la comunicaci\'on de las tarjetas, solo faltaría decidir que acci\'on tomar en cada situación. En primera instancia se ha decidido fijar una acción por cada región en la que se detecte la pelota. 
 
-A continuación se especifica la acción a tomar en cada region: 
+A continuación se especifica la acción a tomar en cada regi\'on: 
  \begin{itemize}
 \item Girar a la Izquierda: Junny debe girar a la izquierda cuando la pelota se encuentre en alguna de las siguientes regiones: 4, 8, 10 y 12.
 
