@@ -29,9 +29,12 @@ En el archivo ax12.h se agregaron las siguientes definiciones de funciones:
 
 \begin{lstlisting}
 
-#define SetTemperature(id,temp) (ax12SetRegister(id,AX\_LIMIT\_TEMPERATURE, temp))
-#define SetAlarm(id) (ax12SetRegister(id,AX\_ALARM\_SHUTDOWN, 0x04)) 
-#define SetTorqueL(id, tor) (ax12SetRegister2(id,AX\_MAX\_TORQUE\_L, tor)) 
+#define SetTemperature(id,temp) 
+		(ax12SetRegister(id,AX\_LIMIT\_TEMPERATURE, temp))
+#define SetAlarm(id)
+		(ax12SetRegister(id,AX\_ALARM\_SHUTDOWN, 0x04))
+#define SetTorqueL(id, tor)
+		(ax12SetRegister2(id,AX\_MAX\_TORQUE\_L, tor)) 
 \end{lstlisting}
  
 
