@@ -26,7 +26,7 @@ El código modificado por Raufast fué un gran avance, sin embargo no funcionaba
 
 Con ayuda de la librería OpenCv, en C++, se filtra y procesa la imagen para obtener la posición de la pelota en un momento dado y de forma autónoma. 
 
-Para encontrar la ubicación de la pelota  se ha decidido aplicar detección por segmentación de regiones, esta técnica consiste en filtrar la imagen por color, por ello es importante que el de la pelota no se repita en el ambiente y así poder obtener su posición dentro de la imagen.
+Para encontrar la ubicación de la pelota  se ha decidido aplicar detección por segmentación de regiones, esta técnica consiste en filtrar la imagen por segmentaci\'on de color, por ello es importante que el de la pelota no se repita en el ambiente y así poder obtener su posición dentro de la imagen.
 
 La imagen es captada en el modelo de color RGB y se transforma al HSV. Luego se aplica la función inRange de OpenCv para obtener una imagen en blanco y negro, en donde se identifica con blanco la zona con el color de la pelota y el resto de la imagen en negro. 
 
