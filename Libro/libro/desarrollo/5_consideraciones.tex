@@ -9,7 +9,7 @@ Durante el desarrollo del proyecto se presentaron algunos obst\'aculos que logra
 	
 
 	 \textbf{Problema:} El gestor de arranque de la tarjeta Arbotix no estaba guardado.\\
-	 \textbf{Soluci\'on:} Con el gestor de arranque de 'Sanguino' , se cargó a la Arbotix a través del    			    dispositivo programador para AVR llamado ' ISP programmer' que se muestra en la figura         \ref{fig:ISPprog}. 
+	 \textbf{Soluci\'on:}  Se instaló en la Arbotix el gestor de arranque Sanguino a través del    			    dispositivo programador para AVR llamado ``ISP programmer" que se muestra en la figura         \ref{fig:ISPprog}. 
 
 	\begin{figure}[hbtp]
 	\centering
@@ -22,19 +22,19 @@ Durante el desarrollo del proyecto se presentaron algunos obst\'aculos que logra
 
  \item Quema de Motores Dynamixel:\\
 
-	\textbf{Problema:} Debido al uso prolongado pero necesario los motores Dynamixel AX-12 se dañaban, ya sea por motor DC o en chip interno.\\
-	\textbf{Soluci\'on:} Fue controlar el torque y la temperatura máxima a la que pueden llegar los motores. En caso de llegar a estas cotas máximas los motores se apagan automáticamente. Las cotas máximas han sido de $30\deg$ centígrados para la temperatura y 800 kgf-cm para el torque. Para lograr esto se ha tenido que modificar la librería Ax12 agregando procedimientos que permitieran establecer la temperatura y el torque máximo.\\
+	\textbf{Problema:} Debido al uso prolongado pero necesario los motores Dynamixel AX-12 se dañaban, ya sea el motor DC o el chip interno.\\
+	\textbf{Soluci\'on:} Fue controlar el torque y la temperatura máxima a la que pueden llegar los motores. En caso de llegar a estas cotas máximas los motores se apagan automáticamente. Las cotas máximas han sido de $30^{\circ}$ centígrados para la temperatura y 800 kgf-cm para el torque. Para lograr esto se ha tenido que modificar la librería Ax12 agregando procedimientos que permitieran establecer la temperatura y el torque máximo.\\
 
 En el archivo ax12.h se agregaron las siguientes definiciones de funciones:
 
 \begin{lstlisting}
 
 #define SetTemperature(id,temp) 
-		(ax12SetRegister(id,AX\_LIMIT\_TEMPERATURE, temp))
+		(ax12SetRegister(id,AX_LIMIT_TEMPERATURE, temp))
 #define SetAlarm(id)
-		(ax12SetRegister(id,AX\_ALARM\_SHUTDOWN, 0x04))
+		(ax12SetRegister(id,AX_ALARM_SHUTDOWN, 0x04))
 #define SetTorqueL(id, tor)
-		(ax12SetRegister2(id,AX\_MAX\_TORQUE\_L, tor)) 
+		(ax12SetRegister2(id,AX_MAX_TORQUE_L, tor)) 
 \end{lstlisting}
  
 
@@ -44,11 +44,11 @@ El archivo ax12.h viene con el paquete de la p\'agina oficial para el código de
 
 \textbf{Recomendaciones}  
 
-Para la instalación del sistema operativo Raspbian en la tarjeta Raspberry Pi se recomienda tener en cuenta que algunas tarjetas SD no funcionan adecuadamente. Si al prender la mini computadora solo se prende el led rojo, como ha ocurrido en este proyecto, se debe verificar que la tarjeta SD esta haciendo buen contacto con el puerto en que se conecta. Si se verifica esto último y aún asi no prende, es probable que se deba intentar con otra tarjeta SD. Al inicio de este proyecto se ha usado una tarjeta mini-SD de 32GB, como no ha funcionado se ha reemplazado con una tarjeta SD de 4GB. Esta última ha funcionado, sin embargo se ha quedado sin capacidad de almacenamiento al instalar OpenCV, por lo que se ha reemplazado nuevamente por una tarjeta SD de 16GB. Esta ha sido suficiente para instalar todo lo necesario con holgura.    
+Para la instalación del sistema operativo Raspbian en la tarjeta Raspberry Pi se recomienda tener en cuenta que algunas tarjetas SD no funcionan adecuadamente. Si al prender la mini computadora solo se prende el led rojo, como ha ocurrido en este proyecto, se debe verificar que la tarjeta SD esta haciendo buen contacto con el puerto en que se conecta. Si se verifica esto último y aún asi no prende, es probable que se deba intentar con otra tarjeta SD. Al inicio de este proyecto se ha usado una tarjeta mini-SD de 32GB clase 4, como no ha funcionado se ha reemplazado con una tarjeta SD de 4GB clase 4. Esta última ha funcionado, sin embargo se ha quedado sin capacidad de almacenamiento al instalar OpenCV, por lo que se ha reemplazado nuevamente por una tarjeta SD de 16GB clase 4. Esta ha sido suficiente para instalar todo lo necesario con holgura.    
 
 Como no se contaba con un monitor con entrada HDMI o VGA se debió buscar una solución alterna para observar la interfaz gráfica de Raspbian de la Raspberry Pi. Se utilizó el programa TightVNC para la visualización y control de la interfaz de Raspbian desde un computador remoto. Ha sido necesario poder observar lo que el robot percibe para llevar un control y una supervisión de su comportamiento. 
 
-Por último, sería conveniente advertir que para la instalación de ROS en la Raspberry Pi, la versión que se debe obtener es la más reciente, de lo contrario podrían ocurrir problemas de sincronización en la comunicación de las tarjetas.   
+Por último, sería conveniente advertir que para la instalación de ROS en la Raspberry Pi, la versión que se debe obtener es la más reciente, en este proyecto ha funcinado la versión 0.5.5 que se encuentra en el repositorio rosserial de ros-drivers en git \cite{rosDrivers}, de lo contrario podrían ocurrir problemas de sincronización en la comunicación de las tarjetas.   
 
 
 
