@@ -2,6 +2,7 @@ ARCHIVO = thesis
 
 main:
 	pdflatex $(ARCHIVO).tex
+	makeglossaries $(ARCHIVO)  
 	bibtex $(ARCHIVO).aux
 	pdflatex $(ARCHIVO).tex
 	pdflatex $(ARCHIVO).tex

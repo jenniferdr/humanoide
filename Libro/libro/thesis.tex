@@ -119,12 +119,7 @@
    backgroundcolor=\color{lightgrey}
 }
 
-% Crea el glosario
-\makeglossaries
-\makenomenclature
-% Incluye el glosario
-\input{apendices/glosario.tex}
-%\printglossaries
+
 
 % Para crear la hoja escaneada de las firmas
 \usepackage[absolute]{textpos}
@@ -141,7 +136,11 @@
 % Dimensiones de la pagina
 \setlength{\headheight}{15pt}
 \marginsize{3cm}{2cm}{2cm}{2cm}
-
+% Crea el glosario
+\makeglossaries
+\makenomenclature
+% Incluye el glosario
+\input{apendices/glosario.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%      end of preamble and start of document     %%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -149,6 +148,7 @@
 
 % Pagina de titulo
 \input{intro/portada.tex}
+
 
 % Pagina de acta final (vacio)
 %\input{acta.tex}
@@ -197,6 +197,11 @@
 
 % Crea la lista de codigos fuentes
 %\lstlistoflistings
+
+%Glosario
+
+%\glsaddall
+\printglossaries
 
 \clearpage
 
@@ -258,9 +263,9 @@
 %\input{apendices/glosario.tex}
 \input{desarrollo/5_consideraciones.tex}
 \clearpage
-\printglossary[type=\acronymtype]
-\printglossary
-\printnomenclature
+%\printglossary[type=\acronymtype]
+%\printglossary
+%\printnomenclature
 %\printglossary
 
 \end{document}
