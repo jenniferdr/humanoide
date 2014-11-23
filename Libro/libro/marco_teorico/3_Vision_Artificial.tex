@@ -27,7 +27,7 @@ amplia variedad de contextos como la eliminación del ruido, aislamiento de elem
 en una imagen.\cite{BookOpenCv}
 
 \subsubsection{Dilatación}
-La dilatación es una convulsión (algo que se le aplica a toda la imagen) entre alguna imagen (o región de una imagen), que llamaremos A y un núcleo que llamaremos B, el núcleo, que puede ser de cualquier forma o tamaño, tiene un solo punto de anclaje definido.Para mayor claridad el nucleo es esenciamente una matriz de tamaño fijo  de coeficientes numéricos junto con un punto de anclaje en dicha matriz, que normalmente se encuentra en el centro . Muy  a menudo, el núcleo es un pequeño cuadrado o disco sólido. El núcleo puede ser pensado como una plantilla  o mascara, y su efecto para la dilatación tal como un operador de máximo local sobre la imagen, se calcula el m\'aximo valor de los píxeles común a B y reemplazamos el píxel de la imagen en el punto de anclaje con ese valor máximo. Esto causa regiones brillantes dentro de una imagen y la hacen crecer. Este crecimiento es el origen del término `` operador de dilatación" \cite{BookOpenCv}. 
+La dilatación es una convulsión (algo que se le aplica a toda la imagen) entre alguna imagen (o región de una imagen), que llamaremos A y un núcleo que llamaremos B, el núcleo, que puede ser de cualquier forma o tamaño, tiene un solo punto de anclaje definido. Para mayor claridad el n\'ucleo es esencialmente una matriz de tamaño fijo  de coeficientes numéricos junto con un punto de anclaje en dicha matriz, que normalmente se encuentra en el centro . Muy  a menudo, el núcleo es un pequeño cuadrado o disco sólido. El núcleo puede ser pensado como una plantilla  o m\'ascara, y su efecto para la dilatación tal como un operador de máximo local sobre la imagen, se calcula el m\'aximo valor de los píxeles común a B y reemplazamos el píxel de la imagen en el punto de anclaje con ese valor máximo. Esto causa regiones brillantes dentro de una imagen y la hacen crecer. Este crecimiento es el origen del término `` operador de dilatación" \cite{BookOpenCv}. 
 
 \begin{figure}[hbtp]
 
@@ -37,8 +37,8 @@ La dilatación es una convulsión (algo que se le aplica a toda la imagen) entre
 \end{figure}
 
 \subsubsection{Erosión}
-La erosión es la operación inversa a la dilatación. Esta acción del operador es equivalente a la erosión el cálculo de un mínimo local sobre el área del núcleo. La erosión genera una nueva imagen a partir de la original, utilizando el siguiente algoritmo: como el núcleo B es analizado sobre la imagen, se calcula el mínimo valor del píxel superpuesto por B y se reemplaza el píxel de la imagen con un punto de anclaje de valor mínimo \cite{BookOpenCv}. 
-Vease en la figura \ref{fig:erosion}
+La erosión es la operación inversa a la dilatación. Esta acción del operador es equivalente a el cálculo de un mínimo local sobre el área del núcleo. La erosión genera una nueva imagen a partir de la original, utilizando el siguiente algoritmo: como el núcleo B es analizado sobre la imagen, se calcula el mínimo valor del píxel superpuesto por B y se reemplaza el píxel de la imagen con un punto de anclaje de valor mínimo \cite{BookOpenCv}. 
+V\'ease en la figura \ref{fig:erosion}
 
 \begin{figure}[hbtp]
 \centering

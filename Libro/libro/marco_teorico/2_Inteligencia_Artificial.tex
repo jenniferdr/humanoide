@@ -1,5 +1,6 @@
 \section{Inteligencia Artificial} \label{sect:Inteligencia_Artificial}
-La inteligencia artificial es un término relacionado con la computación que puede ser aplicado a la robótica para crear robots inteligentes. El término ``inteligencia artificial"  ha tenido varias definiciones. Ocho de ellas, las cuales nacieron a finales del siglo XX, se encuentran organizadas en \cite{peterNorvig} bajo cuatro categorías: pensar y actuar de forma humana, pensar y actuar de forma racional. De ellas se puede entender que la inteligencia artificial tiene que ver con lograr que una máquina o un robot resuelva problemas de manera inteligente, es decir, de manera que parezca que el razonamiento y comportamiento humano las ha resuelto.  
+La inteligencia artificial es un término relacionado con la computación que puede ser aplicado a la robótica para crear robots inteligentes. El término ``inteligencia artificial"
+ ha tenido varias definiciones. Ocho de ellas, las cuales nacieron a finales del siglo XX, se encuentran organizadas en \cite{peterNorvig} bajo cuatro categorías: pensar y actuar de forma humana, pensar y actuar de forma racional. De ellas se puede entender que la inteligencia artificial tiene que ver con lograr que una máquina o un robot resuelva problemas de manera inteligente, es decir, de manera que parezca que el razonamiento y comportamiento humano las ha resuelto.  
 
 \subsection{Aprendizaje de Máquinas}
 El aprendizaje de máquinas es un área de la inteligencia artificial que está relacionada con la pregunta de cómo construir programas de computadora que automáticamente mejoren con la experiencia. Se dice que un programa aprende de la experiencia E con respecto a una tarea T y desempeño P si el desempeño en la tarea T, medido por P, mejora con con la experiencia E \cite{Mitchell}.
@@ -23,6 +24,7 @@ En donde $r(s,a)$ es la recompensa dado según el resultado de haber tomado la a
 De esta forma se obtiene una definición recursiva,
 \[Q(s,a) = r + \gamma \max_{a'} Q(\delta(s,a),a')\]
 
-que puede ser calculada de manera iterativa, inicializando los valores de Q con números aleatorios \cite{Mitchell}. Como la función $\delta(s,a)$ no es conocida, es necesario poner en ejecución al agente para que, una vez tomada la acción, se observe el estado resultante que desencadenó y así poder calcular el resultado de la ecuación. La recompensa $r$ se puede definir en base que tan bueno es el estado resultante. 
+
+que puede ser calculada de manera iterativa, inicializando los valores de Q con números aleatorios \cite{Mitchell}. Como la función $\delta(s,a)$ no es conocida, es necesario poner en ejecución al agente para que, una vez tomada la acción, se observe el estado resultante que desencadenó y así poder calcular el resultado de la ecuación. La recompensa $r$ se puede definir en base  a qu\'e tan bueno es el estado resultante. 
 
 
