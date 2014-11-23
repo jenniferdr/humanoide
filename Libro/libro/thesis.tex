@@ -65,6 +65,7 @@
 
 % Opciones para los glosarios
 \usepackage[style=altlist,toc,numberline,acronym]{glossaries}
+\usepackage{glossaries}
 \usepackage{url}
 \usepackage{amsthm}
 \usepackage{amsmath}
@@ -119,10 +120,11 @@
 }
 
 % Crea el glosario
-%\makeglossaries
-%\makenomenclature
+\makeglossaries
+\makenomenclature
 % Incluye el glosario
-%\input{apendices/glosario.tex}
+\input{apendices/glosario.tex}
+%\printglossaries
 
 % Para crear la hoja escaneada de las firmas
 \usepackage[absolute]{textpos}
@@ -238,10 +240,10 @@
 \input{conclusiones/conclusiones.tex}
 
 % Crea el glosario
-\makeglossaries
-\makenomenclature
+%\makeglossaries
+%\makenomenclature
 % Incluye el glosario
-\input{apendices/glosario.tex}
+%\input{apendices/glosario.tex}
 
 % Establece las citas y bibliografia
 \bibliographystyle{alpha.bst}
@@ -255,7 +257,10 @@
 %\input{apendices/Archivos_intermedios.tex}
 %\input{apendices/glosario.tex}
 \input{desarrollo/5_consideraciones.tex}
-\printnomenclature
+\clearpage
+\printglossary[type=\acronymtype]
 \printglossary
+\printnomenclature
+%\printglossary
 
 \end{document}
