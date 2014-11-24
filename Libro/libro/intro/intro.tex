@@ -5,58 +5,58 @@
 
 \label{sect:justificacion}
 
+Futuro de la robotica
 
-RobotCup \cite{robotcup} es una competencia de fútbol iniciada desde 1997 donde contribuyen las áreas de robótica, investigación e inteligencia artificial. Entre sus categorías se encuentra RobotCup Soccer \cite{robotcupsoccer}, la cual consiste en la participación de pequeños robots humanoides que se enfrentan a otro equipo para jugar fútbol. El objetivo de esta competencia es lograr que en el año 2050 el equipo campeón logre vencer al ganador del año en la copa mundial de la FIFA (International Federation of Association Football). Algunas destrezas de robots con forma de humanos  son caminar, percibir el mundo y tomar alguna acción sobre él. Una de las más avanzadas muestras en el área es el robot ASIMO \cite{asimo}, creado por la compañía Honda, cuyos últimos avances incluyen la predicción de trayectoria de objetos para poder esquivarlos.
+Algunas destrezas de robots con forma de humanos son caminar, percibir el mundo y tomar alguna acción sobre él. Una de las más avanzadas muestras en el área es el robot ASIMO \cite{asimo}, creado por la compañía Honda, cuyos últimos avances incluyen la predicción de trayectoria de objetos para poder esquivarlos.  asimo y otros que si COG del MIT hay muchos (hay trabajos q muestran que la gente interactúa mejor con robots humanoides
 
-El desarrollo de esta investigaci\'on presenta un robot humanoide (Junny) aut\'onomo e inteligente de tamaño pequeño (38 cm de altura) cuyos objetivos estan basados en las reglas de la competencia RobotCup. En investigaciones con este mismo enfoque se puede encontrar el trabajo de Sven Behnke cuyo título es “See, walk, and kick: Humanoid robots start to play soccer” donde se describe la construcción del equipo de robots que participaron en la RobotCupSoccer en el a\~no 2006. El artículo cubre el diseño mecánico y electrónico, además el software utilizado para la percepción, control de comportamiento, comunicación y simulación de los robots \cite{paper}.
+RoboCup \cite{robotcup} es una competencia de robótica que ha iniciado en el año 1997 y se ha realizado de forma anual, siendo la más reciente celebrada en Brasil (2014). En ella se busca promover avances las áreas de robótica, inteligencia artificial, mecatrónica, entre otras. El enfoque principal de la competencia se centra en las cinco categorías agrupadas dentro de la liga RoboCup Soccer \cite{robotcupsoccer}, la cual consiste en la participación de robots humanoides que se enfrentan a otro equipo para jugar fútbol. Aunque existen otras ligas dentro de la RoboCup que no se involucran con el juego de fútbol, la meta final de la competencia es lograr que en el año 2050 el equipo campeón logre vencer al ganador del año en la copa mundial de la FIFA (International Federation of Association Football).
 
-Existen equipos que han participado durante varios años consecutivos en la competencia Robocup, logrando mejoras en sus diseños y técnicas; tal es el caso del equipo MRL que ha participado en los años 2011, 2012, 2013 y 2014 en la categoría “Humanoid League”, han iniciado con el hardware del robot DARwIn-OP y con el tiempo han modificado los componentes electrónicos para agregar eficiencia y estabilidad. Para el balance han utilizado un giróscopio y sensores de aceleración, y para la visión una cámara conectada por usb al CPU principal \cite{paper1}.
-
-En el desarrollo de habilidades más específicas con respecto a la competencia RobotCup Soccer, en el artículo de investigación de Seung-Joon Yi, Stephen McGill y Daniel D. Lee  \cite{paper2}, se refieren a dos posibles estrategias para el pateo de la pelota donde los factores fundamentales para un buen desempeño son la fuerza y la rapidez con que se patea, los investigadores ponen en pr\'actica dos estrategias de pateo en distintas circunstancias del juego basado en la cinemática y dinámica de equilibrar el cuerpo al momento de realizar el pateo.
-
-Se planteo como objetivo de este proyecto construir un prototipo de robot humanoide que sea capaz de detectar la cercanía de una pelota, acercarse a ella y patearla, reincorpor\'andose a la posicion de pie en caso de perder el equilibrio y caer mientras camina. Para cumplir con este objetivo se ha desglosado un conjunto de objetivos específicos que se describen a continuación: 
-
-\begin{enumerate}
-\item  Diseño y construcción de un humanoide con piezas del kit de robótica Bioloid Premium, sustituyendo su tarjeta controladora
-CM-510 por la tarjeta de software libre ArbotiX para controlar los motores Dynamixel y otros sensores.
-\begin{enumerate}
-\item Instalación y configuración de la tarjeta ArbotiX.
-\item Instalación y configuración de la tarjeta Raspberry Pi.
-\item Instalación y configuración de la cámara Raspberry Pi.
-\item Instalación de servomotores  para el movimiento de la cámara
-\item Instalación del giroscopio Gyro.
+Existen equipos que han participado durante varios años consecutivos en la competencia Robocup, logrando mejoras en sus diseños y técnicas; tal es el caso del equipo MRL que ha participado en los años 2011, 2012, 2013 y 2014 en la categoría “Humanoid League”, han iniciado con el hardware del robot DARwIn-OP y con el tiempo han modificado los componentes electrónicos para agregar eficiencia y estabilidad. Para el balance han utilizado un giroscopio y sensores de aceleración, y para la visión, una cámara conectada por gls{USB} al CPU principal \cite{paper1}.
  
-\end{enumerate}
+En el desarrollo de habilidades más específicas con respecto a la competencia RobotCup, se han propuesto dos posibles estrategias para el pateo de la pelota donde los factores fundamentales para un buen desempeño es la fuerza y la rapidez con que se patea \cite{paper2}. Las dos estrategias de pateo se ponen en práctica en distintas circunstancias del juego basado en la cinemática y dinámica de equilibrar el cuerpo al momento de patear.
+
+En el desarrollo de esta investigaci\'on se presenta un robot humanoide (Junny) aut\'onomo e inteligente de 38 cm de altura, cuyos objetivos están inspirados en la competencia RobotCup.
+
+Se planteó como objetivo principal construir un prototipo de robot humanoide que sea capaz de detectar la cercanía de una pelota, acercarse a ella y patearla, reincorpor\'andose a la posicion de pie en caso de perder el equilibrio y caer mientras camina. Para cumplir con este objetivo se ha desglosado un conjunto de objetivos específicos que se describen a continuación: 
+
+ %\begin{enumerate}
+%\item  Diseño y construcción de un humanoide con piezas del kit de robótica Bioloid Premium, sustituyendo su tarjeta controladora
+%CM-510 por la tarjeta de software libre ArbotiX para controlar los motores Dynamixel y otros sensores.
+%\begin{enumerate}
+%\item Instalación y configuración de la tarjeta ArbotiX.
+%\item Instalación y configuración de la tarjeta Raspberry Pi.
+%\item Instalación y configuración de la cámara Raspberry Pi.
+%\item Instalación de servomotores  para el movimiento de la cámara
+%\item Instalación del giroscopio Gyro.
+ %\end{enumerate}
+
+%\item Detección de la pelota
+%\begin{enumerate}
+%\item Captura de imagen con la cámara Raspberry Pi a través de la librería raspicam cv.
+%\item Procesamiento de la imagen para extraer información de la posición de la pelota con las librerías de OpenCV.
+%\end{enumerate}
 
 
-\item Detección de la pelota
-\begin{enumerate}
-\item Captura de imagen con la cámara Raspberry Pi a través de la librería raspicam cv.
-\item Procesamiento de la imagen para extraer información de la posición de la pelota con las librerías de OpenCV.
-\end{enumerate}
+%\item Búsqueda de la pelota y pateo de la misma. 
+%\begin{enumerate}
+%\item Creación de las poses necesarias para caminar, girar, levantarse y patear usando el software pypose.
+%\item Programación de transiciones de movimientos.
+%\item Control de servomotores para el movimiento de la cámara.
+%\item Establecer mecanismo de comunicación entre la tarjetas ArbotiX y Raspberry Pi.  
+%\item Programación de algoritmo de planificación de acciones que lleve al humanoide a acercarse a la pelota.
+%\item Detección de movimientos angulares bruscos que sugieran una caída, a través de la lectura del giroscopio
+%\item Identificación del momento en que la pelota se encuentre en una zona adecuada para patear.
+%\end{enumerate}
 
+%\item Aprendizaje
+%\begin{enumerate}
+%\item Implementaci\'on de aprendizaje por reforzamiento para determinar las acciones correctas en trayecto a la pelota
+%\item Utilizaci\'on de Aprendizaje Q como t\'ecnica para el aprendizaje por reforzamiento
+%\item Entrenamiento del robot 
+%\item Pruebas de desempeño del aprendizaje
 
-\item Búsqueda de la pelota y pateo de la misma. 
-\begin{enumerate}
-\item Creación de las poses necesarias para caminar, girar, levantarse y patear usando el software pypose.
-\item Programación de transiciones de movimientos.
-\item Control de servomotores para el movimiento de la cámara.
-\item Establecer mecanismo de comunicación entre la tarjetas ArbotiX y Raspberry Pi.  
-\item Programación de algoritmo de planificación de acciones que lleve al humanoide a acercarse a la pelota.
-\item Detección de movimientos angulares bruscos que sugieran una caída, a través de la lectura del giroscopio
-\item Identificación del momento en que la pelota se encuentre en una zona adecuada para patear.
-\end{enumerate}
+%\end{enumerate}
 
-\item Aprendizaje
-\begin{enumerate}
-\item Implementaci\'on de aprendizaje por reforzamiento para determinar las acciones correctas en trayecto a la pelota
-\item Utilizaci\'on de Aprendizaje Q como t\'ecnica para el aprendizaje por reforzamiento
-\item Entrenamiento del robot 
-\item Pruebas de desempeño del aprendizaje
-
-\end{enumerate}
-
-\end{enumerate}
-
+%\end{enumerate}
 
 La siguiente investigaci\'on se divide en 5 cap\'itulos. El cap\'itulo \ref{chap:marco_teorico} se refiere a una base te\'orica de conceptos e informaci\'on necesarias para el soporte del desarrollo de este proyecto que se encuentra en el cap\'itulo  \ref{chapter:introAdesarrollo} donde se explica todo el procedimiento realizado para llevar a cabo el producto. El apendice \ref{chapter:consideraciones} describe la serie de consideraciones importantes que se deben tener a la hora de reproducir esta investigaci\'on como los problemas claves y las soluciones que se les dio. En el cap\'itulo \ref{chapter:resultados} se encuentran  los experiementos y sus resultados. Por \'ultimo estan las conclusiones y recomendaciones en el capítulo \ref{chapter:conclusiones}. 
