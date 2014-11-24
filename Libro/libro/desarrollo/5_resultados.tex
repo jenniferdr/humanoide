@@ -166,7 +166,7 @@ Los resultados del resto de las combinaciones de par\'ametros ajustables se pres
 
 Los resultados de los entrenamientos arrojaron que la mejor combinaci\'on de fue $K = 3$ y $ \gamma = 0.1 $ que obtuvo un desempeño favorable del 90\% de las pruebas realizadas.
 
-Con el objetivo de lograr un mejor desempeño de Junny se inicializ\'o los valores de $Q(s,a)$ con valores de recompesas negativas para aquellas acciones cuyos efectos, en un estado particular, serían obviamente erroneos. Con esto se ayuda al aprendizaje del robot, disminuyendo la probabilidad de tomar acciones ineficientes. Adem\'as se aumentó el n\'umero de pruebas de entrenamiento a 30 con el mismo objetivo.
+Con el objetivo de lograr un mejor desempeño de Junny se inicializ\'o los valores de $Q(s,a)$ con valores de recompesas negativas para aquellas acciones cuyos efectos, en un estado particular, serían obviamente err\'oneos. Con esto se ayuda al aprendizaje del robot, disminuyendo la probabilidad de tomar acciones ineficientes. Adem\'as se aumentó el n\'umero de pruebas de entrenamiento a 30 con el mismo objetivo.
 
 Para medir el desempeño general de Junny, con respecto al último entrenamiento, se realizó una prueba de 15 ejecuciones colocando la pelota a distintas distancias. Los resultados de esta \'ultima pureba se presenta en el gr\'afico \ref{fig:mejor}. 
 
@@ -182,7 +182,7 @@ Para un análisis más profundo de los resultados, se estableci\'o el n\'umero e
 
 Para la última prueba se obtuvo una eficiencia de $0.72$. Sin embargo bajo los mismos parametros de $K = 3$ y $ \gamma = 0.1 $ con el resultado del entrenamiento con 20 pruebas (y valores de $Q(s,a)$ inicializados en cero) se obtuvo una eficiencia de $0.64$. Por lo tanto con el aumento de 10 pruebas de entrenamiento e inicialización de los valores $Q(s,a)$ se mejoró aproximadamente un 12\%. Este es un indicativo de que con mayor cantidad de pruebas este porcentaje mejorar\'a y la eficiencia aumentará.
 
-Así mismo al comparar los tiempos promedios, con respescto a la última prueba, se obtienen los siguientes resultados. El tiempo promedio de las pruebas cuyas acciones esperadas eran menor a 8 (estados mas cercanos) fue de 4m y 19s en contraste con el promedio del tiempo de las pruebas cuyas acciones esperadas eran mayores a 8 que fue 3m y 21s.
+Así mismo al comparar los tiempos promedios, con respecto a la última prueba, se obtienen los siguientes resultados. El tiempo promedio de las pruebas cuyas acciones esperadas eran menor a 8 (estados mas cercanos) fue de 4m y 19s en contraste con el promedio del tiempo de las pruebas cuyas acciones esperadas eran mayores a 8 que fue 3m y 21s.
 
  
 
