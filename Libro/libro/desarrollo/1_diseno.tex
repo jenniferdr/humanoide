@@ -1,19 +1,29 @@
 % Seccion de Diseno y construccion 
 
 %%\chapter{Integración de componentes}
-\label{chapter:diseno}
-\section{Diseño y Construcción}
+\section{Diseño y Construcci\'on}
+\label{diseno}
+El primer paso ha sido la construcci\'on de la parte física del robot. Para tal fin se procedió a la elección del diseño y ensamblaje de las piezas. En la sección \ref{subsection:diseno} se describe cada uno de los componentes utilizados para armar el robot, y luego, en la secci\'on \ref{subsection:construccion} se explica cómo se integraron esas piezas para obtener un humanoide adaptado a los objetivos de este proyecto.
+\subsection{Diseño}
+\label{subsection:diseno}
+%\label{subsection:componentes}
+%\subsection*{Componentes de hardware}
+A continuación se presenta una descripción de todos los elementos utilizados para la construcción del robot humanoide y sus decisiones de dise\~no. 
 
-El primer paso ha sido la construcci\'on de la parte física del robot. Para tal fin se procedió a la elección del diseño y ensamblaje de las piezas. En la sección \ref{subsection:componentes} se describe cada uno de los componentes utilizados para armar el robot, y luego, en la secci\'on \ref{subsection:construccion} se explica cómo se integraron esas piezas para obtener un humanoide adaptado a los objetivos de este proyecto.
+\section*{Cuerpo del Robot}
 
-\label{subsection:componentes}
-\subsection{Componentes de hardware}
-A continuación se presenta una descripción de todos los elementos utilizados para la construcción del robot humanoide. 
+Las opciones para el cuerpo de Junny eran: Piezas LEGO, la construcci\'on y dise\~no mec\'anico desde cero y la opci\'on de piezas del kit Bioloid. Estas opciones corresponden a los recursos disponibles. Tanto LEGO como la opci\'on de realizarlo desde cero implicaban mas tiempo del que disponiamos, adem\'as que realizarlo en su totalidad con dise\~no mec\'anico y electr\'onico implicaba conocimiento mas avanzados en el \'area de mecatr\'onica que no eran el objetivo del proyecto. Por lo tanto la opci\'on m\'as factible para el cumplimiento de los objetivos es la construcci\'on con el kit Bioloid que es un kit de robótica con piezas prefabricadas que permite armar diferentes tipos de robot pero principalmente humanoides. Su empaque se puede observar en la figura ~\ref{fig:kit}. El fabricante, ROBOTIS, incluye un manual con varios modelos de robots con instrucciones de ensamblaje. Provee una tarjeta controladora, CM-510, a la que se conectan los motores Dynamixel y algunos sensores que se programan a través de la interfaz de ‘RoboPlus’\cite{robotics}. 
 
 \begin{itemize}
-\item Bioloid Premium kit: Es un kit de robótica con piezas modulares que permite armar diferentes tipos de robot pero principalmente humanoides. Su empaque se puede observar en la figura ~\ref{fig:kit}. El fabricante, ROBOTIS, incluye un manual con varios modelos de robots con instrucciones de ensamblaje. Provee una tarjeta controladora, CM-510, a la que se conectan los motores Dynamixel y algunos sensores que se programan a través de la interfaz de ‘RoboPlus’\cite{robotics}. 
+\item Arbotix: El controlador ArbotiX es una solución de control avanzado para manejar algunos tipos de servos Dynamixel y robots basados en Bioloid. Incorpora un microcontrolador \gls{AVR}, radio inalámbrica XBEE, conductores de motor dual, y cabeceras de estilo servo de 3 pines para entrada/salida digital y analógica \cite{arbotix}.
 
 \end{itemize}
+
+%\begin{figure}[hbtp]
+%\centering
+%\includegraphics[scale=0.5]{imagenes/ARBOTIX.JPG}
+%\caption{Tarjeta controladora ArbotiX}
+%\end{figure}
 
 \begin{figure}[hbtp]
 \centering
@@ -50,16 +60,7 @@ A continuación se presenta una descripción de todos los elementos utilizados p
 \label{fig:gyro}
 \end{figure}
 
-\begin{itemize}
-\item Arbotix: El controlador ArbotiX es una solución de control avanzado para manejar algunos tipos de servos Dynamixel y robots basados en Bioloid. Incorpora un microcontrolador \gls{AVR}, radio inalámbrica XBEE, conductores de motor dual, y cabeceras de estilo servo de 3 pines para entrada/salida digital y analógica \cite{arbotix}.
 
-\end{itemize}
-
-%\begin{figure}[hbtp]
-%\centering
-%\includegraphics[scale=0.5]{imagenes/ARBOTIX.JPG}
-%\caption{Tarjeta controladora ArbotiX}
-%\end{figure}
 
 \begin{itemize}
 \item FTDI (Future Technology Devices International) : Es una tarjeta controladora  (figura ~\ref{fig:ftdi}) que ofrece el servicio de conversión de  datos de USB a UART. Permite la comunicación entre diferentes dispositivos \cite{ftdi}.

@@ -1,20 +1,21 @@
 \section{Inteligencia Artificial} \label{sect:Inteligencia_Artificial}
-La inteligencia artificial es un término relacionado con la computación que puede ser aplicado a la robótica para crear robots inteligentes. El término ``inteligencia artificial"
+La inteligencia artificial es un término relacionado con la computación que puede ser aplicado a la robótica para crear robots inteligentes. El término ``inteligencia artificial"\:
  ha tenido varias definiciones. Ocho de ellas, las cuales nacieron a finales del siglo XX, se encuentran organizadas en \cite{peterNorvig} bajo cuatro categorías: pensar y actuar de forma humana, pensar y actuar de forma racional. De ellas se puede entender que la inteligencia artificial tiene que ver con lograr que una máquina o un robot resuelva problemas de manera inteligente, es decir, de manera que parezca que el razonamiento y comportamiento humano las ha resuelto.  
 
 \subsection{Aprendizaje de Máquinas}
-El aprendizaje de máquinas es un área de la inteligencia artificial que está relacionada con la pregunta de cómo construir programas de computadora que automáticamente mejoren con la experiencia. Se dice que un programa aprende de la experiencia E con respecto a una tarea T y desempeño P si el desempeño en la tarea T, medido por P, mejora con con la experiencia E \cite{Mitchell}.
+
+El aprendizaje de máquinas es un área de la inteligencia artificial enfocados en lograr construir programas de computadora que automáticamente mejoren con la experiencia. Se definen estos programas seg\'un \cite{Mitchell} "Se dice que un programa aprende de la experiencia E con respecto a una tarea T y desempeño P si el desempeño en la tarea T, medido por P, mejora con con la experiencia E" .
 
 \subsection{Aprendizaje por reforzamiento}
-El aprendizaje por reforzamiento es un tipo de aprendizaje de máquinas que se basa en un sistema de recompensas positivas y negativas. Las recompensas se pueden dar en cada estado o una sola vez al llegar al estado final.
+El aprendizaje por reforzamiento es un tipo de aprendizaje de máquinas que se basa en un sistema de recompensas positivas y negativas. Para otorgar las recompensas hay dos maneras una en cada estado o una sola vez al llegar al estado final. Un estado se define como una configuraci\'on particular de la representaci\'on del mundo con caracter\'sticas relevantes para el problema.
 
-El objetivo del agente es aprender de las recompensas para escoger la secuencia de acciones que produzca la mayor recompensa acumulada. \cite{Mitchell}
+El agente debe escoger una secuencia de acciones y dependiendo de su recompensas aprender si es favorable o no la aplicaci\'on de esas acciones en ese estado.
 
 El agente existe en un entorno descrito por algunos estados S. Puede ejecutar un conjunto de acciones A. Cada vez que ejecuta una acción $a_t$ en algún estado $s_t$ el agente recibe una recompensa $r_t$. El objetivo es aprender una política $\pi$ : S $\to$ A que maximice la suma esperada de esas recompensas con descuento exponencial de las recompensas futuras. \cite{Mitchell} El resultado de tomar las acciones puede ser determinista o no, en el caso de este proyecto no es determinista, es decir, existen porcentajes de probabilidad de pasar a un estado u otro al tomar una acción en un estado en particular.
   
 \subsection{Q- learning}\label{subsec:Qlearning}
 
-Es un método de aprendizaje por reforzamiento que, dado un estado, compara las utilidades esperadas de las posibles acciones a tomar sin necesidad de saber el estado resultante, por tanto no se necesita tener un modelo del entorno\cite{peterNorvig} (esto es, cómo funciona el ambiente o que estado se alcanza como consecuencia de tomar cada acción).
+Es un método de aprendizaje por reforzamiento que, dado un estado, compara las utilidades esperadas de las posibles acciones a tomar sin necesidad de saber el estado resultante, por tanto no se necesita tener un modelo del entorno \cite{peterNorvig} (esto es, cómo funciona el ambiente o qu\'e estado se alcanza como consecuencia de tomar cada acción).
 
 La forma de aprender la política $\pi$ : S $\to$ A es de forma indirecta, a través de la función $Q(s,a)$. La función representa el valor de la máxima recompensa acumulada, con descuento de las recompensas futuras, que puede ser alcanzada desde el estado $s$ y aplicando $a$ como la primera acción \cite{Mitchell}. La ecuación se puede escribir como:
 \[Q(s,a) = r(s,a) + \gamma V^*(\delta(s,a))\]
@@ -24,7 +25,7 @@ En donde $r(s,a)$ es la recompensa dado según el resultado de haber tomado la a
 De esta forma se obtiene una definición recursiva,
 \[Q(s,a) = r + \gamma \max_{a'} Q(\delta(s,a),a')\]
 
-
+\noindent
 que puede ser calculada de manera iterativa, inicializando los valores de Q con números aleatorios \cite{Mitchell}. Como la función $\delta(s,a)$ no es conocida, es necesario poner en ejecución al agente para que, una vez tomada la acción, se observe el estado resultante que desencadenó y así poder calcular el resultado de la ecuación. La recompensa $r$ se puede definir en base  a qu\'e tan bueno es el estado resultante. 
 
 
