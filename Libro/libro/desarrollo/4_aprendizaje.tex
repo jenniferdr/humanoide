@@ -1,7 +1,18 @@
 
 \section{Aprendizaje}\label{aprendizaje}
+En aprendizaje de m\'aquinas el aprendizaje por refuerzamiento es una forma de plantear el problema de inteligencia completamente distinta a el aprendizaje supervisado o no supervisado donde generalmente esta basado en ejemplos y posees un par entrada/salida, el onjetivo del agente es aprender la funci\'on que haya producido esos pares. Sim embargo no siempre existe un supervisor que pueda verificar los resultados otorgados.
+Existen ambientes en la vida real donde al agente no se le proporciona ni el supervisor ni los ejemplos, en donde se comienza sin contar con un modelo del ambiente o una funci\'on de utilidad. En estos casos la aplicaci\'on del aprendizaje por reforzamiento es la mas indicada \cite{peterAndNorvig}.
+
+La t\'ecnica de refuerzo es aplicada en la vida diaria constantemente pues esta basada en comportamientos, es la forma en que se entrena a una mascota, es la manera en que un bebe logra aprender a sujetar objetos, esos son ejemplos de los muchos en los que en la realidad aparece esta t\'ecnica de aprendizaje.
+
+Cuando es aplicada a inteligencia artificial las bases son las mismas, obviamente a un robot no se le podr\'a dar una galleta literalmente como premio de su buena acci\'on, quitarle la televisi\'on como castigo.
  
-En el área de inteligencia artificial, asociada a robótica, existen variadas técnicas que permiten que un robot pueda aprender a realizar alguna tarea. En este caso particular se utiliz\'o la técnica de aprendizaje por reforzamiento que consiste en dar recompensas positivas o negativas dependiendo del desempeño del robot.
+Existen varias estrategias que permiten otorgar recompensas positivas o negativas pertinenctes al un agente en este caso un robot, con ellas ir moldealdo el comportamiento a uno que se considere correcto.
+
+Un algoritmo para aprender por reforzamiento es aprendizaje-Q, que es el utilizado para que Junny aprenda a acercarse a la pelota.
+ 
+%En el área de inteligencia artificial, asociada a robótica, existen variadas técnicas que permiten que un robot pueda aprender a realizar alguna tarea. En este caso particular se utiliz\'o la técnica de aprendizaje por reforzamiento que consiste en dar recompensas positivas o negativas dependiendo del desempeño del robot.
+
 
 Según \cite{Mitchell} todo aprendizaje se define por la realización de una tarea $T$, cuyo desempeño medido por $D$, mejora con la experiencia $E$. En la investigación presente la tarea $T$ es aprender cuál es el mejor conjunto de ``acciones de movimiento" que se debe tomar con la finalidad de acercarse a la pelota. La experiencia $E$ se da a través un conjunto de pruebas, en las que Junny debe buscar la pelota y posicionarse frente a ella. El desempeño $D$ se mide con respecto a si el robot logra posicionar la pelota en el área de pateo y cuántas acciones de movimiento son necesarias para lograrlo.
 
