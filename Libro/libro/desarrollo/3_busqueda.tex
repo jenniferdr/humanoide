@@ -82,11 +82,11 @@ Los micro servomotores azules que aparecen en la imagen \ref{posicionesCam} se c
 
 La representación del mundo de Junny se basa en función de la posición de la pelota con respecto al él. 
 
-La cámara tiene 6 (2x3) posibles posiciones, como se muestra en la figura ~\ref{posicionesCam} y desde cada posición de la cámara se obtiene una imagen. La detección de la pelota en alguna de esas imagenes brinda una orientación sobre la ubicación de la pelota. Si se detecta la pelota, por ejemplo, cuando la cámara se encuentra en alguna de las posiciones de la derecha, es un indicativo de que la la pelota se encuentra a la derecha y que si el robot gira se podría posicionar frente a ella. 
+La cámara tiene 6 (2x3) posibles posiciones, como se muestra en la figura ~\ref{posicionesCam} y desde cada posición de la cámara se obtiene una imagen. La detección de la pelota en alguna de esas im\'agenes brinda una orientación sobre la ubicación de la pelota. Si se detecta la pelota, por ejemplo, cuando la cámara se encuentra en alguna de las posiciones de la derecha, es un indicativo de que la la pelota se encuentra a la derecha y que si el robot gira se podría posicionar frente a ella. 
 
 Se ha decidido discretizar las posibles posiciones de la pelota por regiones. Estas regiones se muestran enumeradas en la fugura ~\ref{divisionCam}. Cada cuadro blanco demarcado por líneas negras representa la imagen captada en una posición fija de la cámara. 
 
-Las imagenes de la cámara en la posición central superior e inferior son las más importantes y prioritarias, pues si la pelota se detecta en ellas significa que el robot está cerca de poder patearla. Estas dos imagenes se dividen en subregiones para tener mayor precisión en las acciones que Junny deba tomar.
+Las im\'agenes de la cámara en la posición central superior e inferior son las más importantes y prioritarias, pues si la pelota se detecta en ellas significa que el robot está cerca de poder patearla. Estas dos im\'agenes se dividen en subregiones para tener mayor precisión en las acciones que Junny deba tomar.
 
 Cuando, por ejemplo, la pelota se encuentra del lado derecho en el cuadro central inferior (región 5) el robot debería girar a la derecha para situarse de frente a la pelota. El área de pateo se encuentra en las regiones 1 y 2.
 
