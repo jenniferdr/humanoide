@@ -7,8 +7,8 @@
 
 En este proyecto se describe la construción de Junny, un robot humanoide autónomo e inteligente de $38 cm $ de alto, capaz de detectar la ubicación de una pelota y acercarse a ella para patearla con dirección al arco. Sus metas están inspiradas en la liga RoboCup Soccer de la competencia RoboCup.
 
-Junny ha sido construido con las piezas del kit Bioloid Premium del fabricante Robotis %\cite{robotics} 
-.Del kit se ha excluido la tarjeta CM-510 para sustituirla por la tarjeta controladora Arbotix, la cual controla los 16 motores Dynamixel Ax-12+ que permiten el movimiento de las extremidades del robot. Se ha incluido un mini computador Raspberry Pi, con su cámara, %\cite{raspberrycam},
+Junny ha sido construido con las piezas del kit Bioloid Premium del fabricante Robotis.%\cite{robotics}
+ Del kit se ha excluido la tarjeta CM-510 para sustituirla por la tarjeta controladora Arbotix, la cual controla los 16 motores Dynamixel Ax-12+ que permiten el movimiento de las extremidades del robot. Se ha incluido un mini computador Raspberry Pi, con su cámara, %\cite{raspberrycam},
 de esta forma el robot ha adquirido la posibilidad detectar la posición de la pelota y el arco de forma autónoma. Se añadieron dos micro servomotores analógicos para ejecutar el movimiento de la c\'amara, estos son controlados por la tarjeta Arbotix. 
 
 En la Raspberry Pi se usa el lenguaje C++ y se ejecuta un solo programa encargado de detectar la posición de la pelota y decidir qué movimientos son necesarios para llegar a ella. La manera de elegir las acciones se ha realizado con aprendizaje por reforzamiento. Para captar la imagen de la cámara se ha utilizado la librería raspicam\_cv %\cite{camara}. 
@@ -21,7 +21,7 @@ La Arbotix, además de controlar los motores para ejecutar los movimientos desea
 Todos estos componentes deben ser coordinados para que se logre cumplir la tarea de seguir y patear la pelota. Por ello se hizo necesaria la comunicación entre la Arbotix y la Raspberry Pi. La herramienta 
 empleada para ello ha sido el \gls{framework} ROS (Ros Operating System). %\cite{ros}. 
 
-Finalmente se obtivieron los siguientes resultados, un robot aut\'onomo e inteligente que es capaz de reconocer la pelota, desplazarse hasta ella y patearla. Con la aplicaci\'on de aprendizaje por reforzamiento, se obtuvo un 100\% de acertividad, con una tasa de eficiencia de $0.72$. Los experimentos completos con la orientaci\'on al arco obtuvo un 53 \% de orientaciones correctas con resultado de gol.
+Finalmente se obtivieron los siguientes resultados, un robot aut\'onomo e inteligente que es capaz de reconocer la pelota, desplazarse hasta ella y patearla. Con la aplicaci\'on de aprendizaje por reforzamiento, se obtuvo un 100\% de acertividad, con una tasa de eficiencia de $0.72$. De los experimentos completos con la orientaci\'on al arco se obtuvo un 53 \% de orientaciones correctas con resultado de gol.
 
 \textbf{Palabras claves}: Rob\'otica, Aprendizaje por reforzamiento, Humanoide, ROS, Arbotix.
 
