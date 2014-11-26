@@ -7,15 +7,19 @@
 
 En este proyecto se describe la construción de Junny, un robot humanoide autónomo e inteligente de $38 cm $ de alto, capaz de detectar la ubicación de una pelota y acercarse a ella para patearla con dirección al arco. Sus metas están inspiradas en la liga RoboCup Soccer de la competencia RoboCup.
 
-Junny ha sido construido con las piezas del kit Bioloid Premium del fabricante Robotis \cite{robotics}. Del kit se ha excluido la tarjeta CM-510 para sustituirla por la tarjeta controladora Arbotix, la cual controla los 16 motores Dynamixel Ax-12+ que permiten el movimiento de las extremidades del robot. Se ha incluido un mini computador Raspberry Pi, con su cámara \cite{raspberrycam}, de esta forma el robot ha adquirido la posibilidad detectar la posición de la pelota de forma autónoma. Se añadieron dos micro servomotores analógicos para ejecutar el movimiento de la c\'amara, estos son controlados por la tarjeta Arbotix. 
+Junny ha sido construido con las piezas del kit Bioloid Premium del fabricante Robotis %\cite{robotics} 
+.Del kit se ha excluido la tarjeta CM-510 para sustituirla por la tarjeta controladora Arbotix, la cual controla los 16 motores Dynamixel Ax-12+ que permiten el movimiento de las extremidades del robot. Se ha incluido un mini computador Raspberry Pi, con su cámara, %\cite{raspberrycam},
+de esta forma el robot ha adquirido la posibilidad detectar la posición de la pelota de forma autónoma. Se añadieron dos micro servomotores analógicos para ejecutar el movimiento de la c\'amara, estos son controlados por la tarjeta Arbotix. 
 
-En la Raspberry Pi se usa el lenguaje C++ y se ejecuta un solo programa encargado de detectar la posición de la pelota y decidir qué movimientos son necesarios para llegar a ella. La manera de elegir las acciones se ha realizado con aprendizaje por reforzamiento. Para captar la imagen de la cámara se ha utilizado la librería raspicam\_cv \cite{camara}. Para filtrar y procesar la imagen se ha usado la segmentaci\'on por regiones para la detecci\'on de la pelota, con ayuda de las librerías OpenCv \cite{opencv}. 
+En la Raspberry Pi se usa el lenguaje C++ y se ejecuta un solo programa encargado de detectar la posición de la pelota y decidir qué movimientos son necesarios para llegar a ella. La manera de elegir las acciones se ha realizado con aprendizaje por reforzamiento. Para captar la imagen de la cámara se ha utilizado la librería raspicam\_cv %\cite{camara}. 
+ Para filtrar y procesar la imagen se ha usado la segmentaci\'on por regiones para la detecci\'on de la pelota, con ayuda de las librerías OpenCv. % \cite{opencv}. 
 
-La Arbotix, además de controlar los motores para ejecutar los movimientos deseados, se encarga de monitorizar la velocidad angular del robot, para ello usa el sensor Gyro de Robotis \cite{gyro}. Con esta información Junny puede deducir si se ha caído y levantarse. 
+La Arbotix, además de controlar los motores para ejecutar los movimientos deseados, se encarga de monitorizar la velocidad angular del robot, para ello usa el sensor Gyro de Robotis %\cite{gyro} 
+. Con esta información Junny puede deducir si se ha caído y levantarse. 
 % Si detecta un desbalance de un cierto porcentaje 
 
 Todos estos componentes deben ser coordinados para que se logre cumplir la tarea de seguir y patear la pelota. Por ello se hizo necesaria la comunicación entre la Arbotix y la Raspberry Pi. La herramienta 
-empleada para ello ha sido el \gls{framework} ROS (Ros Operating System) \cite{ros}. 
+empleada para ello ha sido el \gls{framework} ROS (Ros Operating System). %\cite{ros}. 
 
 Finalmente se obtivieron los siguientes resultados, un robot aut\'onomo e inteligente que es capaz de reconocer la pelota, desplazarse hasta ella y patearla. Con la aplicaci\'on de aprendizaje por reforzamiento, se obtuvo un 100\% de acertividad, con una tasa de eficiencia de $0.72$.
 
