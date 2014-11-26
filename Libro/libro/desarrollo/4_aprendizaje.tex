@@ -69,7 +69,13 @@ La distancia de una región con respecto al área de pateo, se define con la fun
 \end{figure}
 
 Junny gana una recompensa positiva cuando, con una acción, la pelota pasa de una región de mayor valor (lejana) a una de menor valor (más cercana). Si la pelota se mantiene en la misma región obtiene recompensa 0. De lo contrario obtiene una recompensa negativa. La ecuación se define como:
-\[R(s,a,s') = \dfrac{d(s)-d(s')}{10} \]
+
+
+
+\begin{equation}
+R(s,a,s') = \dfrac{d(s) - d(s')}{10}
+\end{equation}
+
 
 El rango de valores para la recompensa se encuentra entre -1 y 1. 
 
@@ -78,7 +84,12 @@ El rango de valores para la recompensa se encuentra entre -1 y 1.
 
 Se entiende que dado un estado $s$ se tienen 7 posibles acciones $\{a_1, a_2, ... a_7\}$ que, en el entrenamiento del robot, él aprende cuál es la mejor a realizar según el estado en el que se encuentra. A mayor valor de $Q(s,a)$ mejor es la acción $a$. Si siempre se toma el máximo valor se favorece la explotación. Si se toman acciones aleatorias se favorece la exploración. Para que el aprendizaje obtenga buenos resultados se debe tener un equilibrio entre la exploración y la explotación. 
 
-Para variar entre la explotación y la exploración se utiliz\'o la función de probabilidad definida como  \[P(a_{i} | s) = \dfrac{k^{Q(s,a_{i})}}{\sum_{j}k^{Q(s,a_{j})}}  \] 
+Para variar entre la explotación y la exploración se utiliz\'o la función de probabilidad definida como  %\[P(a_{i} | s) = \dfrac{k^{Q(s,a_{i})}}{\sum_{j}k^{Q(s,a_{j})}}  \] 
+
+
+\begin{equation}
+ P(a_{i} | s) = \dfrac{k^{Q(s,a_{i})}}{\sum_{j}k^{Q(s,a_{j})}}
+\end{equation}
 
 Con valores diferentes de $k$ para cada conjunto de pruebas, como se explica en el capítulo \ref{chapter:resultados}.  
  
@@ -87,6 +98,10 @@ Con valores diferentes de $k$ para cada conjunto de pruebas, como se explica en 
 
 La actualizaci\'on de Q(s,a) se define por la siguiente formula 
  
+\begin{equation}
+Q (s,a) = r + {\gamma\max_{a'}} Q(\delta(s ,a ) , a') 
+\end{equation} 
 \[Q(s,a) = r + \gamma \max_{a'} Q(\delta(s,a),a')\]
+
 
 Donde $r$ y $\max_{a'} Q(\delta(s,a),a')$ se explican en la subsecci\'on \ref{subsec:Qlearning} el factor $\gamma$ es el factor de descuento que varia de \[   0 \leq  \gamma < 1 \] este par\'ametro es arbitrario y se debe ajustar durante el aprendizaje, en el cap\'itulo \ref{chapter:resultados}  se presentan los $\gamma$ utilizados para los entrenamientos.
