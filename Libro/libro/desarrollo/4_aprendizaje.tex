@@ -24,7 +24,7 @@ El algoritmo para Q-learning se adapta a problemas configurados como procesos de
 
 En un MDP, un agente representa su mundo a través de un conjunto de estados y tiene un conjunto de acciones que puede ejecutar. Cada vez que el agente identifica el estado en el que se encuentra y escoge una acción para tomar, dependiendo del resultado, este recibe una recompensa determinada.
 
-En la sección \ref{estados} se define el conjunto de estados que conforman el mundo de Junny. En la secci\'on \ref{acciones} se dan a conocer las posibles acciones definidas y en la secci\'on \ref{recompensas} se define la ecuaci\'on para calcular las recompensas.   
+En la sección \ref{estados} se define el conjunto de estados que conforman el mundo de Junny. En la secci\'on \ref{sec:acciones} se dan a conocer las posibles acciones definidas y en la secci\'on \ref{recompensas} se define la ecuaci\'on para calcular las recompensas.   
 
 \subsubsection{Estados}\label{estados}
 
@@ -101,7 +101,7 @@ La actualizaci\'on de Q(s,a) se define por la siguiente formula
 \begin{equation}
 Q (s,a) = r + {\gamma\max_{a'}} Q(\delta(s ,a ) , a') 
 \end{equation} 
-\[Q(s,a) = r + \gamma \max_{a'} Q(\delta(s,a),a')\]
+
 
 
 Donde $r$ y $\max_{a'} Q(\delta(s,a),a')$ se explican en la subsecci\'on \ref{subsec:Qlearning} el factor $\gamma$ es el factor de descuento que varia de \[   0 \leq  \gamma < 1 \] este par\'ametro es arbitrario y se debe ajustar durante el aprendizaje, en el cap\'itulo \ref{chapter:resultados}  se presentan los $\gamma$ utilizados para los entrenamientos.
