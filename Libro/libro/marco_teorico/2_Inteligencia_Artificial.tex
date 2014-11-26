@@ -4,22 +4,23 @@ La inteligencia artificial es un término relacionado con la computación que pu
 
 \subsection{Aprendizaje de Máquinas}
 
-El aprendizaje de máquinas es un área de la inteligencia artificial enfocados en lograr construir programas de computadora que automáticamente mejoren con la experiencia. Se definen estos programas seg\'un \cite{Mitchell} "Se dice que un programa aprende de la experiencia E con respecto a una tarea T y desempeño P si el desempeño en la tarea T, medido por P, mejora con la experiencia E" .
+El aprendizaje de máquinas es un área de la inteligencia artificial enfocada en lograr construir programas de computadora que automáticamente mejoren con la experiencia. "Se dice que un programa aprende de la experiencia E con respecto a una tarea T y desempeño P si el desempeño en la tarea T, medido por P, mejora con la experiencia E"  \cite{Mitchell}.
 
 \subsection{Aprendizaje por reforzamiento}
-El aprendizaje por reforzamiento es un tipo de aprendizaje de máquinas que se basa en un sistema de recompensas positivas y negativas. Para otorgar las recompensas hay dos maneras una en cada estado o una sola vez al llegar al estado final. Un estado se define como una configuraci\'on particular de la representaci\'on del mundo con caracter\'sticas relevantes para el problema.
+El aprendizaje por reforzamiento es un tipo de aprendizaje de máquinas que se basa en un sistema de recompensas positivas y negativas. Existen dos maneras en las que se puede otorgar las recompensas, darla cada vez que se llega a un estado o una sola vez al llegar al estado final. Un estado se define como la configuraci\'on de un conjunto de características, reelevantes para el problema, percibidas del mundo en un momento particular.
 
-El agente debe escoger una secuencia de acciones y dependiendo de su recompensas aprender si es favorable o no la aplicaci\'on de esas acciones en ese estado.
+El agente existe en un entorno conpuesto por un conjunto de estados S. En cada estado puede ejecutar un una acción del conjunto de acciones A. Cada vez que ejecuta una acción en algún estado el agente recibe una recompensa. El objetivo es aprender una política $\pi$:S$\to$A que maximice la suma esperada de esas recompensas con descuento exponencial de las recompensas futuras \cite{Mitchell}. Es decir, aprender cuál es la mejor acción en cada estado.
 
-El agente existe en un entorno descrito por algunos estados S. Puede ejecutar un conjunto de acciones A. Cada vez que ejecuta una acción $a_t$ en algún estado $s_t$ el agente recibe una recompensa $r_t$. El objetivo es aprender una política $\pi$ : S $\to$ A que maximice la suma esperada de esas recompensas con descuento exponencial de las recompensas futuras. \cite{Mitchell} El resultado de tomar las acciones puede ser determinista o no, en el caso de este proyecto no es determinista, es decir, existen porcentajes de probabilidad de pasar a un estado u otro al tomar una acción en un estado en particular.
+El resultado de tomar las acciones puede ser determinista o no, en el caso de este proyecto no es determinista, es decir, existen porcentajes de probabilidad de pasar a un estado u otro al tomar una acción en un estado en particular.
+%El agente debe escoger una acción en cada estado y dependiendo de sus recompensas, aprender si es favorable o no la aplicaci\'on de esas acciones en esos estados.
   
 \subsection{Q- learning}\label{subsec:Qlearning}
 
-Es un método de aprendizaje por reforzamiento que en un estado, compara las utilidades esperadas de las posibles acciones a tomar sin necesidad de saber el estado resultante, por tanto no se necesita tener un modelo del entorno que rodea al robot \cite{peterNorvig} (esto es, cómo funciona el ambiente o qu\'e estado se alcanza como consecuencia de tomar cada acción).
+Es un método de aprendizaje por reforzamiento que consiste en comparar las utilidades esperadas de las posibles acciones a tomar sin necesidad de saber el estado resultante, por tanto no se necesita tener un modelo del entorno \cite{peterNorvig} (esto es, cómo funciona el ambiente o qu\'e estado se alcanza como consecuencia de tomar cada acción).
 
-La forma de aprender la política $\pi$ : S $\to$ A es de forma indirecta, a través de la función $Q(s,a)$. La función representa el valor de la máxima recompensa acumulada, con descuento de las recompensas futuras, que puede ser alcanzada desde el estado $s$ y aplicando $a$ como la primera acción \cite{Mitchell}. La ecuación se puede escribir como:
+La forma de aprender la política $\pi$:S$\to$A es de forma indirecta, a través de la función $Q(s,a)$. La función representa el valor de la máxima recompensa acumulada, con descuento de las recompensas futuras, que puede ser alcanzada comenzando desde el estado $s$ y aplicando $a$ como la primera acción \cite{Mitchell}. La ecuación se puede escribir como:
 \[Q(s,a) = r(s,a) + \gamma V^*(\delta(s,a))\]
-En donde $r(s,a)$ es la recompensa dado según el resultado de haber tomado la acción $a$ en el estado $s$. $\delta(s,a)$ es el estado obtenido luego de tomar la acción $a$ en el estado $s$. $\gamma$ es el descuento que se le aplica a las recompensas futuras. La funcion $V^*(s')$ genera el máximo valor $Q$ que puede ser alcanzado desde el estado $s'$. Esto es,
+En donde $r(s,a)$ es la recompensa dada según el resultado de haber tomado la acción $a$ en el estado $s$. $\delta(s,a)$ es el estado obtenido luego de tomar la acción $a$ en el estado $s$. $\gamma$ es el descuento que se le aplica a las recompensas futuras. La funcion $V^*(s')$ genera el máximo valor $Q$ que puede ser alcanzado desde el estado $s'$. Esto es,
 \[V^*(s')= \max_{a'} (Q(s',a'))\] 
 
 De esta forma se obtiene una definición recursiva,
