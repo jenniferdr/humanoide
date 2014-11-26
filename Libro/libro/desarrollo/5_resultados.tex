@@ -33,9 +33,10 @@ Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones
 %\caption{Segunda etapa: 300 ejecuciones de acciones combinadas}
 %\label{fig:etp2}
 %\end{figure}
-Para determinar la presi\'on y desempe\~no de la detecci\'ion de la pelota se realizaron experimentos de enfoque r\'apido los cuales consistieron en la colocaci\'on de la pelota a una distancia fija, mover la c\'amara rapidamente y regresar a la posici\'on y observar si ubicaba la pelota correctamente, las distancias utilizadas fueron 50cm y 80cm del robot. Adem\'as para determinar posibles Falsos Positivos se realiz\'o el mismo experimento pero sin la pelota. Los resultados obtenidos se prsentan en la siguiente tabla ~\ref{tabla:deteccion}.
+Para determinar la presi\'on y desempe\~no de la detecci\'ion de la pelota se realizaron experimentos de enfoque r\'apido los cuales consistieron en la colocaci\'on de la pelota a una distancia fija, mover la c\'amara rapidamente y regresar a la posici\'on y observar si ubicaba la pelota correctamente, las distancias utilizadas fueron 50cm y 80cm del robot. Adem\'as para determinar posibles Falsos Positivos se realiz\'o el mismo experimento pero sin la pelota. Los resultados obtenidos se prsentan en la siguiente tabla ~\ref{fig:deteccion}.
 
-
+\begin{figure}
+\centering
 \begin{tabular}{|c|c|c|}
  \hline 
   & Cantidad de Pruebas & Correcta \\ 
@@ -45,16 +46,20 @@ Para determinar la presi\'on y desempe\~no de la detecci\'ion de la pelota se re
  A 80 cm & 50 & 100\% \\ 
  \hline 
  No pelota & 50 & 100\% \\ 
- 
- \hline 
-\label{tabla:deteccion} 
+  \hline 
+
  \end{tabular}  
+\caption{Resultados de las pruebas de detecci\'on}
+\label{fig:deteccion} 
+
+\end{figure}
+
 \section{Experimentos con Comportamientos Integrados}
 \label{sec:experimentosintegrados}
 
 El segundo conjunto de experimentos consistió en la realización de pruebas de desempeño en donde se observó el comportamiento global del robot con todos sus comportamientos integrados (detección, búsqueda y pateo). La forma de elegir la acciones de movimiento es la que se describe en la sección \ref{eleccionAccionesFijas} (sin aprendizaje). 
 
-El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de pateo (las regiones 1 y 2 de la figura ~\ref{divisionCam}). El número de pruebas en este primer caso fue de 10, cuya duración aproximada de cada prueba fue de 30 segundos. En la figura ~\ref{tabla:casos} se puede observar los resultados obtenidos de esta prueba.
+El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de pateo (las regiones 1 y 2 de la figura ~\ref{divisionCam}). El número de pruebas en este primer caso fue de 10, cuya duración aproximada de cada prueba fue de 30 segundos. En la figura ~\ref{fig:casos} se puede observar los resultados obtenidos de esta prueba.
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -64,7 +69,7 @@ El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de 
 %\label{fig:caso1}
 %\end{figure}
 
-El segundo caso (CasoII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 50 pruebas, siendo la duración promedio de 2 minutos con 12 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{tabla:casos}. 
+El segundo caso (CasoII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 50 pruebas, siendo la duración promedio de 2 minutos con 12 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{fig:casos}. 
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -74,7 +79,7 @@ El segundo caso (CasoII) consistió en en la colocación inicial de la pelota a 
 %\label{fig:caso2}
 %\end{figure}
 
-El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 50 cm a la izquierda formando asi una diagonal. Se realizaron 10 pruebas, siendo la duración promedio de 3 minutos con 29 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{tabla:casos}. 
+El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 50 cm a la izquierda formando asi una diagonal. Se realizaron 10 pruebas, siendo la duración promedio de 3 minutos con 29 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{fig:casos}. 
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -84,7 +89,7 @@ El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a
 %\label{fig:caso3}
 %\end{figure}
 
-El cuarto caso (Caso IV) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 50 cm a la derecha. Se realizaron 10 pruebas, siendo la duración promedio de 4 minutos con 48 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{tabla:casos}. 
+El cuarto caso (Caso IV) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 50 cm a la derecha. Se realizaron 10 pruebas, siendo la duración promedio de 4 minutos con 48 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{fig:casos}. 
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -93,6 +98,8 @@ El cuarto caso (Caso IV) consistió en en la colocación inicial de la pelota a 
 %\caption{Pruebas de movimientos integrados CASO IV}
 %\label{fig:caso4}
 %\end{figure} 
+\begin{figure}
+\centering
 
 \begin{tabular}{|p{3cm}|p{2cm}|c|p{2cm}|c|p{2cm}|}
 \hline 
@@ -109,11 +116,13 @@ Caso III & 10 & 80\% & NA & 20\% & 3m 29s \\
 \hline 
 Caso IV & 10 & 90\% & NA & 10\% & 4m 48s \\ 
 \hline 
-\label{tabla:casos}
 \end{tabular} 
-\\*
-\hspace{2cm}
-\hfill
+
+\caption{Resultados de los casos I, II, III, IV descritos en la secci\'on de \ref{sec:experimentosintegrados}}
+\label{fig:casos}
+
+\end{figure}
+
 Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos han sido satifactorios con un porcentaje de logro del 82\% mas un 5.5\% en el cual se logró recuperar y finalizar la tarea, con 12.5\% de fallas en la tarea se pudo observar de manera general que la razón de dichas fallas ha sido ocasionada por problemas de batería.
 
 
@@ -144,7 +153,8 @@ Para la combinaci\'on de $K = 1$ y $ \gamma = 0.1 $ los resultados obtenidos se 
 
 
 Los resultados del resto de las combinaciones de par\'ametros ajustables se presentan en las siguiente tabla ~\ref{tabla:entramientos}.
-
+\begin{figure}
+\centering
 \begin{tabular}{|c|c|c|c|}
 \hline 
 & Cantidad & Correctas & Fallidas \\ 
@@ -163,8 +173,14 @@ $K = 5  \gamma = 0.1$ & 20 & 80\% & 20\% \\
 \hline  
 $K = 5  \gamma = 0.7$ & 20 & 70\% & 30\% \\ 
 \hline 
-\label{tabla:entramientos}
+
 \end{tabular} 
+
+\caption{Resultados de los distintos par\'ametros con aprendizaje}
+\label{tabla:entramientos}
+
+
+\end{figure}
 %
 %\begin{figure}
 %\begin{tikzpicture}
@@ -243,6 +259,9 @@ Para la última prueba se obtuvo una eficiencia de $0.72$. Sin embargo bajo los 
 Así mismo al comparar los tiempos promedios, con respecto a la última prueba, se obtienen los siguientes resultados. El tiempo promedio de las pruebas cuyas acciones esperadas eran menor a 8 (estados mas cercanos) fue de 4m y 19s en contraste con el promedio del tiempo de las pruebas cuyas acciones esperadas eran mayores a 8 que fue 3m y 21s.
 
 Se realiz\'o un experimento comparativo para observar el desempe\~no del comportamiento de sin aprendizaje y con aprendizaje por ello, se hizo el mismo experimento de los casos II, III, IV pero con el comportamiento generado $K = 3 $ y $ \gamma = 0.1$,  los resultados obtenidos fueron mayor porcentaje de acertividad pero a un costo de tiempo se pueden observar en la tabla ~\ref{tabla:comparacion}  cada prueba en ambos casos ejecut\'o 10 veces.
+
+\begin{figure}
+\centering
 \begin{tabular}{|c|c|c|c|}
 \hline  & Caso II & Caso III & Caso IV \\ 
 \hline 
@@ -263,21 +282,24 @@ Tiempo promedio con aprendizaje & 2m 35 s & 9m 50s & 4:14 \\
 Tiempo promedio sin aprendizaje & 2m 12s & 3m 29 s & 4m 48s \\
 \hline
 %\caption{Cada prueba tiene un numero de corridas de 10}
-\label{tabla:comparacion}
 \end{tabular} 
+\caption{Comparaci\'on de movimientos predeterminados y aprendizaje}
+\label{tabla:comparacion}
 
+\end{figure}
 
 \section{Experimentos completos}
 
 Finalmente se realizaron experimentos con aprendizaje y patada con orientaci\'on, basicamente el robot partia de un punto fijo y la pelota era colocada arbitrareamente en el campo de entrenamiento, el debia llegar a la pelota, ubicar el arco, posicionarse con respecto al arco y la pelota para realizar un pateo y meter gol.
-Las m\'etricas usadas fueron el pateo hacia el arco que generaba un gol y el que pateaba pero no lograba entrar el bal\'on. Estos resultados se muestran en la siguiente tabla
+Las m\'etricas usadas fueron el pateo hacia el arco que generaba un gol y el que pateaba pero no lograba entrar el bal\'on. Estos resultados se muestran en la siguiente figura \ref{fig:orientacion}.
 
 
 \begin{figure}[h]
+\centering
 \begin{tikzpicture}
 \pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{53.33/Goles, 6.666/TiroAlArco , 40/Fallos}
 \end{tikzpicture}
-\caption{Prueba con 15 ejecuciones}
-\label{fig:k5y7}
+\caption{Prueba con 15 ejecuciones, con aprendizaje y orientaci\'on al arco }
+\label{fig:orientacion}
 \end{figure} 
 

@@ -5,13 +5,13 @@ Una manera de obtener información del ambiente es con la visión artificial. Es
 Por lo general luego de obtener una imagen se requiere extraer información de ella, por lo cual se han desarrollado diferentes algoritmos y t\'ecnicas que ayudan en esta tarea. En la sección \ref{sec:Segmentacion} se describe la t\'ecnica de segmentaci\'on por regiones, que es la utilizada en el proyecto. 
 
 Por otro lado, existen varios algoritmos que se dedican a la transformación de las imágenes para reducir
-ruidos, compensar problemas de iluminación, extraer formas, identificar objetos, entre otros. En esta sección se describen dos de las técnicas de transformación para reducir el ruido basadas en la dilatación y erosión de la imagen (secci\'on \ref{sec:Transfor}). 
+ruidos, compensar problemas de iluminación, extraer formas, identificar objetos, entre otros. En esta sección se describen dos de las técnicas de transformación para reducir el ruido basadas en la dilatación y erosión de la imagen (secci\'on \ref{sec:filtros}). 
  
 \subsection{Segmentaci\'on por regiones}\label{sec:Segmentacion}
 
 La técnica de segmentación por regiones consiste en identificar un conjunto de píxeles adyacentes entre sí que compartan un rango de colores establecidos. Generalmente, en robótica luego de identificar esa zona se ubica el centro y se navega hasta él \cite{BookOpenCv}. 
 
-\subsection{Filtros}
+\subsection{Filtros}\label{sec:filtros}
 El filtrado de imágenes es una técnica para la transformación de imágenes, que consiste en destacar  sus características más relevantes en base a un propósito en particular. 
 
 Generalmente en la tarea de extracción de información de una imagen se utilizan filtros para descartar zonas o características que no son importantes para el patrón deseado y para determinar el área deseada ya sea por patrones de forma o color.
