@@ -12,7 +12,7 @@ A continuación se presenta una descripción de todos los elementos utilizados p
 
 %\subsection*{Cuerpo del Robot}
 
-Las opciones que se han consideradas para el cuerpo de Junny han sido: La construcci\'on con piezas de LEGO, la construcci\'on y dise\~no mec\'anico desde cero y la construcci\'on con piezas del kit Bioloid. Estas opciones corresponden a los recursos disponibles. Tanto la construci\'on LEGO como la opci\'on de realizarlo desde cero implicaban mas tiempo del que se disponia, adem\'as que realizarlo en su totalidad con dise\~no mec\'anico y electr\'onico implicaba conocimientos m\'as avanzados en el \'area de mecatr\'onica que no eran el objetivo del proyecto. Por lo tanto se escogi\'o la construcci\'on con el kit Bioloid como la opci\'on m\'as factible para el cumplimiento de los objetivos, el kit Bioloid es un kit de robótica con piezas prefabricadas que permite armar diferentes tipos de robot pero principalmente humanoides. Su empaque se puede observar en la figura ~\ref{fig:kit}. El fabricante, ROBOTIS, incluye un manual con varios modelos de robots con instrucciones de ensamblaje. Provee una tarjeta controladora, CM-510, a la que se conectan los motores Dynamixel y algunos sensores que se programan a través de la interfaz de ‘RoboPlus’\cite{robotics}. La tarjeta controladora CM-510 fue sustituida por la tarjeta controladora de software libre Arbotix. La utilización de la tarjeta Arbotix permite una mayor flexibilidad en el control de motores y la incorporación de una variedad de sensores no soportados por la tarjeta CM-510.
+Las opciones que se han consideradas para el cuerpo de Junny han sido: La construcci\'on con piezas de LEGO, la construcci\'on y dise\~no mec\'anico desde cero y la construcci\'on con piezas del kit Bioloid. Estas opciones corresponden a los recursos disponibles. Tanto la construci\'on LEGO como la opci\'on de realizarlo desde cero implicaban mas tiempo del que se disponia, adem\'as que realizarlo en su totalidad con dise\~no mec\'anico y electr\'onico implicaba conocimientos m\'as avanzados en el \'area de mecatr\'onica que no eran el objetivo del proyecto. Por lo tanto se escogi\'o la construcci\'on con el kit Bioloid como la opci\'on m\'as factible para el cumplimiento de los objetivos, el kit Bioloid es un kit de robótica con piezas prefabricadas que permite armar diferentes tipos de robot pero principalmente humanoides. Su empaque se puede observar en la figura ~\ref{fig:kit}. El fabricante, Robotics \cite{robotics1}, incluye un manual con varios modelos de robots con instrucciones de ensamblaje. Provee una tarjeta controladora, CM-510, a la que se conectan los motores Dynamixel y algunos sensores que se programan a través de la interfaz de ‘RoboPlus’\cite{robotics}. La tarjeta controladora CM-510 fue sustituida por la tarjeta controladora de software libre Arbotix. La utilización de la tarjeta Arbotix permite una mayor flexibilidad en el control de motores y la incorporación de una variedad de sensores no soportados por la tarjeta CM-510.
 Además, la tarjeta Arbotix posee mayor soporte y amplitud en la comunicación entre distintos dispositivos, permite el control avanzado de algunos tipos de servos Dynamixel y robots basados en Bioloid. Incorpora un microcontrolador \gls{AVR}, radio inalámbrica \gls{XBEE}, conductores de motor dual, y cabeceras de estilo servo de 3 pines para entrada/salida digital y analógica \cite{arbotix}.
 
 Los Motores Dynamixel Ax-12+ son actuadores inteligentes y modulares que incorporan un reductor de engranajes, un motor DC de presión y un circuito de control con funcionalidad de red lo cual permite formar series o cadenas de motores (figura ~\ref{fig:motoresDc}). Estos motores estan incorporados en el kit Bioloid al igual que la batería de polímero de litio (Lipo) una fuente de poder usada para motores y componentes electr\'onicos. La batería usada es de 11.1 voltios y 1 amperio. \cite{bateria}
@@ -51,7 +51,7 @@ Para el balance y detecci\'on de ca\'idas de Junny se utiliz\'o con un giroscopi
 
 
 
-El FTDI (Future Technology Devices International) utilizado para comunicar fisicamente a la Arbotix y a la Raspberry Pi  es una tarjeta controladora  (figura ~\ref{fig:ftdi}) que ofrece el servicio de conversión de  datos de USB a UART. Permite la comunicación entre diferentes dispositivos \cite{ftdi} fue elegida en lugar de XBEE pues la Raspeberry Pi y Arbotix estan fisicamente cerca y usar XBEE implicaba un mayor costo para el proyecto.
+El FTDI (Future Technology Devices International) utilizado para comunicar f\'isicamente a la Arbotix y a la Raspberry Pi  es una tarjeta controladora  (figura ~\ref{fig:ftdi}) que ofrece el servicio de conversión de  datos de USB a UART. Permite la comunicación entre diferentes dispositivos \cite{ftdi} fue elegida en lugar de XBEE pues la Raspeberry Pi y Arbotix estan f\'isicamente cerca y usar XBEE implicaba un mayor costo para el proyecto.
 
 
 \begin{figure}[hbtp]
@@ -134,7 +134,7 @@ Como se menciono anteriormente para la construcción del robot se utilizó el ki
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.3]{imagenes/RobotTrasero.png}
-\caption{Vista trasera del robot con la tarjeta CM-510, tomada del manual del kit Bioloid.}
+\caption{Vista trasera del robot con la tarjeta CM-510, Imagen tomada sin autorizaci\'on de \cite{manualRobot}.}
 \label{fig:trasera1}
 \end{figure}
 
@@ -149,7 +149,7 @@ En la figura ~\ref{fig:trasera2} se puede observar la estructura del robot con l
 \end{figure}
 
 
-Para el movimiento de la cámara se ha incorporado dos micro servomotores TG9e ya que estos poseen un tama\~no reducido perfecto para acoplarlo en la estructura al igual que su peso, uno para el movimiento horizontal y otro para el vertical. La conexión de uno de estos motores se ilustra en la figura ~\ref{fig:arbotixConectados}, en donde se puede observar que se encuentra conectado al puerto B de los denominados 'Hobby Servo ports'. La cámara ha sido conectada a la Raspberry Pi en el puerto CSI (ver la figura ~\ref{fig:camACSI}). El resultado de estas tres piezas instaladas en el robot se puede apreciar en la figura ~\ref{fig:servosycam}.
+Para el movimiento de la cámara se ha incorporado dos micro servomotores TG9e ya que estos poseen un tama\~no reducido perfecto para acoplarlo en la estructura al igual que su peso, uno para el movimiento horizontal y otro para el vertical. La conexión de uno de estos motores se ilustra en la figura ~\ref{fig:arbotixConectados}, en donde se puede observar que se encuentra conectado al puerto B de los denominados 'Hobby Servo ports'. La cámara ha sido conectada a la Raspberry Pi en el puerto CSI. El resultado de estas tres piezas instaladas en el robot se puede apreciar en la figura ~\ref{fig:servosycam}.
 
 %\begin{figure}[hbtp]
 %\centering
@@ -158,12 +158,12 @@ Para el movimiento de la cámara se ha incorporado dos micro servomotores TG9e y
 %\label{fig:puertosHobby}
 %\end{figure}
 
-\begin{figure}[hbtp]
-\centering
-\includegraphics[scale=0.6]{imagenes/raspbCam.jpg}
-\caption{C\'amara Raspberry Pi conectada al puerto CSI de la tarjeta}
-\label{fig:camACSI}
-\end{figure}
+%\begin{figure}[hbtp]
+%\centering
+%\includegraphics[scale=0.6]{imagenes/raspbCam.jpg}
+%\caption{C\'amara Raspberry Pi conectada al puerto CSI de la tarjeta}
+%\label{fig:camACSI}
+%\end{figure}
  
 \begin{figure}[hbtp]
 \centering
