@@ -20,17 +20,15 @@ Una vez con la representaci\'on del mundo, los movimientos programados y la comu
 
 Para cumplir con el desarrollo de la programación de la búsqueda y pateo de la pelota, se han utilizado algunas herramientas que han facilitado el proceso. A continuación se describen las más destacadas dentro del proyecto. 
 
-Pypose es un software especializado en el control de los servomotores Dynamixel Ax-12. Esta es la opci\'on que ofrecen los desarrolladores de la tarjeta Arbotix para su programaci\'on . Una de las más importantes características es que, luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar \cite{pypose}. 
+Pypose es un software especializado en el control de los servomotores Dynamixel Ax-12. Esta es la opci\'on que ofrecen los desarrolladores de la tarjeta Arbotix para su programaci\'on. Una de sus más importantes características es que luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar \cite{pypose}. 
 
 Cuando los movimientos han sido implementadas por medio de pypose fue necesario su utilizaci\'on en un ambiente m\'as versatil por lo cual se utiliz\'o el IDE Arduino que es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores AVR también son compatibles, como la Arbotix. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual está basado en Processing \cite{arduino}.  
 
-\begin{itemize}
+ROS (Robot Operating System) es un Framework flexible para la escritura de software enfocado en robots. Es una colección de herramientas, bibliotecas y convenciones que tienen por objeto simplificar la tarea de crear un comportamiento complejo y robusto a través de una amplia variedad de plataformas robóticas. ROS se encuentra bajo licencia de código abierto, la licencia BSD \cite{ros}.
 
-\item ROS: ROS (Robot Operating System) es un Framework flexible para la escritura de software enfocado en robots. Es una colección de herramientas, bibliotecas y convenciones que tienen por objeto simplificar la tarea de crear un comportamiento complejo y robusto a través de una amplia variedad de plataformas robóticas. ROS se encuentra bajo licencia de código abierto, la licencia BSD \cite{ros}.
+HServo es una librería de código libre distribuida bajo la Licencia Pública General Reducida de GNU. Esta librería se encuentra desarrollada especificamente para la tarjeta Arbotix, ya que con la nueva librería de Arduino Servo se pueden experimentar fallas en el control de los servos. La interfaz es la misma, la diferencia es que solo puede ser usada para servos conectados en los pines 12 y 13 de la tarjeta Arbotix \cite{HServo}.    
 
-\item HServo: Es una librería de código libre distribuida bajo la Licencia Pública General Reducida de GNU. Esta librería se encuentra desarrollada especificamente para la tarjeta Arbotix, ya que con la nueva librería de Arduino Servo se pueden experimentar fallas en el control de los servos. La interfaz es la misma, la diferencia es que solo puede ser usada para servos conectados en los pines 12 y 13 de la tarjeta Arbotix \cite{HServo}.    
 
-\end{itemize}
 
 %\subsection{Comportamiento}
 
@@ -59,7 +57,7 @@ Las acciones de movimiento establecidas son:
  
 \end{itemize}
 
-En el movimiento de caminar se establece como unidad el de un paso que fue construido manteniendo el equilibrio del robot para evitar posibles caidas e inestabilidad la distancia recorrida por ese paso es de 4.8 cm, analogamente se obtiene las distancias recorridas de los giros de derecha e izquierda. 
+En el movimiento de caminar se establece como unidad el de ejecutar dos pasos seguidos, este fue construido manteniendo el equilibrio del robot para evitar posibles caidas e inestabilidad. La distancia recorrida por ese paso es de 4.8 cm, analogamente se obtiene las distancias recorridas de los giros de derecha e izquierda. 
 
 Estas poses han sido fijadas a través de la tarjeta controladora Arbotix y el software Pypose. De esta manera se ha fijado y guardado un conjunto de poses para cada acción de movimiento. Estas acciones de movimientos han sido exportadas para ser utilizadas en el programa, en lenguaje Wiring, a ser ejecutado en Arbotix. La programación en Arbotix se ha realizado bajo el ambiente del IDE de Arduino. 
 
@@ -68,7 +66,7 @@ Estas poses han sido fijadas a través de la tarjeta controladora Arbotix y el s
 La cámara ha sido instalada sobre dos micro servomotores analógicos, otorgándole dos grados de libertad. El servomotor ubicado en la parte inferior se encarga del movimiento horizontal y el superior, del movimiento vertical.
 
 El hecho de  que la cámara tenga dos grados de libertad para moverse es una gran ventaja, ya que se puede obtener un mayor rango de visión. Junny puede mirar hacia la derecha o izquierda sin tener que mover sus piernas, también puede mirar hacia abajo para verificar que la pelota esté en sus pies, para patear, o hacia arriba para ubicar la pelota a mayor distancia.
- Se considero otorgale un tercer grado de libertad a la c\'amara pero ello implicaba mayor espacio, peso y costo que no se justificaba para los objetivos del proyecto. Tambi\'en si se colocaba la c\'amara fija, sin grados de libertad, implicaba movimientos constantes que consumian mucho mas tiempo y desgaste, adem\'as de menos rango de visi\'on de Junny.
+ Se consideró otorgale un tercer grado de libertad a la c\'amara pero ello implicaba mayor espacio, peso y costo que no se justificaba para los objetivos del proyecto. Tambi\'en si se colocaba la c\'amara fija, sin grados de libertad, hubiera implicado movimientos constantes que habrían consumido mucho mas tiempo y desgaste en motores de mayor costo.
 
 El número de posibles posiciones para la cámara es muy amplio y para simplificar se ha reducido a 6 posiciones fijas, cuya distribución obedece al objetivo de que la cámara obtenga una amplia visión, sin dejar espacios no visibles. Esta simplificación ayuda en la tarea de la representación del mundo que se explica en la sección \ref{mundo}. En la figura~\ref{posicionesCam} se puede observar la cámara del robot en las diferentes posiciones que se han fijado para ella.
 
@@ -84,7 +82,7 @@ Los micro servomotores azules que aparecen en la imagen \ref{posicionesCam} se c
 \subsection{Representaci\'on del mundo}\label{mundo}
 
 La representación del mundo de Junny se basa en función de la posición de la pelota con respecto al él. 
-La siguiente representaci\'on de la visi\'on ha sido elegida analizando la estructura f\'isica del robot, su alcance de visi\'on y su movilidad para obtener el mejor desempe\'~no posible.
+La siguiente representaci\'on de la visi\'on ha sido elegida analizando la estructura f\'isica del robot, su alcance de visi\'on y su movilidad para obtener el mejor desempeño posible.
 La cámara tiene 6 (2x3) posibles posiciones, como se muestra en la figura ~\ref{posicionesCam} y desde cada posición de la cámara se obtiene una imagen. La detección de la pelota en alguna de esas im\'agenes brinda una orientación sobre la ubicación de la pelota. Si se detecta la pelota, por ejemplo, cuando la cámara se encuentra en alguna de las posiciones de la derecha, es un indicativo de que la la pelota se encuentra a la derecha y que si el robot gira se podría posicionar frente a ella. 
 
 Se ha decidido discretizar las posibles posiciones de la pelota por regiones. Estas regiones se muestran enumeradas en la fugura ~\ref{divisionCam}. Cada cuadro blanco demarcado por líneas negras representa la imagen captada en una posición fija de la cámara. 
@@ -149,6 +147,6 @@ A continuación se especifica la acción a tomar en cada regi\'on:
 
 \item Al llegar al estado meta que se refiere a la regi\'on 2 Junny debe patear con la pierna derecha para meter gol.
 
-En caso de no encontrar la pelota en ninguna de las regiones, el robot gira con los pies para cambiar su orientación física e iniciar nuevamente el movimiento de la cámara para hallar la pelota. Cuando se tiene la pelota en una posición cercana a los pies se realiza la acción de patear.
+\item En caso de no encontrar la pelota en ninguna de las regiones, el robot gira con los pies para cambiar su orientación física e iniciar nuevamente el movimiento de la cámara para hallar la pelota. 
 
 \end{itemize}
