@@ -4,11 +4,11 @@
 %\section{Diseño y Construcci\'on}
 
 %El primer paso ha sido la construcci\'on de la parte física del robot. Para tal fin se procedió a la elección del diseño y ensamblaje de las piezas. En la sección \ref{subsection:diseno} se describe cada uno de los componentes utilizados para armar el robot, y luego, en la secci\'on \ref{subsection:construccion} se explica cómo se integraron esas piezas para obtener un humanoide adaptado a los objetivos de este proyecto.
-\section{Diseño del robot}\label{sec:diseno}
+\section{Partes del robot}\label{sec:diseno}
 
 %\label{subsection:componentes}
 %\subsection*{Componentes de hardware}
-A continuación se presenta una descripción de los elementos que han sido seleccionados para la construcción del robot humanoide y sus decisiones de dise\~no. 
+A continuación se presenta una descripción de los elementos que han sido seleccionados para la construcción del robot humanoide. 
 
 Las opciones que se han considerado para la construcci\'on del cuerpo de Junny han sido: uso de piezas de LEGO, construcci\'on y dise\~no mec\'anico desde cero o el uso de las piezas del kit Bioloid. Estas opciones corresponden a los recursos disponibles. Tanto la construci\'on con piezas de LEGO como la opci\'on de realizarlo desde cero implicaba más tiempo del que se disponía, adem\'as que realizarlo en su totalidad con dise\~no mec\'anico y electr\'onico implicaba conocimientos m\'as avanzados en el \'area de mecatr\'onica que no eran el objetivo del proyecto. Por lo tanto se escogi\'o su construcci\'on con el kit Bioloid como la opci\'on m\'as factible para el cumplimiento de los objetivos. 
 
@@ -57,9 +57,13 @@ Ha sido necesario incluir un extensor de puertos Bioloid que permitiera conectar
 \label{fig:gyroYextensor}
 \end{figure}
 
-Para agregar mayor capacidad de procesamiento se incorpor\'o el mini computador Raspberry Pi, de aproximadamente 10 cm de largo, a la que se puede conectar un monitor y un teclado. Puede ser utilizado en proyectos de electrónica y para varias de las tareas que un computador de escritorio puede hacer, como hojas de cálculo, procesadores de texto y juegos \cite{raspberry}. Ver figura ~\ref{fig:Raspe}. La Raspberry Pi cuenta con un procesador gráfico que permite aligerar la carga del procesador central \cite{elLinux}. Para las funciones correspondientes a la Rasberry Pi, en el proyecto tambi\'en era factible la utilizaci\'on de un tel\'efono celular avanzado, sin embargo esta opci\'on fue decartada pues agrega un peso importante a la estructura del robot, dificultad para añadirle grados de libertad y un costo superior que la utilizaci\'on de la Raspberry.  
+Para agregar mayor capacidad de procesamiento, con la finalidad de poder captar y procesar imágenes, se incorpor\'o el mini computador Raspberry Pi, de aproximadamente 10 cm de largo, a la que se puede conectar un módulo de cámara especialmente diseñado para él. Puede ser utilizado en proyectos de electrónica y para varias de las tareas que un computador de escritorio puede hacer, como procesamiento de hojas de cálculo y de texto, ejecutar juegos, entre otras \cite{raspberry}. Su estructura se puede ver en la figura ~\ref{fig:RaspYcamara}. La Raspberry Pi cuenta con un procesador gráfico que permite aligerar la carga del procesador central \cite{elLinux}. Para las funciones correspondientes a la Rasberry Pi, en el proyecto tambi\'en era factible la utilizaci\'on de un tel\'efono celular avanzado, sin embargo esta opci\'on fue decartada pues agrega un peso importante a la estructura del robot, dificultad para añadirle grados de libertad a su cámara y un costo superior al de la Raspberry.  
 
-%imagen tomada de: %http://rayhightower.com/blog/2012/12/03/ruby-on-raspberry-pi/
+Para lograr el objetivo de detecci\'on de la pelota y orientaci\'on al arco existía la posibilidad de añadir un sensor de br\'ujula y un sensor de proximidad. Sin embargo la ulitizaci\'on de una c\'amara para esta tarea representaba mayores ventajas. La cámara posee un mayor rango de percerpción, aumentando las posibilidades de encontrar la pelota o arco en menor cantidad de tiempo que con los sensores. Adem\'as, la incorporación de la Raspberry Pi y su cámara permite la posibilidad de ampliar las habilidades y tareas que podr\'ia realizar Junny. La c\'amara puede captar im\'agenes y grabar vídeos de alta definición. Tiene 5 megapíxeles de foco fijo que soporta los modos de vídeo de 1080x30, 720x60 y VGA90. Puede ser manejada con las librerías \gls{MMAL}, \gls{V4L} u otras librerías de terceros como la de Python \cite{raspberrycam}
+
+%(http://www.raspberrypi.org/products/camera-module/)
+% Se conecta a la Raspberry Pi con un cable de cinta plana de 15 cm en el puerto CSI.
+
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.06]{imagenes/RaspberryPi.jpg}
@@ -68,8 +72,9 @@ Para agregar mayor capacidad de procesamiento se incorpor\'o el mini computador 
 \label{fig:RaspYcamara}
 \end{figure}
 
-El FTDI (Future Technology Devices International) utilizado para comunicar f\'isicamente a la Arbotix y a la Raspberry Pi  es una tarjeta controladora  (figura ~\ref{fig:ftdi}) que ofrece el servicio de conversión de  datos de USB a UART. Permite la comunicación entre diferentes dispositivos \cite{ftdi} fue elegida en lugar de XBEE pues la Raspeberry Pi y Arbotix estan f\'isicamente cerca y usar XBEE implicaba un mayor costo para el proyecto.
+Para poder establecer la comunicación entre la Arbotix y la Raspberry Pi, se añadió el chip FTDI (Future Technology Devices International). Es una tarjeta controladora  (se puede observar en la figura ~\ref{fig:ftdi}) que ofrece el servicio de conversión de  datos de \gls{USB} a \gls{UART}, por lo cual permite la comunicación entre diferentes dispositivos \cite{ftdi}. Fue elegida en lugar de la radio inálambrica \gls{XBEE}, pues la Raspeberry Pi y la Arbotix estan f\'isicamente cerca y usar los XBEE implicaba un mayor costo para el proyecto.
 
+Para añadir grados de libertad a la c\'amara se utilizó como base dos micro servomotores anal\'ogicos TG9e. La capacidad de torque de estos motores alcanza los 1.50 kg-cm \cite{microservo}. Permiten ser controlados en posición en un rango de 180$^{\circ}$. Ver figura ~\ref{fig:Servo}.   
 
 \begin{figure}[hbtp]
 \centering
@@ -78,20 +83,11 @@ El FTDI (Future Technology Devices International) utilizado para comunicar f\'is
 \label{fig:ftdi}
 \centering
 \includegraphics[scale=0.09]{imagenes/servosTg9B.jpg}
-
 \caption{Micro Servomotores analógicos TG9e}
-
 \label{fig:Servo}
 \end{figure}
 
-Para el movimiento de la c\'amara se utiliza como base dos micro servo motor anal\'ogico TG9e que es un pequeño servomotor cuya capacidad de torque alcanza los 1.50 kg-cm \cite{microservo}. Permite ser controlado en posición en un rango de 180$^{\circ}$. Ver figura ~\ref{fig:Servo}.   
-
-
-
-Para lograr el objetivo de detecci\'on de la pelota y orientaci\'on al arco existen varias posibilidades factibles para la tarea, un sensor de br\'ujula, un sensor de proximidad, entre otros, sin embargo la ulitizaci\'on de una c\'amara para esta tarea representaba numerosas ventajas como la certeza de ubicar la pelota, presi\'on en la distancia, el ahorro de la utilizaci\'on y manejo de mas sensores adem\'s de la posibilidad de ampliar las habilidades y tareas que podr\'ia realizar Junny. Por ello se tomo la elecci\'on de la     
-c\'amara Raspberry Pi que puede captar im\'agenes y grabar vídeos de alta definición. Se conecta a la Raspberry Pi con un cable de cinta plana de 15 cm en el puerto CSI. Tiene 5 megapíxeles de foco fijo que soporta los modos de vídeo de 1080x30, 720x60 y VGA90. Puede ser manejada con las librerías MMAL, V4L u otras librerías de terceros como la de Python \cite{raspberrycam}.(figura ~\ref{fig:came})  %(http://www.raspberrypi.org/products/camera-module/)
-
-Debido a que no todos los componentes poseen las mismas exigencias con respecto a voltaje y amperaje, se realizó un regulador (ver figura ~\ref{fig:circuito}) con una salida de 5 voltios para la tarjeta Raspberry Pi y dos micro servomotores, y otra salida de 11.1 V para la tarjeta Arbotix que a su vez alimenta a los componentes conectados en ella (motores Dynamixel y Giroscopio). Si bien la tarjeta Arbotix posee un regulador interno de cinco voltios la opción de conectar todo a la salida de 5 V del regulador no era posible, dado que los motores Dynamixl requieren alimentación de 11 voltios.
+Debido a que no todos los componentes poseen las mismas exigencias con respecto a voltaje y amperaje, se realizó un regulador (ver figura ~\ref{fig:circuito}) con una salida de 5 voltios para la tarjeta Raspberry Pi y dos micro servomotores, y otra salida de 11.1 V para la tarjeta Arbotix que a su vez alimenta a los componentes conectados en ella (motores Dynamixel y Giroscopio). Si bien la tarjeta Arbotix posee un regulador interno de cinco voltios la opción de conectar todo a la salida de 5 V del regulador no era posible, dado que los motores Dynamixel requieren alimentación de 11 voltios.
 
 \begin{figure}[hbtp]
 \centering
@@ -107,7 +103,8 @@ Debido a que no todos los componentes poseen las mismas exigencias con respecto 
 %\end{figure}
 
 \section{Construcción}\label{subsection:construccion}
-Como se menciono anteriormente para la construcción del robot se utilizó el kit de piezas Bioloid Premium de marca Robotis el cual incluye motores Dynamixel Ax-12+, una tarjeta controladora CM-510, un sensor Gyro, un manual, entre otros elementos. El manual incluye las instrucciones de como armar los modelos A, B y C de humanoide, el utilizado en este proyecto es el tipo B, haciendo uso de 16 motores. En las figuras ~\ref{fig:frontal} y ~\ref{fig:trasera1} se puede observar la estructura del robot que aparece en el manual del kit. La elecc\'ion de este modelo se debi\'o a que los motores como recuersos eran escasos y este modelo al igual que el modelo C utiliza dos motores menos que el modelo A, ya que el A combina los grados de liberdad en la cadena que los modelos B y C poseen por separado. El modelo B posee un grado de libertad de interes a la hora de girar del robot por ello se eligi\'o en particular.
+
+Como se mencionó anteriormente para la construcción del robot se utilizó el kit de piezas Bioloid Premium de marca Robotis el cual incluye motores Dynamixel Ax-12+, una tarjeta controladora CM-510, un sensor Gyro, un manual, entre otros elementos. El manual incluye las instrucciones de como armar los modelos A, B y C de humanoide, el utilizado en este proyecto es el tipo B, haciendo uso de 16 motores. En las figuras ~\ref{fig:frontal} y ~\ref{fig:trasera1}  se puede observar la estructura del robot que aparece en el manual del kit. La elecc\'ion de este modelo se debi\'o a que los motores como recuersos eran escasos y a pesar de que el modelo A posee un grado más de libertad que los otros modelos (incluye tanto los de B como los de C) utiliza dos motores más que los otros dos modelos. El modelo B posee un grado de libertad de interés a la hora de girar del robot, que el modelo C no posee, por ello se eligi\'o este.
 
 \begin{figure}[hbtp]
 \centering
@@ -167,9 +164,9 @@ Los motores Dynamixel se conectan a la controladora Arbotix por medio de los pue
 \label{fig:arbotixConectados}
 \end{figure}
 
-La comunicación de la tarjeta de Arbotix con la computadora, incluso con la Raspberry Pi, se realiza a través del puerto FTDI por medio un chip conectado como lo ilustra la figura ~\ref{fig:arbotixConectados} el USB es conectado a la raspberry Pi y el otro lado al puerto correspondiente en la Arbotix.
+La comunicación de la tarjeta de Arbotix con la computadora, incluso con la Raspberry Pi, se realiza a través del chip FTDI, un extremo se conecta en el puerto FTDI de la tarjata Arbotix, como lo ilustra la figura ~\ref{fig:arbotixConectados}, y el otro extremo se conecta al puerto USB de la tarjeta Raspberry Pi.
 
-Para evitar agregar peso innecesario al robot se decidi\'o solo colocar una sola fuente de poder, se utilizó una batería de polímero de litio de 11.1 V y 1 amp. Por medio del regulador construido alimenta a todos los componentes simultaneamente (ver figura ~\ref{fig:circuito}).
+Para evitar agregar peso innecesario al robot se decidi\'o usar una sola fuente de poder. Se utilizó una batería de polímero de litio de 11.1 V y 1 amp. Y se construyó un circuito para regular el voltaje de los componentes que necesitan 5 voltios (ver figura ~\ref{fig:circuito}).
 
 
 
