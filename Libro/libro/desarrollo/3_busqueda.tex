@@ -22,9 +22,9 @@ Para cumplir con el desarrollo de la programación de la búsqueda y pateo de la
 
 Pypose es un software especializado en el control de los servomotores Dynamixel Ax-12. Esta es la opci\'on que ofrecen los desarrolladores de la tarjeta Arbotix para su programaci\'on. Una de sus más importantes características es que luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar \cite{pypose}. 
 
-Cuando los movimientos han sido implementadas por medio de pypose fue necesario su utilizaci\'on en un ambiente m\'as versatil por lo cual se utiliz\'o el IDE Arduino que es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores AVR también son compatibles, como la Arbotix. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual está basado en Processing \cite{arduino}.  
+Cuando los movimientos han sido implementadas por medio de pypose fue necesario su utilizaci\'on en un ambiente m\'as versatil por lo cual se utiliz\'o el IDE Arduino que es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores \gls{AVR} también son compatibles, como la Arbotix. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual está basado en Processing \cite{arduino}.  
 
-ROS (Robot Operating System) es un Framework flexible para la escritura de software enfocado en robots. Es una colección de herramientas, bibliotecas y convenciones que tienen por objeto simplificar la tarea de crear un comportamiento complejo y robusto a través de una amplia variedad de plataformas robóticas. ROS se encuentra bajo licencia de código abierto, la licencia BSD \cite{ros}.
+ROS (Robot Operating System) es un\gls{framework} flexible para la escritura de software enfocado en robots. Es una colección de herramientas, bibliotecas y convenciones que tienen por objeto simplificar la tarea de crear un comportamiento complejo y robusto a través de una amplia variedad de plataformas robóticas. \gls{ROS} se encuentra bajo licencia de código abierto, la licencia \gls{BSD} \cite{ros}.
 
 HServo es una librería de código libre distribuida bajo la Licencia Pública General Reducida de GNU. Esta librería se encuentra desarrollada especificamente para la tarjeta Arbotix, ya que con la nueva librería de Arduino Servo se pueden experimentar fallas en el control de los servos. La interfaz es la misma, la diferencia es que solo puede ser usada para servos conectados en los pines 12 y 13 de la tarjeta Arbotix \cite{HServo}.    
 
@@ -59,7 +59,7 @@ Las acciones de movimiento establecidas son:
 
 En el movimiento de caminar se establece como unidad el de ejecutar dos pasos seguidos, este fue construido manteniendo el equilibrio del robot para evitar posibles caidas e inestabilidad. La distancia recorrida por ese paso es de 4.8 cm, analogamente se obtiene las distancias recorridas de los giros de derecha e izquierda. 
 
-Estas poses han sido fijadas a través de la tarjeta controladora Arbotix y el software Pypose. De esta manera se ha fijado y guardado un conjunto de poses para cada acción de movimiento. Estas acciones de movimientos han sido exportadas para ser utilizadas en el programa, en lenguaje Wiring, a ser ejecutado en Arbotix. La programación en Arbotix se ha realizado bajo el ambiente del IDE de Arduino. 
+Estas poses han sido fijadas a través de la tarjeta controladora Arbotix y el software Pypose. De esta manera se ha fijado y guardado un conjunto de poses para cada acción de movimiento. Estas acciones de movimientos han sido exportadas para ser utilizadas en el programa, en lenguaje Wiring, a ser ejecutado en Arbotix. La programación en Arbotix se ha realizado bajo el ambiente del \gls{IDE} de Arduino. 
 
 
 \subsection{Movimiento de la cámara}\label{movCamara}
@@ -127,7 +127,7 @@ La Raspberry Pi procesa la información de la cámara y la Arbotix controla los 
 
 Se ha establecido la Arbotix como servidor de peticiones y a la Raspberry Pi como cliente. Dentro de la Raspberry Pi se ejecuta el proceso de decidir qué acción debe tomar el robot. Una vez determinada la acción se envía la petición a la Arbotix para que esta la ejecute. Este proceso es bidireccional y síncrono, es decir, la Raspberry envía la petición y se bloquea hasta que la Arbotix retorne la respuesta de su culminación.  
 
-Para la implementación de la comunicación se ha usado ROS con su versión Hydro y se ha utilizado la interfaz de comunicación basada en servicios que no es más que un método de comunicación basado en el paradigma de resquest / reply con el concepto de maestro esclavo.
+Para la implementación de la comunicación se ha usado \gls{ROS} con su versión Hydro y se ha utilizado la interfaz de comunicación basada en servicios que no es más que un método de comunicación basado en el paradigma de resquest / reply con el concepto de maestro esclavo.
 
 \subsection{Elecci\'on de la acci\'on}\label{eleccionAccionesFijas}
 

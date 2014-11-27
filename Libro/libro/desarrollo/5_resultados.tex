@@ -5,9 +5,7 @@ En este capítulo se describen los experimentos realizados para analizar el dese
 
 Se realizaron varios experimentos para comprobar la movilidad del robot en cuanto a un conjunto de acciones de movimiento (mencionadas en la sección \ref{esqueleto}).Estas acciones son: caminar hacia adelante (4.8 cm), caminar un paso hacia adelante (2.5 cm), caminar cuatro pasos hacia adelante (9.9 cm), girar hacia la derecha (3 cm), girar doble a la derecha (6 cm), girar hacia la izquierda (3 cm), girar doble a la izquierda (6 cm), patada con la pierna derecha y patada con la pierna izquierda.
 
-La primera etapa consistió en verificar el desempeño de las unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, 450 ejecuciones en total y las 9 acciones probadas. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.7\% de casos exitosos y un 0.3\% de casos en los que pudo recuperarse de fallas. El 0.3\% representa un solo caso en el que el robot se ha caído y levantado.  
-
-En la segunda etapa se evalu\'o la ejecuci\'on de combinaciones de varias unidades de movimiento. Las combinaciones elegidas fueron: 
+La primera etapa consistió en verificar el desempeño de las unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, 450 ejecuciones en total y las 9 acciones probadas. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.7\% de casos exitosos y un 0.3\% de casos en los que pudo recuperarse de fallas. El 0.3\% representa un solo caso en el que el robot se ha caído y levantado. En la segunda etapa se evalu\'o la ejecuci\'on de combinaciones de varias unidades de movimiento. Las combinaciones elegidas fueron: 
 
 Las posibles combinaciones que se pueden generar con las acciones es $2 ^ 9$ por lo cual se considero solo un subconjunto de estas combinaciones basados en los movimientos mas comunes que se suele ralizar al caminar.
 \begin{itemize}
@@ -26,8 +24,7 @@ Las posibles combinaciones que se pueden generar con las acciones es $2 ^ 9$ por
 \item Girar hacia la izquierda y patear con la pierna izquierda
  \end{itemize}
 
-Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. %Los resultados se muestran en el gráfico de la figura ~\ref{tabla:casos}. 
-El resultado ha sido satisfactorio, obteniendo un 96\% de casos exitosos y un 4\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse.  
+Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. El resultado ha sido satisfactorio, obteniendo un 96\% de casos exitosos y un 4\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse.  
 
 %\begin{figure}[th!]
 %\begin{tikzpicture}
@@ -153,10 +150,7 @@ en donde se aseguraba que el color particular de la pelota no se repitiese, de s
 
 Cada una de estas combinaciones se entrenó con 20 ejecuciones completas. Con los valores $Q(s,a)$ para cada estado y acción inicializados en cero (0), exceptuando los estados de la zona de pateo, que han sido inicializados con el valor 1. Una vez completados los entrenamientos se realizó un conjunto de pruebas para medir el desempeño del resultado de cada combinación y reconocer la mejor usando el porcentaje de pateos efectivos. Se realizó una prueba, de 10 ejecuciones cada una, para cada combinación. En total se realizaron 210 ejecuciones. 
 
-Para la combinaci\'on de $K = 1$ y $ \gamma = 0.1 $ los resultados obtenidos se presentan en la tabla ~\ref{tabla:entramientos}. Cuando $K = 1$ la probabilidad de elegir la acci\'on, dado un estado, es igual para todas las acciones, por lo tanto la elección de la acción para este caso ha sido uniformemente aleatoria. 
-
-
-Los resultados del resto de las combinaciones de par\'ametros ajustables se presentan en las siguiente tabla ~\ref{tabla:entramientos}.
+Para la combinaci\'on de $K = 1$ y $ \gamma = 0.1 $ los resultados obtenidos se presentan en la tabla ~\ref{tabla:entramientos}. Cuando $K = 1$ la probabilidad de elegir la acci\'on, dado un estado, es igual para todas las acciones, por lo tanto la elección de la acción para este caso ha sido uniformemente aleatoria. Los resultados del resto de las combinaciones de par\'ametros ajustables se presentan en las siguiente tabla ~\ref{tabla:entramientos}.
 \begin{figure}
 \centering
 \begin{tabular}{|c|c|c|c|}
