@@ -1,6 +1,6 @@
 
 \section{Aprendizaje}\label{aprendizaje}
-En aprendizaje de m\'aquinas el aprendizaje por refuerzamiento es una forma de plantear el problema de inteligencia completamente distinta a el aprendizaje supervisado o no supervisado que generalmente esta basado en ejemplos y un par entrada/salida, el objetivo del agente es aprender la funci\'on que haya producido esos pares. Sin embargo no siempre existe un supervisor que pueda verificar los resultados otorgados.
+En aprendizaje de m\'aquinas el aprendizaje por reforzamiento es una forma de plantear el problema de inteligencia completamente distinta a el aprendizaje supervisado o no supervisado que generalmente esta basado en ejemplos y un par entrada/salida, el objetivo del agente es aprender la funci\'on que haya producido esos pares. Sin embargo no siempre existe un supervisor que pueda verificar los resultados otorgados.
 Existen ambientes en la vida real donde al agente no se le proporciona ni el supervisor ni los ejemplos, en donde se comienza sin contar con un modelo del ambiente o una funci\'on de utilidad. En estos casos la aplicaci\'on del aprendizaje por reforzamiento es la mas indicada \cite{peterAndNorvig}.
 
 La t\'ecnica de refuerzo es aplicada en la vida diaria constantemente pues esta basada en comportamientos, es la forma en que se entrena a una mascota, es la manera en que un bebe logra aprender a sujetar objetos, esos son ejemplos de los muchos en los que en la realidad aparece esta t\'ecnica de aprendizaje.
@@ -16,7 +16,7 @@ Un algoritmo para aprender por reforzamiento es aprendizaje-Q, que es el utiliza
 
 Según \cite{Mitchell} todo aprendizaje se define por la realización de una tarea $T$, cuyo desempeño medido por $D$, mejora con la experiencia $E$. En la investigación presente la tarea $T$ es aprender cuál es el mejor conjunto de ``acciones de movimiento" que se debe tomar con la finalidad de acercarse a la pelota. La experiencia $E$ se da a través un conjunto de pruebas, en las que Junny debe buscar la pelota y posicionarse frente a ella. El desempeño $D$ se mide con respecto a si el robot logra posicionar la pelota en el área de pateo y cuántas acciones de movimiento son necesarias para lograrlo.
 
-Como existe incertidumbre con respecto a la dinámica del ambiente (esto es, no se conoce la función $\delta(s,a)$, definida en la subsección \ref{subsec:Qlearning} se utilizó el modelo de aprendizaje Q-learning, el cual permite mejorar el desempeño de la tarea definida en base a la experiencia de cada prueba. A continuación se presenta y describe la configuración de las caracter\'isticas particulares del aprendizaje utilizado para este proyecto.
+Como existe incertidumbre con respecto a la dinámica del ambiente (esto es, no se conoce la función $\delta(s,a)$, definida en la subsección \ref{subsec:Qlearning} se utilizó el modelo de aprendizaje Q-learning \cite{Mitchell}, el cual permite mejorar el desempeño de la tarea definida en base a la experiencia de cada prueba. A continuación se presenta y describe la configuración de las caracter\'isticas particulares del aprendizaje utilizado para este proyecto.
 
 \subsection{Modelo del problema}
 
@@ -45,16 +45,17 @@ Cada región en la que se pueda detectar la pelota es un estado diferente. Por l
 Las posibles acciones a realizar son un subconjunto de las acciones de movimiento definidas en la sección \ref{esqueleto}. Además se agregaron otras acciones para mejorar el desempeño en la búsqueda de la pelota. Las acciones disponibles son:
 
 \begin{itemize}
-\item {Caminar un paso hacia adelante (2.5 cm)}
-\item {Caminar dos pasos hacia adelante (4.8 cm)}
-\item {Caminar cuatro pasos hacia adelante (9.9 cm)}
-\item {Girar a la izquierda (3 cm)}
-\item {Girar doble a la izquierda (6 cm)} 
-\item {Girar a la derecha (3 cm) }
-\item {Girar doble a la derecha (6 cm)}
+\item {Caminar un paso hacia adelante }
+\item {Caminar dos pasos hacia adelante }
+\item {Caminar cuatro pasos hacia adelante}
+\item {Girar a la izquierda}
+\item {Girar doble a la izquierda} 
+\item {Girar a la derecha }
+\item {Girar doble a la derecha}
 \label{item:todaslasacciones}
 \end{itemize}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% NO SE SI PONER ESTO O NO %%%%%%%%%%%%%%%%%%%%%%%55
+%Las acciones poseen una distancia recorrida por cada una, un paso hacia adelante desplazada 2.5 cm, dos pasos hacia adelante 4.8 cm , cuatro pasos recorre 9.9 cm , en cuanto a los giros simples la distancia es de 3cm y los giros dobles de 6 cm.
 \subsubsection{Recompensas}\label{recompensas}
 
 La recompensa, que puede ser positiva o negativa, se otorga a un par $(s,a)$, en donde $s$ es un estado y $a$ es una acci\'on. Se calcula en base a que tanto el robot se acerca a la pelota cuando en el estado $s$ se toma la acci\'on $a$. Es decir, las recompensas se definen en base a la distancia recorrida, con respecto a la pelota, cuando se toma una acci\'on.  

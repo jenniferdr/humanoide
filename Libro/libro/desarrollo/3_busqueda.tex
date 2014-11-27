@@ -20,11 +20,11 @@ Una vez con la representaci\'on del mundo, los movimientos programados y la comu
 
 Para cumplir con el desarrollo de la programación de la búsqueda y pateo de la pelota, se han utilizado algunas herramientas que han facilitado el proceso. A continuación se describen las más destacadas dentro del proyecto. 
 
-Pypose es un software especializado en el control de los servomotores Dynamixel Ax-12. Esta es la opci\'on que ofrecen los desarrolladores de la tarjeta Arbotix para su programaci\'on. Una de sus más importantes características es que luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar \cite{pypose}. 
+Pypose \cite{pypose} es un software especializado en el control de los servomotores Dynamixel Ax-12. Esta es la opci\'on que ofrecen los desarrolladores de la tarjeta Arbotix para su programaci\'on. Una de sus más importantes características es que luego de haber fijado a mano las posiciones de los motores, permite la lectura simultánea de esas posiciones para captar la pose del robot. Con esta herramienta es posible formar una secuencia de poses que generen un movimiento, por ejemplo, caminar . 
 
 Cuando los movimientos han sido implementadas por medio de pypose fue necesario su utilizaci\'on en un ambiente m\'as versatil por lo cual se utiliz\'o el IDE Arduino que es un entorno de desarrollo para escribir y cargar código en la tarjeta Arduino. Otras tarjetas con microcontroladores \gls{AVR} también son compatibles, como la Arbotix. El lenguaje de programación del IDE de Arduino es una implementación de Wiring el cual está basado en Processing \cite{arduino}.  
 
-ROS (Robot Operating System) es un\gls{framework} flexible para la escritura de software enfocado en robots. Es una colección de herramientas, bibliotecas y convenciones que tienen por objeto simplificar la tarea de crear un comportamiento complejo y robusto a través de una amplia variedad de plataformas robóticas. \gls{ROS} se encuentra bajo licencia de código abierto, la licencia \gls{BSD} \cite{ros}.
+ROS (Robot Operating System) \cite{ros} es un\gls{framework} flexible para la escritura de software enfocado en robots. Es una colección de herramientas, bibliotecas y convenciones que tienen por objeto simplificar la tarea de crear un comportamiento complejo y robusto a través de una amplia variedad de plataformas robóticas. \gls{ROS} se encuentra bajo licencia de código abierto, la licencia \gls{BSD} .
 
 HServo es una librería de código libre distribuida bajo la Licencia Pública General Reducida de GNU. Esta librería se encuentra desarrollada especificamente para la tarjeta Arbotix, ya que con la nueva librería de Arduino Servo se pueden experimentar fallas en el control de los servos. La interfaz es la misma, la diferencia es que solo puede ser usada para servos conectados en los pines 12 y 13 de la tarjeta Arbotix \cite{HServo}.    
 
@@ -44,11 +44,11 @@ Las acciones de movimiento establecidas son:
 
 \begin{itemize}
 % \item {Caminar 2.5 cm hacia adelante }
- \item {Caminar dos pasos hacia adelante (4.8 cm ) }
+ \item {Caminar dos pasos hacia adelante}
 % \item {Caminar 9.9 cm hacia adelante }
- \item {Girar a la izquierda (3 cm)}
+ \item {Girar a la izquierda}
 % \item {Girar 6 cm a la izquierda} 
- \item {Girar a la derecha (3 cm)}
+ \item {Girar a la derecha}
 % \item {Girar 6 cm a la derecha}	 
  \item {Levantarse desde la posición boca abajo}
  \item {Levantarse desde la posición boca arriba}
@@ -57,7 +57,7 @@ Las acciones de movimiento establecidas son:
  
 \end{itemize}
 
-En el movimiento de caminar se establece como unidad el de ejecutar dos pasos seguidos, este fue construido manteniendo el equilibrio del robot para evitar posibles caidas e inestabilidad. La distancia recorrida por ese paso es de 4.8 cm, analogamente se obtiene las distancias recorridas de los giros de derecha e izquierda. 
+En el movimiento de caminar se establece como unidad el de ejecutar dos pasos seguidos, este fue construido manteniendo el equilibrio del robot para evitar posibles caidas e inestabilidad. La distancia recorrida por ese paso es de 4.8 cm, analogamente se obtiene las distancias recorridas de los giros de derecha e izquierda de 3 cm cada una. 
 
 Estas poses han sido fijadas a través de la tarjeta controladora Arbotix y el software Pypose. De esta manera se ha fijado y guardado un conjunto de poses para cada acción de movimiento. Estas acciones de movimientos han sido exportadas para ser utilizadas en el programa, en lenguaje Wiring, a ser ejecutado en Arbotix. La programación en Arbotix se ha realizado bajo el ambiente del \gls{IDE} de Arduino. 
 
@@ -133,7 +133,7 @@ Para la implementación de la comunicación se ha usado \gls{ROS} con su versió
 
 Una vez con la representaci\'on del mundo, los movimientos programados y la comunicaci\'on de las tarjetas, solo faltaría decidir que acci\'on tomar en cada situación. En primera instancia se ha decidido fijar una acción por cada región en la que se detecte la pelota. 
 
-cuando la pelota se encuentre a la izquierda del robot (regiones 4,8,10 y 12) junny debe girar a la izquieda para centrar la pelota.
+Cuando la pelota se encuentre a la izquierda del robot (regiones 4,8,10 y 12) junny debe girar a la izquieda para centrar la pelota.
 
 A continuación se especifica la acción a tomar en cada regi\'on: 
  \begin{itemize}
