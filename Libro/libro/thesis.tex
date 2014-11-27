@@ -195,7 +195,6 @@
 
 % Crea la lista de figuras
 \listoffigures
-\printglossaries
 
 \clearpage
 % Crea la lista de codigos fuentes
@@ -246,11 +245,9 @@
 
 \input{conclusiones/conclusiones.tex}
 
+
 % Crea el glosario
-%\makeglossaries
-%\makenomenclature
-% Incluye el glosario
-%\input{apendices/glosario.tex}
+
 
 % Establece las citas y bibliografia
 \bibliographystyle{plainurl.bst}
@@ -258,7 +255,9 @@
 \nomenclature{$a$}{The number of angels per unit area}%
 \nomenclature{$N$}{The number of angels per needle point}%
 \nomenclature{$A$}{The area of the needle point}%
+\printglossaries
 
+\clearpage
 % Crea el apendice
 \appendix
 %\input{apendices/Archivos_intermedios.tex}

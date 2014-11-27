@@ -1,5 +1,7 @@
 \chapter{Experimentos y Resultados}\label{chapter:resultados}
-En este capítulo se describen los experimentos realizados para analizar el desempeño del robot. Los experimentos se han dividido en tres partes. El primer conjunto de experimentos (sección \ref{sec:experimentosMov}) se ha realizado para verificar el desempeño y balance del robot al ejecutar uno o varios movimientos en secuencia. El segundo y tercer conjunto de experimentos se bas\'o en verificar el desempeño del robot al buscar la pelota. En el segundo conjunto (sección \ref{sec:experimentosintegrados}) la forma de escoger la acciónes de movimiento han sido fijadas para cada región en la que se detecta la pelota. Mientras que para el tercer conjunto de experimentos (secci\'on \ref{sec:experimentosAprend}) la forma de escoger las acciones de movimiento ha sido resultado del aprendizaje por reforzamiento. 
+En este capítulo se describen los experimentos realizados para analizar el desempeño del robot. Los experimentos se han dividido en tres partes. El primer conjunto de experimentos (sección \ref{sec:experimentosMov}) se ha realizado para verificar el desempeño y balance del robot al ejecutar uno o varios movimientos en secuencia (experimentos simples). El segundo y tercer conjunto de experimentos se bas\'o en verificar el desempeño del robot al buscar la pelota. En el segundo conjunto (sección \ref{sec:experimentosintegrados}) la forma de escoger la acciónes de movimiento han sido fijadas para cada región en la que se detecta la pelota. Mientras que para el tercer conjunto de experimentos (secci\'on \ref{sec:experimentosAprend}) la forma de escoger las acciones de movimiento ha sido resultado del aprendizaje por reforzamiento. Finalmente se describe los experimentos con el entrenamiento terminado y la orientaci\'on al arco (experimentos completos) en la secci\'on ~\ref{completos}. 
+
+Todas la implementaci\'on de este proyecto se encuentra en el siguiente enlace:\url{ https://github.com/jenniferdr/raspberryROS}  
  
 \section{Experimentos de Movimientos}\label{sec:experimentosMov}
 
@@ -9,7 +11,7 @@ La primera etapa consistió en verificar el desempeño de las unidades de accion
 
 En la segunda etapa se evalu\'o la ejecuci\'on de combinaciones de varias unidades de movimiento. Las combinaciones elegidas fueron: 
 
-Las posibles combinaciones que se pueden generar con las acciones es 9\! por lo cual se considero solo un subconjunto de estas combinaciones basados en los movimientos mas comunes que suelen realizar el robot.
+Las posibles combinaciones que se pueden generar con las acciones es $2 ^ 9$ por lo cual se considero solo un subconjunto de estas combinaciones basados en los movimientos mas comunes que se suele ralizar al caminar.
 \begin{itemize}
 \setlength{\itemsep}{1pt}
 \item Caminar hacia adelante y patear con la pierna derecha 
@@ -24,7 +26,8 @@ Las posibles combinaciones que se pueden generar con las acciones es 9\! por lo 
 \item Girar hacia la izquierda y patear con la pierna izquierda
  \end{itemize}
 
-Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. Los resultados se muestran en el gráfico de la figura ~\ref{tabla:casos}. El resultado ha sido satisfactorio, obteniendo un 96\% de casos exitosos y un 4\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse.  
+Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. %Los resultados se muestran en el gráfico de la figura ~\ref{tabla:casos}. 
+El resultado ha sido satisfactorio, obteniendo un 96\% de casos exitosos y un 4\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse.  
 
 %\begin{figure}[th!]
 %\begin{tikzpicture}
@@ -123,7 +126,7 @@ Caso IV & 10 & 90\% & NA & 10\% & 4m 48s \\
 
 \end{figure}
 
-Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos han sido satifactorios con un porcentaje de logro del 82\% mas un 5.5\% en el cual se logró recuperar y finalizar la tarea, con 12.5\% de fallas en la tarea se pudo observar de manera general que la razón de dichas fallas ha sido ocasionada por problemas de batería.
+Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos han sido satifactorios con un porcentaje de logro del 82\% mas un 5.5\% en el cual se logró recuperar y finalizar la tarea, con 12.5\% de fallas en la tarea. %se pudo observar de manera general que la razón de dichas fallas ha sido ocasionada por problemas de batería.
 
 
 
@@ -242,15 +245,15 @@ Los resultados de los entrenamientos arrojaron que la mejor combinaci\'on de fue
 
 Con el objetivo de lograr un mejor desempeño de Junny se inicializ\'o los valores de $Q(s,a)$ con valores de recompesas negativas para aquellas acciones cuyos efectos, en un estado particular, serían obviamente err\'oneos. Con esto se ayuda al aprendizaje del robot, disminuyendo la probabilidad de tomar acciones ineficientes. Adem\'as se aumentó el n\'umero de pruebas de entrenamiento a 30 con el mismo objetivo.
 
-Para medir el desempeño general de Junny, con respecto al último entrenamiento, se realizó una prueba de 15 ejecuciones colocando la pelota a distintas distancias. Los resultados de esta \'ultima pureba se presenta en el gr\'afico \ref{fig:mejor}. 
-
-\begin{figure}[h]
-\begin{tikzpicture}
-\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{100/Exitosas, 0/Fallidas}
-\end{tikzpicture}
-\caption{Prueba con $K = 3$ y $ \gamma = 0.1 $ e inicializaci\'on de Q(s,a)}
-\label{fig:mejor}
-\end{figure} 
+Para medir el desempeño general de Junny, con respecto al último entrenamiento, se realizó una prueba de 15 ejecuciones colocando la pelota a distintas distancias. Los resultados de esta \'ultima prueba  son de 100\% de exitos con  $K = 3$ y $ \gamma = 0.1 $ e inicializaci\'on de Q(s,a). %se presenta en el gr\'afico \ref{fig:mejor}. 
+%
+%\begin{figure}[h]
+%\begin{tikzpicture}
+%\pie[pos={10 ,0}, radius =2, explode =0.3, text = legend, rotate =180]{100/Exitosas, 0/Fallidas}
+%\end{tikzpicture}
+%\caption{Prueba con $K = 3$ y $ \gamma = 0.1 $ e inicializaci\'on de Q(s,a)}
+%\label{fig:mejor}
+%\end{figure} 
 
 Para un análisis más profundo de los resultados, se estableci\'o el n\'umero estimado de acciones esperadas, dado un estado inicial, que debe realizar el robot para llegar hasta la pelota. Con esto se puede tener una referencia de cuantas acciones debió realizar Junny en cada ejecución y comparar con el número de acciones que realmente tomó. La manera de calcular la eficiencia ha sido dividiendo la cantidad de acciones esperadas entre la cantidad de acciones realizadas. Por lo tanto mientras mas cercano a (1) se considera una mejor tasa de eficiencia. Para valores mayores a uno (1) significa que se realizaron menos acciones de lo esperado. Esto es posible ya que el número de acciones esperadas se calcula en base al peor de los casos.  
 
@@ -258,7 +261,7 @@ Para la última prueba se obtuvo una eficiencia de $0.72$. Sin embargo bajo los 
 
 Así mismo al comparar los tiempos promedios, con respecto a la última prueba, se obtienen los siguientes resultados. El tiempo promedio de las pruebas cuyas acciones esperadas eran menor a 8 (estados mas cercanos) fue de 4m y 19s en contraste con el promedio del tiempo de las pruebas cuyas acciones esperadas eran mayores a 8 que fue 3m y 21s.
 
-Se realiz\'o un experimento comparativo para observar el desempe\~no del comportamiento de sin aprendizaje y con aprendizaje por ello, se hizo el mismo experimento de los casos II, III, IV pero con el comportamiento generado $K = 3 $ y $ \gamma = 0.1$,  los resultados obtenidos fueron mayor porcentaje de acertividad pero a un costo de tiempo se pueden observar en la tabla ~\ref{tabla:comparacion}  cada prueba en ambos casos ejecut\'o 10 veces.
+Se realiz\'o un experimento comparativo para observar el desempe\~no del comportamiento de sin aprendizaje y con aprendizaje por ello, se hizo el mismo experimento de los casos II, III, IV pero con el comportamiento generado $K = 3 $ y $ \gamma = 0.1$,  los resultados obtenidos fueron mayor porcentaje de acertividad para el aprendizaje pero a un costo de tiempo  que se pueden observar en la tabla ~\ref{tabla:comparacion}  cada prueba en ambos casos ejecut\'o 10 veces.
 
 \begin{figure}
 \centering
@@ -288,9 +291,9 @@ Tiempo promedio sin aprendizaje & 2m 12s & 3m 29 s & 4m 48s \\
 
 \end{figure}
 
-\section{Experimentos completos}
+\section{Experimentos completos} \label{completos}
 
-Finalmente se realizaron experimentos con aprendizaje y patada con orientaci\'on, basicamente el robot partia de un punto fijo y la pelota era colocada arbitrareamente en el campo de entrenamiento, el debia llegar a la pelota, ubicar el arco, posicionarse con respecto al arco y la pelota para realizar un pateo y meter gol.
+Finalmente se realizaron experimentos con aprendizaje y patada con orientaci\'on, basicamente el robot partia de un punto fijo y la pelota era colocada arbitrareamente en el campo de entrenamiento, el deb\'ia llegar a la pelota, ubicar el arco, posicionarse con respecto al arco y la pelota para realizar un pateo y meter gol.
 Las m\'etricas usadas fueron el pateo hacia el arco que generaba un gol y el que pateaba pero no lograba entrar el bal\'on. Estos resultados se muestran en la siguiente figura \ref{fig:orientacion}.
 
 
