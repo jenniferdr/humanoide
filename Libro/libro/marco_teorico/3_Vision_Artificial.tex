@@ -5,7 +5,6 @@ Una manera de obtener información del ambiente es con la visión artificial. Es
 Dentro del campo de visión artificial se han desarrollado diferentes algoritmos y t\'ecnicas para el procesamiento de imágenes con diferentes objetivos. En la sección \ref{sec:Segmentacion} se describe la t\'ecnica de segmentaci\'on por regiones, que es la utilizada en este proyecto para ubicar la posición tanto de la pelota como del arco. 
 
 Por otro lado, existen varios algoritmos que se dedican a la transformación de las imágenes para reducir ruidos, compensar problemas de iluminación, extraer formas, identificar objetos, entre otros. En esta sección se describen dos de las técnicas de transformación para reducir el ruido basadas en la dilatación y erosión de la imagen (secci\'on \ref{sec:filtros}). 
->>>>>>> 5940469a556320b9c4eef3c41d4803c04d7f4d71
  
 \subsection{Segmentaci\'on por regiones}\label{sec:Segmentacion}
 
@@ -24,7 +23,8 @@ En esta investigación, los algoritmos de filtrado aplicados a las imágenes fue
 
 \subsubsection{Dilatación}
 
-La dilatación es una operación que se le aplica a una imagen $A$. Esta consiste en elegir un parámetro de forma, $B$, denominado elemento estructurante, que puede ser de diferentes formas, aunque normalmente es un cuadrado o círculo. Dentro de $B$ se elige un punto de referencia, que normalmente se ubica en el centro. La operación se aplica pasando el elemento estructurante sobre toda la imagen y realizando el efecto de un operador de máximo local. Es decir, se toma el m\'aximo valor de los píxeles de la imagen que se encuentran en la intersección con $B$ y se reemplaza el píxel de la imagen, ubicado en el mismo lugar que el punto de referencia de $B$, con ese valor máximo. El resultado es una imagen más brillante  y grande \cite{BookOpenCv}. 
+La dilatación es una operación que se le aplica a una imagen $A$. Esta consiste en elegir un parámetro de forma, $B$, denominado elemento estructurante, que puede ser de diferentes formas, aunque normalmente es un cuadrado o círculo. Dentro de $B$ se elige un punto de referencia, que normalmente se ubica en el centro. Su función es como la de una plantilla. 
+La operación se aplica pasando el elemento estructurante sobre toda la imagen y realizando el efecto de un operador de máximo local. Es decir, se toma el m\'aximo valor de los píxeles de la imagen que se encuentran en la intersección con $B$ y se reemplaza el píxel de la imagen, ubicado en el mismo lugar que el punto de referencia de $B$, con ese valor máximo. El resultado es una imagen más brillante  y grande \cite{BookOpenCv}. 
 
 \begin{figure}[hbtp]
 
