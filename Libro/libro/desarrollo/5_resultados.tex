@@ -1,7 +1,5 @@
 \chapter{Experimentos y Resultados}\label{chapter:resultados}
-En este capítulo se describen los experimentos realizados para analizar el desempeño del robot. Los experimentos se han dividido en tres partes. El primer conjunto de experimentos (sección \ref{sec:experimentosMov}) se ha realizado para verificar el desempeño y balance del robot al ejecutar uno o varios movimientos en secuencia (experimentos simples). El segundo y tercer conjunto de experimentos se bas\'o en verificar el desempeño del robot al buscar la pelota. En el segundo conjunto (sección \ref{sec:experimentosintegrados}) la forma de escoger la acciónes de movimiento han sido fijadas para cada región en la que se detecta la pelota. Mientras que para el tercer conjunto de experimentos (secci\'on \ref{sec:experimentosAprend}) la forma de escoger las acciones de movimiento ha sido resultado del aprendizaje por reforzamiento. Finalmente se describe los experimentos con el entrenamiento terminado y la orientaci\'on al arco (experimentos completos) en la secci\'on ~\ref{completos}. 
-
-Todas la implementaci\'on de este proyecto se encuentra en el siguiente enlace:\url{ https://github.com/jenniferdr/raspberryROS}  
+En este capítulo se describen los experimentos realizados para analizar el desempeño del robot. Los experimentos se han dividido en tres partes. El primer conjunto de experimentos (sección \ref{sec:experimentosMov}) se ha realizado para verificar el desempeño y balance del robot al ejecutar uno o varios movimientos en secuencia (experimentos simples). El segundo y tercer conjunto de experimentos se bas\'o en verificar el desempeño del robot al buscar la pelota. En el segundo conjunto (sección \ref{sec:experimentosintegrados}) la forma de escoger la acciónes de movimiento han sido fijadas para cada región en la que se detecta la pelota. Mientras que para el tercer conjunto de experimentos (secci\'on \ref{sec:experimentosAprend}) la forma de escoger las acciones de movimiento ha sido resultado del aprendizaje por reforzamiento. Finalmente se describe los experimentos con el entrenamiento terminado y la orientaci\'on al arco (experimentos completos) en la secci\'on ~\ref{completos}. Todas la implementaci\'on de este proyecto se encuentra en el siguiente enlace:\url{ https://github.com/jenniferdr/raspberryROS}  
  
 \section{Experimentos de Movimientos}\label{sec:experimentosMov}
 
@@ -13,7 +11,9 @@ En la segunda etapa se evalu\'o la ejecuci\'on de combinaciones de varias unidad
 
 Las posibles combinaciones que se pueden generar con las acciones es $2 ^ 9$ por lo cual se considero solo un subconjunto de estas combinaciones basados en los movimientos mas comunes que se suele ralizar al caminar.
 \begin{itemize}
-\setlength{\itemsep}{1pt}
+
+
+\setlength{\itemsep}{0.5pt}
 \item Caminar hacia adelante y patear con la pierna derecha 
 \item Caminar hacia adelante y patear con la pierna izquierda
 \item Caminar hacia adelante, girar hacia la derecha y patear con la pierna derecha
@@ -137,6 +137,7 @@ Finalmente, el tercer conjunto de experimentos consistió en verificar los resul
 Dentro de las fórmulas para el aprendizaje-Q se encuentran dos constantes que han sido configuradas de diferentes maneras para analizar cuál de las combinaciones brinda mejores resultados. Las constantes son la tasa de descuento $\gamma$ de la fórmula del aprendizaje-Q y la constante $K$, de la fórmula de probabilidad explicada en la secci\'on \ref{subsec:eleccionAccion}, que ajusta la distribución de probabilidad que se le da a una acción dependiendo de su valor $Q(s,a)$. Se utilizaron las siguientes combinaciones para las constantes:
 
 \begin{itemize}
+ \setlength\itemsep{0.3pt}
 \item $K$ = 1 , $\gamma$ = 0.1
 \item $K$ = 2 , $\gamma$ = 0.1 
 \item $K$ = 2 , $\gamma$ = 0.7
