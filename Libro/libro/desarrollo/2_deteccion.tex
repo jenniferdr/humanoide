@@ -31,7 +31,16 @@ Para encontrar la ubicación de la pelota  se ha decidido aplicar detección por
 
 %La imagen es captada en el modelo de color \gls{RGB} y se transforma al \gls{HSV}. Luego se aplica la función inRange de OpenCv para obtener una imagen en blanco y negro, en donde se identifica con blanco la zona con el color de la pelota y el resto de la imagen en negro. En el procesamiento de im\'agenes y visi\'on de computaci\'on se trabaja con las im\'genes en escala de grises pues disminuye el tiempo en procesar datos que poseen informaci\'on inutil y aumenta la eficiencia.
 %=======
-La imagen es captada en el modelo de color \gls{RGB} y se transforma al \gls{HSV}. Luego se aplica la función inRange de OpenCv para obtener una imagen binaria, en donde se identifica con blanco la zona con el color de la pelota y el resto de la imagen en negro. En el procesamiento de im\'agenes y visi\'on de computaci\'on se trabaja con las im\'genes en escala de grises, pues disminuye el tiempo en procesar datos que poseen informaci\'on inutil y aumenta la eficiencia.
+La imagen es captada en el modelo de color \gls{BGR}, sin embargo para la segmentación de regiones este modelo no es conveniente por estar basado en el reflejo de la luz. El reflejo de la luz  que proyecta un objeto puede variar dependiendo de su posición y distancia. Por esta razón la imagen se convierte al modelo de color \gls{HSV}, que se basa en el matiz (longitud de onda absoluta de la luz reflejada). Por lo que su valor no depende de la posición o distancia del objeto \cite{AiRobotics}. En la figura ~\ref{fig:proces} se puede observar la diferencia entre la imagen original en BGR y su transformación a HSV.     
+
+Luego se aplica la función inRange de OpenCv para obtener una imagen binaria, en donde se identifica con blanco la zona con el color de la pelota y el resto de la imagen en negro. En la figura ~\ref{fig:proces} (c) se puede ver un ejemplo de la imagen binaria obtenida. En el procesamiento de im\'agenes y visi\'on de computaci\'on generalmente se trabaja con las im\'genes en escala de grises, pues disminuye el tiempo en procesar datos al eliminar informaci\'on inútil y aumenta la eficiencia.
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.36]{imagenes/HSVyBinaria.jpg}
+\caption{(a) imagen original en BGR. (b) imagen original transformada a HSV. (c) imagen binaria a partir de la imagen HSV y el color de la pelota}
+\label{fig:proces}
+\end{figure}
 
 Para disminuir el ruido y los posibles elementos aislados que pueda tener la imagen con la que se está trabajando se han aplicado los filtros o transformaciones de morfología en apertura y morfología en clausura de la librería Opencv, basadas en las operaciones básicas de dilatación y erosión. La morfología en apertura es una transformación que consiste en aplicar la operación de erosión seguido de la operación de dilatación. La morfología de clausura es una transformación que aplica la dilatación seguido de la erosión.
 
