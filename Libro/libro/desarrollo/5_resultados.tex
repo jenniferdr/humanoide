@@ -19,9 +19,9 @@ Se realizaron una serie de experimentos para comprobar la movilidad del robot en
 \item Patada con la pierna izquierda
 
 \end{enumerate}
-La primera etapa consistió en verificar el desempeño de las 9 unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, 450 ejecuciones en total. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.6\% de casos exitosos y un 0.4\% de casos en los que pudo recuperarse de fallas. El 0.4\% representa un solo caso en el que el robot se ha caído y levantado. Los resultados se muestran en la tabla \ref{fig:individuales}.  
+La primera etapa consistió en verificar el desempeño de las 9 unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, 450 ejecuciones en total. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.6\% de casos exitosos y un 0.4\% de casos en los que pudo recuperarse de fallas. El 0.4\% representa un solo caso en el que el robot se ha caído y levantado. Los resultados se muestran en el cuadro \ref{fig:individuales}.  
 
-\begin{figure}
+\begin{table}
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
@@ -48,8 +48,8 @@ Movimiento & Cantidad de pruebas & Correctas & Fallidas & Con recuperaci\'on \\
 \end{tabular} 
 \caption{Resultados pruebas individuales de movimiento}
 \label{fig:individuales}
-\end{figure}
-Para la segunda etapa se evalu\'o la ejecuci\'on de combinaciones de una serie de unidades de movimiento. Las posibles combinaciones que se pueden generar con las acciones es $2 ^ 9$ por lo cual se consideró s\'olo un subconjunto de estas combinaciones, aquellas que el robot realiza con más frecuencia al caminar. Las combinaciones elegidas fueron: 
+\end{table}
+Para la segunda etapa se evalu\'o la ejecuci\'on de combinaciones de una serie de unidades de movimiento. Las posibles combinaciones que se pueden generar con las acciones es $9 ^ 2$ por lo cual se consideró s\'olo un subconjunto de estas combinaciones, aquellas que el robot realiza con más frecuencia al caminar. Las combinaciones elegidas fueron: 
 
 \begin{enumerate}
 \setlength{\itemsep}{0.5pt}
@@ -65,9 +65,9 @@ Para la segunda etapa se evalu\'o la ejecuci\'on de combinaciones de una serie d
 \item Girar hacia la izquierda y patear con la pierna izquierda
 
 \end{enumerate}
-Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. El resultado ha sido satisfactorio, obteniendo un 99\% de casos exitosos y un 1\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse. Los resultados de estas pruebas se resumen en la figura ~\ref{fig:combinadas}.
+Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. El resultado ha sido satisfactorio, obteniendo un 99\% de casos exitosos y un 1\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse. Los resultados de estas pruebas se resumen en el cuadro ~\ref{fig:combinadas}.
  
-\begin{figure}
+\begin{table}
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
@@ -96,7 +96,7 @@ Combinaci\'on & Cantidad de pruebas & Correctas & Fallidas & Con recuperaci\'on 
 \end{tabular} 
 \caption{Resultados de los experimentos con las acciones combinadas elegidas}
 \label{fig:combinadas}
-\end{figure}
+\end{table}
 
 %\begin{figure}[th!]
 %\begin{tikzpicture}
@@ -105,9 +105,9 @@ Combinaci\'on & Cantidad de pruebas & Correctas & Fallidas & Con recuperaci\'on 
 %\caption{Segunda etapa: 300 ejecuciones de acciones combinadas}
 %\label{fig:etp2}
 %\end{figure}
-Para determinar la precisi\'on y desempe\~no de la detecc\'ion de la pelota se realizaron experimentos de enfoque r\'apido los cuales consistieron en la colocaci\'on de la pelota a una distancia fija, mover la c\'amara rapidamente y regresar a la posici\'on y observar si ubicaba la pelota correctamente, las distancias utilizadas fueron 50cm y 80cm del robot. Adem\'as para determinar posibles Falsos Positivos, es decir, detectar una pelota inexistente, se realiz\'o el mismo experimento pero sin la pelota. Los resultados obtenidos se prsentan en la tabla ~\ref{fig:deteccion}.
+Para determinar la precisi\'on y desempe\~no de la detecc\'ion de la pelota se realizaron experimentos de enfoque r\'apido los cuales consistieron en la colocaci\'on de la pelota a una distancia fija, mover la c\'amara rapidamente y regresar a la posici\'on y observar si ubicaba la pelota correctamente, las distancias utilizadas fueron 50cm y 80cm del robot. Adem\'as para determinar posibles Falsos Positivos, es decir, detectar una pelota inexistente, se realiz\'o el mismo experimento pero sin la pelota. Los resultados obtenidos se presentan en el cuadro ~\ref{fig:deteccion}.
 
-\begin{figure}
+\begin{table}
 \centering
 \begin{tabular}{|c|c|c|}
  \hline 
@@ -124,14 +124,14 @@ Para determinar la precisi\'on y desempe\~no de la detecc\'ion de la pelota se r
 \caption{Resultados de las pruebas de detecci\'on}
 \label{fig:deteccion} 
 
-\end{figure}
+\end{table}
 
 \section{Experimentos con Comportamientos Integrados}
 \label{sec:experimentosintegrados}
 
 El segundo conjunto de experimentos consistió en la realización de pruebas de desempeño en donde se observó el comportamiento global del robot con todos sus comportamientos integrados (detección, búsqueda y pateo). La forma de elegir la acciones de movimiento es la que se describe en la sección \ref{eleccionAccionesFijas} (sin aprendizaje). 
 
-El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de pateo (las regiones 1 y 2 de la figura ~\ref{divisionCam}). El número de pruebas en este primer caso fue de 10, cuya duración aproximada de cada prueba fue de 30 segundos. En la figura ~\ref{fig:casos} se puede observar los resultados obtenidos de esta prueba.
+El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de pateo (las regiones 1 y 2 de la figura ~\ref{divisionCam}). El número de pruebas en este primer caso fue de 10, con una duración aproximada de 30 segundos cada una.
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -141,7 +141,7 @@ El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de 
 %\label{fig:caso1}
 %\end{figure}
 
-El segundo caso (CasoII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 50 pruebas, siendo la duración promedio de 2 minutos con 12 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{fig:casos}. 
+El segundo caso (CasoII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 50 pruebas, siendo la duración promedio de 2 minutos con 12 segundos.
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -151,7 +151,7 @@ El segundo caso (CasoII) consistió en en la colocación inicial de la pelota a 
 %\label{fig:caso2}
 %\end{figure}
 
-El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 50 cm a la izquierda formando asi una diagonal. Se realizaron 10 pruebas, siendo la duración promedio de 3 minutos con 29 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{fig:casos}. 
+El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 50 cm a la izquierda formando asi una diagonal. Se realizaron 10 pruebas, siendo la duración promedio de 3 minutos con 29 segundos. 
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -161,7 +161,7 @@ El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a
 %\label{fig:caso3}
 %\end{figure}
 
-El cuarto caso (Caso IV) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 50 cm a la derecha. Se realizaron 10 pruebas, siendo la duración promedio de 4 minutos con 48 segundos. Los resultados de dicho caso se pueden observar en la figura ~\ref{fig:casos}. 
+El cuarto caso (Caso IV) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 50 cm a la derecha. Se realizaron 10 pruebas, siendo la duración promedio de 4 minutos con 48 segundos. 
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -170,7 +170,7 @@ El cuarto caso (Caso IV) consistió en en la colocación inicial de la pelota a 
 %\caption{Pruebas de movimientos integrados CASO IV}
 %\label{fig:caso4}
 %\end{figure} 
-\begin{figure}
+\begin{table}
 \centering
 
 \begin{tabular}{|p{3cm}|p{2cm}|c|p{2cm}|c|p{2cm}|}
@@ -193,15 +193,15 @@ Caso IV & 10 & 90\% & 0\% & 10\% & 4m 48s \\
 \caption{Resultados de los casos I, II, III, IV descritos en la secci\'on de \ref{sec:experimentosintegrados}}
 \label{fig:casos}
 
-\end{figure}
+\end{table}
 
-Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos han sido satifactorios con un porcentaje de logro del 82\% más un 5.5\% en el cual se logró recuperar y finalizar la tarea, esto a pesar del 12.5\% de fallas que se produjo durante la tarea. %se pudo observar de manera general que la razón de dichas fallas ha sido ocasionada por problemas de batería.
+Los resultados de los casos del I al IV se pueden observar en el cuadro ~\ref{fig:casos}. Con un total de 40 pruebas de comportamiento integrado, los resultados obtenidos han sido satifactorios con un porcentaje de logro del 82\% más un 5.5\% en el cual se logró recuperar y finalizar la tarea, esto a pesar del 12.5\% de fallas que se produjo durante la tarea. %se pudo observar de manera general que la razón de dichas fallas ha sido ocasionada por problemas de batería.
 
 
 
 \section{Experimentos con Aprendizaje}\label{sec:experimentosAprend}
 
-Finalmente, el tercer conjunto de experimentos consistió en verificar los resultados de la aplicaci\'on del apredizaje por reforzamiento, para la búsqueda de la pelota. Estos resultados se presentan a continuaci\'on.
+Finalmente, el tercer conjunto de experimentos consistió en verificar los resultados de la aplicaci\'on del apredizaje por reforzamiento para la búsqueda de la pelota. Estos resultados se presentan a continuaci\'on.
 
 Dentro de las fórmulas para el aprendizaje-Q se encuentran dos constantes que han sido configuradas de diferentes maneras para analizar cuál de las combinaciones brinda mejores resultados. Las constantes son la tasa de descuento $\gamma$ de la fórmula del aprendizaje-Q y la constante $K$, de la fórmula de probabilidad explicada en la secci\'on \ref{subsec:eleccionAccion}, que ajusta la distribución de probabilidad que se le da a una acción dependiendo de su valor $Q(s,a)$. Se utilizaron las siguientes combinaciones para las constantes:
 
@@ -217,13 +217,13 @@ Dentro de las fórmulas para el aprendizaje-Q se encuentran dos constantes que h
    
 \end{itemize}
 
-Una prueba completa o prueba de comportamiento integrado se define como la colocaci\'on del robot y la pelota en posiones iniciales arbitrarias, entonces el robot debe ser capaz de detectar la pelota, trasladarse hacia ella y patearla. Las pruebas se realizaron en un espacio de $1.8 m \times 1.6 m$
+Una prueba completa o prueba de comportamiento integrado se define como la colocaci\'on del robot y la pelota en posiciones iniciales arbitrarias, entonces el robot debe ser capaz de detectar la pelota, trasladarse hacia ella y patearla. Las pruebas se realizaron en un espacio de $1.8 m \times 1.6 m$
 en donde se aseguraba que el color particular de la pelota no se repitiera, de ser así esa prueba se consideraba inválida.
 
-Cada una de estas combinaciones se entrenó con 20 ejecuciones completas. Con los valores $Q(s,a)$ para cada estado y acción inicializados en cero (0), exceptuando los estados de la zona de pateo, que han sido inicializados con el valor 1. Una vez completados los entrenamientos se realizó un conjunto de pruebas para medir el desempeño del resultado de cada combinación y reconocer la mejor usando el porcentaje de pateos efectivos. Se realizó una prueba, de 10 ejecuciones cada una, para cada combinación. En total se realizaron 210 ejecuciones. La elecci\'on de s\'olo 20 pruebas para el conjunto de entrenamiento se deb\'io a que los motores son delicados, por lo cual mientras se aumentaba en n\'umero de pruebas aumentaba el riesgo de quemarlos.
+Cada una de estas combinaciones se entrenó con 20 ejecuciones completas. Con los valores $Q(s,a)$ para cada estado y acción inicializados en cero (0), exceptuando los estados de la zona de pateo, que han sido inicializados con el valor 1. Una vez completados los entrenamientos se realizó un conjunto de pruebas para medir el desempeño del resultado de cada combinación y reconocer la mejor usando el porcentaje de pateos efectivos. Se realizó una prueba, de 10 ejecuciones cada una, para cada combinación. En total se realizaron 210 ejecuciones. La elecci\'on de s\'olo 20 pruebas para el conjunto de entrenamiento se deb\'io a que los motores son delicados, por lo cual mientras se aumentaba el n\'umero de pruebas aumentaba el riesgo de quemarlos.
 
-Para la combinaci\'on de $K = 1$ y $ \gamma = 0.1 $ los resultados obtenidos se presentan en la tabla ~\ref{tabla:entramientos}. Cuando $K = 1$ la probabilidad de elegir la acci\'on, dado un estado, es igual para todas las acciones, por lo tanto la elección de la acción para este caso ha sido uniformemente aleatoria. Los resultados de las combinaciones de par\'ametros ajustables se presentan en la tabla ~\ref{tabla:entramientos}.
-\begin{figure}
+Para la combinaci\'on de $K = 1$ y $ \gamma = 0.1 $ los resultados obtenidos se presentan en el cuadro ~\ref{tabla:entramientos}. Cuando $K = 1$ la probabilidad de elegir la acci\'on, dado un estado, es igual para todas las acciones, por lo tanto la elección de la acción para este caso ha sido uniformemente aleatoria. Los resultados de las combinaciones de par\'ametros ajustables se presentan en el cuadro ~\ref{tabla:entramientos}.
+\begin{table}
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline 
@@ -250,7 +250,7 @@ $K = 5  \gamma = 0.7$ & 20 & 70\% & 30\% \\
 \label{tabla:entramientos}
 
 
-\end{figure}
+\end{table}
 %
 %\begin{figure}
 %\begin{tikzpicture}
@@ -326,11 +326,11 @@ Para un análisis más profundo de los resultados, se estableci\'o el n\'umero e
 
 Para la última prueba se obtuvo una eficiencia de $0.72$. Sin embargo bajo los mismos parametros de $K = 3$ y $ \gamma = 0.1 $ con el resultado del entrenamiento con 20 pruebas (y valores de $Q(s,a)$ inicializados en cero) se obtuvo una eficiencia de $0.64$. Por lo tanto con el aumento de 10 pruebas de entrenamiento e inicialización de los valores $Q(s,a)$ se mejoró aproximadamente un 12\%. Este es un indicativo de que con mayor cantidad de pruebas este porcentaje mejorar\'a y la eficiencia aumentará.
 
-Así mismo al comparar los tiempos promedios, con respecto a la última prueba, se obtienen los siguientes resultados. El tiempo promedio de las pruebas cuyas acciones esperadas eran menor a 8 (estados mas cercanos) fue de 4m y 19s en contraste con el promedio del tiempo de las pruebas cuyas acciones esperadas eran mayores a 8 que fue 3m y 21s.
+%Así mismo al comparar los tiempos promedios, con respecto a la última prueba, se obtienen los siguientes resultados. El tiempo promedio de las pruebas cuyas acciones esperadas eran menor a 8 (estados mas cercanos) fue de 4m y 19s en contraste con el promedio del tiempo de las pruebas cuyas acciones esperadas eran mayores a 8 que fue 3m y 21s.
 
-Se realiz\'o un experimento comparativo para observar el desempe\~no del comportamiento sin aprendizaje y con aprendizaje, por ello, se hizo el mismo experimento de los casos II, III, IV (explicados en la sección anterior) pero con el comportamiento generado después del entrenamiento con la combinación $K = 3 $ y $ \gamma = 0.1$. Los resultados obtenidos fueron un mayor porcentaje de aciertos para el aprendizaje pero a un costo de tiempo que se puede observar en la tabla ~\ref{tabla:comparacion}, cada prueba en ambos casos ejecut\'o 10 veces.
+Se realiz\'o un experimento comparativo para observar el desempe\~no del comportamiento sin aprendizaje y con aprendizaje, por ello, se hizo el mismo experimento de los casos II, III, IV (explicados en la sección anterior) pero con el comportamiento generado después del entrenamiento con la combinación $K = 3 $ y $ \gamma = 0.1$. Los resultados obtenidos fueron un mayor porcentaje de aciertos para el aprendizaje pero a un costo de tiempo que se puede observar en el cuadro ~\ref{tabla:comparacion}, cada prueba en ambos casos ejecut\'o 10 veces.
 
-\begin{figure}
+\begin{table}
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline  & Caso II & Caso III & Caso IV \\ 
@@ -356,12 +356,14 @@ Tiempo promedio sin aprendizaje & 2m 12s & 3m 29 s & 4m 48s \\
 \caption{Comparaci\'on de movimientos predeterminados y aprendizaje}
 \label{tabla:comparacion}
 
-\end{figure}
- Un resultado a destacar es que el tiempo promedio de pruebas a la derecha (Caso IV) es en proporci\'on  menor a las pruebas a la izquierda (Caso III) a pesar que las mismas son sim\'etricas. Esto indica que los siguientes entrenamientos deben hacer \'enfasis en los estados a la izquierda del robot. 
+\end{table}
+
+ Un resultado a destacar es que el tiempo promedio de pruebas a la derecha (Caso IV) es en proporci\'on  menor a las pruebas a la izquierda (Caso III) a pesar que las mismas son sim\'etricas. Esto indica que los siguientes entrenamientos deben hacer \'enfasis en los estados a la izquierda del robot.
+ 
 \section{Experimentos completos} \label{completos}
 
 Finalmente se realizaron experimentos con aprendizaje y patada con orientaci\'on, basicamente el robot part\'ia de un punto fijo y la pelota era colocada arbitrareamente en el campo de entrenamiento, el deb\'ia llegar a la pelota, ubicar el arco, posicionarse con respecto al arco y la pelota para realizar un pateo y meter gol.
-Las m\'etricas usadas fueron el pateo hacia el arco que generaba un gol y el que pateaba pero no lograba entrar el bal\'on. Estos resultados se muestran en la siguiente figura \ref{fig:orientacion}.
+Las m\'etricas usadas fueron el pateo hacia el arco que generaba un gol y el que pateaba pero no lograba entrar el bal\'on. Estos resultados se muestran en la figura \ref{fig:orientacion}.
 
 
 \begin{figure}[h]
