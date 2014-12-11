@@ -1,6 +1,9 @@
+
+
 \documentclass{beamer}
 \usetheme{Oxygen}
 \usepackage{graphicx}
+
 \title{\small Desarrollo de un prototipo de robot humanoide que busque, encuentre y patee
 una pelota de forma aut\'onoma e inteligente}
 \author{Jennifer Dos Reis y Juliana Le\'{o}n \linebreak Tutor Acad\'emico \linebreak Ivette Carolina Mart\'inez }
@@ -77,9 +80,9 @@ una pelota de forma aut\'onoma e inteligente}
     \item Instalaci\'on y configuraci\'on de los componentes 
     \item Detecci\'on de la pelota
     \item Desplazamiento 
-    \item Detecci\'on de ca\'idas
+    \item Control de ca\'idas
     \item Comunicaci\'on entre controladores
-    \item Aplicaci\'on de aprendizaje por reforzamiento 
+    \item Aprendizaje por reforzamiento 
     \item Orientaci\'on al arco 
     \end{itemize}
   \end{block}
@@ -232,8 +235,8 @@ una pelota de forma aut\'onoma e inteligente}
 	\item Caminar hacia adelante
 	\item Girar a la izquierda
 	\item Girar a la derecha
-	\item Levantarse desde la posici\'on boca abajo
-	\item Levantarse desde la posic\'on boca arriba
+	\item Levantarse desde la posición boca abajo
+	\item Levantarse desde la posición boca arriba
 	\item Patear con la pierna izquierda
 	\item Patear con la pierna derecha
     \end{itemize}		
@@ -389,35 +392,233 @@ Q (s,a) = r + {\gamma\max_{a'}} Q(\delta(s ,a ) , a')
 
 
 \section{Experimentos y Resultados}
+
+\begin{frame}
+\frametitle{Experimentos}
+\framesubtitle{Simples}
+\begin{block} {De movimiento}
+Se realizaron 50 ejecuciones de cada movimiento simple
+\end{block}
+
+\begin{figure}[scale = 0.1]
+\centering
+ \resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+Movimiento & Cantidad de pruebas & Correctas & Fallidas & Con recuperaci\'on \\ 
+\hline 
+1 & 50 & 100\% & 0\% & NA \\ 
+\hline 
+2 & 50 & 98\% & 2\% & 0\% \\ 
+\hline 
+3 & 50 &  100\% & 0\% & NA \\ 
+\hline 
+4 & 50 &  100\% & 0\% & NA \\ 
+\hline 
+5 & 50 &  100\% & 0\% & NA \\ 
+\hline 
+6 & 50 &  100\% & 0\% & NA \\ 
+\hline 
+7 & 50 &  100\% & 0\% & NA \\ 
+\hline 
+8 & 50 &   98\% & 2\% & 2\% \\ 
+\hline 
+9 & 50 &  100\% & 0\% & NA \\ 
+\hline 
+\end{tabular} 
+}
+%\caption{Resultados pruebas individuales de movimiento}
+\label{fig:individuales}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Experimentos}
+\framesubtitle{Simples}
+\begin{block} {De movimiento compuesto}
+Se realizaron 30 ejecuciones de cada movimiento compuesto
+\end{block}
+
+\begin{figure}[scale = 0.1]
+\centering
+ \resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+Combinaci\'on & Cantidad de pruebas & Correctas & Fallidas & Con recuperaci\'on \\ 
+\hline 
+1 & 30 & 96.7\% & 3.3\% & 3.3\% \\ 
+\hline 
+2 & 30 & 100\% & 0\% & NA \\ 
+\hline 
+3 & 30 & 100\% & 0\% & NA \\ 
+\hline 
+4 & 30 & 100\% & 0\% & NA \\ 
+\hline 
+5 & 30 & 96.7\% & 3.3\% & 3.3\% \\ 
+\hline 
+6 & 30 & 100\% & 0\% & NA \\ 
+\hline 
+7 & 30 & 100\% & 0\% & NA \\ 
+\hline 
+8 & 30 & 100\% & 0\% & NA \\ 
+\hline 
+9 & 30 & 100\% & 0\% & NA \\ 
+\hline 
+10 & 30 & 100\% & 0\% & NA \\ 
+\hline 
+\end{tabular} 
+}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Experimentos}
+\framesubtitle{Simples}
+\begin{block} {De movimiento compuesto}
+Se realizaron 50 ejecuciones de cada prueba de enfoque
+\end{block}
+
+\begin{figure}[scale = 0.1]
+\centering
+ %\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+ \hline 
+  & Cantidad de Pruebas & Correctas \\ 
+ \hline 
+ A 50 cm & 50 & 100\% \\ 
+ \hline 
+ A 80 cm & 50 & 100\% \\ 
+ \hline 
+ No pelota & 50 & 100\% \\ 
+  \hline 
+
+ \end{tabular}  
+%}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Experimentos}
+\framesubtitle{Compuestos}
+\begin{block} {Comportamiento integrados}
+\begin{itemize}
+\item Caso I :Pelota a los pies de Junny
+\item Caso II: Pelota a 50 cm en linea recta 
+\item Caso III: Pelotoa 
+\item Caso IV: 
+\end{itemize}
+\end{block}
+
+\begin{figure}[scale = 0.1]
+\centering
+ \resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{3cm}|p{2cm}|c|p{2cm}|c|p{2cm}|}
+\hline 
+& Cantidad de 
+pruebas realizadas & Correctas & Con fallas recuperadas & Fallidas & Tiempo Promedio \\ 
+%\hline 
+%Subconjunto de combinadas & 300 & 96\% & 4\% & NA & NA \\ 
+\hline 
+Caso I & 10 & 90\% & 10\% & 0\% & 30 s \\ 
+\hline 
+Caso II & 10 & 70\% & 10\% & 20\% & 2m 12s \\ 
+\hline 
+Caso III & 10 & 80\% & 0\% & 20\% & 3m 29s \\ 
+\hline 
+Caso IV & 10 & 90\% & 0\% & 10\% & 4m 48s \\ 
+\hline 
+\end{tabular} 
+}
+\end{figure}
+
+\end{frame}
 \begin{frame}
   \frametitle{Experimentos}
-  
-  \begin{block}{Simples}
-		\begin{itemize}
-		\item De movimiento
-		\item De movimiento compuesto 
-		\item De detecci\'on
- 		\end{itemize}
-	   \end{block}
-\begin{block}{Compuestos}
-	\begin{itemize}
-		\item Caso I
-		\item Caso II
-		\item Caso III
-		\item Caso IV
-		\item Con aprendizaje
-	\end{itemize}
-\end{block}
+  \framesubtitle{Aprendizaje}
+  \begin{block}{Ajuste}
+		Con el ajuste de los parametros
+		DECIR COMO LE FUE AL MEJOR EFICIENCIA  ESO
+		\end{block}
+
+\begin{figure}
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+& Cantidad & Correctas & Fallidas \\ 
+\hline 
+$K = 1  \gamma = 0.1$ & 20 & 80\% & 20\% \\ 
+\hline 
+$K = 2  \gamma = 0.1$ & 20 & 80\% & 20\% \\ 
+\hline 
+$K = 2  \gamma = 0.7$ & 20 & 60\% & 40\% \\ 
+\hline 
+$K = 3  \gamma = 0.1$ & 20 & 90\% & 10\% \\ 
+\hline 
+$K = 3  \gamma = 0.7$ & 20 & 80\% & 20\% \\ 
+\hline 
+$K = 5  \gamma = 0.1$ & 20 & 80\% & 20\% \\ 
+\hline  
+$K = 5  \gamma = 0.7$ & 20 & 70\% & 30\% \\ 
+\hline 
+
+\end{tabular} 
+
+\caption{Resultados de los distintos par\'ametros con aprendizaje}
+\label{tabla:entramientos}
+
+
+\end{figure}
+
 \end{frame}
+
+\begin{frame}
+  \frametitle{Experimentos}
+  \framesubtitle{Aprendizaje}
+  \begin{block}{Comparaci\'on}
+	Se compararon las pruebas con los casos de pruebas integradas
+\end{block}
+
+\begin{figure}
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline  & Caso II & Caso III & Caso IV \\ 
+\hline 
+Correctas con aprendizaje & 100\% & 100\% & 100\% \\ 
+\hline 
+Correctas sin aprendizaje & 70\% & 80\% & 90\% \\ 
+\hline 
+Fallidas con aprendizaje & 0\% & 0\% & 0\% \\ 
+\hline 
+Fallidas sin aprendizaje & 20\% & 20\% & 10\% \\ 
+\hline 
+Recuperadas con aprendizaje & NA & NA & NA \\ 
+\hline 
+Recuperadas sin aprendizaje & 10\% & 0\% & 0\% \\ 
+\hline 
+Tiempo promedio con aprendizaje & 2m 35 s & 5m 38s & 4m 14s \\ 
+\hline 
+Tiempo promedio sin aprendizaje & 2m 12s & 3m 29 s & 4m 48s \\
+\hline
+%\caption{Cada prueba tiene un numero de corridas de 10}
+\end{tabular} 
+\caption{Comparaci\'on de movimientos predeterminados y aprendizaje}
+\label{tabla:comparacion}
+
+\end{figure}
+
+\end{frame}
+
+
 
 \begin{frame}
 \frametitle{Experimentos}
 \begin{block}{Completos}
-	\begin{itemize}
-		\item 
-		
-	\end{itemize}
+Los experimentos con el comportamiento completo incluyendo orientaci\'on al arco y el aprendizaje por reforzamiento
 \end{block}
+
+
 \end{frame}
 
 \section{Conclusiones}

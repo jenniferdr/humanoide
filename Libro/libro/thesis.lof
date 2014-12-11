@@ -1,0 +1,42 @@
+\select@language {spanish}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Paradigma Jer\'arquico\relax }}{8}{figure.caption.4}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Paradigma Reactivo\relax }}{8}{figure.caption.5}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Paradigma H\'ibrido\relax }}{9}{figure.caption.6}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Dilataci\IeC {\'o}n: A es la imagen original, B es el elemento estructurante, La estrella es el punto de referencia. Se ve como aumenta la imagen en proporci\'on al patr\'on aplicado \relax }}{14}{figure.caption.7}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Erosi\IeC {\'o}n, A: es la imagen original, B: es el n\'ucleo, La estrella es el punto de referencia. Se ve como disminuye la imagen en proporci\'on al patr\'on aplicado\relax }}{14}{figure.caption.8}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Bioloid Premium Kit\relax }}{16}{figure.caption.9}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces A la izquierda, 3 motores Dynamixel conectados en serie. A la derecha, bater\IeC {\'\i }a Lipo\relax }}{17}{figure.caption.10}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces A la izquierda, sensor Gyro. A la derecha, extensor de puertos Bioloid\relax }}{18}{figure.caption.11}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Tarjeta Raspberry Pi y su m\IeC {\'o}dulo de c\IeC {\'a}mara a la derecha\relax }}{19}{figure.caption.12}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Chip FTDI conectado a la tarjeta Arbotix\relax }}{19}{figure.caption.13}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Micro Servomotores anal\IeC {\'o}gicos TG9e\relax }}{19}{figure.caption.13}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Circuito con entrada de 11.1 V. Una salida de 5 V para los micro servomotores anal\'ogicos y tarjeta Raspberry Pi. Otra salida de 11.1 V para alimentar la controladora Arbotix.\relax }}{20}{figure.caption.14}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Vista frontal del robot, tipo B. Se puede apreciar la identificaci\IeC {\'o}n \IeC {\textquoteleft }ID\IeC {\textquoteright } de cada motor Dynamixel Ax-12+. Nota: los motores 9 y 10 no se utilizan. Imagen tomada sin autorizaci\'on de \cite {manualRobot}\relax }}{21}{figure.caption.15}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Vista trasera del robot con la tarjeta CM-510, Imagen tomada sin autorizaci\'on de \cite {manualRobot}.\relax }}{21}{figure.caption.16}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Vista posterior del robot, con la tarjeta Arbotix integrada (tarjeta azul) y la bateria Lipo \relax }}{22}{figure.caption.17}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Parte delantera del robot incluye c\'amara, los dos servo motores (azules) y raspberry pi\relax }}{22}{figure.caption.18}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Tarjeta controladora Arbotix y componentes conectados (Imagen referencial: el regulador se encuentra dispuesto en diferente orden)\relax }}{23}{figure.caption.19}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces (a) imagen original en BGR. (b) imagen original transformada a HSV. (c) imagen binaria a partir de la imagen HSV y el color de la pelota\relax }}{27}{figure.caption.20}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Posiciones de la c\IeC {\'a}mara \relax }}{31}{figure.caption.21}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Campo de visi\IeC {\'o}n del robot con el n\IeC {\'u}mero de cada regi\IeC {\'o}n. Cada cuadro blanco demarcado con l\IeC {\'\i }neas negras representa la imagen captada desde una posici\IeC {\'o}n fija de la c\IeC {\'a}mara. La regi\IeC {\'o}n de pateo de la pelota se encuentra en las regiones 1 y 2 \relax }}{33}{figure.caption.22}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Estados definidos seg\'un la regi\IeC {\'o}n en la que se detecta la pelota\relax }}{37}{figure.caption.23}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Distancias relativas de la pelota establecidas para otorgar la recompensa.\relax }}{38}{figure.caption.24}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Direcci\IeC {\'o}n en la que la velocidad angular de los ejes $X$ y $Y$, del Gyro, aumenta.\relax }}{40}{figure.caption.25}
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Direcci\IeC {\'o}n en la que la velocidad angular del eje $X$ crece con respecto al robot.\relax }}{41}{figure.caption.26}
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Campo de visi\IeC {\'o}n del robot con el n\IeC {\'u}mero de cada regi\IeC {\'o}n para buscar el arco. \relax }}{42}{figure.caption.27}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Resultados pruebas individuales de movimiento\relax }}{46}{figure.caption.28}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Resultados de los experimentos con las acciones combinadas elegidas\relax }}{47}{figure.caption.29}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Resultados de las pruebas de detecci\'on\relax }}{47}{figure.caption.30}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Resultados de los casos I, II, III, IV descritos en la secci\'on de \ref {sec:experimentosintegrados}\relax }}{48}{figure.caption.31}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Resultados de los distintos par\'ametros con aprendizaje\relax }}{50}{figure.caption.32}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Comparaci\'on de movimientos predeterminados y aprendizaje\relax }}{52}{figure.caption.33}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Prueba con 15 ejecuciones, con aprendizaje y orientaci\'on al arco \relax }}{53}{figure.caption.34}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Programador para AVR.\relax }}{66}{figure.caption.38}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Carta de aceptaci\'on congreso Cuenca\relax }}{69}{figure.caption.39}

@@ -1,0 +1,12 @@
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning style file ./thesis.ist.............................done (29 attributes redefined, 0 ignored).
+Scanning input file thesis.glo...
+!! Input index error (file = thesis.glo, line = 1):
+   -- Illegal space within numerals in second argument.
+!! Input index error (file = thesis.glo, line = 2):
+   -- Illegal space within numerals in second argument.
+.done (37 entries accepted, 2 rejected).
+Sorting entries....done (198 comparisons).
+Generating output file thesis.gls....done (67 lines written, 0 warnings).
+Output written in thesis.gls.
+Transcript written in thesis.glg.
