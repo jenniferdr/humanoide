@@ -1,16 +1,14 @@
 
 \section{Aprendizaje}\label{aprendizaje}
 
-En aprendizaje de m\'aquinas el aprendizaje por reforzamiento es una forma de plantear el problema de inteligencia completamente distinta al aprendizaje supervisado o no supervisado que generalmente está basado en ejemplos, pares entrada/salida y el objetivo del agente es aprender la funci\'on que haya producido esos pares. Sin embargo no siempre existe un supervisor que pueda verificar los resultados otorgados.
+En aprendizaje de m\'aquinas, el aprendizaje por reforzamiento es una forma de plantear el problema de inteligencia completamente distinta al aprendizaje supervisado o no supervisado que generalmente está basado en ejemplos y pares entrada/salida. El objetivo del agente es aprender la funci\'on que haya producido esos pares. Sin embargo no siempre existe un supervisor que pueda verificar los resultados otorgados.
 Existen ambientes en la vida real donde al agente no se le proporciona ni el supervisor ni los ejemplos, en donde se comienza sin contar con un modelo del ambiente o una funci\'on de utilidad. En estos casos la aplicaci\'on del aprendizaje por reforzamiento es la más indicada \cite{peterAndNorvig}.
 
 La t\'ecnica de refuerzo es aplicada en la vida diaria constantemente, pues está basada en comportamientos. Es la forma en que se entrena a una mascota, es la manera en que un bebé logra aprender a sujetar objetos, esos son ejemplos de los muchos en los que en la realidad aparece esta t\'ecnica de aprendizaje.
 
 Cuando es aplicada a inteligencia artificial las bases son las mismas, obviamente a un robot no se le podr\'a dar una galleta literalmente como premio de su buena acci\'on o quitarle la televisi\'on como castigo.
  
-Existen varias estrategias que permiten otorgar recompensas positivas o negativas a un agente, en este caso un robot, con ellas ir moldealdo el comportamiento que se considere correcto.
-
-Un algoritmo para aprender por reforzamiento es aprendizaje-Q, que es el utilizado para que Junny aprenda a acercarse a la pelota.
+Existen varias estrategias que permiten otorgar recompensas positivas o negativas a un agente, en este caso un robot, con ellas ir moldeando el comportamiento que se considere correcto. Un algoritmo para aprender por reforzamiento es aprendizaje-Q, que es el utilizado para que Junny aprenda a acercarse a la pelota.
  
 %En el área de inteligencia artificial, asociada a robótica, existen variadas técnicas que permiten que un robot pueda aprender a realizar alguna tarea. En este caso particular se utiliz\'o la técnica de aprendizaje por reforzamiento que consiste en dar recompensas positivas o negativas dependiendo del desempeño del robot.
 
@@ -98,7 +96,7 @@ Con valores diferentes de $k$ para cada conjunto de pruebas, como se explica en 
  
 \subsection{Actualizaci\'on de Q(s,a)}
 
-La actualizaci\'on de Q(s,a) se define por la siguiente formula 
+La actualizaci\'on de Q(s,a) se define por la siguiente fórmula 
  
 \begin{equation}
 Q (s,a) = r + {\gamma\max_{a'}} Q(\delta(s ,a ) , a') 

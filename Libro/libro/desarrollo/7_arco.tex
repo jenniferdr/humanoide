@@ -1,6 +1,6 @@
 \section{Orientaci\'on al arco}
 
-Al finalizar la búsqueda de la pelota, se desea poder patearla con dirección al arco. El procedimiento para la búsqueda del arco es an\'alogo al procedimiento de la b\'usqueda de la pelota explicado en la sección \ref{sec:busqueda}.
+Al finalizar la búsqueda de la pelota y el desplazamiento hasta ella, Junny debe patearla con dirección al arco. El procedimiento para la búsqueda del arco es an\'alogo al procedimiento de la b\'usqueda de la pelota explicado en la sección \ref{sec:busqueda}.
 Se tiene la representación del mundo dividida en regiones como se muestra en la figura ~\ref{divisionCamArco}. Los recuadros negros representan la imagen captada por las posiciones de la cámara (a) (c) y (e) que se muestran en la imagen de la figura ~\ref{posicionesCam}. En esta ocasi\'on se cuenta con 8 estados. Siete de ellos cuando el arco se detecta en alguna de las regiones y el último estado representa la ocasión en la que no se encuentra el arco. 
 A diferencia de la representaci\'on cuando se busca la pelota en esta se reducen los tres movimientos de la c\'amara por dos razones principales. En primera instancia las acciones eliminadas apuntan al suelo y el arco no puede encontrarse en el suele, la segunda raz\'on es que el arco es en proporci\'on mucho mas grande que la pelota por eso la divisiones de las regiones tan presisas como en el caso de la pelota son innecesarias.
 \begin{figure}[hbtp]
@@ -15,9 +15,9 @@ Primero se busca detectar el arco y posicionarse frente a él intentando rodear 
 Las acciones que se toman en cada regi\'on se especifican a continuación: 
  \begin{itemize}
 
-\item Cuando el arco esta a la izquierda de Junny este debe girar a la izquierda esto sucede en las regiones 2, 6, 7, con esto se centra con respecto al arco logra tener un mayor angulo de patada al arco.
+\item Cuando el arco está a la izquierda de Junny, éste debe girar a la izquierda. Esto sucede en las regiones 2, 6, 7, de esta manera logra centrarse con respecto al arco y tener un mayor angulo de patada.
 
-\item Cuando el arco esta a la derecha de Junny este debe girar a la derecha esto sucede en las regiones 3, 4 y 5, con esto se centra con respecto al arco y tener mayor angulo de patada al arco.
+\item Cuando el arco esta a la derecha de Junny este debe girar a la derecha esto sucede en las regiones 3, 4 y 5, así se centra con respecto al arco y logra tener mayor angulo de patada al arco.
 
 
 \end{itemize}

@@ -38,7 +38,7 @@ HServo es una librería de código libre distribuida bajo la Licencia Pública G
 
 El robot debe tener la capacidad de ejecutar una variedad de movimientos para poder cumplir la meta de patear la pelota. Por ello se ha programado un conjunto de poses y transiciones o acciones de movimiento que se explican a continuación.
 
-Con fines explicativos, en este proyecto, la palabra ``pose" se referire a la posición específica de los 16 motores que constituyen el esqueleto del robot. Un conjunto de poses ejecutadas en secuencia se denominará ``acción de movimiento".
+Con fines explicativos, en este proyecto, la palabra ``pose" se refiere a la posición específica de los 16 motores que constituyen el esqueleto del robot. Un conjunto de poses ejecutadas en secuencia se denominará ``acción de movimiento".
 
 Las acciones de movimiento establecidas son:
 
@@ -57,7 +57,7 @@ Las acciones de movimiento establecidas son:
  
 \end{itemize}
 
-En el movimiento de caminar se establece como unidad el de ejecutar dos pasos seguidos, este fue construido manteniendo el equilibrio del robot para evitar posibles caidas e inestabilidad. La distancia recorrida por ese paso es de 4.8 cm, analogamente se obtiene las distancias recorridas de los giros de derecha e izquierda de 3 cm cada una. 
+En el movimiento de caminar se establece como unidad el de ejecutar dos pasos seguidos, este fue construido manteniendo el equilibrio del robot para evitar posibles caidas e inestabilidad. La distancia recorrida por ese paso es de 4.8 cm, análogamente se obtienen las distancias recorridas de los giros de derecha e izquierda de 3 cm cada una. 
 
 Estas poses han sido fijadas a través de la tarjeta controladora Arbotix y el software Pypose. De esta manera se ha fijado y guardado un conjunto de poses para cada acción de movimiento. Estas acciones de movimientos han sido exportadas para ser utilizadas en el programa, en lenguaje Wiring, a ser ejecutado en Arbotix. La programación en Arbotix se ha realizado bajo el ambiente del \gls{IDE} de Arduino. 
 
@@ -81,11 +81,11 @@ Los micro servomotores azules que aparecen en la imagen \ref{posicionesCam} se c
 
 \subsection{Representaci\'on del mundo}\label{mundo}
 
-La representación del mundo de Junny se basa en función de la posición de la pelota con respecto al él. 
+La representación del mundo de Junny está dispuesta en función de la posición de la pelota con respecto al él. 
 La siguiente representaci\'on de la visi\'on ha sido elegida analizando la estructura f\'isica del robot, su alcance de visi\'on y su movilidad para obtener el mejor desempeño posible.
 La cámara tiene 6 (2x3) posibles posiciones, como se muestra en la figura ~\ref{posicionesCam} y desde cada posición de la cámara se obtiene una imagen. La detección de la pelota en alguna de esas im\'agenes brinda una orientación sobre la ubicación de la pelota. Si se detecta la pelota, por ejemplo, cuando la cámara se encuentra en alguna de las posiciones de la derecha, es un indicativo de que la la pelota se encuentra a la derecha y que si el robot gira se podría posicionar frente a ella. 
 
-Se ha decidido discretizar las posibles posiciones de la pelota por regiones. Estas regiones se muestran enumeradas en la fugura ~\ref{divisionCam}. Cada cuadro blanco demarcado por líneas negras representa la imagen captada en una posición fija de la cámara. 
+Se ha decidido discretizar las posibles posiciones de la pelota por regiones. Estas regiones se muestran enumeradas en la figura ~\ref{divisionCam}. Cada cuadro blanco demarcado por líneas negras representa la imagen captada en una posición fija de la cámara. 
 
 Las im\'agenes de la cámara en la posición central superior e inferior son las más importantes y prioritarias, pues si la pelota se detecta en ellas significa que el robot está cerca de poder patearla. Estas dos im\'agenes se dividen en subregiones para tener mayor precisión en las acciones que Junny deba tomar.
 
