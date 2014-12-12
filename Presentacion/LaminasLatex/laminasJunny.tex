@@ -1,12 +1,13 @@
 
 
+
 \documentclass{beamer}
 \usetheme{Oxygen}
 \usepackage{graphicx}
 
 \title{\small Desarrollo de un prototipo de robot humanoide que busque, encuentre y patee
 una pelota de forma aut\'onoma e inteligente}
-\author{Jennifer Dos Reis y Juliana Le\'{o}n \linebreak Tutor Acad\'emico \linebreak Ivette Carolina Mart\'inez }
+\author{Jennifer Dos Reis y Juliana Le\'{o}n \linebreak Tutor Acad\'emico \linebreak Carolina Chang y Carolina Mart\'inez }
 \begin{document}
 \fontfamily{tahoma}
 \frame{\titlepage}
@@ -142,6 +143,12 @@ una pelota de forma aut\'onoma e inteligente}
 \end{frame}
 
 \begin{frame}
+
+\includegraphics[scale=0.09]{Arbotix.jpg} 
+
+\end{frame}
+
+\begin{frame}
 \frametitle{Partes del robot}
 \framesubtitle{Ensamblaje}
 
@@ -235,14 +242,15 @@ una pelota de forma aut\'onoma e inteligente}
 	\item Caminar hacia adelante
 	\item Girar a la izquierda
 	\item Girar a la derecha
-	\item Levantarse desde la posición boca abajo
-	\item Levantarse desde la posición boca arriba
+	\item Levantarse desde la posici\'on boca abajo
+	\item Levantarse desde la posici\'on boca arriba
 	\item Patear con la pierna izquierda
 	\item Patear con la pierna derecha
     \end{itemize}		
 \end{block}
 
 \end{frame}
+
 
 
 \begin{frame}
@@ -393,6 +401,30 @@ Q (s,a) = r + {\gamma\max_{a'}} Q(\delta(s ,a ) , a')
 
 \section{Experimentos y Resultados}
 
+
+\begin{frame}
+\frametitle{Experimentos}
+\framesubtitle{Simples}
+\begin{block} {De movimiento individual}
+Los movimientos individuales son:
+\end{block}
+
+\begin{itemize}
+\item Caminar un paso hacia adelante 
+\item Caminar dos pasos hacia adelante 
+\item Caminar cuatro pasos hacia adelante 
+\item Girar hacia la derecha 
+\item Girar doble a la derecha 
+\item Girar hacia la izquierda 
+\item Girar doble a la izquierda
+\item Patada con la pierna derecha 
+\item Patada con la pierna izquierda
+
+\end{itemize}
+
+
+\end{frame}
+
 \begin{frame}
 \frametitle{Experimentos}
 \framesubtitle{Simples}
@@ -421,7 +453,7 @@ Movimiento & Cantidad de pruebas & Correctas & Fallidas & Con recuperaci\'on \\
 \hline 
 7 & 50 &  100\% & 0\% & NA \\ 
 \hline 
-8 & 50 &   98\% & 2\% & 2\% \\ 
+8 & 50 &   98\% & 0\% & 2\% \\ 
 \hline 
 9 & 50 &  100\% & 0\% & NA \\ 
 \hline 
@@ -433,7 +465,42 @@ Movimiento & Cantidad de pruebas & Correctas & Fallidas & Con recuperaci\'on \\
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Experimentos}
+\framesubtitle{Simples}
+\begin{block} {De movimiento compuesto}
+Los movimientos elegidos son :
+\end{block}
 
+\begin{itemize}
+
+\item Caminar hacia adelante y patear con la pierna derecha 
+\item Caminar hacia adelante y patear con la pierna izquierda
+\item Caminar hacia adelante, girar hacia la derecha y patear con la pierna derecha
+\item Caminar hacia adelante, girar hacia la derecha, patear con la pierna izquierda 
+\item Caminar hacia adelante, girar hacia la izquierda y patear con la derecha
+
+\end{itemize}
+
+
+\end{frame}
+\begin{frame}
+\frametitle{Experimentos}
+\framesubtitle{Simples}
+
+\begin{itemize}
+
+
+\item Caminar hacia adelante, girar hacia la  izquierda y  patear con la pierna izquierda
+\item Girar hacia la izquierda y patear con la pierna derecha
+\item Girar hacia la derecha y patear con la izquierda
+\item Girar hacia la derecha y patear con la pierna derecha
+\item Girar hacia la izquierda y patear con la pierna izquierda
+
+
+\end{itemize}
+
+\end{frame}
 \begin{frame}
 \frametitle{Experimentos}
 \framesubtitle{Simples}
@@ -448,7 +515,7 @@ Se realizaron 30 ejecuciones de cada movimiento compuesto
 \hline 
 Combinaci\'on & Cantidad de pruebas & Correctas & Fallidas & Con recuperaci\'on \\ 
 \hline 
-1 & 30 & 96.7\% & 3.3\% & 3.3\% \\ 
+1 & 30 & 96.7\% & 3.3\% & 0\% \\ 
 \hline 
 2 & 30 & 100\% & 0\% & NA \\ 
 \hline 
@@ -456,7 +523,7 @@ Combinaci\'on & Cantidad de pruebas & Correctas & Fallidas & Con recuperaci\'on 
 \hline 
 4 & 30 & 100\% & 0\% & NA \\ 
 \hline 
-5 & 30 & 96.7\% & 3.3\% & 3.3\% \\ 
+5 & 30 & 96.7\% & 3.3\% & 0\% \\ 
 \hline 
 6 & 30 & 100\% & 0\% & NA \\ 
 \hline 
@@ -499,6 +566,10 @@ Se realizaron 50 ejecuciones de cada prueba de enfoque
 \end{figure}
 
 \end{frame}
+
+%\end{frame}
+
+
 \begin{frame}
 \frametitle{Experimentos}
 \framesubtitle{Compuestos}
@@ -506,8 +577,8 @@ Se realizaron 50 ejecuciones de cada prueba de enfoque
 \begin{itemize}
 \item Caso I :Pelota a los pies de Junny
 \item Caso II: Pelota a 50 cm en linea recta 
-\item Caso III: Pelotoa 
-\item Caso IV: 
+\item Caso III: Pelota 50 cm en linea recta y 50 cm a la izquierda
+\item Caso IV: Pelota 50 cm en linea recta y 50 cm a la derecha
 \end{itemize}
 \end{block}
 
@@ -538,8 +609,12 @@ Caso IV & 10 & 90\% & 0\% & 10\% & 4m 48s \\
   \frametitle{Experimentos}
   \framesubtitle{Aprendizaje}
   \begin{block}{Ajuste}
-		Con el ajuste de los parametros
-		DECIR COMO LE FUE AL MEJOR EFICIENCIA  ESO
+  \begin{itemize}
+  \item Pruebas con variaciones en los parametros
+  \item $K = 3   \gamma = 0.1$ con 
+  el 100\% de aciertos
+	
+  \end{itemize}
 		\end{block}
 
 \begin{figure}
@@ -615,31 +690,54 @@ Tiempo promedio sin aprendizaje & 2m 12s & 3m 29 s & 4m 48s \\
 \begin{frame}
 \frametitle{Experimentos}
 \begin{block}{Completos}
-Los experimentos con el comportamiento completo incluyendo orientaci\'on al arco y el aprendizaje por reforzamiento
+Los experimentos con el comportamiento completo incluyendo orientaci\'on al arco y el aprendizaje por reforzamiento con un resultado de 40 \% de fallo, 6.6 \% Tiros al arco y 53 \% Goles marcados
 \end{block}
 
 
 \end{frame}
 
 \section{Conclusiones}
+
 \begin{frame}
 \frametitle{Conclusiones}
-\begin{block}{Accesibilidad}
+ \begin{block}{Puntos relevantes}
+  \begin{itemize}
+\item 99.6 \% de aciertos en simples
+\item 96 \% en compuestos realizados correctamente
+\item 100 \% en la detecci\'on de la pelota
+\item 70 \% en caso II y 90\% en casos I y IV
+\item 100 \% en aprendizaje y un 0.72 en eficiencia
+\item 53 \% con orientaci\'on al arco
+\item Integraci\'on de todos los componentes
+\item Incursi\'on en rob\'otica (humanoide)
+\item Econ\'omico
+  \end{itemize}
 
-\end{block}
-
+ \end{block}
 
 \end{frame}
-\section{Recomendaciones}
-\begin{frame}
-\frametitle{Recomendaciones}
-\begin{block}{Recomendaciones}
 
+\section{Futuros Trabajos}
+\begin{frame}
+\frametitle{Trabajos Futuros }
+\begin{block}{}
+\begin{itemize}
+\item Aumentar acciones y regiones
+\item Caderas
+\item Motores distintos
+\item Aprendizaje para:
+\begin{itemize}
+	\item Detecci\'on de pelota
+	\item Predicci\'on 
+	\item Tipo de patada
+	\item Compa\~nero
+\end{itemize}
+\end{itemize}
 \end{block}
 \end{frame}
 \begin{frame}
 
 \LARGE{PREGUNTAS}
-\includegraphics[scale=0.25]{tirolesa}
+\includegraphics[scale=0.05]{tirolesa}
 \end{frame}
 \end{document}
