@@ -7,8 +7,8 @@
 
 En este proyecto se describe la construción de Junny, un robot humanoide autónomo e inteligente de $38 cm $ de alto, capaz de detectar la ubicación de una pelota y acercarse a ella para patearla con dirección al arco. Los objetivos de Junny están inspirados en la liga RoboCup Soccer de la competencia RoboCup.
 
-Junny ha sido ensamblado con las piezas del kit Bioloid Premium del fabricante Robotis. Del kit se ha excluido la tarjeta CM-510 para sustituirla por la tarjeta controladora Arbotix, la cual controla los 16 motores que permiten el movimiento de las extremidades del robot. Se ha incluido un mini computador Raspberry Pi, con su cámara, %\cite{raspberrycam},
-de esta forma el robot ha adquirido la posibilidad detectar la posición de la pelota y el arco de forma autónoma. Se añadieron dos micro servomotores analógicos para ejecutar el movimiento de la c\'amara, estos son controlados por la tarjeta Arbotix. 
+Junny ha sido ensamblado con las piezas del kit Bioloid Premium del fabricante Robotis. Del kit se ha excluido la tarjeta CM-510 para sustituirla por la tarjeta controladora Arbotix, la cual controla los 16 motores que permiten el movimiento de las extremidades del robot. Se ha incluido un mini computador Raspberry Pi, con una cámara, %\cite{raspberrycam},
+de esta forma el robot adquiere la posibilidad detectar la posición de la pelota y el arco de forma autónoma. Se añadieron dos micro servomotores analógicos para ejecutar el movimiento de la c\'amara, estos son controlados por la tarjeta Arbotix. 
 
 En la Raspberry Pi se ejecuta un solo programa encargado de detectar la posición de la pelota y decidir qué movimientos son necesarios para llegar a ella. La manera de elegir las acciones se ha realizado con aprendizaje por reforzamiento. Para procesar la imagen, con la finalidad de detectar la pelota y arco, se ha usado la segmentaci\'on por regiones, con ayuda de las librerías OpenCv. % \cite{opencv}. 
 

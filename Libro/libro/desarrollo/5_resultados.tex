@@ -131,7 +131,7 @@ Para determinar la precisi\'on y desempe\~no de la detecc\'ion de la pelota se r
 
 El segundo conjunto de experimentos consistió en la realización de pruebas de desempeño en donde se observó el comportamiento global del robot con todos sus comportamientos integrados (detección, búsqueda y pateo). La forma de elegir la acciones de movimiento es la que se describe en la sección \ref{eleccionAccionesFijas} (sin aprendizaje). 
 
-El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de pateo (las regiones 1 y 2 de la figura ~\ref{divisionCam}). El número de pruebas en este primer caso fue de 10, con una duración aproximada de 30 segundos cada una.
+El  primer caso (Caso I) consistió en la colocación de la pelota en la zona de pateo (las regiones 1 y 2 de la figura ~\ref{divisionCam}). El número de pruebas en este primer caso fue de 10, con una duración aproximada de 30 segundos cada una.
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -141,7 +141,7 @@ El  primer caso (CasoI) consistió en la colocación de la pelota en la zona de 
 %\label{fig:caso1}
 %\end{figure}
 
-El segundo caso (CasoII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 50 pruebas, siendo la duración promedio de 2 minutos con 12 segundos.
+El segundo caso (Caso II) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot. Se realizaron 50 pruebas, siendo la duración promedio de 2 minutos con 12 segundos.
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -151,7 +151,7 @@ El segundo caso (CasoII) consistió en en la colocación inicial de la pelota a 
 %\label{fig:caso2}
 %\end{figure}
 
-El tercer caso  (CasoIII) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 50 cm a la izquierda formando asi una diagonal. Se realizaron 10 pruebas, siendo la duración promedio de 3 minutos con 29 segundos. 
+El tercer caso  (Caso III) consistió en en la colocación inicial de la pelota a una distancia de 50 cm en línea recta al robot y 50 cm a la izquierda formando asi una diagonal. Se realizaron 10 pruebas, siendo la duración promedio de 3 minutos con 29 segundos. 
 
 %\begin{figure}
 %\begin{tikzpicture}
@@ -203,7 +203,7 @@ Los resultados de los casos del I al IV se pueden observar en el cuadro ~\ref{fi
 
 Finalmente, el tercer conjunto de experimentos consistió en verificar los resultados de la aplicaci\'on del apredizaje por reforzamiento para la búsqueda de la pelota. Estos resultados se presentan a continuaci\'on.
 
-Dentro de las fórmulas para el aprendizaje-Q se encuentran dos constantes que han sido configuradas de diferentes maneras para analizar cuál de las combinaciones brinda mejores resultados. Las constantes son la tasa de descuento $\gamma$ de la fórmula del aprendizaje-Q y la constante $K$, de la fórmula de probabilidad explicada en la secci\'on \ref{subsec:eleccionAccion}, que ajusta la distribución de probabilidad que se le da a una acción dependiendo de su valor $Q(s,a)$. Se utilizaron las siguientes combinaciones para las constantes:
+Dentro de las fórmulas para el Aprendizaje-Q se encuentran dos constantes que han sido configuradas de diferentes maneras para analizar cuál de las combinaciones brinda mejores resultados. Las constantes son la tasa de descuento $\gamma$ de la fórmula del Aprendizaje-Q y la constante $K$, de la fórmula de probabilidad explicada en la secci\'on \ref{subsec:eleccionAccion}, que ajusta la distribución de probabilidad que se le da a una acción dependiendo de su valor $Q(s,a)$. Se utilizaron las siguientes combinaciones para las constantes:
 
 \begin{itemize}
  \setlength\itemsep{0.3pt}

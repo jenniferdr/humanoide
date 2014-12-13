@@ -10,7 +10,14 @@
 %\subsection*{Componentes de hardware}
 A continuación se presenta una descripción de los elementos que han sido seleccionados para la construcción del robot humanoide. 
 
-Las opciones que se han considerado para la construcci\'on del cuerpo de Junny han sido: uso de piezas de \gls{LEGO}, construcci\'on y dise\~no mec\'anico desde cero o el uso de las piezas del kit Bioloid \cite{robotics}. Estas opciones corresponden a los recursos disponibles. Tanto la construci\'on con piezas de \gls{LEGO} como la opci\'on de realizarlo desde cero implicaba más tiempo del que se disponía, adem\'as que realizarlo en su totalidad con dise\~no mec\'anico y electr\'onico implicaba conocimientos m\'as avanzados en el \'area de mecatr\'onica que no eran el objetivo del proyecto. Por lo tanto se escogi\'o su construcci\'on con el kit Bioloid como la opci\'on m\'as factible para el cumplimiento de los objetivos. 
+Las opciones que se han considerado para la construcci\'on del cuerpo de Junny han sido: 
+\begin{itemize}
+  \item Uso de piezas de \gls{LEGO}.
+  \item Construcci\'on y dise\~no mec\'anico desde cero.
+  \item Uso de las piezas del kit Bioloid \cite{robotics}.
+\end{itemize}
+
+Estas opciones corresponden a los recursos disponibles. Tanto la construci\'on con piezas de \gls{LEGO} como la opci\'on de realizarlo desde cero implicaba más tiempo del que se disponía, adem\'as que realizarlo en su totalidad con dise\~no mec\'anico y electr\'onico implicaba conocimientos m\'as avanzados en el \'area de mecatr\'onica que no eran el objetivo del proyecto. Por lo tanto se escogi\'o su construcci\'on con el kit Bioloid como la opci\'on m\'as factible para el cumplimiento de los objetivos. 
 
 El kit Bioloid es un kit de robótica con piezas prefabricadas que permite armar diferentes tipos de robot pero principalmente humanoides. Su empaque se puede observar en la figura ~\ref{fig:kit}. El fabricante, Robotics \cite{robotics}, incluye un manual  con varios modelos de robots con instrucciones de ensamblaje. Provee una tarjeta controladora, CM-510 \cite{cm510}, a la que se conectan los motores Dynamixel y algunos sensores que se programan a través de la interfaz de ‘RoboPlus’ \cite{robotics}.
 
@@ -25,7 +32,7 @@ El kit Bioloid es un kit de robótica con piezas prefabricadas que permite armar
 Se decidi\'o sustituir la tarjeta controladora CM-510 por la tarjeta controladora de software libre Arbotix. La utilización de la tarjeta Arbotix permite una mayor flexibilidad en el control de motores y la incorporación de una variedad de sensores no soportados por la tarjeta CM-510.
 Además, la tarjeta Arbotix posee mayor soporte y amplitud en la comunicación entre distintos dispositivos, permite el control avanzado de algunos tipos de servos Dynamixel y robots basados en Bioloid. Incorpora un microcontrolador \gls{AVR}, radio inalámbrica \gls{XBEE}, conductores de motor dual, y cabeceras de estilo servo de 3 pines para entrada/salida digital y analógica \cite{arbotix}.
 
-Los Motores Dynamixel Ax-12+ son actuadores inteligentes y modulares que incorporan un reductor de engranajes, un motor DC de presión y un circuito de control con funcionalidad de red lo cual permite formar series o cadenas de motores como se muestra en la figura ~\ref{MotorBateria}. Estos motores estan incorporados en el kit Bioloid al igual que la batería de polímero de litio (Lipo) una fuente de poder usada para motores y componentes electr\'onicos. La batería usada es de 11.1 voltios y 1 amperio. \cite{bateria}
+Los Motores Dynamixel Ax-12+ son actuadores inteligentes y modulares que incorporan un reductor de engranajes, un motor DC de precisión y un circuito de control con funcionalidad de red lo cual permite formar series o cadenas de motores como se muestra en la figura ~\ref{MotorBateria}. Estos motores están incorporados en el kit Bioloid al igual que la batería de polímero de litio (LiPo), fuente de poder para motores y componentes electr\'onicos. La batería empleada es de 11.1 Voltios y 1 Amperio. \cite{bateria}
 
 
 %\begin{figure}[hbtp]
@@ -38,17 +45,15 @@ Los Motores Dynamixel Ax-12+ son actuadores inteligentes y modulares que incorpo
 \centering
 \includegraphics[scale=0.08]{imagenes/3Dynamixel.jpg}
 \includegraphics[scale=0.08]{imagenes/bateriaLipo.jpg}
-\caption{A la izquierda, 3 motores Dynamixel conectados en serie. A la derecha, batería Lipo}
+\caption{A la izquierda, 3 motores Dynamixel conectados en serie. A la derecha, batería LiPo}
 \label{MotorBateria}
 \end{figure}
 
 %\begin{figure}[hbtp]
 %\end{figure}
 
-Para la detecci\'on de ca\'idas se ha seleccionado un giroscopio (Robotics Gyro) que mide la velocidad angular que genera los movimientos del robot, este se encuentra diseñado para verificar el balance del robot y ser usado para otras aplicaciones de movimiento \cite{gyro}. También se encuentra incluido en el kit Bioloid. En figura ~\ref{fig:gyroYextensor} se puede observar su estructura. Existen otros sensores de inercia que se enfocan en realizar la tarea de balance y orientaci\'on del robot como el aceler\'ometro, sin embargo estos no se encontraban disponibles en el laboratorio.
+Para la detecci\'on de ca\'idas se ha seleccionado un giroscopio (Robotics Gyro) que mide la velocidad angular que genera los movimientos del robot, este se encuentra diseñado para verificar el balance del robot y ser usado para otras aplicaciones de movimiento \cite{gyro}. También se encuentra incluido en el kit Bioloid. En la figura ~\ref{fig:gyroYextensor} se puede observar su estructura. Existen otros sensores de inercia que se enfocan en realizar la tarea de balance y orientaci\'on del robot como el aceler\'ometro, sin embargo estos no se encontraban disponibles en el laboratorio.
 
-Ha sido necesario incluir un extensor de puertos Bioloid que permitiera conectar un mayor n\'umero de motores Dynamixel, este se muestra en la figura ~\ref{fig:gyroYextensor} \cite{hub}. En la siguiente secci\'on se explica como han sido conectados los motores y el motivo para incluir el expansor. 
-%fue necesario para una mejor movilidad del robot pues se dividi\'o su cuerpo en cuatro extreminades por lo tanto cuatro series de motores distintas y el expansor permite aumentar el número de cadenas de servos conectados a la tarjeta
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.35]{imagenes/gyro.jpg}
@@ -57,7 +62,11 @@ Ha sido necesario incluir un extensor de puertos Bioloid que permitiera conectar
 \label{fig:gyroYextensor}
 \end{figure}
 
-Para agregar mayor capacidad de procesamiento, con la finalidad de poder captar y procesar imágenes, se incorpor\'o el mini computador Raspberry Pi, de aproximadamente 10 cm de largo, a la que se puede conectar un módulo de cámara especialmente diseñado para él. Puede ser utilizado en proyectos de electrónica y para varias de las tareas que un computador de escritorio puede hacer, como procesamiento de hojas de cálculo y de texto, ejecutar juegos, entre otras \cite{raspberry}. Su estructura se puede ver en la figura ~\ref{fig:RaspYcamara}. La Raspberry Pi cuenta con un procesador gráfico que permite aligerar la carga del procesador central \cite{elLinux}. Para las funciones correspondientes a la Rasberry Pi, en el proyecto tambi\'en era factible la utilizaci\'on de un tel\'efono celular avanzado, sin embargo esta opci\'on fue decartada pues agrega un peso importante a la estructura del robot, dificultad para añadirle grados de libertad a su cámara y un costo superior al de la Raspberry.  
+Ha sido necesario incluir un extensor de puertos Bioloid que permitiera conectar un mayor n\'umero de motores Dynamixel, este se muestra en la figura ~\ref{fig:gyroYextensor} \cite{hub}. En la siguiente secci\'on se explica como han sido conectados los motores y el motivo para incluir el expansor. 
+%fue necesario para una mejor movilidad del robot pues se dividi\'o su cuerpo en cuatro extreminades por lo tanto cuatro series de motores distintas y el expansor permite aumentar el número de cadenas de servos conectados a la tarjeta
+
+
+Para agregar mayor capacidad de procesamiento, con la finalidad de poder captar y procesar imágenes, se incorpor\'o el mini computador Raspberry Pi, de aproximadamente 10 cm de largo,  a la que se puede conectar un módulo de cámara especialmente diseñado para él. Puede ser utilizado en proyectos de electrónica y para varias de las tareas que un computador de escritorio puede hacer, como procesamiento de hojas de cálculo y de texto, ejecutar juegos, entre otras \cite{raspberry}. Su estructura se puede ver en la figura ~\ref{fig:RaspYcamara}. La Raspberry Pi cuenta con un procesador gráfico que permite aligerar la carga del procesador central \cite{elLinux}. Para las funciones correspondientes a la Rasberry Pi, en el proyecto tambi\'en era factible la utilizaci\'on de un tel\'efono celular avanzado, sin embargo esta opci\'on fue decartada pues agrega un peso importante a la estructura del robot, dificultad para añadirle grados de libertad a su cámara y un costo superior al de la Raspberry.  
 
 Para lograr el objetivo de detecci\'on de la pelota y orientaci\'on al arco existía la posibilidad de añadir un sensor de br\'ujula y un sensor de proximidad. Sin embargo la ulitizaci\'on de una c\'amara para esta tarea representaba mayores ventajas. La cámara posee un mayor rango de percerpción, aumentando las posibilidades de encontrar la pelota o arco en menor cantidad de tiempo que con los sensores. Adem\'as, la incorporación de la Raspberry Pi  \cite{raspberry} y su cámara permite la posibilidad de ampliar las habilidades y tareas que podr\'ia realizar Junny. La c\'amara puede captar im\'agenes y grabar vídeos de alta definición. Tiene 5 megapíxeles de foco fijo que soporta los modos de vídeo de 1080x30, 720x60 y \gls{VGA}90. Puede ser manejada con las librerías \gls{MMAL}, \gls{V4L} u otras librerías de terceros como la de Python \cite{raspberrycam}
 
@@ -72,9 +81,9 @@ Para lograr el objetivo de detecci\'on de la pelota y orientaci\'on al arco exis
 \label{fig:RaspYcamara}
 \end{figure}
 
-Para poder establecer la comunicación entre la Arbotix y la Raspberry Pi, se añadió el chip FTDI (Future Technology Devices International) \cite{ftdi}. Es una tarjeta controladora  (se puede observar en la figura ~\ref{fig:ftdi}) que ofrece el servicio de conversión de  datos de \gls{USB} a \gls{UART}, por lo cual permite la comunicación entre diferentes dispositivos \cite{ftdi}. Fue elegida en lugar de la radio inálambrica \gls{XBEE}, pues la Raspeberry Pi y la Arbotix estan f\'isicamente cerca y usar los \gls{XBEE} implicaba un mayor costo para el proyecto.
+Para poder establecer la comunicación entre la Arbotix y la Raspberry Pi, se añadió el chip FTDI (Future Technology Devices International) \cite{ftdi}. Es una tarjeta controladora  (se puede observar en la figura ~\ref{fig:ftdi}) que ofrece el servicio de conversión de  datos de \gls{USB} a \gls{UART}, por lo cual permite la comunicación entre diferentes dispositivos \cite{ftdi}. Fue elegida en lugar de la radio inálambrica \gls{XBEE}, pues la Raspeberry Pi y la Arbotix estan f\'isicamente cerca lo cual permite usar cableado directo, y usar los \gls{XBEE} implicaba un mayor costo para el proyecto.
 
-Para añadir grados de libertad a la c\'amara se utilizó como base dos micro servomotores anal\'ogicos TG9e \cite{microservo}. La capacidad de torque de estos motores alcanza los 1.50 kg-cm . Permiten ser controlados en posición en un rango de 180$^{\circ}$. Ver figura ~\ref{fig:Servo}.   
+Para añadir grados de libertad a la c\'amara se utilizaron como base dos micro servomotores anal\'ogicos TG9e \cite{microservo}. La capacidad de torque de estos motores alcanza los 1.50 kg-cm . Permiten ser controlados en posición en un rango de 180$^{\circ}$. Ver figura ~\ref{fig:Servo}.   
 
 \begin{figure}[hbtp]
 \centering
@@ -127,7 +136,7 @@ En la figura ~\ref{fig:trasera2} se puede observar la estructura del robot con l
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.2]{imagenes/traseroDeJunny.jpg}
-\caption{Vista posterior del robot, con la tarjeta Arbotix integrada (tarjeta azul) y la bateria Lipo }
+\caption{Vista posterior del robot, con la tarjeta Arbotix integrada (tarjeta azul) y la bateria LiPo }
 \label{fig:trasera2}
 \end{figure}
 
@@ -150,7 +159,7 @@ Para el movimiento de la cámara se ha incorporado dos micro servomotores TG9e y
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.05]{imagenes/servosYcamara.JPG}
-\caption{Parte delantera del robot incluye c\'amara, los dos servo motores (azules) y raspberry pi}
+\caption{Parte delantera del robot incluye c\'amara, los dos servo motores (azules) y Raspberry Pi}
 \label{fig:servosycam}
 \end{figure}
 
@@ -165,7 +174,7 @@ Los motores Dynamixel se conectan a la controladora Arbotix por medio de los pue
 
 La comunicación de la tarjeta de Arbotix con la computadora, incluso con la Raspberry Pi, se realiza a través del chip FTDI, un extremo se conecta en el puerto FTDI de la tarjata Arbotix, como lo ilustra la figura ~\ref{fig:arbotixConectados}, y el otro extremo se conecta al puerto \gls{USB} de la tarjeta Raspberry Pi.
 
-Para evitar agregar peso innecesario al robot se decidi\'o usar una sola fuente de poder. Se utilizó una batería de polímero de litio de 11.1 V y 1 amp. Y se construyó un circuito para regular el voltaje de los componentes que necesitan 5 voltios (ver figura ~\ref{fig:circuito}).
+Para evitar agregar peso innecesario al robot se decidi\'o usar una sola fuente de poder. Se utilizó una batería de polímero de litio de 11.1 V y 1 A. Y se construyó un circuito para regular el voltaje de los componentes que necesitan 5 V (ver figura ~\ref{fig:circuito}).
 
 
 

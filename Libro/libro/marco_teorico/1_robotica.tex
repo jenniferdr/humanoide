@@ -20,7 +20,7 @@ Generalmente un robot está equipado con actuadores y sensores. Una posible divi
 
  %http://www.ceiarteuntref.edu.ar/badarte/node/112
 
-\item{\textbf{Giroscopio:} Es un sensor de la categor\'ia para la percepci\'on propia que informa al robot de su propio estado, pertence a los sensores de inercia \cite{peterNorvig}. Mide el momento angular y se utiliza para mantener orientaci\'on o equilibrio.}
+\item{\textbf{Giroscopio:} Es un sensor propioceptivo que informa al robot de su estado de velocidad de giro en uno o varios ejes, pertence a los sensores de inercia \cite{peterNorvig}. Mide el momento angular y se utiliza para mantener orientaci\'on o equilibrio.}
 
 %Es un sensor utilizado para medir y mantener la orientación, se mide a través del momento angular \cite{gyro1}. }
 \end{itemize}
@@ -57,7 +57,7 @@ El paradigma reactivo omite por completo el componente de la planificación y s\
 
 
 \subsection{Paradigma Híbrido}
-El paradigma híbrido es una mezcla de los dos paradigmas anteriores. Primero se planifica cúal es la mejor manera de cumplir el objetivo principal, descomponiendo la tarea general en sub-tareas y decidiendo qué comportamientos sirven para cumplir cada una. De allí en adelante se ejecutan los comportamientos (percibiendo y actuando), hasta que el plan sea ejecutado, si es necesario se puede volver a planificar. Vale la pena acotar que la información de los sensores se encuentra disponible para el planificador, de manera que pueda crear un modelo del mundo y tomar decisiones en base a él  \cite{AiRobotics}. Esto se ilustra en la figura \ref{fig:hibrido}
+El paradigma híbrido es una mezcla de los dos paradigmas anteriores. Primero se planifica cúal es la mejor manera de cumplir el objetivo principal, descomponiendo la tarea general en sub-tareas y decidiendo qué comportamientos sirven para cumplir cada una. De allí en adelante se ejecutan los comportamientos (percibiendo y actuando), hasta que el plan sea ejecutado, si es necesario se puede volver a planificar. Vale la pena acotar que la información de los sensores se encuentra siempre disponible para el planificador, de manera que pueda crear un modelo del mundo y tomar decisiones en base a él  \cite{AiRobotics}. Esto se ilustra en la figura \ref{fig:hibrido}
 \begin{figure}[hbtp]
 
 \centering
