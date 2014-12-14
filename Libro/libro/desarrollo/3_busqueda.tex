@@ -58,7 +58,7 @@ Las acciones de movimiento establecidas son:
  
 \end{itemize}
 
-En el movimiento de caminar se establece como unidad el de ejecutar dos pasos seguidos, este fue construido manteniendo el equilibrio del robot para evitar posibles caidas e inestabilidad. La distancia recorrida por ese paso es de 4.8 cm, análogamente se obtienen las distancias recorridas de los giros de derecha e izquierda de 3 cm cada una. 
+Estas son las acciones que se consideraron básicas e indispensables para poder desplazarse hasta la pelota y patearla. En el movimiento de caminar se establece como unidad el de ejecutar dos pasos seguidos, este fue construido manteniendo el equilibrio del robot para evitar posibles caidas e inestabilidad. La distancia recorrida por ese paso es de 4.8 cm, análogamente se obtienen las distancias recorridas de los giros de derecha e izquierda de 3 cm cada una. 
 
 Estas poses han sido fijadas a través de la tarjeta controladora Arbotix y el software Pypose. De esta manera se ha fijado y guardado un conjunto de poses para cada acción de movimiento. Estas acciones de movimientos han sido exportadas para ser utilizadas en el programa, en lenguaje Wiring, a ser ejecutado en Arbotix. La programación en Arbotix se ha realizado bajo el ambiente del \gls{IDE} de Arduino. 
 
@@ -84,7 +84,7 @@ Los micro servomotores azules que aparecen en la imagen \ref{posicionesCam} se c
 
 La representación del mundo de Junny está dispuesta en función de la posición de la pelota con respecto al él. 
 La siguiente representaci\'on de la visi\'on ha sido elegida analizando la estructura f\'isica del robot, su alcance de visi\'on y su movilidad para obtener el mejor desempeño posible.
-La cámara tiene 6 (2x3) posibles posiciones, como se muestra en la figura ~\ref{posicionesCam} y desde cada posición de la cámara se obtiene una imagen. La detección de la pelota en alguna de esas im\'agenes brinda información sobre la ubicación de la pelota. Si se detecta la pelota, por ejemplo, cuando la cámara se encuentra en alguna de las posiciones de la derecha, es un indicativo de que la la pelota se encuentra a la derecha y que si el robot gira se podría posicionar frente a ella. 
+La cámara tiene 6 (2x3) posibles posiciones, como se muestra en la figura ~\ref{posicionesCam} y desde cada posición de la cámara se obtiene una imagen. La detección de la pelota en alguna de esas im\'agenes brinda información sobre la ubicación de la pelota. Si se detecta la pelota, por ejemplo, cuando la cámara se encuentra en alguna de las posiciones de la derecha, es un indicativo de que la la pelota se encuentra a la derecha y que si el robot gira se podría posicionar frente a ella. En este proyecto sólo se considera el caso en que la pelota se encuentre estática, dadas las limitaciones de tiempo para realizar algoritmos de predicción de trayectoria de objetos. 
 
 Se ha decidido discretizar las posibles posiciones de la pelota por regiones. Estas regiones se muestran enumeradas en la figura ~\ref{divisionCam}. Cada cuadro blanco demarcado por líneas negras representa la imagen captada en una posición fija de la cámara. 
 
