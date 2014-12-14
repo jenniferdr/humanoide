@@ -16,10 +16,11 @@ RoboCup \cite{robotcup} es una competencia de robótica que se inició en el añ
 
 Existen equipos que han participado durante varios años consecutivos en la competencia Robocup, logrando mejoras en sus diseños y técnicas; tal es el caso del equipo MRL que ha participado en los años 2011, 2012, 2013 y 2014 en la categoría “Humanoid League”, ellos han iniciado con el hardware del robot DARwIn-OP y con el tiempo han modificado los componentes electrónicos para agregar eficiencia y estabilidad. Para el balance han utilizado un giroscopio y sensores de aceleración, y para la visión, una cámara conectada por USB al CPU principal \cite{paper1}.
 
- 
+La presente investigación nace de la motivación de que en Venezuela se incursione en proyectos con humanoides autónomos e inteligentes. Se ha inspirado especialmente en la categoría Robocup soccer de la competencia internacional Robocup. Desde 1997, fecha en la que se inicia la competencia, Venezuela no ha participado en categorías con humanoides, mientras que países latinoamericanos como México, Brasil y Colombia sí han tenido presencia en estas categor\'ias. Si bien este proyecto no cumple con todas las reglas de la competencia se espera que éste pueda dar pie a continuar investigaciones en el pa\'is.
+
 %En el desarrollo de habilidades más específicas con respecto a la competencia RoboCup, se han propuesto dos posibles estrategias para el pateo de la pelota donde los factores fundamentales para un buen desempeño es la fuerza y la rapidez con que se patea \cite{paper2}. Las dos estrategias de pateo se ponen en práctica en distintas circunstancias del juego basado en la cinemática y dinámica de equilibrar el cuerpo al momento de patear.
 
-En el desarrollo de esta investigaci\'on se presenta a Junny, un robot humanoide aut\'onomo e inteligente de 38 cm de altura, cuyos objetivos están inspirados en la competencia RoboCup. Se planteó como objetivo principal construir un prototipo que sea capaz de detectar la cercanía de una pelota, acercarse a ella y patearla con direcci\'on al arco, reincorpor\'andose a la posici\'on de pie en caso de perder el equilibrio y caer. Se ha tomado en cuenta un conjunto de objetivos específicos para guiar el desarollo de este trabajo. %Para cumplir con este objetivo se ha desglosado un conjunto de objetivos específicos que se describen a continuación: 
+En el desarrollo de esta investigaci\'on se presenta a Junny, un robot humanoide aut\'onomo e inteligente de 38 cm de altura. Se planteó como objetivo principal construir un prototipo que sea capaz de detectar la cercanía de una pelota, acercarse a ella y patearla con direcci\'on al arco, reincorpor\'andose a la posici\'on de pie en caso de perder el equilibrio y caer. Se ha tomado en cuenta un conjunto de objetivos específicos para guiar el desarollo de este trabajo. %Para cumplir con este objetivo se ha desglosado un conjunto de objetivos específicos que se describen a continuación: 
 
 %Un objetivo espec\'ifico es el ensamblaje del robot en forma de humano, seleccinando las piezas y modelo que sean más convenientes, considerando las opciones disponibles y límitaciones. De los componentes seleccionados para controlar el robot, instalar y configurar el software necesario para su correcto funcionamiento.
 
@@ -33,6 +34,7 @@ Luego el robot debe detectar la pelota, realizando la captura de la imagen, con 
 
 
 Para llegar a la pelota el robot debe hacerlo por medio de aprendizaje de m\'aquinas específicamente por reforzamiento con ello se debe hacer la implementación de algoritmo de planificación de acciones que lleve al humanoide a acercarse a la pelota, con la utilizaci\'on de Aprendizaje Q, entrenamiento y realizaci\'on pruebas de desempe\~no. Finalmente cuando llegue a la pelota debe ubicar el arco, posicionarse y patear orientado al arco para meter gol. 
+
     
  %\begin{enumerate}
 %\item  Diseño y construcción de un humanoide con piezas del kit de robótica Bioloid Premium, sustituyendo su tarjeta controladora

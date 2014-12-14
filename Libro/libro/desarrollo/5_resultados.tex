@@ -19,7 +19,7 @@ Se realizaron una serie de experimentos para comprobar la movilidad del robot en
 \item Patada con la pierna izquierda
 
 \end{enumerate}
-La primera etapa consistió en verificar el desempeño de las 9 unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, 450 ejecuciones en total. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.6\% de casos exitosos y un 0.4\% de casos en los que pudo recuperarse de fallas. El 0.4\% representa un solo caso en el que el robot se ha caído y levantado. Los resultados se muestran en el cuadro \ref{fig:individuales}.  
+La primera etapa consistió en verificar el desempeño de las 9 unidades de acciones, para ello se procedió a realizar la ejecución de cada unidad 50 veces, iniciando cada prueba desde la misma posición inicial. Se realizaron 450 ejecuciones en total. Se tomó nota de las veces que lograba realizar el movimiento sin fallas, es decir, de forma exitosa y de aquellas que lograba completar el movimiento pero con fallas. Los resultados obtenidos fueron un 99.6\% de casos exitosos y un 0.4\% de casos en los que pudo recuperarse de fallas. El 0.4\% representa un solo caso en el que el robot se ha caído y levantado. Los resultados se muestran en el cuadro \ref{fig:individuales}.  
 
 \begin{table}
 \centering
@@ -65,7 +65,7 @@ Para la segunda etapa se evalu\'o la ejecuci\'on de combinaciones de una serie d
 \item Girar hacia la izquierda y patear con la pierna izquierda
 
 \end{enumerate}
-Se realizaron 30 ejecuciones de cada una de estas combinaciones, 300 ejecuciones en total. El resultado ha sido satisfactorio, obteniendo un 99\% de casos exitosos y un 1\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse. Los resultados de estas pruebas se resumen en el cuadro ~\ref{fig:combinadas}.
+Se realizaron 30 ejecuciones de cada una de estas combinaciones, iniciando cada prueba desde la misma posición inicial. Con 300 ejecuciones en total el resultado ha sido satisfactorio, obteniendo un 99\% de casos exitosos y un 1\% de casos con fallas, de las que ha podido recuperarse. La mayoría de las fallas se presentaron cuando al patear se caía, sin embargo lograba recuperarse. Los resultados de estas pruebas se resumen en el cuadro ~\ref{fig:combinadas}.
  
 \begin{table}
 \centering
@@ -218,31 +218,31 @@ Dentro de las fórmulas para el Aprendizaje-Q se encuentran dos constantes que h
 \end{itemize}
 
 Una prueba completa o prueba de comportamiento integrado se define como la colocaci\'on del robot y la pelota en posiciones iniciales arbitrarias, entonces el robot debe ser capaz de detectar la pelota, trasladarse hacia ella y patearla. Las pruebas se realizaron en un espacio de $1.8 m \times 1.6 m$
-en donde se aseguraba que el color particular de la pelota no se repitiera, de ser así esa prueba se consideraba inválida.
+en donde se aseguraba que el color particular de la pelota no se repitiera.
 
-Cada una de estas combinaciones se entrenó con 20 ejecuciones completas. Con los valores $Q(s,a)$ para cada estado y acción inicializados en cero (0), exceptuando los estados de la zona de pateo, que han sido inicializados con el valor 1. Una vez completados los entrenamientos se realizó un conjunto de pruebas para medir el desempeño del resultado de cada combinación y reconocer la mejor usando el porcentaje de pateos efectivos. Se realizó una prueba, de 10 ejecuciones cada una, para cada combinación. En total se realizaron 210 ejecuciones. La elecci\'on de s\'olo 20 pruebas para el conjunto de entrenamiento se deb\'io a que los motores son delicados, por lo cual mientras se aumentaba el n\'umero de pruebas aumentaba el riesgo de quemarlos.
+Cada una de estas combinaciones se entrenó con 20 ejecuciones completas. Con los valores $Q(s,a)$ para cada estado y acción inicializados en cero (0), exceptuando los estados de la zona de pateo, que han sido inicializados con el valor 1. Una vez completados los entrenamientos se realizó un conjunto de pruebas para medir el desempeño del resultado de cada combinación y reconocer la mejor usando el porcentaje de pateos efectivos. Se realizaron pruebas de 10 ejecuciones cada una, para cada combinación. En total se realizaron 210 ejecuciones. La elecci\'on de s\'olo 20 ejecuciones para el conjunto de entrenamiento se deb\'io a que los motores son delicados, por lo cual mientras se aumentaba el n\'umero de pruebas aumentaba el riesgo de quemarlos. Los resultados de las combinaciones de par\'ametros ajustables se presentan en el cuadro ~\ref{tabla:entramientos}.
 
-Para la combinaci\'on de $K = 1$ y $ \gamma = 0.1 $ los resultados obtenidos se presentan en el cuadro ~\ref{tabla:entramientos}. Cuando $K = 1$ la probabilidad de elegir la acci\'on, dado un estado, es igual para todas las acciones, por lo tanto la elección de la acción para este caso ha sido uniformemente aleatoria. Los resultados de las combinaciones de par\'ametros ajustables se presentan en el cuadro ~\ref{tabla:entramientos}.
+Cuando $K = 1$ la probabilidad de elegir la acci\'on, dado un estado, es igual para todas las acciones, por lo tanto la elección de la acción para este caso ha sido uniformemente aleatoria.
 
 \begin{table}
 \centering
 \begin{tabular}{c c c c}
 \hline 
-& Cantidad & Correctas & Fallidas \\ 
+& Cantidad de pruebas & Correctas & Fallidas \\ 
 \hline 
-$K = 1  \gamma = 0.1$ & 20 & 80\% & 20\% \\ 
+$K = 1$, $\gamma = 0.1$ & 10 & 80\% & 20\% \\ 
 %\hline 
-$K = 2  \gamma = 0.1$ & 20 & 80\% & 20\% \\ 
+$K = 2$, $\gamma = 0.1$ & 10 & 80\% & 20\% \\ 
 %\hline 
-$K = 2  \gamma = 0.7$ & 20 & 60\% & 40\% \\ 
+$K = 2$, $\gamma = 0.7$ & 10 & 60\% & 40\% \\ 
 %\hline 
-$K = 3  \gamma = 0.1$ & 20 & 90\% & 10\% \\ 
+$K = 3$, $\gamma = 0.1$ & 10 & 90\% & 10\% \\ 
 %\hline 
-$K = 3  \gamma = 0.7$ & 20 & 80\% & 20\% \\ 
+$K = 3$, $\gamma = 0.7$ & 10 & 80\% & 20\% \\ 
 %\hline 
-$K = 5  \gamma = 0.1$ & 20 & 80\% & 20\% \\ 
+$K = 5$, $\gamma = 0.1$ & 10 & 80\% & 20\% \\ 
 %\hline  
-$K = 5  \gamma = 0.7$ & 20 & 70\% & 30\% \\ 
+$K = 5$, $\gamma = 0.7$ & 10 & 70\% & 30\% \\ 
 \hline 
 
 \end{tabular} 
@@ -309,11 +309,11 @@ $K = 5  \gamma = 0.7$ & 20 & 70\% & 30\% \\
 %\label{fig:k5y7}
 %\end{figure} 
 
-Los resultados de los entrenamientos arrojaron que la mejor combinaci\'on fue $K = 3$ y $ \gamma = 0.1 $ que obtuvo un desempeño favorable del 90\% de las pruebas realizadas.
+Los resultados de los entrenamientos arrojaron que la mejor combinaci\'on fue $K = 3$ y $ \gamma = 0.1 $ que obtuvo un desempeño favorable del 90\%. Dado que esta combinación ha sido la mejor, se ha decidido mejorar la calidad de los experimentos con ella. De esta manera observar si puede mejorar el desempeño de Junny con Aprendizaje-Q.
 
-Con el objetivo de lograr un mejor desempeño de Junny, se inicializ\'o los valores de $Q(s,a)$ con valores de recompesas negativas para aquellas acciones cuyos efectos, en un estado particular, serían obviamente err\'oneos. Con esto se ayuda al aprendizaje del robot, disminuyendo la probabilidad de tomar acciones ineficientes. Adem\'as se aumentó el n\'umero de pruebas de entrenamiento a 30 con el mismo objetivo.
+Para ello se inicializaron los valores de $Q(s,a)$ con valores de recompesas negativas para aquellas acciones cuyos efectos, en un estado particular, serían obviamente err\'oneos. Con esto se ayuda al aprendizaje del robot, disminuyendo la probabilidad de tomar acciones ineficientes. Adem\'as se aumentó el n\'umero de pruebas de entrenamiento a 30 con el mismo objetivo.
 
-Para medir el desempeño general de Junny, con respecto al último entrenamiento, se realizó una prueba de 15 ejecuciones colocando la pelota a distintas distancias. Los resultados de esta \'ultima prueba  son de 100\% de éxitos con $K = 3$ y $ \gamma = 0.1 $ e inicializaci\'on de Q(s,a). %se presenta en el gr\'afico \ref{fig:mejor}. 
+Para medir el desempeño general de Junny, con respecto al último entrenamiento, se realizó una prueba de 15 ejecuciones colocando la pelota a distintas distancias. Los resultados de esta \'ultima prueba  son de 100\% de éxitos (con $K = 3$ y $ \gamma = 0.1 $ e inicializaci\'on de Q(s,a)). %se presenta en el gr\'afico \ref{fig:mejor}. 
 %
 %\begin{figure}[h]
 %\begin{tikzpicture}
@@ -323,7 +323,7 @@ Para medir el desempeño general de Junny, con respecto al último entrenamiento
 %\label{fig:mejor}
 %\end{figure} 
 
-Para un análisis más profundo de los resultados, se estableci\'o el n\'umero estimado de acciones esperadas, dado un estado inicial, que debe realizar el robot para llegar hasta la pelota. Con esto se puede tener una referencia de cuantas acciones debió realizar Junny en cada ejecución y comparar con el número de acciones que realmente tomó. La manera de calcular la eficiencia ha sido dividiendo la cantidad de acciones esperadas entre la cantidad de acciones realizadas. Por lo tanto mientras mas cercano a uno (1) se considera una mejor tasa de eficiencia. Para valores mayores a uno (1) significa que se realizaron menos acciones de lo esperado. Esto es posible ya que el número de acciones esperadas se calcula en base al peor de los casos.  
+Para un análisis más profundo de los resultados, se estableci\'o el n\'umero estimado de acciones esperadas desde un estado inicial que debe realizar el robot para llegar hasta la pelota. Este número de acciones se obtuvo de forma empírica. Con esto se puede tener una referencia de cuantas acciones debió realizar Junny en cada ejecución y comparar con el número de acciones que realmente tomó. La manera de calcular la eficiencia ha sido dividiendo la cantidad de acciones esperadas entre la cantidad de acciones realizadas. Por lo tanto mientras mas cercano a uno (1) se considera una mejor tasa de eficiencia. Para valores mayores a uno (1) significa que se realizaron menos acciones de lo esperado. Esto es posible ya que el número de acciones esperadas se calcula en base al peor de los casos.  
 
 Para la última prueba se obtuvo una eficiencia de $0.72$. Sin embargo bajo los mismos parametros de $K = 3$ y $ \gamma = 0.1 $ con el resultado del entrenamiento con 20 pruebas (y valores de $Q(s,a)$ inicializados en cero) se obtuvo una eficiencia de $0.64$. Por lo tanto con el aumento de 10 pruebas de entrenamiento e inicialización de los valores $Q(s,a)$ se mejoró aproximadamente un 12\%. Este es un indicativo de que con mayor cantidad de pruebas este porcentaje mejorar\'a y la eficiencia aumentará.
 
