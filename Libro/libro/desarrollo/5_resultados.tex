@@ -7,7 +7,7 @@ Algunos videos de los experimentos se encuentran disponibles en: \url { https://
 Se realizaron una serie de experimentos para comprobar la movilidad del robot en cuanto a un conjunto de acciones de movimiento (mencionadas en la sección \ref{esqueleto}). Estas acciones son:
 \begin{enumerate}
 
-\setlength{\itemsep}{0.5pt}
+\setlength{\itemsep}{0pt}
 \item Caminar un paso hacia adelante 
 \item Caminar dos pasos hacia adelante 
 \item Caminar cuatro pasos hacia adelante 
@@ -52,7 +52,7 @@ Movimiento & Cantidad de pruebas & Correctas & Fallidas & Con recuperaci\'on \\
 Para la segunda etapa se evalu\'o la ejecuci\'on de combinaciones de una serie de unidades de movimiento. Las posibles combinaciones que se pueden generar con las acciones es $9 ^ 2$ por lo cual se consideró s\'olo un subconjunto de estas combinaciones, aquellas que el robot realiza con más frecuencia al caminar. Las combinaciones elegidas fueron: 
 
 \begin{enumerate}
-\setlength{\itemsep}{0.5pt}
+\setlength{\itemsep}{0pt}
 \item Caminar hacia adelante y patear con la pierna derecha 
 \item Caminar hacia adelante y patear con la pierna izquierda
 \item Caminar hacia adelante, girar hacia la derecha y patear con la pierna derecha
@@ -205,7 +205,7 @@ Finalmente, el tercer conjunto de experimentos consistió en verificar los resul
 
 Dentro de las fórmulas para el Aprendizaje-Q se encuentran dos constantes que han sido configuradas de diferentes maneras para analizar cuál de las combinaciones brinda mejores resultados. Las constantes son la tasa de descuento $\gamma$ de la fórmula del Aprendizaje-Q y la constante $K$, de la fórmula de probabilidad explicada en la secci\'on \ref{subsec:eleccionAccion}, que ajusta la distribución de probabilidad que se le da a una acción dependiendo de su valor $Q(s,a)$. Se utilizaron las siguientes combinaciones para las constantes:
 
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
  \setlength\itemsep{0.3pt}
 \item $K$ = 1 , $\gamma$ = 0.1
 \item $K$ = 2 , $\gamma$ = 0.1 
