@@ -360,20 +360,24 @@ Tiempo promedio sin aprendizaje & 2m 12s & 3m 29 s & 4m 48s \\
 
 \end{table}
 
- Un resultado a destacar es que el tiempo promedio de pruebas a la derecha (Caso IV) es en proporci\'on  menor a las pruebas a la izquierda (Caso III) a pesar que las mismas son sim\'etricas. Esto indica que los siguientes entrenamientos deben hacer \'enfasis en los estados a la izquierda del robot.
+ Un resultado a destacar es que el tiempo promedio de pruebas a la derecha (Caso IV) es en proporci\'on  menor a las pruebas a la izquierda (Caso III) a pesar que las mismas son sim\'etricas. Dado que cada ejecución se iniciaba con posiciones arbitrarias de la pelota con respecto al robot, pudo haber un desbalance entre el número de veces que se entremaba con la pelota a la derecha o izquierda. Esto indica que los siguientes entrenamientos deben hacer \'enfasis en los estados a la izquierda del robot.
+
+El algoritmo de Aprendizaje-Q en teoría converge con un número infinito de iteraciones. Por lo que se piensa que con un mayor número de entrenamientos los tiempos promedios serían menores. 
  
 \section{Experimentos completos} \label{completos}
 
 Finalmente se realizaron experimentos con aprendizaje y patada con orientaci\'on, basicamente el robot part\'ia de un punto fijo y la pelota era colocada arbitrareamente en el campo de entrenamiento, el deb\'ia llegar a la pelota, ubicar el arco, posicionarse con respecto al arco y la pelota para realizar un pateo y meter gol.
-Las m\'etricas usadas fueron el pateo hacia el arco que generaba un gol y el que pateaba pero no lograba entrar el bal\'on. Estos resultados se muestran en la figura \ref{fig:orientacion}.
+Las m\'etricas usadas fueron el pateo hacia el arco que generaba un gol y el que pateaba pero no lograba entrar el bal\'on. Los resultados han sido 53.3\% de goles, 6.6\% de tiros fallidos y  40\% en los que no logró patear. 
 
 
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}
-\pie[pos={10 ,0}, radius =1.5, explode =0.3, text = legend, rotate =180]{53.33/Goles, 6.666/TiroAlArco , 40/Fallos}
-\end{tikzpicture}
-\caption{Prueba con 15 ejecuciones, con aprendizaje y orientaci\'on al arco }
-\label{fig:orientacion}
-\end{figure} 
+% Estos resultados se muestran en la figura \ref{fig:orientacion}.
+
+%\begin{figure}[h]
+%\centering
+%\begin{tikzpicture}
+%\pie[pos={10 ,0}, radius =1.5, explode =0.3, text = legend, rotate =180]{53.33/Goles, 6.666/TiroAlArco , 40/Fallos}
+%\end{tikzpicture}
+%\caption{Prueba con 15 ejecuciones, con aprendizaje y orientaci\'on al arco }
+%\label{fig:orientacion}
+%\end{figure} 
 
