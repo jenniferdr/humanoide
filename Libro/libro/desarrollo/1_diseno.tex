@@ -52,7 +52,24 @@ Los Motores Dynamixel Ax-12+ son actuadores inteligentes y modulares que incorpo
 %\begin{figure}[hbtp]
 %\end{figure}
 
-Para la detecci\'on de ca\'idas se ha seleccionado un giroscopio (Robotics Gyro) que mide la velocidad angular que genera los movimientos del robot, este se encuentra diseñado para verificar el balance del robot y ser usado para otras aplicaciones de movimiento \cite{gyro}. También se encuentra incluido en el kit Bioloid. En la figura ~\ref{fig:gyroYextensor} se puede observar su estructura. Existen otros sensores de inercia que se enfocan en realizar la tarea de balance y orientaci\'on del robot como el aceler\'ometro, sin embargo estos no se encontraban disponibles en el laboratorio.
+Para la detecci\'on de ca\'idas se ha seleccionado un giroscopio (Robotics Gyro) que mide el cambio de la velocidad angular que genera los movimientos del robot, este se encuentra diseñado para verificar el balance del robot y ser usado para otras aplicaciones de movimiento \cite{gyro} su peso es de 2.9 g, las medidas son 23mm x 23mm x 10mm ,banda ancha de tranferencia es de 140Hz y una sensibilidad de 3.33V/dps, mas informaci\'on en la tabla \ref{copio} . También se encuentra incluido en el kit Bioloid. En la figura ~\ref{fig:gyroYextensor} se puede observar su estructura. Existen otros sensores de inercia que se enfocan en realizar la tarea de balance y orientaci\'on del robot como el aceler\'ometro, sin embargo estos no se encontraban disponibles en el laboratorio.
+\begin{table}
+\centering
+\begin{tabular}{|c | c c c|}
+\hline 
+ & M\'aximo & Neutro & M\'inimo \\ 
+\hline
+Valor de Salida & 455 & 250 & 45 \\ 
+
+Velocidad Angular & +300 & 0 & -300 \\ 
+ 
+Valor del Voltaje & 2.23 & 1.23 & 0.23 \\ 
+\hline 
+\end{tabular} 
+\caption{Informaci\'on b\'asica del giroscopio}
+\label{copio}
+
+\end{table}
 
 \begin{figure}[hbtp]
 \centering
@@ -66,7 +83,24 @@ Ha sido necesario incluir un extensor de puertos Bioloid que permitiera conectar
 %fue necesario para una mejor movilidad del robot pues se dividi\'o su cuerpo en cuatro extreminades por lo tanto cuatro series de motores distintas y el expansor permite aumentar el número de cadenas de servos conectados a la tarjeta
 
 
-Para agregar mayor capacidad de procesamiento, con la finalidad de poder captar y procesar imágenes, se incorpor\'o el mini computador Raspberry Pi, de aproximadamente 10 cm de largo, 5 cm de ancho y 2 cm de alto, a la que se puede conectar un módulo de cámara especialmente diseñado para él. Puede ser utilizado en proyectos de electrónica y para varias de las tareas que un computador de escritorio puede hacer, como procesamiento de hojas de cálculo y de texto, ejecutar juegos, entre otras \cite{raspberry}. Su estructura se puede ver en la figura ~\ref{fig:RaspYcamara}. La Raspberry Pi cuenta con un procesador gráfico que permite aligerar la carga del procesador central \cite{elLinux}. Para las funciones correspondientes a la Rasberry Pi, en el proyecto tambi\'en era factible la utilizaci\'on de un tel\'efono celular avanzado, sin embargo esta opci\'on fue decartada pues agrega un peso importante a la estructura del robot, dificultad para añadirle grados de libertad a su cámara y un costo superior al de la Raspberry.  
+Para agregar mayor capacidad de procesamiento, con la finalidad de poder captar y procesar imágenes, se incorpor\'o el mini computador Raspberry Pi, de aproximadamente 10 cm de largo, 5 cm de ancho y 2 cm de alto, a la que se puede conectar un módulo de cámara especialmente diseñado para él. Puede ser utilizado en proyectos de electrónica y para varias de las tareas que un computador de escritorio puede hacer, como procesamiento de hojas de cálculo y de texto, ejecutar juegos, entre otras \cite{raspberry}. Su estructura se puede ver en la figura ~\ref{fig:RaspYcamara}. La Raspberry Pi cuenta con un procesador gráfico que permite aligerar la carga del procesador central \cite{elLinux}. Para las funciones correspondientes a la Rasberry Pi, en el proyecto tambi\'en era factible la utilizaci\'on de un tel\'efono celular avanzado, sin embargo esta opci\'on fue decartada pues agrega un peso importante a la estructura del robot, dificultad para añadirle grados de libertad a su cámara y un costo superior al de la Raspberry su comparaci\'on se muestra en la tabla \ref{table:celularRaspi}.  
+
+\begin{table}
+\centering
+\begin{tabular}{|c| c c|}
+\hline 
+ & Raspberry Pi & Sansumg Galaxy S3 \\ 
+ \hline
+Peso & 45g & 133g \\  
+Costo & 35\$ & 258\$ \\ 
+ 
+Dimensiones & 85.60mm x 56mm x 21mm & 136.6 x 70.6 x 8.6 mm
+ \\ 
+\hline 
+\end{tabular} 
+\caption{Cuadro comparativo de raspberry Pi y tel\'efono celular}
+\label{table:celularRaspi}
+\end{table}
 
 Para lograr el objetivo de detecci\'on de la pelota y orientaci\'on al arco existía la posibilidad de añadir un sensor de br\'ujula y un sensor de proximidad. Sin embargo la ulitizaci\'on de una c\'amara para esta tarea representaba mayores ventajas. La cámara posee un mayor rango de percerpción, aumentando las posibilidades de encontrar la pelota o arco en menor cantidad de tiempo que con los sensores. Adem\'as, la incorporación de la Raspberry Pi  \cite{raspberry} y su cámara permite la posibilidad de ampliar las habilidades y tareas que podr\'ia realizar Junny. La c\'amara puede captar im\'agenes y grabar vídeos de alta definición. Tiene 5 megapíxeles de foco fijo que soporta los modos de vídeo de 1080x30, 720x60 y \gls{VGA}90. Puede ser manejada con las librerías \gls{MMAL}, \gls{V4L} u otras librerías de terceros como la de Python \cite{raspberrycam}
 
