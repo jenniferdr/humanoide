@@ -40,6 +40,13 @@ Luego se aplica la función inRange de OpenCv para obtener una imagen binaria, e
 \label{fig:proces}
 \end{figure}
 
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.36]{imagenes/compararHSV_BGR.png}
+\caption{(a) imagen en HSV. (b) imagen en BGR. (c) imagen binaria a partir de la imagen HSV y el color de la pelota (c) imagen binaria a partir de la imagen en BGR.}
+\label{fig:proces}
+\end{figure}
+
 Para disminuir el ruido y los posibles elementos aislados que pueda tener la imagen con la que se está trabajando se han aplicado los filtros o transformaciones de morfología en apertura y morfología en clausura de la librería Opencv, basadas en las operaciones básicas de dilatación y erosión. La morfología en apertura es una transformación que consiste en aplicar la operación de erosión seguido de la operación de dilatación. La morfología de clausura es una transformación que aplica la dilatación seguido de la erosión.
 
 De esta forma se logró ubicar la pelota con la cámara Raspberry Pi en el 100\% de las pruebas realizadas, que se describen en el cap\'itulo \ref{chapter:resultados}.
