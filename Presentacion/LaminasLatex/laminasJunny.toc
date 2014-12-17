@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.24pt}
+\beamer@sectionintoc {2}{Introducci\'{o}n}{3}{0}{1}
+\beamer@sectionintoc {3}{Construcci\'on }{7}{0}{2}
+\beamer@sectionintoc {4}{Experimentos y Resultados}{28}{0}{3}
+\beamer@sectionintoc {5}{Conclusiones}{39}{0}{4}
+\beamer@sectionintoc {6}{Futuros Trabajos}{41}{0}{5}

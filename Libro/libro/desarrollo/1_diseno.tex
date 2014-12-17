@@ -51,9 +51,10 @@ Los Motores Dynamixel Ax-12+ son actuadores inteligentes y modulares que incorpo
 
 %\begin{figure}[hbtp]
 %\end{figure}
+Para la detecci\'on de ca\'idas se ha seleccionado un giroscopio (Robotics Gyro) que mide la velocidad angular que genera los movimientos del robot, este se encuentra diseñado para verificar el balance del robot y ser usado para otras aplicaciones de movimiento \cite{gyro}  su peso es de 2.9 g, las medidas son 23mm x 23mm x 10mm ,banda ancha de tranferencia es de 140Hz y una sensibilidad de 3.33V/dps, mas informaci\'on en la tabla \ref{copio}. También se encuentra incluido en el kit Bioloid. En la figura~\ref{fig:gyroYextensor} se puede observar su estructura. Existen otros sensores de inercia que se enfocan en realizar la tarea de balance y orientaci\'on del robot como el aceler\'ometro, sin embargo estos no se encontraban disponibles en el laboratorio.
 
-<<<<<<< HEAD
-Para la detecci\'on de ca\'idas se ha seleccionado un giroscopio (Robotics Gyro) que mide el cambio de la velocidad angular que genera los movimientos del robot, este se encuentra diseñado para verificar el balance del robot y ser usado para otras aplicaciones de movimiento \cite{gyro} su peso es de 2.9 g, las medidas son 23mm x 23mm x 10mm ,banda ancha de tranferencia es de 140Hz y una sensibilidad de 3.33V/dps, mas informaci\'on en la tabla \ref{copio} . También se encuentra incluido en el kit Bioloid. En la figura ~\ref{fig:gyroYextensor} se puede observar su estructura. Existen otros sensores de inercia que se enfocan en realizar la tarea de balance y orientaci\'on del robot como el aceler\'ometro, sin embargo estos no se encontraban disponibles en el laboratorio.
+
+
 \begin{table}
 \centering
 \begin{tabular}{|c | c c c|}
@@ -62,18 +63,16 @@ Para la detecci\'on de ca\'idas se ha seleccionado un giroscopio (Robotics Gyro)
 \hline
 Valor de Salida & 455 & 250 & 45 \\ 
 
-Velocidad Angular & +300 & 0 & -300 \\ 
+Velocidad Angular & +300$^o$ & 0$^o$ & -300$^o$ \\ 
  
-Valor del Voltaje & 2.23 & 1.23 & 0.23 \\ 
+Valor del Voltaje & 2.23V & 1.23V & 0.23V \\ 
 \hline 
 \end{tabular} 
 \caption{Informaci\'on b\'asica del giroscopio}
 \label{copio}
 
 \end{table}
-=======
-Para la detecci\'on de ca\'idas se ha seleccionado un giroscopio (Robotics Gyro) que mide la velocidad angular que genera los movimientos del robot, este se encuentra diseñado para verificar el balance del robot y ser usado para otras aplicaciones de movimiento \cite{gyro}. También se encuentra incluido en el kit Bioloid. En la figura~\ref{fig:gyroYextensor} se puede observar su estructura. Existen otros sensores de inercia que se enfocan en realizar la tarea de balance y orientaci\'on del robot como el aceler\'ometro, sin embargo estos no se encontraban disponibles en el laboratorio.
->>>>>>> 6d30135683b2b5ebc4db20003445bb803f36bf21
+
 
 \begin{figure}[hbtp]
 \centering
@@ -98,11 +97,11 @@ Para agregar mayor capacidad de procesamiento, con la finalidad de poder captar 
 Peso & 45g & 133g \\  
 Costo & 35\$ & 258\$ \\ 
  
-Dimensiones & 85.60mm x 56mm x 21mm & 136.6 x 70.6 x 8.6 mm
+Dimensiones & 85.60mm x 56mm x 21mm & 136.6mm x 70.6mm x 8.6 mm
  \\ 
 \hline 
 \end{tabular} 
-\caption{Cuadro comparativo de raspberry Pi y tel\'efono celular}
+\caption{Cuadro comparativo de Raspberry Pi y tel\'efono celular}
 \label{table:celularRaspi}
 \end{table}
 
