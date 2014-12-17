@@ -11,7 +11,7 @@
 A continuación se presenta una descripción de los elementos que han sido seleccionados para la construcción del robot humanoide. 
 
 Las opciones que se han considerado para la construcci\'on del cuerpo de Junny han sido: 
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
   \item Uso de piezas de \gls{LEGO}.
   \item Construcci\'on y dise\~no mec\'anico desde cero.
   \item Uso de las piezas del kit Bioloid \cite{robotics}.
@@ -19,7 +19,7 @@ Las opciones que se han considerado para la construcci\'on del cuerpo de Junny h
 
 Estas opciones corresponden a los recursos disponibles. Tanto la construci\'on con piezas de \gls{LEGO} como la opci\'on de realizarlo desde cero implicaba más tiempo del que se disponía, adem\'as que realizarlo en su totalidad con dise\~no mec\'anico y electr\'onico implicaba conocimientos m\'as avanzados en el \'area de mecatr\'onica que no eran el objetivo del proyecto. Por lo tanto se escogi\'o su construcci\'on con el kit Bioloid como la opci\'on m\'as factible para el cumplimiento de los objetivos. 
 
-El kit Bioloid es un kit de robótica con piezas prefabricadas que permite armar diferentes tipos de robot pero principalmente humanoides. Su empaque se puede observar en la figura ~\ref{fig:kit}. El fabricante, Robotics \cite{robotics}, incluye un manual  con varios modelos de robots con instrucciones de ensamblaje. Provee una tarjeta controladora, CM-510 \cite{cm510}, a la que se conectan los motores Dynamixel y algunos sensores que se programan a través de la interfaz de ‘RoboPlus’ \cite{robotics}.
+El kit Bioloid es un kit de robótica con piezas prefabricadas que permite armar diferentes tipos de robot pero principalmente humanoides. Su empaque se puede observar en la figura~\ref{fig:kit}. El fabricante, Robotics \cite{robotics}, incluye un manual  con varios modelos de robots con instrucciones de ensamblaje. Provee una tarjeta controladora, CM-510 \cite{cm510}, a la que se conectan los motores Dynamixel y algunos sensores que se programan a través de la interfaz de ‘RoboPlus’ \cite{robotics}.
 
 \begin{figure}[hbtp]
 \centering
@@ -52,6 +52,7 @@ Los Motores Dynamixel Ax-12+ son actuadores inteligentes y modulares que incorpo
 %\begin{figure}[hbtp]
 %\end{figure}
 
+<<<<<<< HEAD
 Para la detecci\'on de ca\'idas se ha seleccionado un giroscopio (Robotics Gyro) que mide el cambio de la velocidad angular que genera los movimientos del robot, este se encuentra diseñado para verificar el balance del robot y ser usado para otras aplicaciones de movimiento \cite{gyro} su peso es de 2.9 g, las medidas son 23mm x 23mm x 10mm ,banda ancha de tranferencia es de 140Hz y una sensibilidad de 3.33V/dps, mas informaci\'on en la tabla \ref{copio} . También se encuentra incluido en el kit Bioloid. En la figura ~\ref{fig:gyroYextensor} se puede observar su estructura. Existen otros sensores de inercia que se enfocan en realizar la tarea de balance y orientaci\'on del robot como el aceler\'ometro, sin embargo estos no se encontraban disponibles en el laboratorio.
 \begin{table}
 \centering
@@ -70,6 +71,9 @@ Valor del Voltaje & 2.23 & 1.23 & 0.23 \\
 \label{copio}
 
 \end{table}
+=======
+Para la detecci\'on de ca\'idas se ha seleccionado un giroscopio (Robotics Gyro) que mide la velocidad angular que genera los movimientos del robot, este se encuentra diseñado para verificar el balance del robot y ser usado para otras aplicaciones de movimiento \cite{gyro}. También se encuentra incluido en el kit Bioloid. En la figura~\ref{fig:gyroYextensor} se puede observar su estructura. Existen otros sensores de inercia que se enfocan en realizar la tarea de balance y orientaci\'on del robot como el aceler\'ometro, sin embargo estos no se encontraban disponibles en el laboratorio.
+>>>>>>> 6d30135683b2b5ebc4db20003445bb803f36bf21
 
 \begin{figure}[hbtp]
 \centering
@@ -102,11 +106,6 @@ Dimensiones & 85.60mm x 56mm x 21mm & 136.6 x 70.6 x 8.6 mm
 \label{table:celularRaspi}
 \end{table}
 
-Para lograr el objetivo de detecci\'on de la pelota y orientaci\'on al arco existía la posibilidad de añadir un sensor de br\'ujula y un sensor de proximidad. Sin embargo la ulitizaci\'on de una c\'amara para esta tarea representaba mayores ventajas. La cámara posee un mayor rango de percerpción, aumentando las posibilidades de encontrar la pelota o arco en menor cantidad de tiempo que con los sensores. Adem\'as, la incorporación de la Raspberry Pi  \cite{raspberry} y su cámara permite la posibilidad de ampliar las habilidades y tareas que podr\'ia realizar Junny. La c\'amara puede captar im\'agenes y grabar vídeos de alta definición. Tiene 5 megapíxeles de foco fijo que soporta los modos de vídeo de 1080x30, 720x60 y \gls{VGA}90. Puede ser manejada con las librerías \gls{MMAL}, \gls{V4L} u otras librerías de terceros como la de Python \cite{raspberrycam}
-
-%(http://www.raspberrypi.org/products/camera-module/)
-% Se conecta a la Raspberry Pi con un cable de cinta plana de 15 cm en el puerto CSI.
-
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.06]{imagenes/RaspberryPi.jpg}
@@ -115,19 +114,21 @@ Para lograr el objetivo de detecci\'on de la pelota y orientaci\'on al arco exis
 \label{fig:RaspYcamara}
 \end{figure}
 
-Para poder establecer la comunicación entre la Arbotix y la Raspberry Pi, se añadió el chip FTDI (Future Technology Devices International) \cite{ftdi}. Es una tarjeta controladora  (se puede observar en la figura ~\ref{fig:ftdi}) que ofrece el servicio de conversión de  datos de \gls{USB} a \gls{UART}, por lo cual permite la comunicación entre diferentes dispositivos \cite{ftdi}. Fue elegida en lugar de la radio inálambrica \gls{XBEE}, pues la Raspeberry Pi y la Arbotix estan f\'isicamente cerca lo cual permite usar cableado directo, y usar los \gls{XBEE} implicaba un mayor costo para el proyecto.
+Para lograr el objetivo de detecci\'on de la pelota y orientaci\'on al arco existía la posibilidad de añadir un sensor de br\'ujula y un sensor de proximidad. Sin embargo la ulitizaci\'on de una c\'amara para esta tarea representaba mayores ventajas. La cámara posee un mayor rango de percerpción, aumentando las posibilidades de encontrar la pelota o arco en menor cantidad de tiempo que con los sensores. Adem\'as, la incorporación de la Raspberry Pi  \cite{raspberry} y su cámara permite la posibilidad de ampliar las habilidades y tareas que podr\'ia realizar Junny. La c\'amara puede captar im\'agenes y grabar vídeos de alta definición. Tiene 5 megapíxeles de foco fijo que soporta los modos de vídeo de 1080x30, 720x60 y \gls{VGA}90. Puede ser manejada con las librerías \gls{MMAL}, \gls{V4L} u otras librerías de terceros como la de Python \cite{raspberrycam}
 
-Para añadir grados de libertad a la c\'amara se utilizaron como base dos micro servomotores anal\'ogicos TG9e \cite{microservo}. La capacidad de torque de estos motores alcanza los 1.50 kg-cm . Permiten ser controlados en posición en un rango de 180$^{\circ}$. Ver figura ~\ref{fig:Servo}.   
+%(http://www.raspberrypi.org/products/camera-module/)
+% Se conecta a la Raspberry Pi con un cable de cinta plana de 15 cm en el puerto CSI.
+
+Para poder establecer la comunicación entre la Arbotix y la Raspberry Pi, se añadió el chip FTDI (Future Technology Devices International) \cite{ftdi}. Es una tarjeta controladora  (se puede observar en la figura ~\ref{fig:ftdiYservo}) que ofrece el servicio de conversión de  datos de \gls{USB} a \gls{UART}, por lo cual permite la comunicación entre diferentes dispositivos \cite{ftdi}. Fue elegida en lugar de la radio inálambrica \gls{XBEE}, pues la Raspeberry Pi y la Arbotix estan f\'isicamente cerca lo cual permite usar cableado directo, y usar los \gls{XBEE} implicaba un mayor costo para el proyecto.
+
+Para añadir grados de libertad a la c\'amara se utilizaron como base dos micro servomotores anal\'ogicos TG9e \cite{microservo}. La capacidad de torque de estos motores alcanza los 1.50 kg-cm . Permiten ser controlados en posición en un rango de 180$^{\circ}$. Ver figura ~\ref{fig:ftdiYservo}.   
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.06]{imagenes/DSCF1162.jpg}
-\caption{Chip FTDI conectado a la tarjeta Arbotix}
-\label{fig:ftdi}
-\centering
+\includegraphics[scale=0.09]{imagenes/DSCF1162.jpg}
 \includegraphics[scale=0.09]{imagenes/servosTg9B.jpg}
-\caption{Micro Servomotores analógicos TG9e}
-\label{fig:Servo}
+\caption{A la izquierda: Chip FTDI conectado a la tarjeta Arbotix. A la derecha: Micro Servomotores analógicos TG9e}
+\label{fig:ftdiYservo}
 \end{figure}
 
 Debido a que no todos los componentes poseen las mismas exigencias con respecto a voltaje y amperaje, se realizó un regulador (ver figura ~\ref{fig:circuito}) con una salida de 5 voltios para la tarjeta Raspberry Pi y dos micro servomotores, y otra salida de 11.1 V para la tarjeta Arbotix que a su vez alimenta a los componentes conectados en ella (motores Dynamixel y Giroscopio). Si bien la tarjeta Arbotix posee un regulador interno de cinco voltios la opción de conectar todo a la salida de 5 V del regulador no era posible, dado que los motores Dynamixel requieren alimentación de 11 voltios.
