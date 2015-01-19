@@ -1,8 +1,8 @@
 /* Controlar y modificar el sensor de Gyro en sus ejes X y Y
 */
 // Inicializacion de los pines a utilizar
-int sensorpinX = 2;//1
-int sensorY = 0;//0
+int sensorpinX = 5;//1
+int sensorY = 7;//0
 int X;
 int Y;
 

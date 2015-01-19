@@ -47,7 +47,7 @@ void loop(){
       int Tmp = GetTemperature(i);
       Serial.print("Temperatura \n ");
       Serial.print(Tmp);
-        
+       i = i +1;     
       delay(500);
   }
 }

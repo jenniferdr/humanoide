@@ -30,13 +30,13 @@
   void loop() 
   { 
     //ar_m();
-    ar_d();
+    //ar_d();
     //ar_i();
     //ab_m();
     //ab_d();
     //ab_i();
     //aar_m();
-    //aar_d();
+    aar_d();
     //aar_i();
     
     delay(4000);
@@ -86,13 +86,13 @@ void aar_m(){
 }
 
 void aar_d(){
-  myservoB.write(0);
+  myservoB.write(10);
   delay(100);
   myservoA.write(90);
 }
 
 void aar_i(){
-  myservoB.write(83);
+  myservoB.write(85);
   delay(100);
   myservoA.write(90);
 }

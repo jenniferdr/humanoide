@@ -14,6 +14,8 @@
 #include "patadaDerecha.h"
 #include "patadaIzquierda.h"
 #include "caminarPoco.h"
+#include "aplausos.h"
+#include "unBrazo.h"
 
 #include <Event.h>
 #include <Timer.h>
@@ -103,6 +105,17 @@ void callback(const Test::Request & req, Test::Response & res){
      ar_i();
    }else if (ent == "p"){
      ab_i();
+   }else if (ent == "t"){
+     aar_m();
+   }else if (ent == "i"){
+     aar_d();
+   }else if (ent == "f"){
+     aar_i();
+   }
+   else if (ent == "n"){
+      bioloid.playSeq(brazo);
+   }else if (ent == "m"){
+     bioloid.playSeq(ambos);
    }
    
    while(bioloid.playing) {
@@ -188,7 +201,7 @@ void balance(){
   if(errorX >= 100){
     de_pie = false;
     boca_arriba = true;
-  }else if (errorX<= -60){
+  }else if (errorX<= -80){
     de_pie = false;
     boca_arriba = false;
   }
@@ -246,4 +259,22 @@ void ab_d(){
   myservoB.write(15);
   delay(100);
   myservoA.write(60);
+}
+
+void aar_m(){
+  myservoB.write(31);
+  delay(100);
+  myservoA.write(90);
+}
+
+void aar_d(){
+  myservoB.write(10);
+  delay(100);
+  myservoA.write(90);
+}
+
+void aar_i(){
+  myservoB.write(85);
+  delay(100);
+  myservoA.write(90);
 }
