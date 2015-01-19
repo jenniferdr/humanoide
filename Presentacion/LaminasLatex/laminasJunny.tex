@@ -1,6 +1,4 @@
 
-
-
 \documentclass{beamer}
 \usetheme{Oxygen}
 \usepackage{graphicx}
@@ -92,7 +90,7 @@ una pelota de forma aut\'onoma e inteligente}
 
   
 
-\section{Construci\'on }
+\section{Construcci\'on }
 \begin{frame}
   \frametitle{Partes del robot}
   \framesubtitle{Piezas}
@@ -354,11 +352,11 @@ R(s,a,s') = \dfrac{d(s) - d(s')}{10}
 \begin{frame}
 \frametitle{Aprendizaje}
 
-\begin{block}{Elecci\'on de la acci\'on}
-\begin{equation}
- P(a_{i} | s) = \dfrac{k^{Q(s,a_{i})}}{\sum_{j}k^{Q(s,a_{j})}}
-\end{equation}
-\end{block} 
+%\begin{block}{Elecci\'on de la acci\'on}
+%\begin{equation}
+% P(a_{i} | s) = \dfrac{k^{Q(s,a_{i})}}{\sum_{j}k^{Q(s,a_{j})}}
+%\end{equation}
+%\end{block} 
 
 \begin{block}{Actualizaci\'on de Q(s,a)}
 \begin{equation}
@@ -741,5 +739,22 @@ Los experimentos con el comportamiento completo incluyendo orientaci\'on al arco
 
 \LARGE{PREGUNTAS}
 \includegraphics[scale=0.05]{tirolesa}
+\end{frame}
+
+\begin{frame}
+\frametitle{Aprendizaje}
+
+\begin{block}{Elecci\'on de la acci\'on}
+\begin{equation}
+ P(a_{i} | s) = \dfrac{k^{Q(s,a_{i})}}{\sum_{j}k^{Q(s,a_{j})}}
+\end{equation}
+\end{block} 
+
+\begin{block}{Actualizaci\'on de Q(s,a)}
+\begin{equation}
+Q (s,a) = r + {\gamma\max_{a'}} Q(\delta(s ,a ) , a') 
+\end{equation}
+\end{block}
+
 \end{frame}
 \end{document}

@@ -1,8 +1,6 @@
-\section{Visión Artificial} \label{sect:Vision_Artificial}
+`\section{Visión Artificial} \label{sect:Vision_Artificial}
 
-Una manera de obtener información del ambiente es con visión artificial. Esta consiste en usar un dispositivo (cámara) que capta un rango de espectro electromagnético (usualmente el visible por el ojo humano) y produce una imagen. La representación de la imagen se almacena como una matriz de píxeles, cada píxel es un elemento que guarda información de una región en el espacio captado. Si se usa una cámara de luz, la información de cada píxel será el valor de la luz que representa el color. Luego de obtener la imagen, esta se procesa para extraer información de ella o para transformarla \cite{AiRobotics}.
-
-Dentro del campo de visión artificial se han desarrollado diferentes algoritmos y t\'ecnicas para el procesamiento de imágenes con diferentes objetivos. En la sección \ref{sec:Segmentacion} se describe la t\'ecnica de segmentaci\'on por regiones, que es la utilizada en este proyecto para ubicar la posición tanto de la pelota como del arco. 
+Una manera de obtener información del ambiente es con visión artificial. Esta consiste en usar un dispositivo (cámara) que capta un rango de espectro electromagnético (usualmente el visible por el ojo humano) y produce una imagen. La representación de la imagen se almacena como una matriz de píxeles, cada píxel es un elemento que guarda información de una región en el espacio captado. Si se usa una cámara de luz, la información de cada píxel será el valor de la luz que representa el color. Luego de obtener la imagen, esta se procesa para extraer información de ella o para transformarla \cite{AiRobotics}. Dentro del campo de visión artificial se han desarrollado diferentes algoritmos y t\'ecnicas para el procesamiento de imágenes con diferentes objetivos. En la sección \ref{sec:Segmentacion} se describe la t\'ecnica de segmentaci\'on por regiones, que es la utilizada en este proyecto para ubicar la posición tanto de la pelota como del arco. 
 
 Por otro lado, existen varios algoritmos que se dedican a la transformación de las imágenes para reducir ruidos, compensar problemas de iluminación, extraer formas, identificar objetos, entre otros. En esta sección se describen dos de las técnicas de transformación para reducir el ruido basadas en la dilatación y erosión de la imagen (secci\'on \ref{sec:filtros}). 
  
@@ -29,7 +27,7 @@ La operación se aplica pasando el elemento estructurante sobre toda la imagen y
 \begin{figure}[hbtp]
 
 \centering
-\includegraphics[scale=0.2]{imagenes/erosion-model.jpg}
+\includegraphics[scale=0.1]{imagenes/erosion-model.jpg}
 \caption{Dilatación: A es la imagen original, B es el elemento estructurante, La estrella es el punto de referencia. Se ve como aumenta la imagen en proporci\'on al patr\'on aplicado }
 \end{figure}
 
@@ -39,7 +37,7 @@ La operación de erosión es análoga a la de dilatación, con la diferencia de 
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.3]{imagenes/erosion.jpg}
+\includegraphics[scale=0.1]{imagenes/erosion.jpg}
 \caption{Erosión,  A: es la imagen original, B: es el n\'ucleo. Se ve como disminuye la imagen en proporci\'on al patr\'on aplicado}
 \label{fig:erosion}
 \end{figure}
